@@ -1,0 +1,146 @@
+#page {
+    padding-top: 10px;
+}
+
+/*.container {
+    width: 950px !important;
+}*/
+
+#content {
+    margin-bottom: 10px;
+}
+
+/*#contentText 
+{
+    border: 2px #808080 solid; 
+    background: #e3ffec; 
+    position:relative;
+    top:4px;
+    width:800px;
+    margin: 0 auto;
+    padding: 5px;
+}*/
+
+
+#contentText {
+    background: none repeat scroll 0 0 #E3FFEC;
+    border: 2px solid #808080;
+    margin: 0 160px;
+    padding: 5px;
+    position: relative;
+    top: 4px;
+    width: auto;
+}
+
+/* Sidebar Left
+-----------------------------------------------------------------------------*/
+.sideLeft 
+{
+    left: -10px;
+    float: left;
+    width: 150px;
+    position: relative;
+    background: white;
+    /*margin-left: -150px;
+    height:400px;
+    margin-right: -3px;
+    top:-260px;*/
+}
+
+
+/* Sidebar Right
+-----------------------------------------------------------------------------*/
+.sideRight 
+{
+    
+    float: right;
+    width: 150px;
+    position: relative;
+    background: white;
+    height: 400px;
+    margin-left: 10px;
+    /*top:-260px;
+    padding:8px;
+    left:175px;
+    margin-left: -100%;*/
+}
+.partnspon 
+{
+    padding: 6px;
+    padding-bottom: 20px;
+    /*padding: 4px;*/
+    /*text-align: center;*/
+}
+
+.partnspon h3 
+{
+
+    color: #000000;
+    font-size: 14px;
+    text-align: left;
+    text-transform: uppercase;
+}
+ 
+.partnspon img 
+{
+    /*margin: 10px 0;*/
+    margin: 0 0;
+}
+img 
+{
+    border: medium none;
+}
+
+
+.t12 
+{
+    color: #5F307F;
+    /*font-family: fgmc;*/
+    font-family: tahoma;
+    font-size: 11px;
+    text-transform: none;
+}
+
+
+.t28 
+{
+    color: #5F307F;
+    font-family: tahoma;
+    /*font-family: fgmc;*/
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.text14 
+{
+    font-size: 14px;
+    line-height: 21px;
+}
+.colblue1 
+{
+    color: #00427A;
+}
+
+.text17 {
+    font-size: 17px;
+    line-height: 21px;
+}
+
+.text23 {
+    font-size: 23px;
+    line-height: 26px;
+}
+.colred1 {
+    color: #ED1C24;
+}
+.uptext {
+    text-transform: uppercase;
+}
+.centext {
+    text-align: center;
+} 
+
+
+.form-horizontal .control-group {
+    margin-bottom: 5px !important;
+}

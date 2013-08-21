@@ -1,0 +1,222 @@
+<?php
+//YiiBase::import('application.controllers.ParticipantController');
+Yii::app()->bootstrap->register();
+                               
+class CommandController extends Controller //ParticipantController
+{
+	/**
+	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
+	 * using two-column layout. See 'protected/views/layouts/column2.php'.
+	 */
+	public $layout='//layouts/column2';
+
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view'),
+				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
+				'users'=>array('@'),
+                //'roles'=>array('admin','manager'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin','delete'),
+				'users'=>array('admin'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+
+	//ДЕЙСТВИЕ: просмотр команды
+	public function actionView($id) {
+        $tabnum = Yii::app()->request->getParam('tab');
+        $tabnum = !empty($tabnum) ? $tabnum : 1;
+        
+        $model = $this->loadModel($id);
+        $count = $model->sportsmenCount;
+        $sqlCommand = Sportsmen::sqlSportsmenList($model->CommandID);
+        $dataSportsmenList = new CSqlDataProvider($sqlCommand->text, array(
+            'totalItemCount'=>$count,
+            /*'sort'=>array(
+                'attributes'=>array(
+                    'Fullname',
+                ),
+            ),*/
+            'pagination'=>array(
+                'pageSize'=>30,
+            ),
+        )); 
+        // $dataProvider->getData() will return a list of arrays.
+
+        $count = $model->coachCount;
+        $sqlCommand = Coach::sqlCoachList($model->CommandID);
+        $dataCoachList = new CSqlDataProvider($sqlCommand->text, array(
+            'totalItemCount'=>$count,
+            'pagination'=>array(
+                'pageSize'=>10,
+            ),
+        )); 
+        
+		$this->render('view',array(
+			'model'=>$model,
+            'commandid'=>$model->CommandID,
+            'dataSportsmenList'=>$dataSportsmenList,
+            'dataCoachList'=>$dataCoachList,
+            'tabnum'=>$tabnum,
+		));
+	}
+
+	/**
+	 * Creates a new model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 */
+	public function actionCreate()
+	{
+		$model=new Command;
+
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Command']))
+		{
+			$model->attributes=$_POST['Command'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->CommandID));
+		}
+
+		$this->render('create',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Updates a particular model.
+	 * If update is successful, the browser will be redirected to the 'view' page.
+	 * @param integer $id the ID of the model to be updated
+	 */
+	public function actionUpdate($id)
+	{
+		$model=$this->loadModel($id);
+
+        //$uid = Yii::app()->userid;
+        //$flg = $this->isUserOwner($uid, $model);
+        $myCommandID = Yii::app()->user->getCommandid(); //ИД Моей команды
+        $isMyCommand = !Yii::app()->user->isGuest && ($model->CommandID == $myCommandID);
+        $flg = Yii::app()->user->isExtendRole() || $isMyCommand;
+
+        if (!$flg) {
+            if (Yii::app()->user->isGuest)
+                $mess = 'Запрещено редактировать! Вы вошли как Гость.'.
+                        ' Для того, чтобы иметь возможность ввода информации, необходимо войти как зарегистрированный пользователь';
+            else //if (isset($uid) && !empty($uid))
+                $mess = 'Запрещено редактировать! Данная команда введена другим пользователем';
+            throw new CHttpException(400, $mess);
+            return;
+        }
+        
+        
+		// Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+
+		if(isset($_POST['Command']))
+		{
+			$model->attributes=$_POST['Command'];
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->CommandID));
+		}
+
+		$this->render('update',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Deletes a particular model.
+	 * If deletion is successful, the browser will be redirected to the 'admin' page.
+	 * @param integer $id the ID of the model to be deleted
+	 */
+	public function actionDelete($id)
+	{
+		$this->loadModel($id)->delete();
+
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	}
+
+	//ДЕЙСТВИЕ: просмотр списка команд
+	public function actionIndex()
+	{
+		/*$dataProvider=new CActiveDataProvider('Command', array(
+            'pagination'=>array(
+                'pageSize'=>20,
+            ),
+        ));*/
+        $dataProvider = Command::model()->search();
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+	/**
+	 * Manages all models.
+	 */
+	public function actionAdmin()
+	{
+		$model=new Command('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Command']))
+			$model->attributes=$_GET['Command'];
+
+		$this->render('admin',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer the ID of the model to be loaded
+	 */
+	public function loadModel($id)
+	{
+		$model=Command::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	/**
+	 * Performs the AJAX validation.
+	 * @param CModel the model to be validated
+	 */
+	protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='command-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
+}

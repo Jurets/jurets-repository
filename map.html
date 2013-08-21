@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Expires" content="Fri, Jan 01 1900 00:00:00 GMT">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Lang" content="en">
+<meta name="author" content="">
+<meta http-equiv="Reply-to" content="@.com">
+<meta name="generator" content="PhpED 5.8">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="creation-date" content="01/01/2009">
+<meta name="revisit-after" content="15 days">
+<title>Схема проезда</title>
+<!--<link rel="stylesheet" type="text/css" href="my.css">-->
+
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false">
+    </script>
+    
+    <script type="text/javascript">
+            //var stockholm = new google.maps.LatLng(49.999361,36.204601); 
+            var stockholm = new google.maps.LatLng(50.009311,36.231834);
+            var parliament = new google.maps.LatLng(50.013903,36.238185);
+            var marker;
+            var map;
+
+            function initialize() {
+              var mapOptions = {
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: stockholm
+              };
+
+              map = new google.maps.Map(document.getElementById("map_canvas"),
+                  mapOptions);
+
+              marker = new google.maps.Marker({
+                map:map,
+                draggable:true,
+                animation: google.maps.Animation.DROP,
+                position: parliament,
+                title: "ШВСМ"
+              });
+              //marker.setIcon("images/shvsm.png");
+              google.maps.event.addListener(marker, 'click', toggleBounce);
+              marker.setAnimation(google.maps.Animation.BOUNCE);
+            }
+
+            function toggleBounce() {
+
+              if (marker.getAnimation() != null) {
+                marker.setAnimation(null);
+              } else {
+                marker.setAnimation(google.maps.Animation.BOUNCE);
+              }
+            }
+
+    </script>
+
+</head>
+<body onload="initialize()">
+    <!--<div id="map_canvas" style="width:670px; height:560px; margin: 0 auto; border: 1px solid;"></div>  -->
+    <div id="map_canvas" style="width:950px; height:100%; margin: 0 auto; border: 1px solid;"></div>  
+</body>
+</html>

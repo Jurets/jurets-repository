@@ -1,0 +1,278 @@
+<?php
+Yii::app()->bootstrap->register();
+
+class DefaultController extends Controller
+{
+	/**
+	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
+	 * using two-column layout. See 'protected/views/layouts/column2.php'.
+	 */
+	public $layout='//layouts/column2';
+
+	/**
+	 * @return array action filters
+	 */
+	public function filters()
+	{
+		return array(
+			'accessControl', // perform access control for CRUD operations
+			'postOnly + delete', // we only allow deletion via POST request
+		);
+	}
+
+	/**
+	 * Specifies the access control rules.
+	 * This method is used by the 'accessControl' filter.
+	 * @return array access control rules
+	 */
+	public function accessRules()
+	{
+		return array(
+			array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('index','view', 'show', 'loadphotos', 'loadimages'),
+				'users'=>array('*'),
+			),
+			array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array('create','update','upload','uploads','delete', 'deletefile'),
+				'roles'=>array('admin', 'manager'),
+			),
+			array('allow', // allow admin user to perform 'admin' and 'delete' actions
+				'actions'=>array('admin'),
+				'users'=>array('admin'),
+			),
+			array('deny',  // deny all users
+				'users'=>array('*'),
+			),
+		);
+	}
+
+	/**
+	 * Displays a particular model.
+	 * @param integer $id the ID of the model to be displayed
+	 */
+	public function actionView($id)
+	{
+		$this->render('view',array(
+			'model'=>$this->loadModel($id),
+		));
+	}
+
+    //показать галерею в новом окне (всплывающем)
+    public function actionShow($id)
+    {   
+        $this->layout = 'popup';
+        $gallery = new GalleryPhoto();
+        $gallery = $gallery->getPhotos($id);
+        $post= Posting::model()->findByPk($id);
+        //$photo = Photo::model()->findByPk($post->t_photo_id);
+        $this->render('galleryview',array('gallery'=>$gallery,'post'=>$post/*,'photo'=>$photo*/));
+    }
+    
+    
+	// Creates a new model.
+	// If creation is successful, the browser will be redirected to the 'view' page.
+	public function actionCreate()
+	{   //вызвать действие "редактирование"
+		$this->actionUpdate(); 
+	}
+
+	// Updates a particular model.
+	// If update is successful, the browser will be redirected to the 'view' page.
+	// @param integer $id the ID of the model to be updated
+	public function actionUpdate()
+	{
+        $id = Yii::app()->request->getParam('id'); //get param 'id' from request string
+        $editMode = isset($id);   //if id was set, there is editing (nor creating)
+        
+        if ($editMode) {
+            $model = $this->loadModel($id);
+            //$choices = $model->choices;                //set poll choices (from relation) into var
+            //$model->selectedSites = $model->relSites; //set selected sites for poll (from DB)
+        } else {
+            $model = new Posting;                         //create new poll
+            //$choices = array();
+            //$model->selectedSites = array();
+            $model->isNewRecord = true;
+        }
+		
+        // Uncomment the following line if AJAX validation is needed
+		// $this->performAjaxValidation($model);
+		if(isset($_POST['Posting']))
+		{
+			$model->attributes=$_POST['Posting'];
+            if (isset($_POST['PostFiles']))
+                $model->setPhotoIds($_POST['PostFiles']);
+			if($model->save())
+				$this->redirect(array('view','id'=>$model->post_id));
+		}
+		$this->render('update',array(
+			'model'=>$model,
+            'editMode'=>$editMode,
+		));
+	}
+
+	// Deletes a particular model. If deletion is successful, the browser will be redirected to the 'admin' page.
+	// @param integer $id the ID of the model to be deleted
+	public function actionDelete($id)
+	{   
+		$success = $this->loadModel($id)->delete();
+
+		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+		if(!isset($_GET['ajax']))
+			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+        else
+            return $success;
+	}
+
+    // Lists all models.
+	public function actionIndex()
+	{
+		$dataProvider=new CActiveDataProvider('Posting');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+		));
+	}
+
+	/**
+	 * Manages all models.
+	 */
+	public function actionAdmin()
+	{
+		$model=new Posting('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Posting']))
+			$model->attributes=$_GET['Posting'];
+
+		$this->render('admin',array(
+			'model'=>$model,
+		));
+	}
+
+	/**
+	 * Returns the data model based on the primary key given in the GET variable.
+	 * If the data model is not found, an HTTP exception will be raised.
+	 * @param integer the ID of the model to be loaded
+	 */
+	public function loadModel($id)
+	{
+		$model = Posting::model()->findByPk($id);
+		if($model === null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
+	}
+
+	// Performs the AJAX validation. @param CModel the model to be validated
+	protected function performAjaxValidation($model)
+	{
+		if(isset($_POST['ajax']) && $_POST['ajax']==='posting-form')
+		{
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+	}
+    
+    //загрузить фотографии / Load photos per photo_id ()
+    public function actionLoadPhotos($id, $ismain) {
+        if ($ismain)
+            $photos = Photo::model()->findAllByPk($id);  //get models for main photo
+        else {
+            $arr = explode('&', $id);                    //list of photo id's
+            $photoliststr = implode(',', $arr);          //get models for photo list
+            $photos = Photo::model()->findAll('photo_id in ('.$photoliststr.')');
+        }
+        if ($photos) 
+            $this->echoFiles($photos);
+    }
+    
+    //Load images for POSTING model (getting model by id (postid))
+    public function actionLoadImages($id, $title) {
+        $photo = new TitlePhoto;
+        $addPhoto = empty($title);
+        $photos = $photo->getPhotoData($id, $addPhoto); //get photos by postid
+        
+        if (isset($photos)) 
+            $this->echoFiles($photos);
+    }
+        
+        
+    //private function for photo files output
+    private function echoFiles($photos)
+    {
+        $files =  array();
+        $uploadPath = Yii::app()->UploadImageDir; //Yii::app()->getBasePath().'/../uploads/'; 
+        $publicPath = Yii::app()->UploadImageLoc; //Yii::app()->getBaseUrl(true).'/uploads/'; 
+        foreach ($photos as $photoData) {
+            $files[] =  array(
+                        "name" => basename($photoData->orig_name),
+                        "type" => $photoData->tmime_type,
+                        "size" => $photoData->tfilesize,
+                        "title" =>$photoData->description,
+                        "url" => Yii::app()->getUploadImageUrl($photoData->filename), //$publicPath.basename($photoData->filename), //
+                        "photo_id" =>$photoData->photo_id,
+                        "thumbnail_url" => Yii::app()->getUploadImageUrl($photoData->thumb_filename), //$publicPath.basename($photoData->thumb_filename), //
+                        "delete_url" => $this->createUrl( "/posting/default/deletefile",array("id"=>$photoData->photo_id)),
+                        "delete_type" => "POST"
+                    ); 
+        }
+        echo json_encode( $files );  //return (ajax) list of photo-files
+    }
+
+    //action for delete photo from gallery
+    public function actionDeleteFile($id) {
+        header( 'Vary: Accept' );
+        if( isset( $_SERVER['HTTP_ACCEPT'] ) && (strpos( $_SERVER['HTTP_ACCEPT'], 'application/json' ) !== false) ) {
+            header( 'Content-type: application/json' );
+        } else {
+            header( 'Content-type: text/plain' );
+        }
+        //$photo = Photo::model()->findByPk($id);
+        //$success = $photo->delete();
+        $success = true;
+        
+        echo json_encode( $success );       
+    }
+        
+      //action for upload of one photo
+        public function  actionUploads() {
+            header( 'Vary: Accept' );
+            if( isset( $_SERVER['HTTP_ACCEPT'] ) && (strpos( $_SERVER['HTTP_ACCEPT'], 'application/json' ) !== false) ) {
+                header( 'Content-type: application/json' );
+            } else {
+                header( 'Content-type: text/plain' );
+            }
+            $this->init( );
+       
+            $model = new PPhotoForm;
+           
+            $metrics = new stdClass();
+            $metrics->sizeW = Yii::app()->params['sizeW']; //808; //
+            $metrics->sizeH = Yii::app()->params['sizeH']; //541; //
+            $metrics->thumbSizeW = Yii::app()->params['thumb_sizeW']; //307; //
+            $metrics->thumbSizeH = Yii::app()->params['thumb_sizeH']; //210; //
+            
+            $fileObject = CUploadedFile::getInstance($model, 'file');
+            $title = Yii::app()->request->getPost('imageName', '');
+            $uploadPath = Yii::app()->UploadImageDir; //Yii::app()->getBasePath().'/../uploads/'; //
+            $publicPath = Yii::app()->UploadImageLoc; //Yii::app()->getBaseUrl(true).'/uploads/'; //
+            //We get the uploaded instance  
+            $photo = $model->saveUpload($fileObject, $title, $uploadPath, $publicPath, $metrics);
+            if (isset($photo))
+            {   
+            //Now we return our json
+                echo json_encode( array( array(
+                        "name" => $photo->orig_name, //$model->name,
+                        "type" => $model->mime_type,
+                        "size" => $model->size,
+                        "title" => $model->title, //Add the title  And the description
+                        "url" => Yii::app()->getUploadImageUrl($model->ImageName), //$publicPath.basename($model->ImageName), //
+                        "photo_id" =>$model->photoId,
+                        "thumbnail_url" => Yii::app()->getUploadImageUrl($model->ThumbnailFilename), //$publicPath.basename($model->ThumbnailFilename), //
+                        "delete_url" => $this->createUrl("/posting/deletefile", array("id" => $photo->photo_id)),
+                        "delete_type" => "POST"
+                    ) ) );
+            } else {
+                echo json_encode(array(array("error" => $model->getErrors('file'))));
+                Yii::log("XUploadAction: ".CVarDumper::dumpAsString($model->getErrors()), CLogger::LEVEL_ERROR, "xupload.actions.XUploadAction");
+            }
+        }
+}

@@ -1,0 +1,23 @@
+ #loginmenu {
+    /*border: 1px solid;*/
+    font-size: 12px;
+    height: 17px;
+    left: 830px;
+    position: relative;
+    top: -140px;
+    width: 92px;
+}
+
+#loginmenu ul {
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+#loginmenu ul li {
+    display: inline;
+}
+
+#loginmenu ul li a {
+    text-align: right;
+}

@@ -1,0 +1,74 @@
+img{border:0;}
+
+a{outline:none;}
+
+.clearfix{ _height: 1%; _overflow: visible;}
+.clearfix:after{ content: "."; display: block; height: 0px; clear: both; visibility: hidden; line-height:0px; font-size:0px; }
+.clearfix {display: inline-block;}
+* html .clearfix {height: 1%;}
+.clearfix {display: block;}
+
+.clear{clear:both; width:0; height:0; font-size:0; line-height:0; overflow:hidden; margin:0; padding:0;}
+
+.active, .active *{cursor:default!important;}
+
+h1, h2, h3, h4, h5, h6, form{margin:0; padding:0;}
+
+.m-0{margin:0!important;}
+.p-0{padding:0!important;}
+
+.w-100P{width:100%;}
+.w-95P{width:95%;}
+.w-90P{width:90%;}
+.w-85P{width:85%;}
+.w-80P{width:80%;}
+.w-75P{width:75%;}
+.w-70P{width:70%;}
+.w-65P{width:65%;}
+.w-60P{width:60%;}
+.w-55P{width:55%;}
+.w-50P{width:50%;}
+.w-45P{width:45%;}
+.w-40P{width:40%;}
+.w-35P{width:35%;}
+.w-30P{width:30%;}
+.w-25P{width:25%;}
+.w-20P{width:20%;}
+.w-15P{width:15%;}
+.w-10P{width:10%;}
+.w-5P{width:5%;}
+
+.decoration-none{text-decoration:none!important;}
+.decoration-underline{text-decoration:underline!important;}
+.decoration-hover-on{text-decoration:underline!important;}
+.decoration-hover-on:hover{text-decoration:none!important;}
+.decoration-hover-off{text-decoration:none!important;}
+.decoration-hover-off:hover{text-decoration:underline!important;}
+
+.display-none{display:none!important;}
+.display-in-bl{display:inline-block;}
+.display-block{display:block!important;}
+
+.visibility-none{visibility:hidden!important;}
+.visibility-visible{visibility:visible!important;}
+
+.overflow-hidden{overflow:hidden;}
+.overflow-visible{overflow:visible;}
+.overflow-auto{overflow:auto;}
+.overflow-hidden-x{overflow-x:hidden;}
+.overflow-hidden-y{overflow-y:hidden;}
+
+.transform-uppercase{text-transform:uppercase;}
+.transform-lowercase{text-transform:lowercase;}
+.transform-capitalize{text-transform:capitalize;}
+.transform-none{text-transform:none;}
+
+.relative{position:relative!important;}
+.aJustify{text-align:justify;}
+.aCenter{text-align:center;}
+
+.mCenter{margin:0 auto;}
+.aCenter{text-align:center;}
+
+.lNone{list-style-type:none;}
+.fsNormal{font-weight:normal;}

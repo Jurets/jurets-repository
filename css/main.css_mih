@@ -1,0 +1,361 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	color: #555;
+	font: normal 10pt Arial,Helvetica,sans-serif;
+	background: #EFEFEF;
+}
+
+#page
+{
+	box-shadow: 0 0 6px 6px #BCB8BB; /*??????? ???? ??? ????????*/
+	border-radius: 4px; /*????? ??????*/
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background: white;
+	/*border: 1px solid #C9E0ED;*/
+}
+
+#header
+{
+	margin: 0;
+	padding: 0;
+	background: url("turn_logo1.jpg")0 0 no-repeat; /*???????? ???????????*/
+	height:179px;
+	border-radius: 4px; /*????? ??????*/
+	
+	
+	
+	
+}
+
+#content
+{
+    padding: 5px;
+	height: 500px; /*????? ?????? ???? content*/
+}
+
+#sidebar
+{
+	/*padding: 20px 20px 20px 0;*/
+	
+}
+
+
+#footer
+{
+	background: url("footer.jpg")0 0 no-repeat; /*???????? ???????????*/
+	border-radius: 4px; /*????? ??????*/
+	padding: 10px;
+	/*margin: 10px 20px;*/
+	font-size: 0.8em;
+	text-align: center;
+	border-top: 1px solid #C9E0ED;
+	margin: 0 auto;
+	width: 930px;
+}
+
+/*????? ??? ???? ? ????????*/
+#mail 
+{
+width:200px;     
+margin: 0 auto;
+}
+/*-------------------------*/
+
+#logo
+{
+	padding: 10px 20px;
+	font-size: 200%;
+    color: #008000;    Jurets color: #EC3413
+    text-align: center;
+    text-indent: 10px;
+}
+/*---------------------????? ??? ????------------------------------*/
+#mainmenu
+{
+	background:white url(bg2.gif) repeat-x left top;   /*Jurets*/
+	position:relative;
+	border-radius: 4px; /*????? ??????*/
+	
+	
+	
+}
+/*-----------------????? ??? ????????? ? ??????--------------------*/
+#textHead
+{
+position:relative;
+ top: 90px;
+left: 200px;
+}
+/*-----------------------------------------------------------------*/
+
+#mainmenu ul
+{
+	padding:6px 20px 5px 20px;
+	margin:0px;
+}
+
+#mainmenu ul li
+{
+	display: inline;
+}
+
+#mainmenu ul li a
+{
+	color:#ffffff;
+	background-color:transparent;
+	font-size:12px;
+	font-weight:bold;
+	text-decoration:none;
+	padding:5px 8px;
+}
+
+#mainmenu ul li a:hover, #mainmenu ul li.active a
+{
+	color: #008000;  /*Jurets*/
+	background-color:#EFF4FA;
+	text-decoration:none;
+}
+
+div.flash-error, div.flash-notice, div.flash-success
+{
+	padding:.8em;
+	margin-bottom:1em;
+	border:2px solid #ddd;
+}
+
+div.flash-error
+{
+	background:#FBE3E4;
+	color:#8a1f11;
+	border-color:#FBC2C4;
+}
+
+div.flash-notice
+{
+	background:#FFF6BF;
+	color:#514721;
+	border-color:#FFD324;
+}
+
+div.flash-success
+{
+	background:#E6EFC2;
+	color:#264409;
+	border-color:#C6D880;
+}
+
+div.flash-error a
+{
+	color:#8a1f11;
+}
+
+div.flash-notice a
+{
+	color:#514721;
+}
+
+div.flash-success a
+{
+	color:#264409;
+}
+
+div.form .rememberMe label
+{
+	display: inline;
+}
+
+div.view
+{
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #C9E0ED;
+}
+
+div.breadcrumbs
+{
+	font-size: 0.9em;
+	padding: 5px 20px;
+}
+
+div.breadcrumbs span
+{
+	font-weight: bold;
+}
+
+div.search-form
+{
+	padding: 10px;
+	margin: 10px 0;
+	background: #eee;
+}
+
+.portlet
+{
+
+}
+
+.portlet-decoration
+{
+	padding: 3px 8px;
+	background: #B7D6E7;
+	border-left: 5px solid #6FACCF;
+}
+
+.portlet-title
+{
+	font-size: 12px;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	color: #298dcd;
+}
+
+.portlet-content
+{
+	font-size:0.9em;
+	margin: 0 0 15px 0;
+	padding: 5px 8px;
+	background:#EFFDFF;
+}
+
+.portlet-content ul
+{
+	list-style-image:none;
+	list-style-position:outside;
+	list-style-type:none;
+	margin: 0;
+	padding: 0;
+}
+
+.portlet-content li
+{
+	padding: 2px 0 4px 0px;
+}
+
+.operations
+{
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.operations li
+{
+	padding-bottom: 2px;
+}
+
+.operations li a
+{
+	font: bold 12px Arial;
+	color: #0066A4;
+	display: block;
+	padding: 2px 0 2px 8px;
+	line-height: 15px;
+	text-decoration: none;
+}
+
+.operations li a:visited
+{
+	color: #0066A4;
+}
+
+.operations li a:hover
+{
+	background: #80CFFF;
+}
+
+/*---------------------????------------------*/
+
+ul.menu {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    background-color: #388AFF;
+    background-repeat: no-repeat;
+    /*background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4f4f4f), to(#2b2b2b));*/
+    background-image: -webkit-linear-gradient(#4f4f4f, #388AFF);
+    background-image: -moz-linear-gradient(top, #4f4f4f, #388AFF);
+    background-image: -ms-linear-gradient(#4f4f4f, #388AFF);
+    background-image: -o-linear-gradient(#4f4f4f, #388AFF);
+    background-image: linear-gradient(#4f4f4f, #388AFF);
+    /*filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4f4f4f', endColorstr='#2b2b2b', GradientType=0);*/ 
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    /*-moz-border-radius: 4px;*/
+    width: 980px;
+    height: 40px;
+
+}
+
+ul.menu li {
+    float: left;
+    list-style: none;
+    border-right: 1px solid #388AFF;
+    position: relative;
+}
+
+ul.menu li a {
+    color: white;
+    display: block;
+    font-family: Arial;
+    font-size: 16px;
+    padding: 8px 20px 10px;
+    text-decoration: none;
+    border-right: 1px solid #388AFF;
+    width: 203px;
+}
+
+ul.menu li a:hover {
+    background-color: #388AFF;
+}
+
+ul.menu li:first-child a:hover {
+    border-radius: 5px 0 0 5px;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 5px 0 0 5px;
+}
+/*?????????? ????*/
+ul.menu li ul {
+    display: none;
+}
+
+ul.menu li:hover ul {
+    display: block;
+    position: absolute;
+    top: 34px;
+    border-radius: 0 0 4px 4px;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    background-color: #388AFF;
+    z-index: 1000;
+}
+
+ul.menu li:hover ul li {
+    float: none;
+    width: 150px;
+    border-right: none;
+}
+
+ul.menu li:hover ul li a {
+    border-top: 1px solid #3D6DFF;
+    border-right: none;
+    padding: 6px 20px 8px;
+    width: 110px;
+}
+
+ul.menu li:hover ul li a:hover {
+    background-color: transparent;
+    color: #FF8819;
+}
+
+ul.menu li:hover ul li:first-child a:hover {
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+}    
+
+ /*-------------------*/

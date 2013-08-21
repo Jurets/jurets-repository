@@ -1,0 +1,5 @@
+i Was searching for a similar question and i found that you have to edit the php.ini file edit the following line
+
+;extension=php_openssl.dll
+
+remove the semi colon and it will work fine

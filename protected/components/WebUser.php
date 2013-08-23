@@ -15,7 +15,7 @@
     }*/
 
   //процедура после логина: установить переменные сесси для юзера 
-    protected function afterLogin() {
+    protected function afterLogin($fromCookie) {
         if($user = $this->getModel()){
             $this->setState('currentUserID', $user->UserID);
             $this->setState('currentUserStatus', $user->Active);

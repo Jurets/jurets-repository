@@ -274,7 +274,7 @@ class WeightcategoryController extends Controller
 
     //выдать список спортсменов весовой категории
     public function filterWeightlistTosser($sportsmens, $wid) {
-        $filteredList = array();
+        $filteredList = array(); 
         foreach($sportsmens as $index => $item) {
             if ($item[WeigthID] == $wid)
                 $filteredList[] = $item;
@@ -292,11 +292,12 @@ class WeightcategoryController extends Controller
     public function filterWeightlist($sportsmens, $wid) {
         $filteredList = array();
         foreach($sportsmens as $index => $item) {
-            if ($item[WeigthID] == $wid)
+            if ($item['WeigthID'] == $wid)
                 $filteredList[] = $item;
         }
         $dataProvider = new CArrayDataProvider($filteredList, array(
             'totalItemCount'=>count($filteredList),
+            'keyField'=>false,
             'pagination'=>array(
                 'pageSize'=>50,
             ),

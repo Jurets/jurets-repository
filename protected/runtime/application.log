@@ -8939,3 +8939,1617 @@ in F:\Jurets\Projects\wtfweb\protected\extensions\yii-debug-toolbar\components\Y
 
 in F:\Jurets\Projects\wtfweb\protected\components\WebApplication.php (161)
 in F:\Jurets\Projects\wtfweb\protected\components\WebApplication.php (39)
+2013/08/21 16:35:08 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/21 16:35:08 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/21 16:35:08 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/21 16:35:09 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/21 16:35:09 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/21 16:35:09 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/21 16:35:10 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/21 16:35:10 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/21 16:35:10 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (81)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/21 16:35:10 [error] [exception.CException] exception 'CException' with message 'Путь CAssetManager.basePath "F:\Jurets\Projects\tkdcard\assets" задан неверно. Удостоверьтесь, что директория существует и доступна для записи пользователю, под которым запущен веб-сервер.' in F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CAssetManager.php:138
+Stack trace:
+#0 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CAssetManager.php(123): CAssetManager->setBasePath('F:\Jurets\Proje...')
+#1 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CAssetManager.php(217): CAssetManager->getBasePath()
+#2 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php(81): CAssetManager->publish('F:\Jurets\Proje...', false, -1, true)
+#3 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CComponent.php(111): YiiDebugToolbar->getAssetsUrl()
+#4 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php(139): CComponent->__get('assetsUrl')
+#5 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php(112): YiiDebugToolbar->registerClientScripts()
+#6 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php(133): YiiDebugToolbar->init()
+#7 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CComponent.php(558): YiiDebugToolbarRoute->onBeginRequest(Object(CEvent))
+#8 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(196): CComponent->raiseEvent('onBeginRequest', Object(CEvent))
+#9 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(167): CApplication->onBeginRequest(Object(CEvent))
+#10 F:\Jurets\Projects\tkdcard\index.php(22): CApplication->run()
+#11 {main}
+REQUEST_URI=/
+---
+2013/08/21 16:35:10 [trace] [system.CModule] Loading "errorHandler" application component
+2013/08/21 16:35:10 [trace] [system.CModule] Loading "themeManager" application component
+2013/08/21 16:35:39 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/21 16:35:39 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/21 16:35:39 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/21 16:35:39 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/21 16:35:39 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/21 16:35:39 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/21 16:35:40 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/21 16:35:40 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/21 16:35:40 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/21 16:35:41 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/21 16:35:41 [trace] [system.caching.CFileCache] Saving "Yii.CUrlManager.rules" to cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/21 16:35:41 [info] [application] 
+=======================2013.08.21 16:35:41
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/21 16:35:41 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (35)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/21 16:35:41 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (35)
+2013/08/21 16:35:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `competition`
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (28)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+2013/08/21 16:35:41 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `competition`
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (28)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+2013/08/21 16:35:41 [trace] [system.caching.CFileCache] Saving "yii:dbschemamysql:host=localhost;dbname=ftudb:root:competition" to cache
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (28)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+2013/08/21 16:35:41 [trace] [system.db.ar.CActiveRecord] Competition.findByPk()
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (95)
+2013/08/21 16:35:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `competition` `t` WHERE `t`.`id`=0 LIMIT 1
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (95)
+2013/08/21 16:35:41 [trace] [system.db.ar.CActiveRecord] Competition.findByPk()
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (97)
+2013/08/21 16:35:41 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `competition` `t` WHERE `t`.`id`=0 LIMIT 1
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (97)
+2013/08/21 16:35:41 [error] [php] Indirect modification of overloaded property WebApplication::$competitionId has no effect (F:\Jurets\Projects\tkdcard\protected\models\Competition.php:145)
+Stack trace:
+#0 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): SiteController->renderInternal()
+#1 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#2 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(869): SiteController->renderFile()
+#3 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(782): SiteController->renderPartial()
+#4 F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php(35): SiteController->render()
+#5 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(49): SiteController->actionIndex()
+#6 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#7 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(286): SiteController->runAction()
+#8 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(265): SiteController->runActionWithFilters()
+#9 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): SiteController->run()
+#10 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): WebApplication->runController()
+#11 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): WebApplication->runController()
+#12 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(169): WebApplication->processRequest()
+#13 F:\Jurets\Projects\tkdcard\index.php(22): WebApplication->run()
+REQUEST_URI=/
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (145)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (110)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/21 16:35:41 [trace] [system.CModule] Loading "errorHandler" application component
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (145)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (110)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:54:41 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:54:41 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:54:41 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:54:41 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:54:41 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:54:41 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:54:43 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 09:54:43 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 09:54:43 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:54:43 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:54:43 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:54:43 [info] [application] 
+=======================2013.08.22 09:54:43
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:54:43 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (35)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:54:43 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (35)
+2013/08/22 09:54:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `competition`
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (28)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+2013/08/22 09:54:43 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `competition`
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (28)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+2013/08/22 09:54:43 [trace] [system.caching.CFileCache] Saving "yii:dbschemamysql:host=localhost;dbname=ftudb:root:competition" to cache
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (28)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+2013/08/22 09:54:43 [trace] [system.db.ar.CActiveRecord] Competition.findByPk()
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (95)
+2013/08/22 09:54:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `competition` `t` WHERE `t`.`id`=0 LIMIT 1
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (95)
+2013/08/22 09:54:43 [trace] [system.db.ar.CActiveRecord] Competition.findByPk()
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (97)
+2013/08/22 09:54:43 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `competition` `t` WHERE `t`.`id`=0 LIMIT 1
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (97)
+2013/08/22 09:54:56 [trace] [system.db.CDbCommand] Querying SQL: SELECT Unix_timestamp(begindate) as begindate, Unix_timestamp(enddate) as enddate, Unix_timestamp(filingbegin) AS filingbegin, Unix_timestamp(filingend) AS filingend
+FROM `competition`
+WHERE id = :id
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (147)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (110)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:54:56 [trace] [system.db.ar.CActiveRecord] Competition.findByPk()
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (120)
+2013/08/22 09:54:56 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `competition` `t` WHERE `t`.`id`=0 LIMIT 1
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (120)
+in F:\Jurets\Projects\tkdcard\protected\models\Competition.php (127)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (120)
+2013/08/22 09:54:56 [trace] [system.caching.CFileCache] Saving "Yii.COutputCache.tkdcard_mainpage..site/index...." to cache
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\site\index.php (161)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (35)
+2013/08/22 09:54:58 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:54:58 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:54:58 [trace] [system.CModule] Loading "messages" application component
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (39)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\views\layouts\column1.php (6)
+2013/08/22 09:54:58 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (120)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\views\layouts\column1.php (6)
+2013/08/22 09:54:59 [info] [application] / --- Количество запросов SQL: 6 Длительность: 0.038372039794922
+=======================2013.08.22 09:54:59
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (161)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:55:01 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:55:01 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:55:01 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:55:01 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:55:01 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:55:01 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:55:02 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:55:02 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/lib/bootstrap/less/mixins.less".' in F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): CWebApplication->runController('assets/lib/boot...')
+#1 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): WebApplication->runController('assets/lib/boot...')
+#2 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#3 F:\Jurets\Projects\tkdcard\index.php(22): CApplication->run()
+#4 {main}
+REQUEST_URI=/assets/lib/bootstrap/less/mixins.less
+HTTP_REFERER=http://tkd-card.my/assets/e3ecaab1/css/yii.css
+---
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "errorHandler" application component
+2013/08/22 09:55:02 [info] [application] 
+=======================2013.08.22 09:55:02
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "messages" application component
+in F:\Jurets\Projects\tkdcard\protected\views\site\error.php (8)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\layouts\column1.php (2)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:55:02 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:55:02 [info] [application] /assets/lib/bootstrap/less/mixins.less --- Количество запросов SQL: 0 Длительность: 0
+=======================2013.08.22 09:55:02
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (161)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 09:59:48 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:59:48 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:59:48 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:59:48 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:59:48 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:59:48 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:49 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:49 [info] [application] 
+=======================2013.08.22 09:59:49
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:49 [trace] [system.web.filters.CFilterChain] Running filter CommandController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:49 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `command`
+in F:\Jurets\Projects\tkdcard\protected\models\Command.php (21)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (176)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 09:59:49 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `command`
+in F:\Jurets\Projects\tkdcard\protected\models\Command.php (21)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (176)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 09:59:49 [trace] [system.caching.CFileCache] Saving "yii:dbschemamysql:host=localhost;dbname=ftudb:root:command" to cache
+in F:\Jurets\Projects\tkdcard\protected\models\Command.php (21)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (176)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (179)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "messages" application component
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (6)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (179)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (179)
+2013/08/22 09:59:49 [trace] [system.db.ar.CActiveRecord] Command.count()
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:59:49 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `command` `t` WHERE (EXISTS (SELECT 1 from proposal P WHERE P.commandid = t.commandid AND P.status = :status)) AND (t.status = 1 AND competitionid = :competitionid)
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:59:49 [trace] [system.db.ar.CActiveRecord] Command.findAll()
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:59:49 [trace] [system.db.CDbCommand] Querying SQL: SELECT t.*, (SELECT COUNT(*) FROM sportsmen WHERE sportsmen.commandid = t.commandid AND status = 1) as sportsmen_count, (SELECT COUNT(*) FROM coach WHERE coach.commandid = t.commandid) as coach_count FROM `command` `t` WHERE (EXISTS (SELECT 1 from proposal P WHERE P.commandid = t.commandid AND P.status = :status)) AND (t.status = 1 AND competitionid = :competitionid) LIMIT 20
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbButtonColumn.php (37)
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (91)
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+2013/08/22 09:59:49 [trace] [system.CModule] Loading "format" application component
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (179)
+2013/08/22 09:59:50 [info] [application] /command/index --- Количество запросов SQL: 4 Длительность: 0.041168212890625
+=======================2013.08.22 09:59:50
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (161)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:51 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:59:51 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:59:51 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 09:59:51 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:59:51 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:59:51 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:52 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 09:59:52 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/lib/bootstrap/less/mixins.less".' in F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): CWebApplication->runController('assets/lib/boot...')
+#1 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): WebApplication->runController('assets/lib/boot...')
+#2 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#3 F:\Jurets\Projects\tkdcard\index.php(22): CApplication->run()
+#4 {main}
+REQUEST_URI=/assets/lib/bootstrap/less/mixins.less
+HTTP_REFERER=http://tkd-card.my/assets/e3ecaab1/css/yii.css
+---
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "errorHandler" application component
+2013/08/22 09:59:52 [info] [application] 
+=======================2013.08.22 09:59:52
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "messages" application component
+in F:\Jurets\Projects\tkdcard\protected\views\site\error.php (8)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\layouts\column1.php (2)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:59:52 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 09:59:52 [info] [application] /assets/lib/bootstrap/less/mixins.less --- Количество запросов SQL: 0 Длительность: 0
+=======================2013.08.22 09:59:52
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (161)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:03:29 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:03:29 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:03:29 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:03:29 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:03:29 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:03:29 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:30 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:30 [info] [application] 
+=======================2013.08.22 10:03:30
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:30 [trace] [system.web.filters.CFilterChain] Running filter CommandController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:30 [trace] [system.caching.CFileCache] Serving "yii:dbschemamysql:host=localhost;dbname=ftudb:root:command" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Command.php (21)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (176)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (179)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "messages" application component
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (6)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (179)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (179)
+2013/08/22 10:03:30 [trace] [system.db.ar.CActiveRecord] Command.count()
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:03:30 [trace] [system.db.CDbCommand] Querying SQL: SELECT COUNT(*) FROM `command` `t` WHERE (EXISTS (SELECT 1 from proposal P WHERE P.commandid = t.commandid AND P.status = :status)) AND (t.status = 1 AND competitionid = :competitionid)
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:03:30 [trace] [system.db.ar.CActiveRecord] Command.findAll()
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:03:30 [trace] [system.db.CDbCommand] Querying SQL: SELECT t.*, (SELECT COUNT(*) FROM sportsmen WHERE sportsmen.commandid = t.commandid AND status = 1) as sportsmen_count, (SELECT COUNT(*) FROM coach WHERE coach.commandid = t.commandid) as coach_count FROM `command` `t` WHERE (EXISTS (SELECT 1 from proposal P WHERE P.commandid = t.commandid AND P.status = :status)) AND (t.status = 1 AND competitionid = :competitionid) LIMIT 20
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbButtonColumn.php (37)
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (91)
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbGridView.php (49)
+2013/08/22 10:03:30 [trace] [system.CModule] Loading "format" application component
+in F:\Jurets\Projects\tkdcard\protected\views\command\index.php (51)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\CommandController.php (179)
+2013/08/22 10:03:30 [info] [application] /command/index --- Количество запросов SQL: 2 Длительность: 0.0033729076385498
+=======================2013.08.22 10:03:30
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (161)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:31 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:03:31 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:03:31 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:03:31 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:03:31 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:03:31 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:32 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:03:32 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/lib/bootstrap/less/mixins.less".' in F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php:286
+Stack trace:
+#0 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): CWebApplication->runController('assets/lib/boot...')
+#1 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): WebApplication->runController('assets/lib/boot...')
+#2 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#3 F:\Jurets\Projects\tkdcard\index.php(22): CApplication->run()
+#4 {main}
+REQUEST_URI=/assets/lib/bootstrap/less/mixins.less
+HTTP_REFERER=http://tkd-card.my/assets/e3ecaab1/css/yii.css
+---
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "errorHandler" application component
+2013/08/22 10:03:32 [info] [application] 
+=======================2013.08.22 10:03:32
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "messages" application component
+in F:\Jurets\Projects\tkdcard\protected\views\site\error.php (8)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\layouts\column1.php (2)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:03:32 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:03:32 [info] [application] /assets/lib/bootstrap/less/mixins.less --- Количество запросов SQL: 0 Длительность: 0
+=======================2013.08.22 10:03:32
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (161)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:06:13 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:06:13 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:06:13 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:06:13 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:06:13 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:06:14 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:06:15 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:06:15 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:06:15 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:06:15 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:06:15 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:06:15 [info] [application] 
+=======================2013.08.22 10:06:15
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:06:15 [trace] [system.web.filters.CFilterChain] Running filter WeightcategoryController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:06:15 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:06:15 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:06:15 [trace] [system.db.CDbCommand] Querying SQL: SELECT `S`.`SpID`, CONCAT(S.lastname, " ", S.firstname) AS FullName, `D`.`Commandname`, `F`.`FstName`, `C`.`CategoryName`, YEAR(S.birthdate) AS BirthYear, `C1`.`Coachname`, `C2`.`Coachname` AS `Coachname1`, `S`.`AgeID`, `S`.`WeigthID`, `S`.`TossNum`
+FROM `sportsmen` `S`
+LEFT JOIN `command` `D` ON D.commandid = S.commandid
+LEFT JOIN `fst` `F` ON S.fstid = F.fstid
+LEFT JOIN `sportcategory` `C` ON S.categoryid = C.categoryid
+LEFT JOIN `coach` `C2` ON C2.coachid = S.coach2id
+LEFT JOIN `coach` `C1` ON C1.coachid = S.coach1id
+WHERE S.status = 1
+ORDER BY `S`.`AgeID`, `S`.`WeigthID`, `FullName`
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (203)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:06:16 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `agecategory`
+in F:\Jurets\Projects\tkdcard\protected\models\Agecategory.php (24)
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (411)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+2013/08/22 10:06:16 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `agecategory`
+in F:\Jurets\Projects\tkdcard\protected\models\Agecategory.php (24)
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (411)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+2013/08/22 10:06:16 [trace] [system.caching.CFileCache] Saving "yii:dbschemamysql:host=localhost;dbname=ftudb:root:agecategory" to cache
+in F:\Jurets\Projects\tkdcard\protected\models\Agecategory.php (24)
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (411)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+2013/08/22 10:06:16 [trace] [system.db.ar.CActiveRecord] Agecategory.findAll()
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (411)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:06:16 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `agecategory` `t`
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (411)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:06:16 [trace] [system.caching.CFileCache] Saving "cacheAgeListFull" to cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (413)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:06:16 [trace] [system.db.CDbCommand] Querying SQL: SHOW FULL COLUMNS FROM `weightcategory`
+in F:\Jurets\Projects\tkdcard\protected\models\Weightcategory.php (101)
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (430)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+2013/08/22 10:06:16 [trace] [system.db.CDbCommand] Querying SQL: SHOW CREATE TABLE `weightcategory`
+in F:\Jurets\Projects\tkdcard\protected\models\Weightcategory.php (101)
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (430)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+2013/08/22 10:06:16 [trace] [system.caching.CFileCache] Saving "yii:dbschemamysql:host=localhost;dbname=ftudb:root:weightcategory" to cache
+in F:\Jurets\Projects\tkdcard\protected\models\Weightcategory.php (101)
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (430)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+2013/08/22 10:06:16 [trace] [system.db.ar.CActiveRecord] Weightcategory.findAll()
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (430)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:06:16 [trace] [system.db.CDbCommand] Querying SQL: SELECT * FROM `weightcategory` `t`
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (430)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:06:16 [trace] [system.caching.CFileCache] Saving "cacheWeigthListFull" to cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (432)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:06:25 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (218)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:06:25 [error] [php] Undefined variable: model (F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php:77)
+Stack trace:
+#0 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#1 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(869): WeightcategoryController->renderFile()
+#2 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(309): WeightcategoryController->renderPartial()
+#3 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(218): WeightcategoryController->filterWeightlist()
+#4 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(49): WeightcategoryController->actionList()
+#5 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#6 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(133): WeightcategoryController->runAction()
+#7 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#8 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#9 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CInlineFilter.php(58): WeightcategoryController->filterAccessControl()
+#10 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#11 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(291): CFilterChain->run()
+#12 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(265): WeightcategoryController->runActionWithFilters()
+#13 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): WeightcategoryController->run()
+#14 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): WebApplication->runController()
+#15 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): WebApplication->runController()
+#16 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(169): WebApplication->processRequest()
+#17 F:\Jurets\Projects\tkdcard\index.php(22): WebApplication->run()
+REQUEST_URI=/weightcategory/list
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (77)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:06:26 [trace] [system.CModule] Loading "errorHandler" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (77)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:08:59 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:08:59 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:08:59 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:08:59 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:08:59 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:08:59 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:09:00 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:09:00 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:09:01 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:09:01 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:09:01 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:09:01 [info] [application] 
+=======================2013.08.22 10:09:01
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:09:01 [trace] [system.web.filters.CFilterChain] Running filter WeightcategoryController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:09:01 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:09:01 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:09:01 [trace] [system.db.CDbCommand] Querying SQL: SELECT `S`.`SpID`, CONCAT(S.lastname, " ", S.firstname) AS FullName, `D`.`Commandname`, `F`.`FstName`, `C`.`CategoryName`, YEAR(S.birthdate) AS BirthYear, `C1`.`Coachname`, `C2`.`Coachname` AS `Coachname1`, `S`.`AgeID`, `S`.`WeigthID`, `S`.`TossNum`
+FROM `sportsmen` `S`
+LEFT JOIN `command` `D` ON D.commandid = S.commandid
+LEFT JOIN `fst` `F` ON S.fstid = F.fstid
+LEFT JOIN `sportcategory` `C` ON S.categoryid = C.categoryid
+LEFT JOIN `coach` `C2` ON C2.coachid = S.coach2id
+LEFT JOIN `coach` `C1` ON C1.coachid = S.coach1id
+WHERE S.status = 1
+ORDER BY `S`.`AgeID`, `S`.`WeigthID`, `FullName`
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (203)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:09:01 [trace] [system.caching.CFileCache] Serving "cacheAgeListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (408)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:09:01 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:09:06 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (218)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:09:06 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:09:06 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbPager.php (66)
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:09:07 [trace] [system.CModule] Loading "format" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:09:07 [error] [php] Undefined index: id (F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CArrayDataProvider.php:108)
+Stack trace:
+#0 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\zii\widgets\CBaseListView.php(129): TbGridView->renderKeys()
+#1 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CBaseController.php(173): TbGridView->run()
+#2 F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php(86): WeightcategoryController->widget()
+#3 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require()
+#4 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): WeightcategoryController->renderInternal()
+#5 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#6 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(869): WeightcategoryController->renderFile()
+#7 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(309): WeightcategoryController->renderPartial()
+#8 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(218): WeightcategoryController->filterWeightlist()
+#9 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(49): WeightcategoryController->actionList()
+#10 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(133): WeightcategoryController->runAction()
+#12 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CInlineFilter.php(58): WeightcategoryController->filterAccessControl()
+#15 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(265): WeightcategoryController->runActionWithFilters()
+#18 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): WeightcategoryController->run()
+#19 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): WebApplication->runController()
+#20 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): WebApplication->runController()
+#21 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(169): WebApplication->processRequest()
+#22 F:\Jurets\Projects\tkdcard\index.php(22): WebApplication->run()
+REQUEST_URI=/weightcategory/list
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:09:07 [trace] [system.CModule] Loading "errorHandler" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:09:59 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:09:59 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:09:59 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:09:59 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:09:59 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:09:59 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:10:00 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:10:00 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:10:00 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:10:00 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:10:00 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:10:00 [info] [application] 
+=======================2013.08.22 10:10:00
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:10:00 [trace] [system.web.filters.CFilterChain] Running filter WeightcategoryController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:10:00 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:10:00 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:10:00 [trace] [system.db.CDbCommand] Querying SQL: SELECT `S`.`SpID`, CONCAT(S.lastname, " ", S.firstname) AS FullName, `D`.`Commandname`, `F`.`FstName`, `C`.`CategoryName`, YEAR(S.birthdate) AS BirthYear, `C1`.`Coachname`, `C2`.`Coachname` AS `Coachname1`, `S`.`AgeID`, `S`.`WeigthID`, `S`.`TossNum`
+FROM `sportsmen` `S`
+LEFT JOIN `command` `D` ON D.commandid = S.commandid
+LEFT JOIN `fst` `F` ON S.fstid = F.fstid
+LEFT JOIN `sportcategory` `C` ON S.categoryid = C.categoryid
+LEFT JOIN `coach` `C2` ON C2.coachid = S.coach2id
+LEFT JOIN `coach` `C1` ON C1.coachid = S.coach1id
+WHERE S.status = 1
+ORDER BY `S`.`AgeID`, `S`.`WeigthID`, `FullName`
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (203)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:10:00 [trace] [system.caching.CFileCache] Serving "cacheAgeListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (408)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:10:00 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:11:19 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (218)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:11:23 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:11:23 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbPager.php (66)
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:11:23 [trace] [system.CModule] Loading "format" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:11:23 [error] [php] Undefined index: id (F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CArrayDataProvider.php:108)
+Stack trace:
+#0 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\zii\widgets\CBaseListView.php(129): TbGridView->renderKeys()
+#1 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CBaseController.php(173): TbGridView->run()
+#2 F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php(86): WeightcategoryController->widget()
+#3 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CBaseController.php(126): require()
+#4 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): WeightcategoryController->renderInternal()
+#5 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CBaseController.php(93): YiiDebugViewRenderer->renderFile()
+#6 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(869): WeightcategoryController->renderFile()
+#7 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(309): WeightcategoryController->renderPartial()
+#8 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(218): WeightcategoryController->filterWeightlist()
+#9 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\actions\CInlineAction.php(49): WeightcategoryController->actionList()
+#10 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(308): CInlineAction->runWithParams()
+#11 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(133): WeightcategoryController->runAction()
+#12 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#13 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(1145): CAccessControlFilter->filter()
+#14 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CInlineFilter.php(58): WeightcategoryController->filterAccessControl()
+#15 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter()
+#16 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(291): CFilterChain->run()
+#17 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CController.php(265): WeightcategoryController->runActionWithFilters()
+#18 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(282): WeightcategoryController->run()
+#19 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): WebApplication->runController()
+#20 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\web\CWebApplication.php(141): WebApplication->runController()
+#21 F:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework\base\CApplication.php(169): WebApplication->processRequest()
+#22 F:\Jurets\Projects\tkdcard\index.php(22): WebApplication->run()
+REQUEST_URI=/weightcategory/list
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:11:23 [trace] [system.CModule] Loading "errorHandler" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:28:16 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:28:16 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:28:16 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:28:17 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:28:17 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:28:17 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:28:18 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:28:18 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:28:18 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:28:18 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:28:18 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:28:18 [info] [application] 
+=======================2013.08.22 10:28:18
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:28:18 [trace] [system.web.filters.CFilterChain] Running filter WeightcategoryController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:28:18 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:28:18 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:28:18 [trace] [system.db.CDbCommand] Querying SQL: SELECT `S`.`SpID`, CONCAT(S.lastname, " ", S.firstname) AS FullName, `D`.`Commandname`, `F`.`FstName`, `C`.`CategoryName`, YEAR(S.birthdate) AS BirthYear, `C1`.`Coachname`, `C2`.`Coachname` AS `Coachname1`, `S`.`AgeID`, `S`.`WeigthID`, `S`.`TossNum`
+FROM `sportsmen` `S`
+LEFT JOIN `command` `D` ON D.commandid = S.commandid
+LEFT JOIN `fst` `F` ON S.fstid = F.fstid
+LEFT JOIN `sportcategory` `C` ON S.categoryid = C.categoryid
+LEFT JOIN `coach` `C2` ON C2.coachid = S.coach2id
+LEFT JOIN `coach` `C1` ON C1.coachid = S.coach1id
+WHERE S.status = 1
+ORDER BY `S`.`AgeID`, `S`.`WeigthID`, `FullName`
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (203)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:28:18 [trace] [system.caching.CFileCache] Serving "cacheAgeListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (408)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:28:18 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:28:23 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (218)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:28:23 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:28:24 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbPager.php (66)
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:28:24 [trace] [system.CModule] Loading "format" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:28:24 [error] [php] Undefined index: id (F:\Jurets\Projects\tkdcard\YII\framework\web\CArrayDataProvider.php:102)
+Stack trace:
+#0 F:\Jurets\Projects\tkdcard\YII\framework\zii\widgets\CBaseListView.php(130): TbGridView->renderKeys()
+#1 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(174): TbGridView->run()
+#2 F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php(86): WeightcategoryController->widget()
+#3 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(127): require()
+#4 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): WeightcategoryController->renderInternal()
+#5 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(94): YiiDebugViewRenderer->renderFile()
+#6 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(870): WeightcategoryController->renderFile()
+#7 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(309): WeightcategoryController->renderPartial()
+#8 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(218): WeightcategoryController->filterWeightlist()
+#9 F:\Jurets\Projects\tkdcard\YII\framework\web\actions\CInlineAction.php(50): WeightcategoryController->actionList()
+#10 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilterChain.php(134): WeightcategoryController->runAction()
+#12 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#14 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CInlineFilter.php(59): WeightcategoryController->filterAccessControl()
+#15 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(292): CFilterChain->run()
+#17 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(266): WeightcategoryController->runActionWithFilters()
+#18 F:\Jurets\Projects\tkdcard\YII\framework\web\CWebApplication.php(283): WeightcategoryController->run()
+#19 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): WebApplication->runController()
+#20 F:\Jurets\Projects\tkdcard\YII\framework\web\CWebApplication.php(142): WebApplication->runController()
+#21 F:\Jurets\Projects\tkdcard\YII\framework\base\CApplication.php(162): WebApplication->processRequest()
+#22 F:\Jurets\Projects\tkdcard\index.php(22): WebApplication->run()
+REQUEST_URI=/weightcategory/list
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:28:24 [trace] [system.CModule] Loading "errorHandler" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:34:44 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:34:44 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:34:44 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:34:44 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:34:44 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:34:44 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:34:45 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:34:45 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:34:45 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:34:45 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:34:45 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:34:45 [info] [application] 
+=======================2013.08.22 10:34:45
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:34:45 [trace] [system.web.filters.CFilterChain] Running filter WeightcategoryController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:34:45 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:34:45 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:34:45 [trace] [system.db.CDbCommand] Querying SQL: SELECT `S`.`SpID`, CONCAT(S.lastname, " ", S.firstname) AS FullName, `D`.`Commandname`, `F`.`FstName`, `C`.`CategoryName`, YEAR(S.birthdate) AS BirthYear, `C1`.`Coachname`, `C2`.`Coachname` AS `Coachname1`, `S`.`AgeID`, `S`.`WeigthID`, `S`.`TossNum`
+FROM `sportsmen` `S`
+LEFT JOIN `command` `D` ON D.commandid = S.commandid
+LEFT JOIN `fst` `F` ON S.fstid = F.fstid
+LEFT JOIN `sportcategory` `C` ON S.categoryid = C.categoryid
+LEFT JOIN `coach` `C2` ON C2.coachid = S.coach2id
+LEFT JOIN `coach` `C1` ON C1.coachid = S.coach1id
+WHERE S.status = 1
+ORDER BY `S`.`AgeID`, `S`.`WeigthID`, `FullName`
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (203)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:34:45 [trace] [system.caching.CFileCache] Serving "cacheAgeListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (408)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:34:45 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:35:22 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (218)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:35:22 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:35:22 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbPager.php (66)
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:35:22 [trace] [system.CModule] Loading "format" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:35:22 [error] [php] Undefined index: id (F:\Jurets\Projects\tkdcard\YII\framework\web\CArrayDataProvider.php:102)
+Stack trace:
+#0 F:\Jurets\Projects\tkdcard\YII\framework\zii\widgets\CBaseListView.php(130): TbGridView->renderKeys()
+#1 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(174): TbGridView->run()
+#2 F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php(86): WeightcategoryController->widget()
+#3 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(127): require()
+#4 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): WeightcategoryController->renderInternal()
+#5 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(94): YiiDebugViewRenderer->renderFile()
+#6 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(870): WeightcategoryController->renderFile()
+#7 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(309): WeightcategoryController->renderPartial()
+#8 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(218): WeightcategoryController->filterWeightlist()
+#9 F:\Jurets\Projects\tkdcard\YII\framework\web\actions\CInlineAction.php(50): WeightcategoryController->actionList()
+#10 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilterChain.php(134): WeightcategoryController->runAction()
+#12 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#14 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CInlineFilter.php(59): WeightcategoryController->filterAccessControl()
+#15 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(292): CFilterChain->run()
+#17 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(266): WeightcategoryController->runActionWithFilters()
+#18 F:\Jurets\Projects\tkdcard\YII\framework\web\CWebApplication.php(283): WeightcategoryController->run()
+#19 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): WebApplication->runController()
+#20 F:\Jurets\Projects\tkdcard\YII\framework\web\CWebApplication.php(142): WebApplication->runController()
+#21 F:\Jurets\Projects\tkdcard\YII\framework\base\CApplication.php(162): WebApplication->processRequest()
+#22 F:\Jurets\Projects\tkdcard\index.php(22): WebApplication->run()
+REQUEST_URI=/weightcategory/list
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:35:22 [trace] [system.CModule] Loading "errorHandler" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:36:30 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:36:30 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:36:30 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:36:30 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:36:30 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:36:30 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:36:31 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:36:31 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:36:31 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:36:31 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:36:31 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:36:31 [info] [application] 
+=======================2013.08.22 10:36:31
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:36:31 [trace] [system.web.filters.CFilterChain] Running filter WeightcategoryController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:36:31 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:36:31 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:36:31 [trace] [system.db.CDbCommand] Querying SQL: SELECT `S`.`SpID`, CONCAT(S.lastname, " ", S.firstname) AS FullName, `D`.`Commandname`, `F`.`FstName`, `C`.`CategoryName`, YEAR(S.birthdate) AS BirthYear, `C1`.`Coachname`, `C2`.`Coachname` AS `Coachname1`, `S`.`AgeID`, `S`.`WeigthID`, `S`.`TossNum`
+FROM `sportsmen` `S`
+LEFT JOIN `command` `D` ON D.commandid = S.commandid
+LEFT JOIN `fst` `F` ON S.fstid = F.fstid
+LEFT JOIN `sportcategory` `C` ON S.categoryid = C.categoryid
+LEFT JOIN `coach` `C2` ON C2.coachid = S.coach2id
+LEFT JOIN `coach` `C1` ON C1.coachid = S.coach1id
+WHERE S.status = 1
+ORDER BY `S`.`AgeID`, `S`.`WeigthID`, `FullName`
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (203)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:36:31 [trace] [system.caching.CFileCache] Serving "cacheAgeListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (408)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:36:31 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:36:42 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (218)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:36:42 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:36:42 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbPager.php (66)
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:36:42 [trace] [system.CModule] Loading "format" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:37:02 [error] [php] Undefined index: id (F:\Jurets\Projects\tkdcard\YII\framework\web\CArrayDataProvider.php:102)
+Stack trace:
+#0 F:\Jurets\Projects\tkdcard\YII\framework\zii\widgets\CBaseListView.php(130): TbGridView->renderKeys()
+#1 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(174): TbGridView->run()
+#2 F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php(86): WeightcategoryController->widget()
+#3 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(127): require()
+#4 F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php(47): WeightcategoryController->renderInternal()
+#5 F:\Jurets\Projects\tkdcard\YII\framework\web\CBaseController.php(94): YiiDebugViewRenderer->renderFile()
+#6 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(870): WeightcategoryController->renderFile()
+#7 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(309): WeightcategoryController->renderPartial()
+#8 F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php(218): WeightcategoryController->filterWeightlist()
+#9 F:\Jurets\Projects\tkdcard\YII\framework\web\actions\CInlineAction.php(50): WeightcategoryController->actionList()
+#10 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(309): CInlineAction->runWithParams()
+#11 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilterChain.php(134): WeightcategoryController->runAction()
+#12 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilter.php(41): CFilterChain->run()
+#13 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(1146): CAccessControlFilter->filter()
+#14 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CInlineFilter.php(59): WeightcategoryController->filterAccessControl()
+#15 F:\Jurets\Projects\tkdcard\YII\framework\web\filters\CFilterChain.php(131): CInlineFilter->filter()
+#16 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(292): CFilterChain->run()
+#17 F:\Jurets\Projects\tkdcard\YII\framework\web\CController.php(266): WeightcategoryController->runActionWithFilters()
+#18 F:\Jurets\Projects\tkdcard\YII\framework\web\CWebApplication.php(283): WeightcategoryController->run()
+#19 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): WebApplication->runController()
+#20 F:\Jurets\Projects\tkdcard\YII\framework\web\CWebApplication.php(142): WebApplication->runController()
+#21 F:\Jurets\Projects\tkdcard\YII\framework\base\CApplication.php(162): WebApplication->processRequest()
+#22 F:\Jurets\Projects\tkdcard\index.php(22): WebApplication->run()
+REQUEST_URI=/weightcategory/list
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:37:02 [trace] [system.CModule] Loading "errorHandler" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (309)
+2013/08/22 10:42:34 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:42:34 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:42:34 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:42:34 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:42:34 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:42:34 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:42:35 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:42:35 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:42:35 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:35 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:35 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:35 [info] [application] 
+=======================2013.08.22 10:42:35
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:36 [trace] [system.web.filters.CFilterChain] Running filter WeightcategoryController.filteraccessControl()
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:36 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:36 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:36 [trace] [system.db.CDbCommand] Querying SQL: SELECT `S`.`SpID`, CONCAT(S.lastname, " ", S.firstname) AS FullName, `D`.`Commandname`, `F`.`FstName`, `C`.`CategoryName`, YEAR(S.birthdate) AS BirthYear, `C1`.`Coachname`, `C2`.`Coachname` AS `Coachname1`, `S`.`AgeID`, `S`.`WeigthID`, `S`.`TossNum`
+FROM `sportsmen` `S`
+LEFT JOIN `command` `D` ON D.commandid = S.commandid
+LEFT JOIN `fst` `F` ON S.fstid = F.fstid
+LEFT JOIN `sportcategory` `C` ON S.categoryid = C.categoryid
+LEFT JOIN `coach` `C2` ON C2.coachid = S.coach2id
+LEFT JOIN `coach` `C1` ON C1.coachid = S.coach1id
+WHERE S.status = 1
+ORDER BY `S`.`AgeID`, `S`.`WeigthID`, `FullName`
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (203)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheAgeListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (408)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (206)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (310)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (218)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (310)
+2013/08/22 10:42:36 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\bootstrap\widgets\TbPager.php (66)
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:42:36 [trace] [system.CModule] Loading "format" application component
+in F:\Jurets\Projects\tkdcard\protected\views\sportsmen\_weigthlist.php (86)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (310)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "yii:dbschemamysql:host=localhost;dbname=ftudb:root:weightcategory" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Weightcategory.php (179)
+in F:\Jurets\Projects\tkdcard\protected\models\Weightcategory.php (183)
+in F:\Jurets\Projects\tkdcard\protected\models\Weightcategory.php (192)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:36 [trace] [system.caching.CFileCache] Serving "cacheWeigthListFull" from cache
+in F:\Jurets\Projects\tkdcard\protected\models\Sportsmen.php (427)
+in F:\Jurets\Projects\tkdcard\protected\controllers\WeightcategoryController.php (215)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:37 [trace] [system.CModule] Loading "messages" application component
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (39)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\views\layouts\column1.php (6)
+2013/08/22 10:42:37 [info] [application] /weightcategory/list --- Количество запросов SQL: 1 Длительность: 0.014863014221191
+=======================2013.08.22 10:42:37
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (161)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:39 [trace] [system.CModule] Loading "log" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:42:39 [trace] [system.CModule] Loading "request" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (111)
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:42:39 [trace] [system.CModule] Loading "bootstrap" application component
+in F:\Jurets\Projects\tkdcard\index.php (21)
+2013/08/22 10:42:39 [trace] [system.CModule] Loading "viewRenderer" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelViewsRendering.php (35)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (186)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:42:39 [trace] [system.CModule] Loading "db" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:42:39 [trace] [system.db.CDbConnection] Opening DB connection
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\panels\YiiDebugToolbarPanelSql.php (46)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (177)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (111)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "clientScript" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (132)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbarRoute.php (133)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "assetManager" application component
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (80)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (139)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\YiiDebugToolbar.php (112)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "urlManager" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "cache" application component
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:40 [trace] [system.caching.CFileCache] Serving "Yii.CUrlManager.rules" from cache
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "coreMessages" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+in F:\Jurets\Projects\tkdcard\index.php (22)
+2013/08/22 10:42:40 [error] [exception.CHttpException.404] exception 'CHttpException' with message 'Невозможно обработать запрос "assets/lib/bootstrap/less/mixins.less".' in F:\Jurets\Projects\tkdcard\YII\framework\web\CWebApplication.php:287
+Stack trace:
+#0 F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php(39): CWebApplication->runController('assets/lib/boot...')
+#1 F:\Jurets\Projects\tkdcard\YII\framework\web\CWebApplication.php(142): WebApplication->runController('assets/lib/boot...')
+#2 F:\Jurets\Projects\tkdcard\YII\framework\base\CApplication.php(162): CWebApplication->processRequest()
+#3 F:\Jurets\Projects\tkdcard\index.php(22): CApplication->run()
+#4 {main}
+REQUEST_URI=/assets/lib/bootstrap/less/mixins.less
+HTTP_REFERER=http://tkd-card.my/assets/94eb9a27/css/yii.css
+---
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "errorHandler" application component
+2013/08/22 10:42:40 [info] [application] 
+=======================2013.08.22 10:42:40
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (147)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "themeManager" application component
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "messages" application component
+in F:\Jurets\Projects\tkdcard\protected\views\site\error.php (8)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "widgetFactory" application component
+in F:\Jurets\Projects\tkdcard\protected\views\layouts\column1.php (2)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+in F:\Jurets\Projects\tkdcard\protected\controllers\SiteController.php (48)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "user" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:42:40 [trace] [system.CModule] Loading "session" application component
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (94)
+in F:\Jurets\Projects\tkdcard\themes\bootstrap\views\layouts\main.php (16)
+in F:\Jurets\Projects\tkdcard\protected\extensions\yii-debug-toolbar\components\YiiDebugViewRenderer.php (47)
+2013/08/22 10:42:40 [info] [application] /assets/lib/bootstrap/less/mixins.less --- Количество запросов SQL: 0 Длительность: 0
+=======================2013.08.22 10:42:40
+
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (161)
+in F:\Jurets\Projects\tkdcard\protected\components\WebApplication.php (39)

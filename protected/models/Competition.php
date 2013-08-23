@@ -134,6 +134,7 @@ class Competition extends CActiveRecord
         /*$cmd = Yii::app()->db->createCommand('SELECT Unix_timestamp(begindate) as begindate, Unix_timestamp(enddate) as enddate, Unix_timestamp(filingbegin) AS filingbegin, Unix_timestamp(filingend) AS filingend FROM competition WHERE id = :id');
         $cmd->bindParam(':id', Yii::app()->competitionId);
         $row = $cmd->queryRow();*/
+        $compId = Yii::app()->competitionId;
         $sqlCommand = Yii::app()->db->createCommand()
             ->select(array(
                    'Unix_timestamp(begindate) as begindate',
@@ -142,7 +143,7 @@ class Competition extends CActiveRecord
                    'Unix_timestamp(filingend) AS filingend'))
             ->from('competition')
             ->where('id = :id')
-            ->bindParam(':id', Yii::app()->competitionId);
+            ->bindParam(':id', $compId);
         $row = $sqlCommand->queryRow();
         if($row === null)
             throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');

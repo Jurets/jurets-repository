@@ -25,7 +25,7 @@
 
 
 return array(
-	'YII.path' => 'f:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework',
+	'YII.path' => 'C:\xampp\htdocs\YII\framework\yii.php',
 	
 	'env.code' => 'private',
 	// DB connection configurations

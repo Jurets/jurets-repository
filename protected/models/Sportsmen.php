@@ -74,6 +74,8 @@ class Sportsmen extends CActiveRecord
         return array(
             'Command'=> array(self::BELONGS_TO, 'Command', 'CommandID'),
             'relPhoto'=> array(self::BELONGS_TO, 'Photo', 'photoid'),
+            'relFst'=> array(self::BELONGS_TO, 'Fst', 'FstID'),
+            'relCommand'=> array(self::BELONGS_TO, 'Command', 'CommandID'),
         );
 	}
 

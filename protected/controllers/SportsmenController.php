@@ -57,6 +57,14 @@ class SportsmenController extends ParticipantController
         return $sportsmen;
     }
     
+    public function loadModelAll($id)
+    {
+        $sportsmen = Sportsmen::model()->with('relCommand', 'relPhoto', 'relFst')->findByPk($id);
+        if($sportsmen === null)
+            throw new CHttpException(404, 'Запрашиваемая страница не существует! '.'Не найден спортсмен с идентификатором: '.$id);
+        return $sportsmen;
+    }   
+    
     //ДЕЙСТВИЕ: удаление спортсмена
     public function actionDelete($id)
     {
@@ -80,9 +88,11 @@ class SportsmenController extends ParticipantController
     }    
     
     //ДЕЙСТВИЕ: смотреть данные о спорстмене
-    public function actionView($id) {
-        $sportsmen = $this->loadModel($id);
-        $command = $this->loadModel($id)->Command;
+    public function actionView($id) {//DebugBreak();
+        $sportsmen = $this->loadModelAll($id);
+        //$command = $this->loadModel($id)->Command;
+        //$sportsmen = Sportsmen::model()->with('Command', 'relPhoto')->findByPk($id);
+        $command = $sportsmen->relCommand;
         $this->render('view',array(
             'model'=>$sportsmen,
             'crumbs'=>array(
@@ -128,21 +138,24 @@ class SportsmenController extends ParticipantController
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         if(isset($_POST['Sportsmen']))
-        {
+        {//DebugBreak();
+            $flgDelPhoto = false;
             $model->attributes=$_POST['Sportsmen'];
             if (isset($_POST['PostFiles'])) {
                foreach($_POST['PostFiles'] as $varName=>$value) { 
-                  if (strpos($varName,'photoIds') !== false) 
-                     $model->photoid = $value;
+                  if (strpos($varName,'photoIds') !== false) {
+                        if (isset($model->relPhoto)) {   //если есть текущее фото -
+                            $photo = $model->relPhoto;  //запомнить (для послед-го удаления)
+                            //$model->unsetAttributes(array('photoid'));
+                            $flgDelPhoto = true;
+                        }
+                        $model->photoid = $value;
+                  }
                   //$key = str_replace('photoIds_', '', $varName);
                   //$this->photoIds[$key] = '';
                }
-            } else {
-                if (isset($model->relPhoto))
-                    $photo = $model->relPhoto;
-                $model->unsetAttributes(array('photoid'));
-                $flgDelPhoto = true;
-            }
+            } 
+            //else 
             //DebugBreak();
             $transaction = Yii::app()->db->beginTransaction();                         
             try {   

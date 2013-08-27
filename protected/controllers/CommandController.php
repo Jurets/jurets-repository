@@ -58,6 +58,7 @@ class CommandController extends Controller //ParticipantController
         $sqlCommand = Sportsmen::sqlSportsmenList($model->CommandID);
         $dataSportsmenList = new CSqlDataProvider($sqlCommand->text, array(
             'totalItemCount'=>$count,
+            'keyField'=>'SpID',
             /*'sort'=>array(
                 'attributes'=>array(
                     'Fullname',
@@ -73,6 +74,7 @@ class CommandController extends Controller //ParticipantController
         $sqlCommand = Coach::sqlCoachList($model->CommandID);
         $dataCoachList = new CSqlDataProvider($sqlCommand->text, array(
             'totalItemCount'=>$count,
+            'keyField'=>'CoachID',
             'pagination'=>array(
                 'pageSize'=>10,
             ),

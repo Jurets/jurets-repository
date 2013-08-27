@@ -161,13 +161,14 @@ class Competition extends CActiveRecord
 
     //ПРОВЕРКА: не превысило ли ограничение по кол-ву спортсменов
     public static function checkForSportsmenLimit() {
+        $competitionId = Yii::app()->competitionId;
         $sqlCommand = Yii::app()->db->createCommand()
             ->select(array(
                    'maxparticipants',
                    '(SELECT COUNT(*) FROM sportsmen WHERE status = 1) as realcount')
             )->from('competition')
             ->where('id = :id')
-            ->bindParam(':id', Yii::app()->competitionId);
+            ->bindParam(':id', $competitionId);
         $row = $sqlCommand->queryRow();
         //$count = Yii::app()->db->createCommand('SELECT maxparticipants FROM competition LIMIT 1')->queryScalar();
         //return $count;

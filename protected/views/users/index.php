@@ -3,6 +3,10 @@
 /* @var $dataProvider CActiveDataProvider */
 //$controller = $this;
 
+//$myCommandID = Yii::app()->user->getCommandid(); //ИД Моей команды
+//$isMyCommand = !Yii::app()->user->isGuest && ($commandid == $myCommandID);
+$isAccess = Yii::app()->user->isExtendRole() /*|| $isMyCommand*/;
+
 $pageid = 'page_usersindex';
 $paramid = Yii::app()->request->getParam('Users_page');
 if (isset($paramid))
@@ -33,7 +37,7 @@ if ($isExtendRole) */
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'users-grid',
     'dataProvider'=>$dataProvider,
-    'filter'=>$model,
+    //'filter'=>$model,
     //'cssFile'=>null,
     'template'=>"{pager}<br>{items}<br>{pager}",
     'type'=>'striped bordered condensed',
@@ -67,22 +71,22 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'template'=> ($isAccess ? '{view}{update}{delete}' : '{view}'),
             'htmlOptions'=>array('style'=>'width: 50px; text-align: center'),
-            'deleteConfirmation'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>$data['LastName'])),
+            'deleteConfirmation'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>'$data["LastName"]')),
             'buttons'=>array (
                 'view' => array (
                     'label'=>Yii::t('controls', 'View'),
                     'imageUrl'=>Yii::app()->request->baseUrl.'/images/view.png',
-                    'url'=>'Yii::app()->createUrl("users/view", array("id"=>$data[UserID]))',
+                    'url'=>'Yii::app()->createUrl("users/view", array("id"=>$data["UserID"]))',
                     ),
                 'update' => array (
                     'label'=>Yii::t('controls', 'Update'),
                     'imageUrl'=>Yii::app()->request->baseUrl.'/images/update.png',
-                    'url'=>'Yii::app()->createUrl("users/update", array("id"=>$data[UserID]))',
+                    'url'=>'Yii::app()->createUrl("users/update", array("id"=>$data["UserID"]))',
                     ),
                 'delete' => array (
                     'label'=>Yii::t('controls', 'Delete'),
                     'imageUrl'=>Yii::app()->request->baseUrl.'/images/delete.png',
-                    'url'=>'Yii::app()->createUrl("users/delete", array("id"=>$data[UserID]))',
+                    'url'=>'Yii::app()->createUrl("users/delete", array("id"=>$data["UserID"]))',
                     ),
             ),
         ), 

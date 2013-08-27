@@ -22,7 +22,7 @@ $arrColumns = array(
             'header'=>Yii::t('fullnames', 'LastName').', '.Yii::t('fullnames', 'FirstName'),
             //'value'=>$data->FullName,
             'type'=>'html',
-            'value'=>'CHtml::link(CHtml::encode($data[FullName]), CHtml::normalizeUrl(array("sportsmen/view", "id"=>$data[SpID])))',
+            'value'=>'CHtml::link(CHtml::encode($data["FullName"]), CHtml::normalizeUrl(array("sportsmen/view", "id"=>$data["SpID"])))',
         ));
  
 if (!isset($commandid) || empty($commandid))
@@ -65,22 +65,22 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'template'=> ($isAccess ? '{view}{update}{delete}' : '{view}'),
             'htmlOptions'=>array('style'=>'width: 50px; text-align: center'),
-            'deleteConfirmation'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>$data['LastName'])),
+            'deleteConfirmation'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>'$data["LastName"]')),
             'buttons'=>array (
                 'view' => array (
                     'label'=>Yii::t('controls', 'View'),
                     'imageUrl'=>Yii::app()->request->baseUrl.'/images/view.png',
-                    'url'=>'Yii::app()->createUrl("sportsmen/view", array("id"=>$data[SpID]))',
+                    'url'=>'Yii::app()->createUrl("sportsmen/view", array("id"=>$data["SpID"]))',
                     ),
                 'update' => array (
                     'label'=>Yii::t('controls', 'Update'),
                     'imageUrl'=>Yii::app()->request->baseUrl.'/images/update.png',
-                    'url'=>'Yii::app()->createUrl("sportsmen/update", array("id"=>$data[SpID]))',
+                    'url'=>'Yii::app()->createUrl("sportsmen/update", array("id"=>$data["SpID"]))',
                     ),
                 'delete' => array (
                     'label'=>Yii::t('controls', 'Delete'),
                     'imageUrl'=>Yii::app()->request->baseUrl.'/images/delete.png',
-                    'url'=>'Yii::app()->createUrl("sportsmen/delete", array("id"=>$data[SpID]))',
+                    'url'=>'Yii::app()->createUrl("sportsmen/delete", array("id"=>$data["SpID"]))',
                     ),
             ),
         ),
@@ -93,7 +93,7 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'sportsmen-grid',
     'dataProvider'=>$dataProvider,
-    'filter'=>$model,
+    //'filter'=>$model,
     //'cssFile'=>null,
     'template'=>"{pager}<br>{items}<br>{pager}",
     'type'=>'striped bordered condensed',

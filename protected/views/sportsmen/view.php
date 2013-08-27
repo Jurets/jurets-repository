@@ -26,8 +26,8 @@ $this->menu=array(
 
 <h1><?php echo Yii::t('controls', 'View').': '.Yii::t('fullnames', 'sportsmen'); ?></h1>
 
-<div id="authorpicture" style="float: right;">
-    <label class="control-label" for="authorpicture">Фотография автора</label>
+<div id="sportsmen_photo" style="float: right;">
+    <label class="control-label" for="sportsmen_photo">Фотография спортсмена</label>
     <?php
     if(isset($model->relPhoto)) :?>  
         <img width="190" height="265" title="Фото спортсмена" alt="Фото спортсмена" src="<?= Yii::app()->getUploadImageUrl($model->relPhoto->filename)?>"/>
@@ -50,11 +50,13 @@ $this->menu=array(
         ),
         array(
             'label'=>Yii::t('fullnames', 'Command'),
-            'value'=>$model->CommandName()
+            //'value'=>$model->CommandName(),
+            'value'=>$model->relCommand->CommandName,
         ),
         array(
             'label'=>Yii::t('fullnames', 'FstName'),
-            'value'=>$model->FstName()
+            //'value'=>$model->FstName()
+            'value'=>$model->relFst->FstName,
         ),
         array(
             'label'=>Yii::t('fullnames', 'CategoryName'),

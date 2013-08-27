@@ -31,7 +31,7 @@ $commonParamsLocal = file_exists($commonParamsLocalFile) ? require ($commonParam
 
 //CMap::mergeArray(
 return array_merge(array(
-    'YII.path' => './YII/framework/yii.php',
+    'YII.path' => 'f:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework',
     
     'env.code' => 'private',
     // DB connection configurations

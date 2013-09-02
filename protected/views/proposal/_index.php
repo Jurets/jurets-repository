@@ -1,11 +1,11 @@
 <?php 
 /*if (Yii::app()->user->isExtendRole()) 
 {
-    $urlview = 'Yii::app()->createUrl("proposal/confirm", array("id"=>$data[propid]))';
+    $urlview = 'Yii::app()->createUrl("proposal/confirm", array("id"=>$data["propid"]))';
 }
 else
 {*/
-    $urlview = 'Yii::app()->createUrl("proposal/view", array("id"=>$data[propid]))';
+    $urlview = 'Yii::app()->createUrl("proposal/view", array("id"=>$data["propid"]))';
 //}
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'proposal-grid',

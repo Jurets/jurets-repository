@@ -202,7 +202,11 @@ class ProposalController extends Controller
     
     //ДЕЙСТВИЕ: просмотр списка заявок
     public function actionIndex() { 
+        $criteria = new CDbCriteria;
+        $criteria->with = array('relCommand');
+        
         $dataProvider=new CActiveDataProvider('Proposal', array(
+            'criteria' => $criteria,
             'pagination'=>array(
                 'pageSize'=>20,
             ),

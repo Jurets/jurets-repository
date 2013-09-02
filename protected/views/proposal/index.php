@@ -2,6 +2,7 @@
 /* @var $this ProposalController */
 /* @var $model Proposal */
 
+$isExtendRole = Yii::app()->isExtendRole;
 
 if ($isExtendRole)
     $this->breadcrumbs=array(

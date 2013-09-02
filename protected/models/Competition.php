@@ -123,6 +123,15 @@ class Competition extends CActiveRecord
         return $model;
     }
     
+  //вернуть модель Соревнование (ИД берётся пока что из хардкода)
+    public static function loadModel()
+    {
+        $model = Competition::model()->findByPk(Yii::app()->competitionId);
+        if($model===null)
+            throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');
+        return $model;
+    }
+
     public static function getCompetitionParam($param) {
         $model = self::getModel();
         $res = $model[$param];

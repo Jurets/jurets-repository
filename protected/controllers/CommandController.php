@@ -53,11 +53,16 @@ class CommandController extends Controller //ParticipantController
         $tabnum = Yii::app()->request->getParam('tab');
         $tabnum = !empty($tabnum) ? $tabnum : 1;
         
-        $model = $this->loadModel($id);
-        $count = $model->sportsmenCount;
+        $criteria = Command::commandCriteria();
+        $criteria->compare('CommandID',$id);
+                
+        //$model = $this->loadModel($id);
+        //$count = $model->sportsmenCount;
+        $model = Command::model()->find($criteria);
+        //$count = $model->sportsmen_count;
         $sqlCommand = Sportsmen::sqlSportsmenList($model->CommandID);
         $dataSportsmenList = new CSqlDataProvider($sqlCommand->text, array(
-            'totalItemCount'=>$count,
+            'totalItemCount'=>$model->sportsmen_count, //$count,
             'keyField'=>'SpID',
             /*'sort'=>array(
                 'attributes'=>array(
@@ -70,10 +75,11 @@ class CommandController extends Controller //ParticipantController
         )); 
         // $dataProvider->getData() will return a list of arrays.
 
-        $count = $model->coachCount;
+        //$count = $model->coachCount;
+        //$count = $model->coach_count;
         $sqlCommand = Coach::sqlCoachList($model->CommandID);
         $dataCoachList = new CSqlDataProvider($sqlCommand->text, array(
-            'totalItemCount'=>$count,
+            'totalItemCount'=>$model->coach_count, //$count,
             'keyField'=>'CoachID',
             'pagination'=>array(
                 'pageSize'=>10,
@@ -203,7 +209,7 @@ class CommandController extends Controller //ParticipantController
 	 */
 	public function loadModel($id)
 	{
-		$model=Command::model()->findByPk($id);
+		$model = Command::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

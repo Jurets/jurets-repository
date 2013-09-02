@@ -49,11 +49,12 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         'CommandName',
         array(
             'label'=>Yii::t('fullnames', 'coachCount'),
-            'value'=>$model->coachCount,
+            //'value'=>$model->coachCount,
+            'value'=>$model->coach_count,
         ),
         array(
             'label'=>Yii::t('fullnames', 'sportsmenCount'),
-            'value'=>$model->sportsmenCount,
+            'value'=>$model->sportsmen_count,
         ),
         'CommandID',
     ),

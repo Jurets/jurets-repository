@@ -73,15 +73,7 @@ class Command extends CActiveRecord
         );
     }
 
-    /**
-     * Retrieves a list of models based on the current search/filter conditions.
-     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
-     */
-    public function search()
-    {
-        // Warning: Please modify the following code to remove attributes that
-        // should not be searched.
-
+    public static function commandCriteria() {
         $criteria=new CDbCriteria;
         //$criteria->join = 'INNER JOIN proposal ON proposal.commandid = t.commandid';
         //$criteria->addCondition('proposal.competitionid = :competitionid');
@@ -97,6 +89,34 @@ class Command extends CActiveRecord
             ':competitionid'=>Yii::app()->competitionId, 
             ':status'=>Proposal::STATUS_ACTIVE
         );
+        return $criteria;
+    }
+    
+    /**
+     * Retrieves a list of models based on the current search/filter conditions.
+     * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
+     */
+    public function search()
+    {
+        // Warning: Please modify the following code to remove attributes that
+        // should not be searched.
+
+        /*$criteria=new CDbCriteria;
+        //$criteria->join = 'INNER JOIN proposal ON proposal.commandid = t.commandid';
+        //$criteria->addCondition('proposal.competitionid = :competitionid');
+        $criteria->select = 't.*, '.
+            '(SELECT COUNT(*) FROM sportsmen WHERE sportsmen.commandid = t.commandid AND status = 1) as sportsmen_count, '.
+            '(SELECT COUNT(*) FROM coach WHERE coach.commandid = t.commandid) as coach_count';
+        
+        $criteria->addCondition('EXISTS (SELECT 1 from proposal P WHERE P.commandid = t.commandid '.
+            //'AND P.competitionid = :competitionid '.
+            'AND P.status = :status)');
+        $criteria->addCondition('t.status = 1 AND competitionid = :competitionid');
+        $criteria->params = array(
+            ':competitionid'=>Yii::app()->competitionId, 
+            ':status'=>Proposal::STATUS_ACTIVE
+        );*/
+        $criteria = self::commandCriteria();
         
         $criteria->compare('CommandID',$this->CommandID);
         $criteria->compare('CommandName',$this->CommandName,true);

@@ -299,7 +299,7 @@ class DefaultController extends Controller
                 header( 'Content-type: text/plain' );
             }
             $this->init( );
-       
+            DebugBreak();
             $model = new PPhotoForm;
            
             $metrics = new stdClass();

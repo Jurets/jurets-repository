@@ -126,7 +126,7 @@ class SportsmenController extends ParticipantController
     
     // РЕДАКТИРОВАТЬ спортсмена ---------------------------------------------------------------------
     public function actionUpdate($id) {
-        $model = $this->loadModel($id);
+        $model = Sportsmen::model()->with('relCommand')->findByPk($id);
         $uid = Yii::app()->userid;
         $flg = Yii::app()->isExtendRole || $this->isUserOwner($uid, $model);
         if (!$flg) {
@@ -185,7 +185,7 @@ class SportsmenController extends ParticipantController
             }
         }
 
-        $command = $model->Command;
+        $command = $model->relCommand;
         
         $breadcrumbs = array('Команды'=>array('command/index'));
         if (isset($command))

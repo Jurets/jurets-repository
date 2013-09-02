@@ -92,7 +92,7 @@ if($isCached) { ?>
                     <p style="text-align: center;">Запрошуємо на</p>
                     <h1 class="centext colblue1 text23 uptext" style="text-align: center;">
                         <!--Відкритий Всеукраїнський чемпіонат<br>КЗ КДЮСШ Металіст ХОР <br>з тхеквондо (ВТФ)-->
-                        <?php echo CHtml::encode(Competition::getCompetitionParam('title')); ?>
+                        <?php echo CHtml::encode($competition->title /*Competition::getCompetitionParam('title')*/); ?>
                     </h1>
                     <p style="text-align: center;">присвячений пам’яті видатного державного діяча Ю.А. Дагаєва <br>під девізом </p>
                     <h1 class="text17 uptext" style="text-align: center;">Спорт проти правопорушень та злочинності</h1>
@@ -111,7 +111,7 @@ if($isCached) { ?>
                     <h2 class="text17 uptext" style="text-align: center;">
                         МІСЦЕ ПРОВЕДЕННЯ<br>
                         <!--м.Харків, вул.Котлова 90/1<br>Палац спорту ім. Г.Кірпи «Локомотив»-->
-                        <?php echo CHtml::encode(Competition::getCompetitionParam('place')); ?>
+                        <?php echo CHtml::encode($competition->place /*Competition::getCompetitionParam('place')*/); ?>
                     </h2>
                     <!--<p style="text-align: center;"><a target="_blank" href="<?php echo Yii::app()->createUrl('/site/pages/map.html') ?>">Дивитись схему проїзду</a></p>-->
                     <p style="text-align: center;"><a target="_blank" href="<?php echo Yii::app()->baseUrl.'/map.html' ?>">Дивитись схему проїзду</a></p>

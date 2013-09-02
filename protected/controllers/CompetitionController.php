@@ -49,25 +49,17 @@ class CompetitionController extends Controller
         //$criteria = Competition::sqlStat();
         $dataProvider = new CSqlDataProvider($sqlCommand->text, array(  
         //$dataProvider = new CActiveDataProvider($this->loadModel(), array(
-            //'criteria'=>$criteria,
             'params'=>array(
                 ':competitionid'=>Yii::app()->competitionId, 
                 ':status'=>Proposal::STATUS_ACTIVE,
             ),
             'totalItemCount'=>3,
-            //'pagination'=>array(
-            //    'pageSize'=>20,
-            //),
+            'keyField'=>'statname',
         ));    
-        //$this->render('index',array(
-        //    'commandid'=>null,
-        //));
-
 
 		$this->render('view',array(
 			'model'=>Competition::getModel(),
             'dataStat'=>$dataProvider,
-            //'model'=>$this->loadModel(0),
 		));
 	}
 

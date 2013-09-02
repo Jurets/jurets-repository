@@ -76,6 +76,12 @@ class Sportsmen extends CActiveRecord
             'relPhoto'=> array(self::BELONGS_TO, 'Photo', 'photoid'),
             'relFst'=> array(self::BELONGS_TO, 'Fst', 'FstID'),
             'relCommand'=> array(self::BELONGS_TO, 'Command', 'CommandID'),
+            'relCategory'=> array(self::BELONGS_TO, 'Sportcategory', 'CategoryID'),
+            'relAttestlevel'=> array(self::BELONGS_TO, 'Attestlevel', 'AttestLevelID'),
+            'relAgecategory'=> array(self::BELONGS_TO, 'Agecategory', 'AgeID'),
+            'relWeightcategory'=> array(self::BELONGS_TO, 'Weightcategory', 'WeigthID'),
+            'relCoach'=> array(self::BELONGS_TO, 'Coach', 'Coach1ID'),
+            'relCoachFirst'=> array(self::BELONGS_TO, 'Coach', 'Coach2ID'),
         );
 	}
 

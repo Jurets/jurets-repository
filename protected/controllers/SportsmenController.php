@@ -57,9 +57,15 @@ class SportsmenController extends ParticipantController
         return $sportsmen;
     }
     
+    //ФУНКЦИЯ: загрузить модель СПОРТСМЕН со всеми подчинёнными моделями (таблицами)
     public function loadModelAll($id)
     {
-        $sportsmen = Sportsmen::model()->with('relCommand', 'relPhoto', 'relFst')->findByPk($id);
+        $sportsmen = Sportsmen::model()->with('relCommand', 'relPhoto', 'relFst', 'relCategory', 'relAttestlevel', 
+            'relCoachFirst', 'relCoach',
+            'relAgecategory', 
+            'relWeightcategory'
+            //,'relWeightcategory.relAgecategory'
+        )->findByPk($id);
         if($sportsmen === null)
             throw new CHttpException(404, 'Запрашиваемая страница не существует! '.'Не найден спортсмен с идентификатором: '.$id);
         return $sportsmen;

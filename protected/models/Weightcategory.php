@@ -130,6 +130,7 @@ class Weightcategory extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            'relAgecategory'=> array(self::BELONGS_TO, 'Agecategory', 'AgeID'),
 		);
 	}
 
@@ -188,7 +189,7 @@ class Weightcategory extends CActiveRecord
     
     //Jurets: получить название весовой категории (по ID)
     public function WeightNameFull() {
-        return //mb_strtoupper($this->Gender, 'UTF-8').' '.
+        return //mb_strtoupper($this->relAgecategory->Gender, 'UTF-8').' '.
             $this->WeightName();
     }
     

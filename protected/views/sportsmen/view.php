@@ -28,10 +28,9 @@ $this->menu=array(
 
 <div id="sportsmen_photo" style="float: right;">
     <label class="control-label" for="sportsmen_photo">Фотография спортсмена</label>
-    <?php
-    if(isset($model->relPhoto)) :?>  
+    <?php if(isset($model->relPhoto)) : ?>
         <img width="190" height="265" title="Фото спортсмена" alt="Фото спортсмена" src="<?= Yii::app()->getUploadImageUrl($model->relPhoto->filename)?>"/>
-    <? endif ?>
+    <?php endif ?>
 </div>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(
@@ -51,38 +50,39 @@ $this->menu=array(
         array(
             'label'=>Yii::t('fullnames', 'Command'),
             //'value'=>$model->CommandName(),
-            'value'=>$model->relCommand->CommandName,
+            'value'=>$model->relCommand->CommandName
         ),
         array(
             'label'=>Yii::t('fullnames', 'FstName'),
             //'value'=>$model->FstName()
-            'value'=>$model->relFst->FstName,
+            'value'=>$model->relFst->FstName
         ),
         array(
             'label'=>Yii::t('fullnames', 'CategoryName'),
-            'value'=>$model->CategoryName()
+            'value'=>$model->relCategory->CategoryName
         ),
         array(
             'label'=>Yii::t('fullnames', 'AttestLevelName'),
-            'value'=>$model->AttestLevelName()
+            'value'=>$model->relAttestlevel->AttestLevel
         ),
         array(
             'label'=>Yii::t('fullnames', 'AgeName'),
-            'value'=>$model->AgeName()
+            'value'=>$model->relAgecategory->AgeNameYear()
         ),
         array(
             'label'=>Yii::t('fullnames', 'WeightName'),
-            'value'=>$model->WeightNameFull()
+            'value'=>mb_strtoupper($model->Gender, 'UTF-8').' '.$model->relWeightcategory->WeightNameFull()
         ),
         array(
             'label'=>Yii::t('fullnames', 'CoachFirst'),
-            'value'=>$model->Coach2Name()
+            'value'=>(isset($model->relCoachFirst) ? $model->relCoachFirst->CoachName : null)
         ),
         array(
             'label'=>Yii::t('fullnames', 'Coach'),
-            'value'=>$model->Coach1Name()
+            'value'=>(isset($model->relCoach) ? $model->relCoach->CoachName : null)
         ),
 		//'MedicSolve',
-        'SpID',
-	),
-)); ?>
+        'SpID'
+	)
+));
+?>

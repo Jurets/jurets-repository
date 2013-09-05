@@ -204,6 +204,7 @@ class ProposalController extends Controller
     public function actionIndex() { 
         $criteria = new CDbCriteria;
         $criteria->with = array('relCommand');
+        $criteria->condition = 't.competitionid = '.Yii::app()->competitionId;
         
         $dataProvider=new CActiveDataProvider('Proposal', array(
             'criteria' => $criteria,

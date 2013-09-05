@@ -307,7 +307,12 @@ class Sportsmen extends CActiveRecord
         if (!empty($weigthid))
             $sqlCommand->where()[] = 'weigthid = '.$weigthid*/
 
-        $sql = 'SELECT COUNT(*) FROM sportsmen'.(isset($weigthid) ? ' where weigthid = '.$weigthid : '');
+        //$sql = 'SELECT COUNT(*) FROM sportsmen'.(isset($weigthid) ? ' where weigthid = '.$weigthid : '');
+
+        $sql = 'SELECT COUNT(*) FROM sportsmen S LEFT JOIN command D ON D.commandid = S.commandid '.
+            'WHERE D.competitionid = ' . Yii::app()->competitionId .
+            (isset($weigthid) ? ' AND weigthid = '.$weigthid : '');
+        
         $dependency = new CDbCacheDependency($sql);
         $count = Yii::app()->db->cache(1000, $dependency)->createCommand($sql)->queryScalar();
         return $count;
@@ -353,7 +358,8 @@ class Sportsmen extends CActiveRecord
         } else {
             $sqlCommand
             ->leftJoin('command D', 'D.commandid = S.commandid')
-            ->where('S.status = 1');
+            //->where('S.status = 1');
+            ->where('S.status = 1 AND D.competitionid = '.Yii::app()->competitionId);
         }
         $sqlCommand->order('FullName');
         return $sqlCommand;

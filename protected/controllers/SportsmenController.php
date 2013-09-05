@@ -114,6 +114,7 @@ class SportsmenController extends ParticipantController
         $count = Sportsmen::getSportsmenCount(); //Yii::app()->db->createCommand('SELECT COUNT(*) FROM Sportsmen')->queryScalar();
         $sqlCommand = Sportsmen::sqlSportsmenList();
         $dataProvider = new CSqlDataProvider($sqlCommand->text, array(
+            'keyField'=>'SpID',
             'totalItemCount'=>$count,
             /*'sort'=>array(
                 'attributes'=>array(

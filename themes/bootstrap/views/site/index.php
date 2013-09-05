@@ -13,8 +13,9 @@ $docpath = Yii::app()->baseUrl.'/document/';
 
 <?php 
 
-$notCached = $this->beginCache('tkdcard_mainpage', array('duration'=>3600));
-if($notCached) { ?>
+//$notCached = $this->beginCache('tkdcard_mainpage', array('duration'=>3600));
+//if($notCached) 
+{ ?>
 
 
         <div class="sideLeft">
@@ -152,10 +153,12 @@ if($notCached) { ?>
                         Регламент змагань на сайті ФТУ:
                         <a class="button1" target="_blank" href="http://www.ftu.com.ua/news/908">Дивитись</a> <br>
                         Завантажити положення: 
-                        <a class="button1" href="<?php echo $docpath.'KubMetalist-2013apr(rus).doc'?>">Положение(рус)</a>
-                        <a class="button1" href="<?php echo $docpath.'KubMetalist-2013apr(ukr).doc'?>">Положення(укр)</a>
+                        <!--<a class="button1" href="<?php echo $docpath.'KubMetalist-2013apr(rus).doc'?>">Положение(рус)</a>-->
+                        <a class="button1" href="<?php echo $docpath.'KubArmada-2013stp(ukr).doc'?>">Положення(укр)</a>
                     </p>
       </div>
 </div>
 
-<?php $this->endCache(); } ?>
+<?php 
+//$this->endCache(); 
+} ?>

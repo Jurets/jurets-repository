@@ -2,7 +2,7 @@
 //здесь хранятся настройки локальные
 return array(
     //'YII.path' => 'C:\xampp\htdocs\YII\framework\yii.php',
-    'YII.path' => '..\YII\framework\yii.php',
+    'YII.path' => '.\YII\framework\yii.php',
     
     'env.code' => 'private',
     // DB connection configurations

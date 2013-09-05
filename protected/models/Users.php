@@ -57,7 +57,7 @@ class Users extends CActiveRecord
             //специальные проверки
             array('Email', 'email', 'on' => 'create'),
             //проверки на уникальность
-            array('UserName, Email', 'unique', 'on' => 'create'),
+            array('UserName', 'unique', 'on' => 'create'), //array('UserName, Email', 'unique', 'on' => 'create'),
             //проверять эти поля при смене пароля (сценарий "password")
             array('old_password, new_password, retype_password', 'safe', 'on'=>'password'), 
             //array('Email', 'checkEmailForExist'),
@@ -222,7 +222,7 @@ class Users extends CActiveRecord
     }
     
     //функция перед записью: инициализация значений
-    public function beforeSave() {
+    public function beforeSave() {//DebugBreak();
         if ($this->isNewRecord) {
             //$this->Active = self::STATUS_NOACTIVE; //юзер при создании НЕАКТИВЕН
             $this->status = self::STATUS_NEW; //юзер при создании НЕАКТИВЕН
@@ -233,13 +233,12 @@ class Users extends CActiveRecord
             $this->Password = $this->hashPassword($password, $this->Salt); //хешить пароль
             $this->RoleID = 'delegate';  //роль - представитель
         }
-        else if ($this->scenario == 'activity')
+        else if ($this->scenario == 'activity') {
             return true;
-        else {
+        }
+        else if ($this->scenario == 'autopassword' || $this->scenario == 'password') {
             if ($this->scenario == 'autopassword') {
                $this->new_password = $this->generatePassword(rand(6,10));
-               //$this->Salt = rand(1,9999);
-               //$this->Password = $this->hashPassword($password, $this->Salt);
             }
             else if ($this->scenario == 'password') {
                 if ($this->Password <> $this->hashPassword($this->old_password, $this->Salt))
@@ -254,7 +253,7 @@ class Users extends CActiveRecord
                 $this->Password = $this->hashPassword($this->new_password, $this->Salt);  //хешить новый пароль
             } else {
                 return false;
-            }
+            }            
         }
         return parent::beforeSave() && $this->validate();
     }

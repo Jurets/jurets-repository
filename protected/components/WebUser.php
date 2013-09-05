@@ -46,7 +46,8 @@
             if ($userid = $this->userid){                        //иначе - вернуть ИД из базы
                 $cmd = Yii::app()->db->createCommand('SELECT commandid FROM proposal WHERE competitionid= :competitionid AND userid = :userid');
                 $cmd->bindParam('userid', $userid, PDO::PARAM_INT);
-                $cmd->bindParam('competitionid', Yii::app()->competitionId, PDO::PARAM_INT);
+                $compid = Yii::app()->competitionId;
+                $cmd->bindParam('competitionid', $compid, PDO::PARAM_INT);
                 $commandid = $cmd->queryScalar();
                 $this->setState('userCommandID', $commandid); //и установить в сессию
                 return $commandid;

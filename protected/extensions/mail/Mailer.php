@@ -36,7 +36,7 @@ class Mailer extends CApplicationComponent
 		$headers['From'] = $from;
 		$headers['To'] = $to;
 		$headers['Subject'] = $subject;
-				
+		
 		$mail_object =& Mail::factory($this->backend, $this->backendParams);
 		return $mail_object->send($to, $headers, $body);
 	}

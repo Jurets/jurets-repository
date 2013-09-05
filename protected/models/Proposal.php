@@ -171,7 +171,7 @@ class Proposal extends CActiveRecord
     }
     
     //критерия для поиска заявки пользователя на соревнование
-    private function criteriaPropForCompetition($competitionid, $userid) {
+    private static function criteriaPropForCompetition($competitionid, $userid) {
         $criteria = new CDbCriteria;
         $criteria->select = '*';  // выбираем все поля
         $criteria->addCondition('userid = :userid');

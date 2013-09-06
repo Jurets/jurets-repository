@@ -153,17 +153,12 @@ class SportsmenController extends ParticipantController
                   if (strpos($varName,'photoIds') !== false) {
                         if (isset($model->relPhoto)) {   //если есть текущее фото -
                             $photo = $model->relPhoto;  //запомнить (для послед-го удаления)
-                            //$model->unsetAttributes(array('photoid'));
                             $flgDelPhoto = true;
                         }
                         $model->photoid = $value;
                   }
-                  //$key = str_replace('photoIds_', '', $varName);
-                  //$this->photoIds[$key] = '';
                }
             } 
-            //else 
-            //DebugBreak();
             $transaction = Yii::app()->db->beginTransaction();                         
             try {   
                 if ($model->save()) {
@@ -243,8 +238,22 @@ class SportsmenController extends ParticipantController
         //если пришли данные из формы
         if (isset($_POST['Sportsmen']))        
         {
+            //$flgDelPhoto = false;
             $model->attributes = $_POST['Sportsmen'];
             $model->UserID = Yii::app()->userid;
+
+            if (isset($_POST['PostFiles'])) {
+               foreach($_POST['PostFiles'] as $varName=>$value) { 
+                  if (strpos($varName,'photoIds') !== false) {
+                        //if (isset($model->relPhoto)) {   //если есть текущее фото -
+                        //    $photo = $model->relPhoto;  //запомнить (для послед-го удаления)
+                        //    $flgDelPhoto = true;
+                        //}
+                        $model->photoid = $value;
+                  }
+               }
+            } 
+
             if($model->save()) {
                 $this->redirect(array('/command/view','id'=>$id, 'tab'=>'1'));
                 //$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/command/index'));

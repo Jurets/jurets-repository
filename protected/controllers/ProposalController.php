@@ -155,6 +155,7 @@ class ProposalController extends Controller
         }
 
         try {    //Старт ТРАНЗАКЦИИ
+            $transaction = Yii::app()->db->beginTransaction();
             $success = $model->updateByPk($id, array('status'=>$status));  //обновить статус заявки
             if (!$success)
                 throw new Exception(sprintf('Ошибка при смене статуса заявки %d. Текущий статус: "'.$model->statusTitle.'"!', $model->propid));  

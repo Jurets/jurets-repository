@@ -126,7 +126,15 @@ class Competition extends CActiveRecord
   //вернуть модель Соревнование (ИД берётся пока что из хардкода)
     public static function loadModel()
     {
-        $model = Competition::model()->findByPk(Yii::app()->competitionId);
+        $compId = Yii::app()->competitionId;
+
+        $criteria = new CDbCriteria;
+        $criteria->select = 't.*, Unix_timestamp(begindate) as begindate, Unix_timestamp(enddate) as enddate, Unix_timestamp(filingbegin) AS filingbegin, Unix_timestamp(filingend) AS filingend';
+        $criteria->condition = 'id = :id';
+        $criteria->params = array(':id'=>$compId);
+        
+        //$model = Competition::model()->findByPk(Yii::app()->competitionId);
+        $model = Competition::model()->find($criteria);
         if($model===null)
             throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');
         return $model;

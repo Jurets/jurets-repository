@@ -49,9 +49,10 @@ $docpath = Yii::app()->baseUrl.'/document/';
                 <!--<div class="t12">Компанія Ukraine Taekwondo Promotion</div>-->
             </div>
             <div class="partnspon">
-                <a target="_blank" href="http://gusms.kharkivoda.gov.ua/">
-                    <img width="100" title="" alt="" src="<?php echo $imgpath?>logo_full.png">
-                </a><br>
+                <!--<a target="_blank" href="mailto:poltavatkd@yandex.ru">-->
+                <a target="_blank" href="http://poltavawtf.blogspot.com/">
+                    <img width="124" height="126" title="" alt="" src="<?php echo $imgpath?>poltava.png">
+                </a>  <!--<br>-->
             </div>
         </div><!-- .sidebar#sideLeft -->
 
@@ -68,10 +69,9 @@ $docpath = Yii::app()->baseUrl.'/document/';
                 </a> <!--<br>-->
             </div>
             <div class="partnspon">
-                <!--<a target="_blank" href="mailto:poltavatkd@yandex.ru">-->
-                <a target="_blank" href="http://poltavawtf.blogspot.com/">
-                    <img width="124" height="126" title="" alt="" src="<?php echo $imgpath?>poltava.png">
-                </a>  <!--<br>-->
+                <a target="_blank" href="http://gusms.kharkivoda.gov.ua/">
+                    <img width="100" title="" alt="" src="<?php echo $imgpath?>sk_kwon.jpg">
+                </a>
             </div>
             <div class="partnspon">
                 <h3>Керівництво:</h3>
@@ -93,9 +93,9 @@ $docpath = Yii::app()->baseUrl.'/document/';
        <div id="middle">
                     <p style="text-align: center;">Запрошуємо на</p>
                     <h1 class="centext colblue1 text23" style="text-align: center;">
-                        <?php echo CHtml::encode(Competition::getCompetitionParam('title')); ?>
+                        <?php echo CHtml::encode($competition->title /*Competition::getCompetitionParam('title')*/); ?>
                     </h1>
-                    <h1 class="text17" style="text-align: center;"><?php echo CHtml::encode(Competition::getCompetitionParam('addinfo')); ?></h1>
+                    <h1 class="text17" style="text-align: center;"><?php echo $competition->title /*CHtml::encode(Competition::getCompetitionParam('addinfo'))*/; ?></h1>
                     
                     <p class="centext colblue1 text14">Безпосередня організація змагань здійснюється <br>КЗ «КДЮСШ «Металіст» ХОР» та ХГО «Армада» <br>
                     Загальне керівництво змаганням здійснюється федерацією тхеквондо (ВТФ) України <br>за підтримки 
@@ -108,9 +108,8 @@ $docpath = Yii::app()->baseUrl.'/document/';
                     <h2 class="text17" style="text-align: center;">ЧАС ПРОВЕДЕННЯ<br><!--</h2>
                     <h2 class="text17" style="text-align: center;">-->
                         <?php 
-                            $row = Competition::getCompetitionPeriod();
-                            $date1 = $row['begindate'];
-                            $date2 = $row['enddate'];
+                            $date1 = $competition->begindate;
+                            $date2 = $competition->enddate;
                             $date1 = Yii::app()->dateToUkr($date1/*, '%DAYWEEK%, j %MONTH% Y, G:i'*/);
                             $date2 = Yii::app()->dateToUkr($date2);
                             echo CHtml::encode($date1).' - '.CHtml::encode($date2);
@@ -118,7 +117,7 @@ $docpath = Yii::app()->baseUrl.'/document/';
                     </h2>
 
                     <h2 class="text17" style="text-align: center;">МІСЦЕ ПРОВЕДЕННЯ<br>
-                        <?php echo CHtml::encode(Competition::getCompetitionParam('place')); ?>
+                        <?php echo CHtml::encode($competition->place); ?>
                     </h2>
                     <!--<p style="text-align: center;"><a target="_blank" href="<?php echo Yii::app()->createUrl('/site/pages/map.html') ?>">Дивитись схему проїзду</a></p>-->
                     <p style="text-align: center;"><a target="_blank" href="<?php echo Yii::app()->baseUrl.'/map.html' ?>">Дивитись схему проїзду</a></p>
@@ -130,8 +129,8 @@ $docpath = Yii::app()->baseUrl.'/document/';
                         <!--або за адресою: м. Харків вул. Плеханівська 65, (в електронному вигляді в програмі Microsoft Office Excel), <br>зразок електронної заявки можна отримати за вище вказаними адресами <br>-->
                         <br>до <strong>
                             <?php 
-                                $date1 = $row['filingbegin'];
-                                $date2 = $row['filingend'];
+                                $date1 = $competition->filingbegin;
+                                $date2 = $competition->filingend;
                                 $date2 = Yii::app()->dateToUkr($date2);
                                 echo CHtml::encode($date2); 
                             ?>

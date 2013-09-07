@@ -12,10 +12,12 @@ $docpath = Yii::app()->baseUrl.'/document/';
 ?>
 
 <?php 
-
-//$notCached = $this->beginCache('tkdcard_mainpage', array('duration'=>3600));
-//if($notCached) 
-{ ?>
+//DebugBreak();
+$notCached = $this->beginCache('tkdcard_mainpage', array('duration'=>90));
+if($notCached) 
+{ 
+    $competition = Competition::loadModel();    
+    ?>
 
 
         <div class="sideLeft">
@@ -165,5 +167,5 @@ $docpath = Yii::app()->baseUrl.'/document/';
 </div>
 
 <?php 
-//$this->endCache(); 
+$this->endCache(); 
 } ?>

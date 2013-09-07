@@ -12,8 +12,8 @@ $docpath = Yii::app()->baseUrl.'/document/';
 
 <?php 
 
-//$isCached = $this->beginCache('tkdcard_mainpage', array('duration'=>3600));
-//if($isCached) 
+$isCached = $this->beginCache('tkdcard_mainpage', array('duration'=>3600));
+if($isCached) 
 { ?>
 
 <div class="sideLeft">
@@ -146,5 +146,5 @@ $docpath = Yii::app()->baseUrl.'/document/';
 </div>
 
 <?php 
-//$this->endCache(); 
+$this->endCache(); 
 } ?>

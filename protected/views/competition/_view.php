@@ -15,7 +15,11 @@
         'place',
         'courtcount',
         'maxparticipants',
-        //'isfiling',
+        array(               // related city displayed as a link
+            'name'=>'isfiling',
+            'type'=>'raw',
+            'value'=>CHtml::checkBox('isfiling', $model->isfiling, array('disabled'=>'disabled')),
+        ),
         'filingbegin',
         'filingend',
         ),

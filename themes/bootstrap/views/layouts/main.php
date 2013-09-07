@@ -38,7 +38,9 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
-                array('label'=>Yii::t('fullnames', 'Competition'), 'url'=>array('/competition/view')),
+                array('label'=>Yii::t('fullnames', 'Competition'), 
+                    'url' => ($isExtendRole ? array('/competition/manage') : array('/competition/view')),
+                ),
                 //array('label'=>'Информация', 'url'=>array('/site/page', 'view'=>'about')),
                 array('label'=>Yii::t('fullnames', 'Commands')/*'Участники'*/, 'url'=>array('/command/index')),
                 array('label'=>'Взвешивание', 'url'=>array('/weightcategory/list')),
@@ -63,8 +65,17 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                     array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>$isGuest),
                     array('label'=>Yii::t('fullnames', 'Users'), 'url'=>array('/users/index'), 'icon'=>'user', 'visible'=>$isExtendRole),
                     array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('proposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
-                    array('label'=>'Управление', 'url'=>array('/competition/manage'), 'icon'=>'wrench', 'visible'=>Yii::app()->user->isManagerRole()),
-                    array('label'=>'Админ', 'url'=>array('/competition/admin'), 'icon'=>'book', 'visible'=>Yii::app()->user->isAdminRole()),
+                    array('label'=>'Управление', 
+                        'url'=>array('/competition/manage'), 
+                        'icon'=>'wrench', 
+                        'visible'=>Yii::app()->user->isManagerRole()
+                    ),
+                    array('label'=>'Управление', 
+                        //'url'=>array('/competition/admin'), //ToDo: Функционал АДМИНа пока не работает
+                        'url'=>array('/competition/manage'), 
+                        'icon'=>'book', 
+                        'visible'=>Yii::app()->user->isAdminRole()
+                    ),
                     array('label'=>Yii::t('fullnames', 'My Command'), 
                         'url'=>array('/command/view', 'id'=>Yii::app()->user->getCommandID()), 
                         'icon'=>'list', 

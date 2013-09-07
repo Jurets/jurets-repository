@@ -141,7 +141,11 @@ class SiteController extends Controller
 	{//DebugBreak();
         $urlReferrer = Yii::app()->request->urlReferrer;
         $urlReferrer = strtolower($urlReferrer);
-        if (strpos($urlReferrer, 'proposal') || strpos($urlReferrer, 'users'))
+        if (strpos($urlReferrer, 'proposal') || 
+            strpos($urlReferrer, 'users') ||
+            strpos($urlReferrer, 'manage') ||
+            strpos($urlReferrer, 'users')
+           )
             $urlRedirect = Yii::app()->homeUrl;
         else
             $urlRedirect = !empty($urlReferrer) ? $urlReferrer : Yii::app()->homeUrl;

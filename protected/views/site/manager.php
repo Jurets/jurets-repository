@@ -9,8 +9,48 @@ $this->breadcrumbs=array(
 <?php
 
 $this->menu=array(
-    array('label'=>Yii::t('fullnames', 'Competition'), 'url'=>array('/competition/manage')),
-    array('label'=>Yii::t('fullnames', 'Categories'), 'url'=>array('/agecategory/index')),
-    array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('/proposal/manage')),
+    array('label'=>Yii::t('fullnames', 'Competition'), 
+        'url'=>array('/competition/manage'), 
+        'icon'=>'cog',
+        'linkOptions'=>array(
+            'title'=>Yii::t('fullnames', 'Настройки параметров соревнований'), 
+        ),
+    ),
+    array('label'=>Yii::t('fullnames', 'Categories'), 
+        'url'=>array('/agecategory/index'),
+        'icon'=>'cog',
+        'linkOptions'=>array(
+            'title'=>Yii::t('fullnames', 'Настройки категорий'), 
+        ),
+    ),
+    array('label'=>Yii::t('fullnames', 'Proposals'), 
+        'url'=>array('/proposal/manage'),
+        'icon'=>'cog',
+        'linkOptions'=>array(
+            'title'=>Yii::t('fullnames', 'Управление предварительными заявками'), 
+        ),
+    ),
+    '---',
+    array('label'=>Yii::t('fullnames', 'Commands'), 
+        'url'=>array('/command/index'), 
+        'icon'=>'flag',
+        'linkOptions'=>array(
+            'title'=>Yii::t('fullnames', 'Переход к списку команд'), 
+        ),
+    ),
+    array('label'=>Yii::t('fullnames', 'Sportsmens'), 
+        'url'=>array('/sportsmen/index'), 
+        'icon'=>'user',
+        'linkOptions'=>array(
+            'title'=>Yii::t('fullnames', 'Переход к списку спортсменов'), 
+        ),
+    ),
+    array('label'=>Yii::t('fullnames', 'Coaches'), 
+        'url'=>array('/coach/index'), 
+        'icon'=>'user',
+        'linkOptions'=>array(
+            'title'=>Yii::t('fullnames', 'Переход к списку тренеров'), 
+        ),
+    ),
 );
 ?>

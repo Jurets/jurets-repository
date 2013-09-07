@@ -15,7 +15,13 @@ echo CHtml::form();
     $this->renderPartial('_view', array('model'=>$model));
 
     if (Yii::app()->user->isExtendRole()) 
-        echo CHtml::tag('a', array('href'=>Yii::app()->createUrl('/competition/update')), 'Update');
+        echo CHtml::tag('a', array(
+            'href'=>Yii::app()->createUrl('/competition/update'),
+            'class'=>'btn btn-primary',
+            'title'=>Yii::t('fullnames', 'Изменить параметры соревнования')
+        ), Yii::t('controls','Update'));
+        
+    $this->renderPartial('_stat', array('dataStat'=>$dataStat));
 echo CHtml::endForm();
     
 ?>

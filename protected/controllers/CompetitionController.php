@@ -42,32 +42,34 @@ class CompetitionController extends Controller
 		);
 	}
    
-	//ДЕЙСТВИЕ: просмотр
-	public function actionView()
-	{
+   private function getCompetitionStat() {
         $sqlCommand = Competition::sqlStat();
-        //$criteria = Competition::sqlStat();
         $dataProvider = new CSqlDataProvider($sqlCommand->text, array(  
-        //$dataProvider = new CActiveDataProvider($this->loadModel(), array(
             'params'=>array(
                 ':competitionid'=>Yii::app()->competitionId, 
                 ':status'=>Proposal::STATUS_ACTIVE,
             ),
             'totalItemCount'=>3,
             'keyField'=>'statname',
-        ));    
+        ));
+        return $dataProvider;
+   }
 
+	//ДЕЙСТВИЕ: просмотр
+	public function actionView()
+	{
 		$this->render('view',array(
 			'model'=>Competition::getModel(),
-            'dataStat'=>$dataProvider,
+            'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
 		));
 	}
 
-    //ДЕЙСТВИЕ: просмотр
+    //ДЕЙСТВИЕ: управление
     public function actionManage()
     {
         $this->render('manage',array(
             'model'=>Competition::getModel(),
+            'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
         ));
     }
 
@@ -83,7 +85,7 @@ class CompetitionController extends Controller
 		{
 			$model->attributes=$_POST['Competition'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('manage','id'=>$model->id));
 		}
 
 		$this->render('update',array(

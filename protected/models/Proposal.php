@@ -181,10 +181,15 @@ class Proposal extends CActiveRecord
     }
     
     //возвращает заявку пользователя на соревнование
-    public static function proposalForCompetition($compid, $userid) {
-        //return Proposal::model()->find('userid = :userid AND competitionid = :competitionid', 
-        //            array(':userid'=>$userid, $competitionid=>':competitionid'));
-        return self::model()->find(self::criteriaPropForCompetition($compid, $userid));
+    public static function proposalForCompetition($compid, $userid) {//DebugBreak();
+        $user = Yii::app()->user;
+        if ($proposal = $user->getState('userProposal'))
+            return $proposal;
+        else {
+            $proposal = self::model()->find(self::criteriaPropForCompetition($compid, $userid));
+            $user->setState('userProposal', $proposal); 
+        }
+        return $proposal;
     }    
 
     //определение - есть ли заявка пользователя на соревнование

@@ -37,7 +37,7 @@
     }
 
   //вернуть ИД команды текущего юзера  
-    function getCommandid() {
+    function getCommandid() {//DebugBreak();
         if ($this->isGuest || $this->isExtendRole())
             return null;
         else {
@@ -45,13 +45,14 @@
                 return $commandid;                              //если да - вернуть его
             if ($userid = $this->userid){                        //иначе - вернуть ИД из базы
                 $cmd = Yii::app()->db->createCommand(
-                    'SELECT commandid FROM proposal WHERE competitionid= :competitionid AND userid = :userid AND status = :status'
+                    //'SELECT commandid FROM proposal WHERE competitionid= :competitionid AND userid = :userid AND status = :status'
+                    'SELECT commandid FROM proposal WHERE competitionid= :competitionid AND userid = :userid'
                 );
                 $cmd->bindParam('userid', $userid, PDO::PARAM_INT);
                 $compid = Yii::app()->competitionId;
                 $cmd->bindParam('competitionid', $compid, PDO::PARAM_INT);
-                $status = Proposal::STATUS_ACTIVE;
-                $cmd->bindParam('status', $status, PDO::PARAM_INT);
+                //$status = Proposal::STATUS_ACTIVE;
+                //$cmd->bindParam('status', $status, PDO::PARAM_INT);
                 $commandid = $cmd->queryScalar();
                 $this->setState('userCommandID', $commandid); //и установить в сессию
                 return $commandid;

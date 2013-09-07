@@ -24,6 +24,7 @@ $this->menu=array(
 
     array('label'=>Yii::t('controls', 'Delete'), 
         'url'=>'#', 
+        'icon'=>'trash',
         'linkOptions'=>array(
             'title'=>Yii::t('controls', 'Delete').Yii::t('fullnames', ' command'),
             'submit'=>array('delete','id'=>$model->CommandID),

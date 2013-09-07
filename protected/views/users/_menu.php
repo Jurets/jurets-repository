@@ -12,8 +12,11 @@ if (!$isGuest)
     $isMyUserID = (Yii::app()->user->userid == $model->UserID); 
     //определение - есть ли заявка пользователя на соревнование
     if ($isMyUserID || $isExtendRole) {
-        $proposal = Proposal::model()->proposalForCompetition(0, $model->UserID);
-        $isProposalExists = isset($proposal);
+        $proposal = Proposal::model()->proposalForCompetition(Yii::app()->competitionId, $model->UserID);
+    }
+    $isProposalExists = isset($proposal);
+    if ($isProposalExists) {
+        $isProposalActive = $proposal->status == Proposal::STATUS_ACTIVE;
     }
     
     $active = Yii::app()->isUserActive;
@@ -92,17 +95,17 @@ if (!$isGuest)
             'url'=>array('proposal/create'),
             'icon'=>'flag',   
             'linkOptions'=>array(
-                'title'=>Yii::t('fullnames', 'Make Proposal').Yii::t('fullnames', 'on Competition'), 
+                'title'=>Yii::t('fullnames', 'Make Proposal').' '.Yii::t('fullnames', 'on Competition'), 
             ),
             'visible'=>($isExtendRole && !$isMyUserID && !$isProposalExists) || (!$isExtendRole && $isMyUserID && !$isProposalExists)
             ),
             
         array('label'=>Yii::t('controls', Yii::t('controls', 'View').Yii::t('fullnames', ' of proposal')), 
-            'url'=>array('proposal/view', 'id'=>$proposal->propid),
+            'url'=>array('proposal/view', 'id'=>($isProposalExists ? $proposal->propid : null)),
             'icon'=>'flag', 
             'linkOptions'=>array(
                 'title'=>Yii::t('fullnames', 'View Proposal on Competition'), 
-            ),
+                ),
             'visible'=>($isMyUserID && $isProposalExists)
             ),
 
@@ -111,8 +114,8 @@ if (!$isGuest)
             'icon'=>'list', 
             'linkOptions'=>array(
                 'title'=>'Ввод данных своей команды (тренеры, спортсмены)', //Yii::t('fullnames', Yii::t('fullnames', 'Entering list of sportsmen')), 
-            ),
-            'visible'=>($isMyUserID && $isProposalExists)
+                ),
+            'visible'=>($isMyUserID && $isProposalExists && $isProposalActive),
             ),
             
         array('label'=>'Управление', 'url'=>array('/competition/manage'), 'icon'=>'wrench', 'visible'=>Yii::app()->user->isManagerRole()),

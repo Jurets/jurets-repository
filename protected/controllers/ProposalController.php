@@ -220,7 +220,11 @@ class ProposalController extends Controller
     
     //ДЕЙСТВИЕ: просмотр списка заявок
     public function actionManage() { 
+        $criteria = new CDbCriteria;
+        $criteria->with = array('relCommand');
+        $criteria->condition = 't.competitionid = '.Yii::app()->competitionId;
         $dataProvider=new CActiveDataProvider('Proposal', array(
+            'criteria' => $criteria,
             'pagination'=>array(
                 'pageSize'=>20,
             ),

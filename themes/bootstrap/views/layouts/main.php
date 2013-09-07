@@ -21,9 +21,11 @@ else
 
 if (!$isGuest && !$isExtendRole) {
     $proposal = Proposal::model()->proposalForCompetition(0, Yii::app()->userid);
-    $isProposalExists = isset($proposal);
 }
-    
+$isProposalExists = isset($proposal);
+if ($isProposalExists) {
+    $isProposalActive = $proposal->status == Proposal::STATUS_ACTIVE;
+}
     
 $userName = $isGuest ? '' : '<span class="label label-info pull-right" style="margin-top: 10px; margin-left: 30px;">'.Yii::app()->user->name.'</span>';
     
@@ -70,10 +72,8 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                             //'title'=>Yii::t('fullnames', 'Entering list of sportsmen'), 
                             'title'=>'Ввод данных своей команды (тренеры, спортсмены)', 
                         ),
-                        'visible'=>(!$isGuest && !$isExtendRole && $isProposalExists)
+                        'visible'=>(!$isGuest && !$isExtendRole && $isProposalExists && $isProposalActive)
                     ),
-//3b07d65c6dd45b1ab56fd90a3d575940
-//2229
                     array('label'=>Yii::t('fullnames', 'Make Proposal'), 
                         'url'=>array('proposal/create'),
                         'icon'=>'flag',   

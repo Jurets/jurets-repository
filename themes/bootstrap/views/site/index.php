@@ -122,11 +122,9 @@ $docpath = Yii::app()->baseUrl.'/document/';
                     <!--<p style="text-align: center;"><a target="_blank" href="<?php echo Yii::app()->createUrl('/site/pages/map.html') ?>">Дивитись схему проїзду</a></p>-->
                     <p style="text-align: center;"><a target="_blank" href="<?php echo Yii::app()->baseUrl.'/map.html' ?>">Дивитись схему проїзду</a></p>
                     
+                    <!--(для цього потрібно перейти до пункту <?php echo CHtml::link('Реєстрація', Yii::app()->createUrl('/users/create'), array('class'=>'search-button')); ?>)-->
                     <p class="centext colblue1 text14">
-                        Попередні заявки на участь у змаганнях із зазначенням кількісного складу команди необхідно на цьому сайті 
-                        (для цього потрібно перейти до пункту <?php echo CHtml::link('Реєстрація', Yii::app()->createUrl('/users/create'), array('class'=>'search-button')); ?>)
-                        <br>або висилати електронною поштою на e-mail: jurets75@rambler.ru, vadosrbd@rambler.ru 
-                        <!--або за адресою: м. Харків вул. Плеханівська 65, (в електронному вигляді в програмі Microsoft Office Excel), <br>зразок електронної заявки можна отримати за вище вказаними адресами <br>-->
+                        Попередні заявки на участь у змаганнях із зазначенням кількісного складу команди необхідно подавати
                         <br>до <strong>
                             <?php 
                                 $date1 = $competition->filingbegin;
@@ -135,6 +133,14 @@ $docpath = Yii::app()->baseUrl.'/document/';
                                 echo CHtml::encode($date2); 
                             ?>
                         </strong>
+                        <br>на цьому сайті або висилати електронною поштою на e-mail: jurets75@rambler.ru, vadosrbd@rambler.ru 
+                        <br>
+                        <?php if (Yii::app()->user->isGuest) { ?>
+                            <br>Якщо Ви не ще зареєстровані на нашому сайті - пропонуємо це зробити (для цього виберіть відповідний пункт меню вгорі)
+                            <br>Якщо зареєстровані - Ви можете увійти за допомогою відповідного пункту меню 
+                        <?php } ?>
+                        <br>
+                        <!--або за адресою: м. Харків вул. Плеханівська 65, (в електронному вигляді в програмі Microsoft Office Excel), <br>зразок електронної заявки можна отримати за вище вказаними адресами <br>-->
                     </p>
                    
                     <p class="centext colblue1 text14" style="color: red;">

@@ -462,7 +462,7 @@ class Sportsmen extends CActiveRecord
             // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
             $data = Coach::model()->findAll();
             // и сохраняем его в кэше для дальнейшего использования:
-            Yii::app()->cache->set($_cacheID, $data, 300);  //5 минут
+            Yii::app()->cache->set($_cacheID, $data, 60);  //1 минут
         }
       //пройтись по массиву и выбрать только нужную команду
         foreach($data as $index => $item) {
@@ -472,4 +472,13 @@ class Sportsmen extends CActiveRecord
         return $out;
     }
 
+    public function getFstName() {
+        return isset($this->relFst) ? $this->relFst->FstName : null;
+    }
+    public function getAttestLevelName() {
+        return isset($this->relAttestlevel) ? $this->relAttestlevel->AttestLevel : null;
+    }
+    public function getCategoryName() {
+        return isset($this->relCategory) ? $this->relCategory->CategoryName : null;
+    }
 }

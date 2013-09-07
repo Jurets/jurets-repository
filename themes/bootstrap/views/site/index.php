@@ -12,7 +12,7 @@ $docpath = Yii::app()->baseUrl.'/document/';
 ?>
 
 <?php 
-//DebugBreak();
+
 $notCached = $this->beginCache('tkdcard_mainpage', array('duration'=>90));
 if($notCached) 
 { 
@@ -99,10 +99,9 @@ if($notCached)
                     </h1>
                     <h1 class="text17" style="text-align: center;"><?php echo $competition->title /*CHtml::encode(Competition::getCompetitionParam('addinfo'))*/; ?></h1>
                     
-                    <p class="centext colblue1 text14">Безпосередня організація змагань здійснюється <br>КЗ «КДЮСШ «Металіст» ХОР» та ХГО «Армада» <br>
-                    Загальне керівництво змаганням здійснюється федерацією тхеквондо (ВТФ) України <br>за підтримки 
-                    Департаменту у справах сім’ї, молоді та спорту Харківської облдержадміністрації,
-                    Південної залізниці та <br>Управління МВС України на Південній залізниці</p>
+                    <p class="centext colblue1 text14">Безпосередня організація змагань здійснюється <strong>ХГО «Армада»</strong> <br>
+                    Загальне керівництво змаганням здійснюється <strong>Харківською обласною федерацією тхеквондо (ВТФ)</strong> <br>за підтримки 
+                    <strong>Департаменту у справах молоді та спорту Харківської облдержадміністрації</strong></p>
                     
                     <p style="text-align: center;"> Змагання проводяться згідно правил тхеквондо (ВТФ) на електронній системі DaeDo</p>
                     <p class="text15 uptext" style="text-align: center;">Запрошуємо усіх бажаючих! Вхід до трибун безкоштовний! </p>

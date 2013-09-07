@@ -55,15 +55,18 @@ $this->menu=array(
         array(
             'label'=>Yii::t('fullnames', 'FstName'),
             //'value'=>$model->FstName()
-            'value'=>$model->relFst->FstName
+            //'value'=>$model->relFst->FstName
+            'value'=>$model->fstName
         ),
         array(
             'label'=>Yii::t('fullnames', 'CategoryName'),
-            'value'=>$model->relCategory->CategoryName
+            //'value'=>$model->relCategory->CategoryName
+            'value'=>$model->CategoryName
         ),
         array(
             'label'=>Yii::t('fullnames', 'AttestLevelName'),
-            'value'=>$model->relAttestlevel->AttestLevel
+            //'value'=>$model->relAttestlevel->AttestLevel
+            'value'=>$model->AttestLevelName
         ),
         array(
             'label'=>Yii::t('fullnames', 'AgeName'),

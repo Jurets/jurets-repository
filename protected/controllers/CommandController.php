@@ -165,12 +165,31 @@ class CommandController extends Controller //ParticipantController
 	 * @param integer $id the ID of the model to be deleted
 	 */
 	public function actionDelete($id)
-	{
-		$this->loadModel($id)->delete();
-
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+	{//DebugBreak();
+        $db = Yii::app()->db;
+        $transaction = $db->beginTransaction();
+        try {
+            //$db->createCommand('DELETE FROM sportsmen WHERE commandid = :commandid')->execute(array(':commandid'=>$id));
+            //$db->createCommand('DELETE FROM coach WHERE commandid = :commandid')->execute(array(':commandid'=>$id));
+            
+            $db->createCommand('UPDATE proposal SET status = 0 WHERE commandid = :commandid')->execute(array(':commandid'=>$id));
+            //$db->createCommand('UPDATE proposal SET status = 0 WHERE commandid = :commandid')->execute(array(':commandid'=>$id));
+            
+            $model = $this->loadModel($id);
+            $model->status = Proposal::STATUS_NOACTIVE;
+            //$this->loadModel($id)->delete();
+            $model->save();
+            
+            $transaction->commit();
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if(!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
+        } catch (Exception $e){
+            $transaction->rollBack();
+            //PJournalRecord::log($e->getMessage());
+            $success = false;
+            $error = $e->getMessage();
+        } 
 	}
 
 	//ДЕЙСТВИЕ: просмотр списка команд

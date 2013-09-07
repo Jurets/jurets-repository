@@ -4,6 +4,8 @@
 /* @var $form CActiveForm */
 
 Yii::app()->getClientScript()->registerCoreScript('jquery');
+
+$isExtendRole = Yii::app()->isExtendRole; 
 ?>
 
 <div class="form">
@@ -20,7 +22,7 @@ Yii::app()->getClientScript()->registerCoreScript('jquery');
 	<div class="row">
 		<?php echo $form->labelEx($model,'CommandID'); ?>
         <?php 
-            $isDisabled = (!$extendRole) && (isset($model->CommandID) && !empty($model->CommandID));
+            $isDisabled = (!$isExtendRole) && (isset($model->CommandID) && !empty($model->CommandID));
             echo $form->DropDownList($model, 'CommandID', CHtml::listData(Command::model()->findAll(), 'CommandID', 'CommandName'), 
                                     array('empty' => '<Выберите команду>',
                                           'disabled'=>$isDisabled,

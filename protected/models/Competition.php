@@ -230,4 +230,18 @@ class Competition extends CActiveRecord
                 '(SELECT 1 from proposal P WHERE P.commandid = C.commandid AND P.status = 1))) FROM competition T WHERE T.id = :competitionid');
         return $sqlCommand;
     }
+    
+   public static function getCompetitionStat() {
+        $sqlCommand = Competition::sqlStat();
+        $dataProvider = new CSqlDataProvider($sqlCommand->text, array(  
+            'params'=>array(
+                ':competitionid'=>Yii::app()->competitionId, 
+                ':status'=>Proposal::STATUS_ACTIVE,
+            ),
+            'totalItemCount'=>3,
+            'keyField'=>'statname',
+        ));
+        return $dataProvider;
+   }
+    
 }

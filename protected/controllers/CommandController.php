@@ -200,9 +200,14 @@ class CommandController extends Controller //ParticipantController
                 'pageSize'=>20,
             ),
         ));*/
+        //данные для списка команд
         $dataProvider = Command::model()->search();
+        //данные по статистике
+        $dataStat = Competition::getCompetitionStat();
+        
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+            'dataStat'=>$dataStat,
 		));
 	}
 

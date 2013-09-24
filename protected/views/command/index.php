@@ -49,4 +49,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
     ),
 ));
+
+$this->renderPartial('application.views.competition._stat', array('dataStat'=>$dataStat));
 ?>

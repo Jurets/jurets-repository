@@ -255,7 +255,8 @@ class SportsmenController extends ParticipantController
             } 
 
             if($model->save()) {
-                $this->redirect(array('/command/view','id'=>$id, 'tab'=>'1'));
+                //$this->redirect(array('/command/view','id'=>$id, 'tab'=>'1'));
+                $this->redirect(array('/sportsmen/create'));
                 //$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/command/index'));
             }
         }

@@ -78,7 +78,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                            )); 
 
       //тренеры
-        $data = Sportsmen::getCoachList($model->CommandID); DebugBreak();
+        $data = Sportsmen::getCoachList($model->CommandID); //DebugBreak();
         echo $form->dropDownListRow($model, 'Coach2ID', 
                             CHtml::listData($data, 'CoachID', 'CoachName'), 
                             array('id' => 'Sportsmen_Coach2ID', 

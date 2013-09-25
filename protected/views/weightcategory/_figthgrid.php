@@ -13,7 +13,7 @@
             echo '</div>';
         }*/
         //DebugBreak();
-        $rawData = $sportsmens->rawData;
+        $rawData = $sportsmens->rawData; //DebugBreak();
       //ЦИКЛ по уровням  
         for ($levelnum = $levelcount; $levelnum > 0; $levelnum--) {
             echo '<div class="boxlevel bl'.$levelnum.'">';

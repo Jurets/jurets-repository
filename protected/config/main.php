@@ -94,6 +94,7 @@ return array(
 			'password' => $params['db.password'], //'',
 			'charset' => 'utf8',
             'enableProfiling' => true,
+            'enableParamLogging' => true,
             'schemaCachingDuration' => 3600,
 		),
 

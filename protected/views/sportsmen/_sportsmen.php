@@ -15,8 +15,19 @@ $btn_delete = array (
     'url'=>'Yii::app()->createUrl("sportsmen/delete", array("id"=>$data[SpID]))',
 );
 
+//функция: подтверждение удаления
+$funcConfirm = 'js:function(){
+                    return confirm("' . Yii::t('controls', "Are you sure you want to delete sportsmen?") . '\n" + 
+                                   $(this).parent().parent().children(\':first-child\').text() + "\n" +
+                                   $(this).parent().parent().children(\':nth-child(6)\').text() + "\n" +
+                                   $(this).parent().parent().children(\':nth-child(7)\').text()); 
+                               }';
 
-
+$delConfirm = 'js:"' . Yii::t('controls', "Are you sure you want to delete sportsmen?") . '\n" + 
+                                   $(this).parent().parent().children(\':first-child\').text() + "\n" +
+                                   $(this).parent().parent().children(\':nth-child(6)\').text() + "\n" +
+                                   $(this).parent().parent().children(\':nth-child(7)\').text()';
+                               
 $arrColumns = array(
         array(
             'header'=>Yii::t('fullnames', 'LastName').', '.Yii::t('fullnames', 'FirstName'),
@@ -65,7 +76,8 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'template'=> ($isAccess ? '{view}{update}{delete}' : '{view}'),
             'htmlOptions'=>array('style'=>'width: 50px; text-align: center'),
-            'deleteConfirmation'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>'$data["LastName"]')),
+            //'deleteConfirmation'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>'$data["LastName"]')),
+            'deleteConfirmation'=>$delConfirm,
             'buttons'=>array (
                 'view' => array (
                     'label'=>Yii::t('controls', 'View'),
@@ -82,12 +94,7 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
                     'imageUrl'=>Yii::app()->request->baseUrl.'/images/delete.png',
                     'url'=>'Yii::app()->createUrl("sportsmen/delete", array("id"=>$data["SpID"]))',
                     //'click'=>'js:function(){return confirm("Are you sure you want to delete ' . CComponent::evaluateExpression('$data"LastName"]') . '?");}',
-                    'click'=>'js:function(){
-                                return confirm("' . Yii::t('controls', "Are you sure you want to delete sportsmen?") . '\n" + 
-                                               $(this).parent().parent().children(\':first-child\').text() + "\n" +
-                                               $(this).parent().parent().children(\':nth-child(6)\').text() + "\n" +
-                                               $(this).parent().parent().children(\':nth-child(7)\').text()); 
-                                           }',
+                    //'click'=>$funcConfirm,
                     ),
             ),
         ),

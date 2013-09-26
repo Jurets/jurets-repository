@@ -236,7 +236,6 @@ class WeightcategoryController extends Controller
         //$ages = Agecategory::model()->findAll();  
         $ages = Sportsmen::getAgesList();  //список возрастов (кэш)
 
-        //DebugBreak();
         $weigth = new Weightcategory;
         $tosserManager = $weigth->tosserManager;
             
@@ -276,7 +275,7 @@ class WeightcategoryController extends Controller
     public function filterWeightlistTosser($sportsmens, $wid) {
         $filteredList = array(); 
         foreach($sportsmens as $index => $item) {
-            if ($item[WeigthID] == $wid)
+            if ($item['WeigthID'] == $wid)
                 $filteredList[] = $item;
         }
         $dataProvider = new CArrayDataProvider($filteredList, array(

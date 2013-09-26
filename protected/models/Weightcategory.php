@@ -15,8 +15,26 @@ class Weightcategory extends CActiveRecord
     public $tosserGrid = array(
         'grids'=>array(
             '16'=>array(
-                'levelcount'=>4,
+                'levelcount'=>5,
                 'levels'=>array(
+                    5=>array(
+                        1=>array(1,32),
+                        2=>array(16,17),
+                        3=>array(9,24),
+                        4=>array(8,25),
+                        5=>array(5,28),
+                        6=>array(12,21),
+                        7=>array(13,20),
+                        8=>array(4,29),
+                        9=>array(3,30),
+                       10=>array(14,19),
+                       11=>array(11,22),
+                       12=>array(6,27),
+                       13=>array(7,26),
+                       14=>array(10,23),
+                       15=>array(15,18),
+                       16=>array(2,31),
+                    ),
                     4=>array(
                         1=>array(1,16),
                         2=>array(9,8),
@@ -47,6 +65,24 @@ class Weightcategory extends CActiveRecord
 
     private $_tosserManager = array(
         'levels'=>array(
+            5=>array(
+                1=>array(1,32),
+                2=>array(16,17),
+                3=>array(9,24),
+                4=>array(8,25),
+                5=>array(5,28),
+                6=>array(12,21),
+                7=>array(13,20),
+                8=>array(4,29),
+                9=>array(3,30),
+               10=>array(14,19),
+               11=>array(11,22),
+               12=>array(6,27),
+               13=>array(7,26),
+               14=>array(10,23),
+               15=>array(15,18),
+               16=>array(2,31),
+            ),
             4=>array(
                 1=>array(1,16),
                 2=>array(9,8),

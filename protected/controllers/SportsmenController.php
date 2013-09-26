@@ -133,6 +133,14 @@ class SportsmenController extends ParticipantController
     
     // РЕДАКТИРОВАТЬ спортсмена ---------------------------------------------------------------------
     public function actionUpdate($id) {
+        $urlRequest = Yii::app()->request->hostInfo.Yii::app()->request->url; //полная ссылка текущего запроса
+        
+        $urlReferrer = Yii::app()->user->getState('urlReferrerUpdate');  //прочитать пред.ссылку из сессии
+        if (empty($urlReferrer)) {                                       // и если таковой нету -
+            $urlReferrer = Yii::app()->request->urlReferrer;  //получить - полная ссылка предыд. страницы
+            Yii::app()->user->setState('urlReferrerUpdate', $urlReferrer);  //и записать в сессию
+        }
+
         $model = Sportsmen::model()->with('relCommand')->findByPk($id);
         $uid = Yii::app()->userid;
         $flg = Yii::app()->isExtendRole || $this->isUserOwner($uid, $model);
@@ -145,7 +153,7 @@ class SportsmenController extends ParticipantController
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
         if(isset($_POST['Sportsmen']))
-        {//DebugBreak();
+        {
             $flgDelPhoto = false;
             $model->attributes=$_POST['Sportsmen'];
             if (isset($_POST['PostFiles'])) {
@@ -173,14 +181,14 @@ class SportsmenController extends ParticipantController
                 //PJournalRecord::log($e->getMessage());
                 $success = false;
                 $error = $e->getMessage();
-            }               
+            }       
+            //стереть сессию урла возврата
+            Yii::app()->user->setState('urlReferrerUpdate', null);
             
-            if ($success) { 
-                $urlReferrer = Yii::app()->request->urlReferrer;  //полная ссылка предыд. страницы
-                $urlRequest = Yii::app()->request->hostInfo.Yii::app()->request->url; //полная ссылка текущего запроса
-                if (!empty($urlReferrer) && ($urlRequest <> $urlReferrer))
-                    $this->redirect($urlReferrer);
-                else
+            if ($success) { //успешное выполнение  
+                if (!empty($urlReferrer) && ($urlRequest <> $urlReferrer)) {
+                    $this->redirect($urlReferrer);  //переход по запомненной
+                } else                              //иначе - на вью спортсмена
                     $this->redirect(array('view','id'=>$model->SpID));
             } else {
                 throw new CHttpException(401, $error);

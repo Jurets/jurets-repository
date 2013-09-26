@@ -33,28 +33,48 @@ $arrColumns = array(
             'header'=>'Первый тренер',
             'name'=>'Coachname1',
         ),*/ 
-//        array(
-//            'class'=>'CButtonColumn',
-//            'template'=>'{view}{update}{delete}',
-//            'deleteConfirmation'=>'Вы действительно хотите удалить данного спортсмена? '.$data['LastName'],
-//            'buttons'=>array (
-//                'view' => array (
-//                    'label'=>'Просмотреть',
-//                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/view.png',
-//                    'url'=>'Yii::app()->createUrl("sportsmen/view", array("id"=>$data[SpID]))',
-//                    ),
-//                'update' => array (
-//                    'label'=>'Изменить',
-//                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/update.png',
-//                    'url'=>'Yii::app()->createUrl("sportsmen/update", array("id"=>$data[SpID]))',
-//                    ),
-//                'delete' => array (
-//                    'label'=>'Удалить',
-//                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/delete.png',
-//                    'url'=>'Yii::app()->createUrl("sportsmen/delete", array("id"=>$data[SpID]))',
-//                    ),
-//            ),
-//        ),
+        /*array(
+            'header'=>'Перенос',
+            //'name'=>'Coachname',
+            //'type'=>'html',
+            'value'=>"$this->widget('bootstrap.widgets.TbButtonGroup', array(
+                        'type'=>'primary', 
+                        'buttons'=>array(
+                            array('label'=>'Action', 'items'=>array(
+                                array('label'=>'Action', 'url'=>'#'),
+                                array('label'=>'Another action', 'url'=>'#'),
+                                array('label'=>'Something else', 'url'=>'#'),
+                                '---',
+                                array('label'=>'Separate link', 'url'=>'#'),
+                            )),
+                        ),
+                    ))",
+        ),*/ 
+        
+        array(
+            //'class'=>'CButtonColumn',
+            'class'=>'bootstrap.widgets.TbButtonColumn',
+            //'template'=>'{view}{update}{delete}',
+            'template'=>'{update}',
+            //'deleteConfirmation'=>'Вы действительно хотите удалить данного спортсмена? '.$data['LastName'],
+            'buttons'=>array (
+                /*'view' => array (
+                    'label'=>'Просмотреть',
+                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/view.png',
+                    'url'=>'Yii::app()->createUrl("sportsmen/view", array("id"=>$data[SpID]))',
+                    ),*/
+                'update' => array (
+                    'label'=>Yii::t('controls', 'Update'),
+                    //'imageUrl'=>Yii::app()->request->baseUrl.'/images/update.png',
+                    'url'=>'Yii::app()->createUrl("sportsmen/update", array("id"=>$data["SpID"]))',
+                    ),
+                /*'delete' => array (
+                    'label'=>'Удалить',
+                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/delete.png',
+                    'url'=>'Yii::app()->createUrl("sportsmen/delete", array("id"=>$data[SpID]))',
+                    ),*/
+            ),
+        ),
 );
 
 /*    array('label'=>'Удалить', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->CommandID),

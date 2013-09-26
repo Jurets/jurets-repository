@@ -36,6 +36,8 @@ return array(
 
     'Are you sure you want to delete this item' => 'Вы действительно хотите удалить данную информацию',
     "Are you sure you want to delete {item}\n{name}?"  => "Вы действительно хотите удалить {item}\n{name}?",
+    'Are you sure you want to delete sportsmen?' => 'Вы действительно хотите удалить данного спортсмена?',
+    
     "Are you sure you want to confirm {item}\n{name}?" => "Вы действительно хотите подтвердить {item}\n{name}?",
     "Are you sure you want to {operation} {item}\n{name}?" => "Вы действительно хотите {operation} {item}\n{name}?",
     "Generate new password for user\n{name}?" => "Генерировать новый пароль для пользователя\n{name}?",

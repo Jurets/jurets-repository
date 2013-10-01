@@ -103,12 +103,17 @@ class Competition extends CActiveRecord
 		$criteria->compare('begindate',$this->begindate,true);
 		$criteria->compare('enddate',$this->enddate,true);
 		$criteria->compare('place',$this->place,true);
-		$criteria->compare('courtcount',$this->courtcount);
-		$criteria->compare('filingbegin',$this->filingbegin,true);
-		$criteria->compare('filingend',$this->filingend,true);
-		$criteria->compare('isfiling',$this->isfiling);
-		$criteria->compare('maxparticipants',$this->maxparticipants);
-
+		
+        if ($this->scenario == 'search_full') {
+            $criteria->compare('courtcount',$this->courtcount);
+		    $criteria->compare('filingbegin',$this->filingbegin,true);
+		    $criteria->compare('filingend',$this->filingend,true);
+		    $criteria->compare('isfiling',$this->isfiling);
+		    $criteria->compare('maxparticipants',$this->maxparticipants);
+        }
+        
+        $criteria->order = 'begindate DESC';
+        
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));

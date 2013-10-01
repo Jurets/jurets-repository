@@ -35,8 +35,12 @@ class SiteController extends Controller
 
         $this->layout = '//layouts/competition';
         
+        $competition = New Competition;
+        $dataProvider = $competition->search();
+        
 		//$competition = Competition::loadModel();
         $this->render('index', array(
+            'dataProvider'=>$dataProvider,
             //'competition'=>$competition
         ));
 	}

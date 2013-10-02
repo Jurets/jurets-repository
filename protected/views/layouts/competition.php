@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/stylesinv.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
     	<?php Yii::app()->bootstrap->register(); ?>
 </head>
@@ -12,7 +12,7 @@
 <body>
 <div class="container" id="page">
 
-<?php 
+<?php
 $isGuest = Yii::app()->isGuestUser;
 if (!$isGuest) 
     $isExtendRole = Yii::app()->isExtendRole; 
@@ -43,9 +43,9 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 ),
                 //array('label'=>'Информация', 'url'=>array('/site/page', 'view'=>'about')),
                 array('label'=>Yii::t('fullnames', 'Commands')/*'Участники'*/, 'url'=>array('/command/index')),
-                array('label'=>'Взвешивание', 'url'=>array('/weightcategory/list')),
-                array('label'=>'Жеребьевка', 'url'=>array('/weightcategory/tosser')),
-                array('label'=>'Результаты', 'url'=>array('/weightcategory/results')),
+                //array('label'=>'Взвешивание', 'url'=>array('/weightcategory/list')),
+                //array('label'=>'Жеребьевка', 'url'=>array('/weightcategory/tosser')),
+                //array('label'=>'Результаты', 'url'=>array('/weightcategory/results')),
                 array('label'=>'Фото', 'url'=>array('/posting/default/index')),
                 //array('label'=>'Контакты', 'url'=>array('/site/contact')),
                 //array('label'=>'Регистрация', 'url'=>array('/proposal/create'), 'visible'=>Yii::app()->user->isGuest),
@@ -64,7 +64,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                     array('label'=>'Регистрация', 'url'=>array('/users/create'), 'visible'=>$isGuest),                
                     array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>$isGuest),
                     array('label'=>Yii::t('fullnames', 'Users'), 'url'=>array('/users/index'), 'icon'=>'user', 'visible'=>$isExtendRole),
-                    array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('proposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
+                    /*array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('proposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
                     array('label'=>'Управление', 
                         'url'=>array('/competition/manage'), 
                         'icon'=>'wrench', 
@@ -84,15 +84,16 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                             'title'=>'Ввод данных своей команды (тренеры, спортсмены)', 
                         ),
                         'visible'=>(!$isGuest && !$isExtendRole && $isProposalExists && $isProposalActive)
-                    ),
-                    array('label'=>Yii::t('fullnames', 'Make Proposal'), 
+                    ),*/
+                   
+                    /*array('label'=>Yii::t('fullnames', 'Make Proposal'), 
                         'url'=>array('proposal/create'),
                         'icon'=>'flag',   
                         'linkOptions'=>array(
                             'title'=>Yii::t('fullnames', 'Make Proposal').Yii::t('fullnames', 'on Competition'), 
                         ),
-                        'visible'=>/*($isExtendRole && !$isMyUserID && !$isProposalExists) || */(!$isGuest && !$isExtendRole/*$isMyUserID */&& !$isProposalExists)
-                        ),
+                        'visible'=>(!$isGuest && !$isExtendRole && !$isProposalExists)
+                        ),*/
 
             
         /*array('label'=>Yii::t('controls', Yii::t('fullnames', 'Enter Proposal')), 

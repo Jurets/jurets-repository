@@ -25,7 +25,7 @@ return array(
     'preload' => array('log', 'bootstrap'),
 
     //set theme for application
-    'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
+    //'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
     
 	// autoloading model and component classes
 	'import'=>array(

@@ -83,6 +83,10 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
                 'posts'=>'posting/default/index',
+                
+                //'<path:[a-z0-9\(\)\"\'_\+-]+>'=>'competition/invite/<path>',
+                '<path:\w+>'=>'competition/invite/<path>',
+                
 			),
 		),
 		

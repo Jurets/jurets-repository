@@ -127,6 +127,15 @@ class Competition extends CActiveRecord
             throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');
         return $model;
     }
+
+  //вернуть модель Соревнование (ИД берётся пока что из хардкода)
+    public static function getModelPath($path)
+    {
+        $model = Competition::model()->findBySql('path = :path', array(':path'=>$path));
+        if($model===null)
+            throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');
+        return $model;
+    }
     
   //вернуть модель Соревнование (ИД берётся пока что из хардкода)
     public static function loadModel()

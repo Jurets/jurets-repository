@@ -12,12 +12,23 @@ $docpath = Yii::app()->baseUrl.'/document/';
 //if($notCached) 
 { 
     //$competition = Competition::loadModel();    
+
+$this->widget('zii.widgets.CListView', array(
+    'dataProvider'=>$dataProvider,
+    'itemView'=>'application.views.competition._item',   // refers to the partial view named '_post'
+    'tagName'=>'div',
+    'itemsTagName'=>'ul',
+    'itemsCssClass' => 'media-list'
+    /*'sortableAttributes'=>array(
+        'title',
+        'create_time'=>'Post Time',
+    ),*/
+));
     
 
-$this->widget('bootstrap.widgets.TbGridView', array(
+/*$this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'proposal-grid',
     'dataProvider'=>$dataProvider,
-    //'template'=>"{pager}<br>{items}<br>{pager}",
     'type'=>'striped bordered condensed',
     'htmlOptions' => array(
         'class' => 'table-list',
@@ -25,27 +36,16 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'rowCssClassExpression' => '($row % 2 ? "even" : "odd")." bColor pt-5 pb-5 pl-10 pr-10 mb-5"',
     'selectableRows'=>0,
     'columns'=>array(
-        //'name',
         array(
-            'header'=>'Команда',
+            'header'=>'Соревнование',
             'type'=>'html',
             'value'=>'CHtml::link(CHtml::encode($data->title), Yii::app()->createAbsoluteUrl("competition/invite"), array("id"=>$data->id))',
         ),
-        //'title',
         'begindate',
         'enddate',
         'place',
-
-        
-        /*array(
-            'header'=>'Подтв.',
-            'class'=>'ext.ECheckBoxColumn',
-            'id'=>'Proposal_id',
-            'checked'=>'$data->status == 1',
-            'disabled'=>'true', //(true/false exression (same as rowCssClassExpression)
-        ),*/
     ),
-));
+));*/
 
 
 //$this->endCache(); 

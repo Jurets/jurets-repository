@@ -13,7 +13,20 @@ $docpath = Yii::app()->baseUrl.'/document/';
 { 
     //$competition = Competition::loadModel();    
     
+$this->widget('zii.widgets.CListView', array(
+    'dataProvider'=>$dataProvider,
+    'itemView'=>'application.views.competition._item',   // refers to the partial view named '_post'
+    'sortableAttributes'=>array(
+        'title',
+        'create_time'=>'Post Time',
+    ),
+    'tagName'=>'div',
+    'itemsTagName' => 'ul',
+    'itemsCssClass' => 'media-list',
+));
 
+
+    
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'proposal-grid',
     'dataProvider'=>$dataProvider,
@@ -35,18 +48,22 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         'begindate',
         'enddate',
         'place',
-
-        
-        /*array(
-            'header'=>'Подтв.',
-            'class'=>'ext.ECheckBoxColumn',
-            'id'=>'Proposal_id',
-            'checked'=>'$data->status == 1',
-            'disabled'=>'true', //(true/false exression (same as rowCssClassExpression)
-        ),*/
     ),
 ));
 
 
 //$this->endCache(); 
 } 
+?>
+
+<!--<ul class="media-list">
+  <li class="media">
+    <a class="pull-left" href="#">
+      <img class="media-object" src="/images/tkd_57x60.png" alt="...">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">Media heading</h4>
+      ...
+    </div>
+  </li>
+</ul>-->

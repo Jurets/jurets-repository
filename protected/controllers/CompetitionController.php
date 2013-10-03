@@ -28,7 +28,7 @@ class CompetitionController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('view'/*, 'tosser', 'results'*/),
+				'actions'=>array('view', 'invite'/*, 'tosser', 'results'*/),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -55,14 +55,23 @@ class CompetitionController extends Controller
         return $dataProvider;
    }
 
-	//ДЕЙСТВИЕ: просмотр
-	public function actionView()
+	//ДЕЙСТВИЕ: плакат-приглашение
+	public function actionInvite()
 	{
-		$this->render('view',array(
+		$this->render('invitation',array(
 			'model'=>Competition::getModel(),
-            'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
+            //'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
 		));
 	}
+
+    //ДЕЙСТВИЕ: просмотр
+    public function actionView()
+    {
+        $this->render('view',array(
+            'model'=>Competition::getModel(),
+            'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
+        ));
+    }
 
     //ДЕЙСТВИЕ: управление
     public function actionManage()

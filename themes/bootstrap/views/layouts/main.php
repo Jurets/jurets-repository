@@ -12,7 +12,7 @@
 <body>
 <div class="container" id="page">
 
-<?php
+<?php  
 $isGuest = Yii::app()->isGuestUser;
 if (!$isGuest) 
     $isExtendRole = Yii::app()->isExtendRole; 

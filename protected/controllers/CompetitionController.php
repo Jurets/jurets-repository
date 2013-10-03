@@ -57,11 +57,13 @@ class CompetitionController extends Controller
 
 	//ДЕЙСТВИЕ: плакат-приглашение
 	public function actionInvite()
-	{//DebugBreak();
+	{
         $path = Yii::app()->request->getParam('path');
         $id = Yii::app()->request->getParam('id');
         
-        $model = !empty($path) ? Competition::getModelPath($path) : Competition::getModel();
+        $this->pathCompetition = isset($path) ? $path : '';
+        
+        $model = !empty($path) ? Competition::getModelPath($path) : Competition::getModel($id);
         $this->render('invitation',array(
             'model'=>$model,
             //'dataStat'=>$this->getCompetitionStat(), //$dataProvider,

@@ -85,7 +85,8 @@ return array(
                 'posts'=>'posting/default/index',
                 
                 //'<path:[a-z0-9\(\)\"\'_\+-]+>'=>'competition/invite/<path>',
-                '<path:\w+>'=>'competition/invite/<path>',
+                '<path:\w+>'=>'competition/invite/path/<path>',
+                '<path:\w+>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>/path/<path>',
                 
 			),
 		),

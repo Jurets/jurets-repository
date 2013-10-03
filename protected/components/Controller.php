@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Controller is the customized base controller class.
@@ -20,4 +21,22 @@ class Controller extends CController
 	 * for more details on how to specify this property.
 	 */
 	public $breadcrumbs=array();
+    
+    /**
+    * Путь для соревнования (для формирования url)
+    * 
+    * @var mixed
+    */
+    public $pathCompetition = '';
+    
+    
+    public function beforeAction($action) {
+        if (parent::beforeAction($action)) {//DebugBreak();
+            $path = Yii::app()->request->getParam('path');
+            $this->pathCompetition = !empty($path) ? $path : '';
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

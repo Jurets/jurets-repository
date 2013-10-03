@@ -200,8 +200,11 @@ class CommandController extends Controller //ParticipantController
                 'pageSize'=>20,
             ),
         ));*/
+        
         //данные для списка команд
-        $dataProvider = Command::model()->search();
+        $model = New Command;//DebugBreak();
+        $model->competitionid = Yii::app()->competitionId;
+        $dataProvider = $model->search();
         //данные по статистике
         $dataStat = Competition::getCompetitionStat();
         

@@ -5,6 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
     <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/stylesinv.css" />
+    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
     	<?php Yii::app()->bootstrap->register(); ?>
 </head>
@@ -42,7 +44,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                     'url' => ($isExtendRole ? array('/competition/manage') : array('/competition/view')),
                 ),
                 //array('label'=>'Информация', 'url'=>array('/site/page', 'view'=>'about')),
-                array('label'=>Yii::t('fullnames', 'Commands')/*'Участники'*/, 'url'=>array('/command/index')),
+                array('label'=>Yii::t('fullnames', 'Commands')/*'Участники'*/, 'url'=>array($this->pathCompetition . '/command/index')),
                 array('label'=>'Взвешивание', 'url'=>array('/weightcategory/list')),
                 array('label'=>'Жеребьевка', 'url'=>array('/weightcategory/tosser')),
                 array('label'=>'Результаты', 'url'=>array('/weightcategory/results')),

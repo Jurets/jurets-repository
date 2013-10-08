@@ -242,8 +242,8 @@ class Competition extends CActiveRecord
             'SELECT "Количество тренеров", (SELECT COUNT(*) FROM coach C LEFT JOIN command CC ON C.commandid = CC.commandid WHERE CC.status = 1 AND EXISTS ('.
                 '(SELECT 1 FROM proposal P WHERE P.commandid = C.commandid AND P.competitionid = :competitionid AND P.status = :status))) FROM competition T WHERE T.id = :competitionid'.
             ' UNION '.
-            'SELECT "Количество спортсменов", (SELECT COUNT(*) FROM sportsmen S LEFT JOIN command C ON S.commandid = C.commandid WHERE C.status = 1 AND  S.status = 1 AND EXISTS ('.
-                '(SELECT 1 from proposal P WHERE P.commandid = C.commandid AND P.status = 1))) FROM competition T WHERE T.id = :competitionid');
+            'SELECT "Количество спортсменов", (SELECT COUNT(*) FROM sportsmen S LEFT JOIN command C ON S.commandid = C.commandid WHERE C.status = 1 AND S.status = 1 AND EXISTS ('.
+                '(SELECT 1 FROM proposal P WHERE P.commandid = C.commandid AND P.competitionid = :competitionid AND P.status = :status))) FROM competition T WHERE T.id = :competitionid');
         return $sqlCommand;
     }
     

@@ -1,0 +1,49 @@
+/* Sidebar Left
+-----------------------------------------------------------------------------*/
+.sideLeft 
+{
+    left: -10px;
+    float: left;
+    width: 150px;
+    position: relative;
+    background: white;
+    /*margin-left: -150px;
+    height:400px;
+    margin-right: -3px;
+    top:-260px;*/
+}
+
+
+/* Sidebar Right
+-----------------------------------------------------------------------------*/
+.sideRight 
+{
+    
+    float: right;
+    width: 150px;
+    position: relative;
+    background: white;
+    height: 400px;
+    margin-left: 10px;
+    /*top:-260px;
+    padding:8px;
+    left:175px;
+    margin-left: -100%;*/
+}
+.partnspon 
+{
+    padding: 16px;
+    padding-bottom: 40px;
+    /*padding: 4px;*/
+    /*text-align: center;*/
+}
+
+.partnspon h3 
+{
+
+    color: #000000;
+    font-size: 14px;
+    text-align: left;
+    text-transform: uppercase;
+}
+ 

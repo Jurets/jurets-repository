@@ -18,7 +18,7 @@
  */
 class Competition extends CActiveRecord
 {
-	/**
+    /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Competition the static model class
@@ -210,7 +210,7 @@ class Competition extends CActiveRecord
     }
     
     //СТАТ: узнать ограничение по кол-ву спортсменов
-    public static function checkIsFiling() {
+    public static function checkIsFiling() {//DebugBreak();
         $isfilling = self::getCompetitionParam('isfiling');
         if (!$isfilling)
             throw new CHttpException(410, 'Запрещен ввод информации! На данный момент регистрация участников запрещена. '.
@@ -227,7 +227,7 @@ class Competition extends CActiveRecord
             
         $isProp = Proposal::isProposalForCompetition(Yii::app()->competitionId /*self::getModel()->id*/, $userid);
         if ($isProp)
-            throw new CHttpException(411, 'Запрещено подавать более одной заявки на соревнование! Вы уже подал заявку на данное соревнование. '.
+            throw new CHttpException(411, 'Вы уже подали заявку на данное соревнование. '.
                 'Можете отказаться от заявки, удалив её, а затем создав новую. '.
                 'При необходимости свяжитесь с организаторами соревнований');
     }

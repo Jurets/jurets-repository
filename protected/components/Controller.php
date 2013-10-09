@@ -6,6 +6,9 @@
  */
 class Controller extends CController
 {
+    //внутр переменная (для единоразовой выборки модели)
+    protected $_competition;
+    
 	/**
 	 * @var string the default layout for the controller view. Defaults to '//layouts/column1',
 	 * meaning using a single column layout. See 'protected/views/layouts/column1.php'.
@@ -29,7 +32,13 @@ class Controller extends CController
     */
     public $pathCompetition = '';
     
-    
+    /**
+    * событие перед действием контроллеров:
+    * - выбрать алиас для соревнования
+    * 
+    * @param mixed $action
+    * @return boolean
+    */
     public function beforeAction($action) {
         if (parent::beforeAction($action)) {//DebugBreak();
             $path = Yii::app()->request->getParam('path');
@@ -39,4 +48,28 @@ class Controller extends CController
             return false;
         }
     }
+    
+  //вернуть модель Соревнование (ИД берётся пока что из хардкода)
+    public function getCompetition($id = null)
+    {
+        if (!isset($this->_competition)) {
+            if (empty($id))
+                $id = Yii::app()->competitionId;
+            $this->_competition = Competition::model()->findByPk($id);
+            if($this->_competition === null)
+                throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');
+        }
+        return $this->_competition;
+    }
+   
+    //СТАТ: узнать ограничение по кол-ву спортсменов
+    public function checkIsFiling() {
+        //$isfilling = self::getCompetitionParam('isfiling');
+        $competition = $this->getCompetition();
+        $isfilling = $competition->isfiling;
+        if (!$isfilling)
+            throw new CHttpException(410, 'Запрещен ввод информации! На данный момент регистрация участников запрещена. '.
+            'При необходимости свяжитесь с организаторами соревнований');
+    }
+    
 }

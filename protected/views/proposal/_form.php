@@ -31,6 +31,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
 <?php 
     echo $form->hiddenField($model, 'propid');
+    echo $form->hiddenField($model, 'competitionid');
     
     echo CHtml::tag('p', array(), 'Вы можете выбрать один из режимов регистрации заявки. Перед этим желательно ознакомиться со списком существующих команд:');
     echo $form->radioButtonListRow($model, 'modeCommand', array(

@@ -57,12 +57,13 @@ class ProposalController extends Controller
 
 	//ДЕЙСТВИЕ: создание заявки
 	public function actionCreate()
-	{
-		Competition::checkIsFiling();
+	{//DebugBreak();
+		$this->checkIsFiling();
         Competition::checkIsProposal();
         
         $model = new Proposal;
         $userid = Yii::app()->request->getParam('userid');
+        $model->competitionid = Yii::app()->competitionId;
         if (!empty($userid))
             $model->userid = $userid;
         else
@@ -79,6 +80,7 @@ class ProposalController extends Controller
             else {
                 $command = new Command;
                 $command->CommandName = $model->commandname;
+                $command->competitionid = $model->competitionid;
                 $command->save();
                 $model->commandid = $command->CommandID;
             }

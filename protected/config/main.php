@@ -79,7 +79,7 @@ return array(
 			'urlFormat'=>'path',
             'showScriptName'=>false,
 			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+				//'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
                 'posts'=>'posting/default/index',
@@ -87,7 +87,10 @@ return array(
                 //'<path:[a-z0-9\(\)\"\'_\+-]+>'=>'competition/invite/<path>',
                 '<path:\w+>'=>'competition/invite/path/<path>',
                 '<path:\w+>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>/path/<path>',
-                
+                '<path:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>/id/<id>/path/<path>',
+                '<path:\w+>/<controller:\w+>/<action:\w+>/id/<id:\d+>'=>'<controller>/<action>/id/<id>/path/<path>',
+                //'<path:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+                //'<path:\w+>/<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>/id/<id>',
 			),
 		),
 		

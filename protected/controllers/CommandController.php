@@ -49,7 +49,7 @@ class CommandController extends Controller //ParticipantController
 	}
 
 	//ДЕЙСТВИЕ: просмотр команды
-	public function actionView($id) {
+	public function actionView($id, $path = '') {//DebugBreak();
         $tabnum = Yii::app()->request->getParam('tab');
         $tabnum = !empty($tabnum) ? $tabnum : 1;
         

@@ -26,7 +26,9 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         array(
             'name'=>'CommandName',
             'type'=>'html',
-            'value'=>'CHtml::link(CHtml::encode($data->CommandName), CHtml::normalizeUrl(array("command/view", "id"=>$data->CommandID)))',
+            //'value'=>'CHtml::link(CHtml::encode($data->CommandName), CHtml::normalizeUrl(array("/command/view", "id"=>$data->CommandID)))',
+            //'value'=>'CHtml::link(CHtml::encode($data->CommandName), Yii::app()->createAbsoluteUrl($this->grid->controller->pathCompetition . "/command/view", "id"=>$data->CommandID))',
+            'value'=>'CHtml::link(CHtml::encode($data->CommandName), Yii::app()->createAbsoluteUrl($this->grid->controller->pathCompetition . "/command/view", array("id"=>$data->CommandID)))',
         ),
         array(
             'name'=>'sportsmenCount',

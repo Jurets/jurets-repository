@@ -4,9 +4,18 @@
 $this->pageTitle=Yii::app()->name;
 $imgpath = Yii::app()->baseUrl.'/images/logo/';
 $docpath = Yii::app()->baseUrl.'/document/';
-?>
 
-<?php 
+Yii::app()->user->setFlash('info', '<strong>Внимание!</strong> Для того, чтобы подать заявку на соревнование, необходимо выполнить вход или зарегистрироваться, если вы ещё не зарегистрированы!');
+
+$this->widget('bootstrap.widgets.TbAlert', array(
+        'block'=>true, // display a larger alert block?
+        'fade'=>true, // use transitions?
+        'closeText'=>'&times;', // close link text - if set to false, no close link is displayed
+        'alerts'=>array( // configurations per alert type
+            'success'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), // success, info, warning, error or danger
+            'info'=>array('block'=>true, 'fade'=>true, 'closeText'=>'&times;'), // success, info, warning, error or danger
+        ),
+    ));
 
 //$notCached = $this->beginCache('tkdcard_mainpage', array('duration'=>90));
 //if($notCached) 

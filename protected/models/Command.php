@@ -84,9 +84,10 @@ class Command extends CActiveRecord
         $criteria->addCondition('EXISTS (SELECT 1 from proposal P WHERE P.commandid = t.commandid '.
             //'AND P.competitionid = :competitionid '.
             'AND P.status = :status)');
-        $criteria->addCondition('t.status = 1 AND competitionid = :competitionid');
+        //$criteria->addCondition('t.status = 1 AND competitionid = :competitionid');
+        $criteria->addCondition('t.status = 1');
         $criteria->params = array(
-            ':competitionid'=>Yii::app()->competitionId, 
+            //':competitionid'=>Yii::app()->competitionId, 
             ':status'=>Proposal::STATUS_ACTIVE
         );
         return $criteria;
@@ -119,6 +120,7 @@ class Command extends CActiveRecord
         $criteria = self::commandCriteria();
         
         $criteria->compare('CommandID',$this->CommandID);
+        $criteria->compare('competitionid',$this->competitionid);
         $criteria->compare('CommandName',$this->CommandName,true);
         
         return new CActiveDataProvider($this, array(
@@ -129,3 +131,4 @@ class Command extends CActiveRecord
         ));
     }
 }
+?>

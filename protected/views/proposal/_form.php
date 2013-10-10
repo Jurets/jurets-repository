@@ -33,7 +33,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     echo $form->hiddenField($model, 'propid');
     echo $form->hiddenField($model, 'competitionid');
     
-    echo CHtml::tag('p', array(), 'Вы можете выбрать один из режимов регистрации заявки. Перед этим желательно ознакомиться со списком существующих команд:');
+    /*echo CHtml::tag('p', array(), 'Вы можете выбрать один из режимов регистрации заявки. Перед этим желательно ознакомиться со списком существующих команд:');
     echo $form->radioButtonListRow($model, 'modeCommand', array(
             'Существующая команда',
             'Новая команда',
@@ -41,20 +41,20 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             //'onclick'=>'alert("Hello!" + " " + $(this).attr("value"))', 
             'onclick'=>'toggleMode($(this))',
         )
-        );
+        );*/
     
     //if ($model->modeCommand == Proposal::COMMAND_NEW)
-    echo CHtml::tag('div', array('class'=>'hidden', 'id'=>'groupCommandname'), '', false);
+    //echo CHtml::tag('div', array('class'=>'hidden', 'id'=>'groupCommandname'), '', false);
         echo $form->textFieldRow($model,'commandname', array('size'=>60,'maxlength'=>100, 'class' => 'span5'));
-    echo CHtml::tag('/div');
+    //echo CHtml::tag('/div');
     //else if ($model->modeCommand == Proposal::COMMAND_EXIST)
-    echo CHtml::tag('div', array(/*'class'=>'hidden', */'id'=>'groupCommandID'), '', false);
+    /*echo CHtml::tag('div', array('id'=>'groupCommandID'), '', false);
         echo $form->dropDownListRow($model, 'commandid', 
             CHtml::listData(Command::model()->findAll(), 'CommandID', 'CommandName'), array(
                 'empty' => '<'.Yii::t('controls', 'Choose command').'>',
                 'class' => 'span5',
         )); 
-    echo CHtml::tag('/div');
+    echo CHtml::tag('/div');*/
 
     echo $form->textFieldRow($model,'country', array('size'=>50,'maxlength'=>50, 'class' => 'span4'/*, 'disabled'=>'disabled'*/));
     echo $form->textFieldRow($model,'city', array('size'=>50,'maxlength'=>50, 'class' => 'span4'));

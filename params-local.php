@@ -2,7 +2,7 @@
 //здесь хранятся настройки локальные
 return array(
     //'YII.path' => 'C:\xampp\htdocs\YII\framework\yii.php',
-    'YII.path' => '.\YII\framework\yii.php',
+    'YII.path' => '..\YII\framework\yii.php',
     
     'env.code' => 'private',
     // DB connection configurations
@@ -18,5 +18,8 @@ return array(
     'uploadDir'=>'d:\xampp\htdocs\wtfweb\trunk\uploads\\',
     'uploadLoc' =>'http://localhost/wtfweb/trunk/uploads/',
     'defaultPhoto' =>'http://localhost/wtfweb/trunk/images/nophoto.png',
+    
+    'defaultCompetitionID' => 2,
+    
 );
 ?>

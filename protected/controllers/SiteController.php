@@ -33,16 +33,21 @@ class SiteController extends Controller
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
 
-        $this->layout = '//layouts/competition';
+//        $this->layout = '//layouts/competition';
         
-        $competition = New Competition;
-        $dataProvider = $competition->search();
+//        $competition = New Competition;
+//        $dataProvider = $competition->search();
+//        $this->render('index', array(
+//            'dataProvider'=>$dataProvider,
+//            'competition'=>$competition,
+//        ));
         
-		//$competition = Competition::loadModel();
-        $this->render('index', array(
-            'dataProvider'=>$dataProvider,
-            //'competition'=>$competition
+        $model = /*!empty($path) ? Competition::getModelPath($path) : */Competition::getModel();
+        $this->render('application.views.competition.invitation',array(
+            'model'=>$model,
+            //'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
         ));
+        
 	}
 
 	/**

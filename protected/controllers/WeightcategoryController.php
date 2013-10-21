@@ -218,7 +218,7 @@ class WeightcategoryController extends Controller
                 $sportsmens = $this->filterWeightlist($allSportsmens, $weigth->WeightID);
                 $arrcategory[$aid]['children'][$wid] = array(
                     'id' => $weigth->WeightID,
-                    'text' => $weigth->WeightNameFull(),
+                    'text' => $weigth->WeightNameFull,
                     'sportsmens' => $sportsmens,
                 );
             }
@@ -256,7 +256,7 @@ class WeightcategoryController extends Controller
                 $levelCount = Weightcategory::getLevelCount($figthcount);
                 $arrcategory[$aid]['children'][$wid] = array(
                     'id' => $weigth->WeightID,
-                    'text' => $weigth->WeightNameFull(),
+                    'text' => $weigth->WeightNameFull,
                     'sportsmencount' => $sportsmencount,
                     'figthcount' => $figthcount,
                     'levelcount' => $levelCount,

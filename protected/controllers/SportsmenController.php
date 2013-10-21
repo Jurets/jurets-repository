@@ -326,7 +326,7 @@ class SportsmenController extends ParticipantController
     public function actionDynamicweights() {
         $age = (int)$_POST['Sportsmen']['AgeID'];
         $data = Sportsmen::getWeigthsList($age);   //получить список моделей весов по возрасту
-        $data = CHtml::listData($data, 'WeightID', 'WeightName');
+        $data = CHtml::listData($data, 'WeightID', 'WeightNameFull');
         echo CHtml::tag('option', array('value' => ''), '<Выберите весовую категорию>', true);
           
         /*if ($_POST['Sportsmen']['SpID'] <> "") {

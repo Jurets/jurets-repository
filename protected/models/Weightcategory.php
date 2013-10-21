@@ -207,26 +207,30 @@ class Weightcategory extends CActiveRecord
 	}
     
     //Jurets: Переопределение магического метода получения значения поля !!!!!!!!!!1
-    public function __get($name) {
+    /*public function __get($name) {
         if ($name=='WeightName')       
            return $this->WeightName(); 
         if ($name=='WeightNameFull')
            return $this->WeightNameFull();
         else
            return parent::__get($name);
-    }    
+    }*/    
     //Jurets: получить название весовой категории (по ID)
-    public function WeightName() {
+    /*public function getWeightName() {
         if (is_null($this->WeightTo)) 
             return 'свыше '.$this->WeightFrom.' кг';
         else 
             return 'до '.$this->WeightTo.' кг';
-    }
+    }*/
     
     //Jurets: получить название весовой категории (по ID)
-    public function WeightNameFull() {
-        return //mb_strtoupper($this->relAgecategory->Gender, 'UTF-8').' '.
-            $this->WeightName();
+    public function getWeightNameFull() {
+        //return //mb_strtoupper($this->relAgecategory->Gender, 'UTF-8').' '.
+        //    $this->WeightName();
+        if (is_null($this->WeightTo)) 
+            return 'свыше '.$this->WeightFrom.' кг';
+        else 
+            return 'до '.$this->WeightTo.' кг';
     }
     
 

@@ -220,7 +220,7 @@ class Sportsmen extends CActiveRecord
     }
     
     //Jurets: получить название спортивного разряда (по ID)
-    public function AttestLevelName() {//DebugBreak();
+    public function AttestLevelName() {
         $data = Attestlevel::getList();
       //пройтись по массиву и выбрать только нужный итем
         foreach($data as $index => $item) 
@@ -388,7 +388,7 @@ class Sportsmen extends CActiveRecord
             ->leftJoin('sportcategory C', 'S.categoryid = C.categoryid')
             ->leftJoin('coach C2', 'C2.coachid = S.coach2id')
             ->leftJoin('coach C1', 'C1.coachid = S.coach1id')
-            ->where('S.status = 1')
+            ->where('S.status = 1 AND D.competitionid = '. Yii::app()->competitionId)
             ->order('S.AgeID, S.WeigthID, FullName');
         return $sqlCommand;
     }

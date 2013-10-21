@@ -105,15 +105,16 @@ class Agecategory extends CActiveRecord
 	}
     
     //Jurets: Переопределение магического метода получения значения поля !!!!!!!!!!1
-    public function __get($name) {
+    /*public function __get($name) {
         if ($name=='AgeNameYear')       
            return $this->AgeNameYear(); 
         else
            return parent::__get($name);
-    }   
+    }*/   
+    
     
     //Jurets: получить название возрастной категории (по ID)
-    public function AgeNameYear() {
+    public function getAgeNameYear() {
         //$record = Agecategory::model()->findByPk($this->AgeID);
         //if (isset($record) && !is_null($record)) {
             $aname = $this->AgeName;

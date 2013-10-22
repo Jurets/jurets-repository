@@ -114,9 +114,10 @@ class SiteController extends Controller
                 $currenturl = Yii::app()->user->returnUrl;
                 $homeurl = Yii::app()->homeUrl;
                 if ($currenturl == $homeurl || $currenturl == $homeurl.'index.php') {
-                    if (Yii::app()->user->isExtendRole())
-                        $url = $this->createUrl('/users/index');
-                    else {
+                    if (Yii::app()->user->isExtendRole()) {
+                        //$url = $this->createUrl('/users/index');
+                        $url = $this->createUrl('/competition/manage');
+                    } else {
                         $commandid = Yii::app()->user->getCommandID(); //определить команду вошедшего юзера
                         if (Yii::app()->isUserActive && isset($commandid) && !empty($commandid))
                             $url = $this->createUrl('/command/view',array('id'=>$commandid));

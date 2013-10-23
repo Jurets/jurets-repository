@@ -5,7 +5,6 @@
 Yii::import('application.modules.posting.models.*');
 
     $isDisabled = (!$extendRole) && (isset($model->CommandID) && !empty($model->CommandID));
-
 ?>
 
 <div class="form">
@@ -18,11 +17,12 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'htmlOptions'=>array('class'=>'well'),
 )); 
 ?>
-
     <p class="note"><?=Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>'))?></p>
 
     <?php 
-        //echo $form->errorSummary($model); 
+        //показать ошибки
+        echo $form->errorSummary($model); 
+        
         echo $form->hiddenField($model, 'SpID');
         //echo $form->hiddenField($model, 'SpID');
     
@@ -162,8 +162,6 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                 'onclick'=>'$("#Sportsmen_CommandID").attr("disabled", false)',
                 ),
         ));    
-
-        echo $form->errorSummary($model); 
     ?>
 
 <?php $this->endWidget(); ?>

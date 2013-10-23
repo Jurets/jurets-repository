@@ -56,8 +56,7 @@ class ProposalController extends Controller
 	}
 
 	//ДЕЙСТВИЕ: создание заявки
-	public function actionCreate()
-	{//DebugBreak();
+	public function actionCreate() {
 		$this->checkIsFiling();
         Competition::checkIsProposal();
         
@@ -74,21 +73,29 @@ class ProposalController extends Controller
             $model->competitionid = Yii::app()->competitionId;
             //$userid = Yii::app()->request->getParam('userid');
             $model->userid = !empty($userid) ? $userid : Yii::app()->userId;
-			if ($success = $model->validate()) {
-                if (!empty($model->commandid))   //если выбрана существующая команда
-                    $model->commandname = '-';   //временно поставить значение поля
-                else {
-                    $command = new Command;
+            $command = new Command;
+            if (!empty($model->commandid))   //если выбрана существующая команда
+                $model->commandname = '-';   //временно поставить значение поля
+            else
+                $command->CommandName = $model->commandname;
+            $command->competitionid = $model->competitionid;
+			//if ($success = $model->validate()) 
+            {
+                //if (!empty($model->commandid))   //если выбрана существующая команда
+                //    $model->commandname = '-';   //временно поставить значение поля
+                //else 
+                //{
+                    /*$command = new Command;
                     $command->CommandName = $model->commandname;
-                    $command->competitionid = $model->competitionid;
-                    
-                    $success = $command->validate();
+                    $command->competitionid = $model->competitionid;*/
+                    $success = $model->validate();
+                    $success &=  $command->validate();
                     if (!$success) {
                         $model->addErrors($command->errors);
                     }
                     //$command->save();
                     //$model->commandid = $command->CommandID;
-                }
+                //}
             }
             if ($success) {
                 $transaction = Yii::app()->db->beginTransaction();                         
@@ -148,13 +155,30 @@ class ProposalController extends Controller
 	}
 
 	//ДЕЙСТВИЕ: удаление заявки
-	public function actionDelete($id)
-	{
-		$this->loadModel($id)->delete();
+	public function actionDelete($id) { //DebugBreak();
+        $transaction = Yii::app()->db->beginTransaction();                         
+        try {   
+            $model = $this->loadModel($id);
+            $commandid = $model->commandid;
+            $model->delete();
+            $cmd = Yii::app()->db->createCommand();
+            //$cmd->delete('proposal', 'propid=:id', array(':id'=>$id));
+            $cmd->delete('command', 'CommandID=:id', array(':id'=>$commandid));
+            $transaction->commit();            
+            $success = true;
+        } catch (Exception $e){
+            $transaction->rollBack();
+            //PJournalRecord::log($e->getMessage());
+            $success = false;
+            $error = $e->getMessage();
+        } 
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('users/mycabinet'));
+        if ($success) {
+            // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
+            if (!isset($_GET['ajax']))
+                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('users/mycabinet'));
+        } else
+            throw new Exception(sprintf('Ошибка при удалении заявки %d!', $model->commandname));
 	}
 
     //ФУНКЦИЯ: взять логин из емейла

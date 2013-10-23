@@ -109,7 +109,7 @@ class Proposal extends CActiveRecord
 			'phone' => 'Телефон',
 			'email' => 'E-mail',
 			'www' => 'Web-сайт',
-			'participantcount' => 'Количество участников',
+			'participantcount' => 'Кол-во участников',
 			'comment' => 'Комментарий',
 			'status' => 'Статус',
             'login' => 'Логин',

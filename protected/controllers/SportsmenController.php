@@ -214,7 +214,7 @@ class SportsmenController extends ParticipantController
   //СОЗДАТЬ спортсмена ---------------------------------------------------------------------
   //$id - ИД команды, куда будет добавляться спортсмен
   // перед действием будут выполнены проверки (см. ФИЛЬТРЫ для контроллера)  
-    public function actionCreate($id = null) {
+    public function actionCreate($id = null) {//DebugBreak();
         // $this->performAjaxValidation($model); // Uncomment the following line if AJAX validation is needed
 
       //РАЗЛИЧНЫЕ ПРОВЕРКИ  
@@ -264,8 +264,9 @@ class SportsmenController extends ParticipantController
 
             if($model->save()) {
                 //$this->redirect(array('/command/view','id'=>$id, 'tab'=>'1'));
-                $this->redirect(array('/sportsmen/create'));
                 //$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/command/index'));
+                Yii::app()->user->setFlash('success', 'Новый спортсмен успешно добавлен: ' . $model->LastName . ' ' . $model->FirstName);
+                $this->redirect(array('/sportsmen/create', 'id'=>$id));
             }
         }
 

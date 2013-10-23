@@ -64,29 +64,55 @@ class ProposalController extends Controller
         $model = new Proposal;
         $userid = Yii::app()->request->getParam('userid');
         $model->competitionid = Yii::app()->competitionId;
-        if (!empty($userid))
-            $model->userid = $userid;
-        else
-            $model->userid = Yii::app()->userId;
+        $model->userid = !empty($userid) ? $userid : Yii::app()->userId;
             
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Proposal']))
-		{
+		if(isset($_POST['Proposal'])) {
 			$model->attributes=$_POST['Proposal'];
-			if (!empty($model->commandid))   //если выбрана существующая команда
-                $model->commandname = '-';   //временно поставить значение поля
-            else {
-                $command = new Command;
-                $command->CommandName = $model->commandname;
-                $command->competitionid = $model->competitionid;
-                $command->save();
-                $model->commandid = $command->CommandID;
+            $model->competitionid = Yii::app()->competitionId;
+            //$userid = Yii::app()->request->getParam('userid');
+            $model->userid = !empty($userid) ? $userid : Yii::app()->userId;
+			if ($success = $model->validate()) {
+                if (!empty($model->commandid))   //если выбрана существующая команда
+                    $model->commandname = '-';   //временно поставить значение поля
+                else {
+                    $command = new Command;
+                    $command->CommandName = $model->commandname;
+                    $command->competitionid = $model->competitionid;
+                    
+                    $success = $command->validate();
+                    if (!$success) {
+                        $model->addErrors($command->errors);
+                    }
+                    //$command->save();
+                    //$model->commandid = $command->CommandID;
+                }
+            }
+            if ($success) {
+                $transaction = Yii::app()->db->beginTransaction();                         
+                try {   
+                    if ($command->save(false)) {
+                        $model->commandid = $command->CommandID;
+                        $model->save(false);
+                    }
+                    $transaction->commit();            
+                    $success = true;
+                } catch (Exception $e){
+                    $transaction->rollBack();
+                    //PJournalRecord::log($e->getMessage());
+                    $success = false;
+                    $error = $e->getMessage();
+                }       
+                if($success)
+                    $this->redirect(array('view','id'=>$model->propid));
+                else
+                    throw new Exception(sprintf('Ошибка при сохранении заявки %d!', $model->commandname));  
+            } else {
+                $this->render('create',array('model'=>$model, /*'command'=>$command*/));    //рендерить вью - показать ошибки
             }
                 
-            if($model->save())
-				$this->redirect(array('view','id'=>$model->propid));
 		} else {
             $user = Yii::app()->user->getModel();
             if (isset($user)) {
@@ -96,11 +122,9 @@ class ProposalController extends Controller
                 $model->club = $user->club;
                 $model->address = $user->address;
             }
+            //рендерить вью
+            $this->render('create',array('model'=>$model, ));
         }
-
-		$this->render('create',array(
-			'model'=>$model,
-		));
 	}
 
 	//ДЕЙСТВИЕ: редактирование заявки

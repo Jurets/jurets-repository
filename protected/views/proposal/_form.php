@@ -23,6 +23,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'htmlOptions'=>array('class'=>'well'),
 )); 
 
+    echo $form->errorSummary($model); 
+
 ?>
 
 	<p class="note">
@@ -79,7 +81,6 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             //'onclick'=>'$("#Sportsmen_CommandID").attr("disabled", false)',
             ),
     ));    
-    echo $form->errorSummary($model); 
 
     $this->endWidget(); 
 ?>

@@ -37,6 +37,12 @@ class Command extends CActiveRecord
         // will receive user inputs.
         return array(
             array('CommandName', 'required'),
+            array('CommandName', 'unique', 'criteria'=>array(
+                    'condition'=>'competitionid = :competitionid',
+                        'params'=>array(':competitionid'=>Yii::app()->competitionId),
+                    ),
+                  'message'=>'Команда с таким именем уже зарегистрирована на данный турнир! Попробуйте другое название',
+                  ),
             array('CommandName', 'length', 'max'=>50),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.

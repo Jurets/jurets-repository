@@ -47,7 +47,8 @@ class Proposal extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('commandname, commandid, country, city, participantcount', 'required'),
+            //array('commandname, commandid, country, city, participantcount', 'required'),
+			array('commandname, country, city, participantcount', 'required'),
 			array('participantcount, status', 'numerical', 'integerOnly'=>true),
 			array('commandname, federation', 'length', 'max'=>100),
 			array('city', 'length', 'max'=>30),

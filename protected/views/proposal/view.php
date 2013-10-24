@@ -58,7 +58,7 @@ $this->menu=array(
             'submit'=>array('delete','id'=>$model->propid),
             'confirm'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array(
                 '{item}'=>Yii::t('fullnames', ' proposal'), 
-                '{name}'=>$model->relUsers->UserFIO,
+                '{name}'=> 'команда: ' . $model->relCommand->CommandName . "\nпредставитель: " . $model->relUsers->UserFIO,
             )),
         'visible'=>($isMyUserID || $isExtendRole) && ($model->status == Proposal::STATUS_NEW),
         'title'=>'Удалить заявку'

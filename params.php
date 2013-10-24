@@ -76,8 +76,8 @@ return array_merge(array(
         'host'=>'ssl://smtp.gmail.com',
         'port'=>'465',
         'auth'=>true,
-        'username'=>'jurets75',
-        'password'=>'steruj75',
+        'username'=>'',
+        'password'=>'',
         'timeout'=>500,
         'templates' => array(
            'invitation' => array(

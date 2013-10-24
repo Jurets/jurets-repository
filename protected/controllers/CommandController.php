@@ -47,18 +47,33 @@ class CommandController extends Controller //ParticipantController
 			),
 		);
 	}
+    
+    public function beforeCommandAction($model) {//DebugBreak();
+        //$status = isset($model->relProposal) ? $model->relProposal->status : null;
+        if ($model->status == Proposal::STATUS_NEW) {
+            throw new CHttpException(421, 'Запрещен просмотр данных для команды, заявка которой не подтверждена! ' . "\n" .
+                'Команда: ' . $model->CommandName);
+            Yii::app()->end();
+        }
+    }
 
 	//ДЕЙСТВИЕ: просмотр команды
-	public function actionView($id, $path = '') {//DebugBreak();
+	public function actionView($id, $path = '') {
         $tabnum = Yii::app()->request->getParam('tab');
         $tabnum = !empty($tabnum) ? $tabnum : 1;
+        //DebugBreak();
+        $model = $this->loadModel($id);
         
-        $criteria = Command::commandCriteria();
-        $criteria->compare('CommandID',$id);
+//        $criteria = Command::commandCriteria();
+//        $criteria->compare('CommandID',$id);
+//        $model = Command::model()->find($criteria);
                 
         //$model = $this->loadModel($id);
         //$count = $model->sportsmenCount;
-        $model = Command::model()->find($criteria);
+        
+        //проверка перед просмотром
+        $this->beforeCommandAction($model);
+        
         //$count = $model->sportsmen_count;
         $sqlCommand = Sportsmen::sqlSportsmenList($model->CommandID);
         $dataSportsmenList = new CSqlDataProvider($sqlCommand->text, array(
@@ -238,7 +253,7 @@ class CommandController extends Controller //ParticipantController
 	{
 		$model = Command::model()->findByPk($id);
 		if($model===null)
-			throw new CHttpException(404,'The requested page does not exist.');
+			throw new CHttpException(404,'Не найдена команда с ИД: ' . $id);
 		return $model;
 	}
 

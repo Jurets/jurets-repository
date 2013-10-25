@@ -10,7 +10,7 @@
     $this->breadcrumbs['Управление командами'] = array('command/manage');
 ?>
 
-<!--<h1>Управление командами<?php //echo Yii::t('fullnames', 'Command List'); ?></h1>-->
+<h3>Управление командами<?php //echo Yii::t('fullnames', 'Command List'); ?></h3>
 
 <?php 
     $this->renderPartial('_index', array('dataProvider'=>$dataProvider));

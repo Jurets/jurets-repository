@@ -4,7 +4,7 @@
 
 ?>
 
-<!--<h2><?php echo Yii::t('fullnames', 'Proposals')?></h2>-->
+<h3><?php echo Yii::t('fullnames', 'Proposals')?></h3>
 
 <?php
     $this->renderPartial('/site/manager');

@@ -3,7 +3,7 @@
 /* @var $model Competition */
 ?>
 
-<h2><?php echo Yii::t('controls', 'View').': '.Yii::t('fullnames', 'Competition'); ?></h2>
+<h3><?php echo Yii::t('controls', 'View').': '.Yii::t('fullnames', 'Competition'); ?></h3>
 
 <?php
 $this->renderPartial('/site/manager');

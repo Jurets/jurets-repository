@@ -269,10 +269,12 @@ class SportsmenController extends ParticipantController
                 $this->redirect(array('/sportsmen/create', 'id'=>$id));
             }
         }
-
+        
         $breadcrumbs = array('Команды'=>array('command/index'));
+        $command = Command::model()->findByPk($id);
         if (isset($command))
             $breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$command->CommandID)));
+        //$breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$id)));
         $breadcrumbs = array_merge($breadcrumbs, array(/*$model->FullName()=>array('sportsmen/view', 'id'=>$model->SpID), */Yii::t('controls', 'Create')));
             
         $this->render('create',array(

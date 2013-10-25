@@ -18,7 +18,7 @@ $this->widget('bootstrap.widgets.TbAlert', array(
 
 ?>
 
-<h1><?php echo Yii::t('controls', 'Create').': '.Yii::t('fullnames', 'sportsmen'); ?></h1>
+<h3><?php echo Yii::t('controls', 'Create').': '.Yii::t('fullnames', 'sportsmen'); ?></h3>
 
 <?php 
 echo $this->renderPartial('_form', array(

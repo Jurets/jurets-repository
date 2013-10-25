@@ -39,7 +39,7 @@ $this->menu=array(
     //array('label'=>'Список команд', 'url'=>array('index')),
 );
 
-echo CHtml::tag('h1', array(), $strTitle, true);    
+echo CHtml::tag('h3', array(), $strTitle, true);    
 ?>
 
 <?php 

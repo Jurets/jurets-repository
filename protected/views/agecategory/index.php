@@ -7,6 +7,7 @@
 
 <?php 
     $this->renderPartial('/site/manager');
+    $this->breadcrumbs['Возрастные категории'] = array('agecategory/index');
 
     $this->renderPartial('_index', array('dataProvider'=>$dataProvider));
 ?>

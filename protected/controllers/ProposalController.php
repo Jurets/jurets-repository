@@ -34,8 +34,8 @@ class ProposalController extends Controller
                 //'roles'=>array(''),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('admin','manage','confirm','delete','indexNew'),
-                'roles'=>array('admin', 'manager', 'index'),
+                'actions'=>array('admin','manage','confirm','delete','index'/*,'indexNew'*/),
+                'roles'=>array('admin', 'manager'/*, 'index'*/),
             ),
             array('allow', // разрешение на вход в кабинет
                 'actions'=>array(),

@@ -179,7 +179,7 @@ class DefaultController extends Controller
     
     //загрузить фотографии / Load photos per photo_id ()
     public function actionLoadPhotos($id, $ismain) {
-        DebugBreak();
+        //DebugBreak();
         if ($ismain)
             $photos = Photo::model()->findAllByPk($id);  //get models for main photo
         else {

@@ -2,14 +2,15 @@
 /* @var $this CommandController */
 /* @var $dataProvider CActiveDataProvider */
 
-$this->breadcrumbs=array(
+/*$this->breadcrumbs=array(
     Yii::t('fullnames', 'Command List'),
-);
+);*/
 
-$this->renderPartial('/site/_delegate');
+    $this->renderPartial('/site/manager');
+    $this->breadcrumbs['Управление командами'] = array('command/manage');
 ?>
 
-<h1><?php echo Yii::t('fullnames', 'Command List'); ?></h1>
+<!--<h1>Управление командами<?php //echo Yii::t('fullnames', 'Command List'); ?></h1>-->
 
 <?php 
     $this->renderPartial('_index', array('dataProvider'=>$dataProvider));

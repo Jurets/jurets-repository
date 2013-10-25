@@ -2,7 +2,7 @@
 /* @var $this SiteController */
 
 $this->breadcrumbs=array(
-    Yii::t('fullnames', 'Competition Manager')
+    Yii::t('fullnames', 'Competition Manager') => array('competition/manager'),
 );
 ?>
 
@@ -32,7 +32,7 @@ $this->menu=array(
     ),
     '---',
     array('label'=>Yii::t('fullnames', 'Commands'), 
-        'url'=>array($this->pathCompetition . '/command/index'), 
+        'url'=>array($this->pathCompetition . '/command/manage'), 
         'icon'=>'flag',
         'linkOptions'=>array(
             'title'=>Yii::t('fullnames', 'Переход к списку команд'), 

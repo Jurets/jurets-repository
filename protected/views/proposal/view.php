@@ -16,6 +16,7 @@ $isExtendRole = Yii::app()->isExtendRole;
 
 if ($isExtendRole)
     $this->breadcrumbs=array(
+        Yii::t('fullnames', 'Competition Manager') => array('competition/manager'),
         Yii::t('fullnames', 'Proposals')=>array('/proposal/index'),
         //'Заявки'=>array('index'),
 	    $model->relCommand->CommandName,

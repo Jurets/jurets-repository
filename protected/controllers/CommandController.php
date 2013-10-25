@@ -39,8 +39,9 @@ class CommandController extends Controller //ParticipantController
                 //'roles'=>array('admin','manager'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'actions'=>array('admin','delete','manage'),
+                'roles'=>array('admin', 'manager'),
+				//'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -229,6 +230,21 @@ class CommandController extends Controller //ParticipantController
 		));
 	}
 
+    //ДЕЙСТВИЕ: просмотр списка команд
+    public function actionManage()
+    {
+        //данные для списка команд
+        $model = New Command;//DebugBreak();
+        $model->competitionid = Yii::app()->competitionId;
+        $dataProvider = $model->search();
+        //данные по статистике
+        $dataStat = Competition::getCompetitionStat();
+        
+        $this->render('manage',array(
+            'dataProvider'=>$dataProvider,
+            'dataStat'=>$dataStat,
+        ));
+    }    
 	/**
 	 * Manages all models.
 	 */

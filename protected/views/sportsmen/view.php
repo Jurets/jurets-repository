@@ -70,11 +70,11 @@ $this->menu=array(
         ),
         array(
             'label'=>Yii::t('fullnames', 'AgeName'),
-            'value'=>$model->relAgecategory->AgeNameYear()
+            'value'=>$model->relAgecategory->AgeNameYear
         ),
         array(
             'label'=>Yii::t('fullnames', 'WeightName'),
-            'value'=>mb_strtoupper($model->Gender, 'UTF-8').' '.$model->relWeightcategory->WeightNameFull()
+            'value'=>mb_strtoupper($model->Gender, 'UTF-8').' '.$model->relWeightcategory->WeightNameFull
         ),
         array(
             'label'=>Yii::t('fullnames', 'CoachFirst'),

@@ -51,7 +51,8 @@ class Sportsmen extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('LastName, FirstName, BirthDate, CommandID, Gender, AgeID, WeigthID', 'required'),
+            array('LastName, FirstName, BirthDate, CommandID, Gender, AgeID, WeigthID', 'required'),
+			//array('LastName, FirstName, BirthDate, CommandID, AgeID, WeigthID', 'required'),
 			array('CommandID, FstID, CategoryID, AttestLevelID, WeigthID, Coach1ID, Coach2ID, MedicSolve, AgeID', 'numerical', 'integerOnly'=>true),
 			array('LastName', 'length', 'max'=>30),
 			array('FirstName, MiddleName, IdentCode', 'length', 'max'=>20),
@@ -438,12 +439,13 @@ class Sportsmen extends CActiveRecord
     public static function getWeigthsList($ageid) {//DebugBreak();
         $out = array();
         $_cacheID = 'cacheWeigthListFull';
-        $data = Yii::app()->cache->get($_cacheID);   //проверить кэш
-        if ($data === false) {
+        //$data = Yii::app()->cache->get($_cacheID);   //проверить кэш
+        //if ($data === false) 
+        {
             // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
             $data = Weightcategory::model()->findAll();
             // и сохраняем его в кэше для дальнейшего использования:
-            Yii::app()->cache->set($_cacheID, $data, 28800);  //8 часов
+            //Yii::app()->cache->set($_cacheID, $data, 28800);  //8 часов
         }
       //пройтись по массиву и выбрать только нужный пол  
         foreach($data as $index => $item) {
@@ -481,4 +483,20 @@ class Sportsmen extends CActiveRecord
     public function getCategoryName() {
         return isset($this->relCategory) ? $this->relCategory->CategoryName : null;
     }
+    
+    /**
+    * перед валидацией - установить пол (если не был установлен)
+    * 
+    */
+    public function beforeValidate() {//DebugBreak();
+        if (!isset($this->Gender) || empty($this->Gender)) {
+            if (isset($this->AgeID)) {
+                $age = Agecategory::model()->findByPk($this->AgeID);
+                if (isset($age->Gender))
+                    $this->Gender = $age->Gender;
+            }
+        }
+        return true;
+    }
+    
 }

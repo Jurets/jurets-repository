@@ -20,6 +20,9 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     <p class="note"><?=Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>'))?></p>
 
     <?php 
+        //все возрастные и весовые (сразу - жадная загрузка)
+        $ages = Agecategory::model()->with('relWeigths')->findAll();
+            
         //показать ошибки
         echo $form->errorSummary($model); 
         
@@ -30,11 +33,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         echo $form->textFieldRow($model,'FirstName',array('size'=>20,'maxlength'=>20));
         echo $form->textFieldRow($model,'MiddleName',array('size'=>20,'maxlength'=>20));
         echo $form->textFieldRow($model,'IdentCode',array('size'=>20,'maxlength'=>20));
-        echo $form->dropDownListRow($model, 'BirthDate', $years, 
-                                    array('empty' => '<'.Yii::t('controls', 'Choose birth year').'>'
-                                    )); 
-
-        echo $form->dropDownListRow($model, 'CommandID', CHtml::listData(Command::model()->findAll(), 'CommandID', 'CommandName'), 
+        echo $form->dropDownListRow($model, 'CommandID', CHtml::listData(Command::model()->competition()->findAll(), 'CommandID', 'CommandName'), 
                                     array('empty' => '<'.Yii::t('controls', 'Choose command').'>',
                                           'disabled'=>$isDisabled,
                                           'ajax' => array(
@@ -42,6 +41,44 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                                 'url'=>CController::createUrl('sportsmen/dynamiccoaches'), //url to call.
                                                 'update'=>'.select_coach'), //selector to update
                                     )); 
+        echo $form->hiddenField($model, 'Gender');
+        /*echo $form->dropDownListRow($model, 'Gender', array('м' => 'мужской', 'ж' => 'женский'), 
+                                    array('empty' => '<'.Yii::t('controls', 'Choose gender').'>',
+                                           'ajax' => array(
+                                                'type'=>'POST', //request type
+                                                'url'=>CController::createUrl('sportsmen/dynamicages'), //url to call.
+                                                'update'=>'#Sportsmen_AgeID', //selector to update
+                                    )));*/
+        echo $form->dropDownListRow($model, 'BirthDate', $years, array(
+                                        'empty' => '<'.Yii::t('controls', 'Choose birth year').'>',
+                                        'id' => 'Sportsmen_BirthDate', 
+                                    )); 
+      //возрастные категории  
+        //$ages = Sportsmen::getAgesList($model->Gender);
+        //DebugBreak();
+        $date = strtotime($model->BirthDate);
+        $year = date("Y", $date);
+        foreach($ages as $age) {
+            if ($age->YearMin <= $year && $year <= $age->YearMax)
+                $age_array[] = $age;
+        }
+        $age_array = CHtml::listData($age_array, 'AgeID', 'AgeNameYear');
+        //echo $form->dropDownListRow($model, 'AgeID', CHtml::listData($ages, 'AgeID', 'AgeNameYear'), array(
+        echo $form->dropDownListRow($model, 'AgeID', $age_array, array(
+                                           'empty' => '<'.Yii::t('controls', 'Choose age category').'>',
+                                           //'readonly'=>!isset($model->AgeID) || empty($model->AgeID) //true,
+                                           'readonly'=>!isset($model->BirthDate) || empty($model->BirthDate) //true,
+                                           )); 
+
+      //весовые категории                                     
+        $data = Sportsmen::getWeigthsList($model->AgeID);
+        echo $form->dropDownListRow($model, 'WeigthID', CHtml::listData($data, 'WeightID', 'WeightNameFull'), array(
+                                           'id' => 'Sportsmen_WeightID', 
+                                           'empty' => '<'.Yii::t('controls', 'Choose weigth category').'>',
+                                           //'readonly'=>!isset($model->WeigthID) || empty($model->WeigthID), //true,
+                                           'readonly'=>!isset($model->AgeID) || empty($model->AgeID), //true,
+                                           )); 
+
 
         echo $form->dropDownListRow($model, 'FstID', CHtml::listData(Fst::getList()/*model()->findAll()*/, 'FstID', 'FstName'), 
                                     array('empty' => '<'.Yii::t('controls', 'Choose FST').'>'
@@ -52,30 +89,6 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         echo $form->dropDownListRow($model, 'AttestLevelID', CHtml::listData(Attestlevel::getList()/*model()->findAll()*/, 'AttestLevelID', 'AttestLevel'), 
                                     array('empty' => '<'.Yii::t('controls', 'Choose attest level').'>'
                                     )); 
-
-        echo $form->dropDownListRow($model, 'Gender', array('м' => 'мужской', 'ж' => 'женский'), 
-                                    array('empty' => '<'.Yii::t('controls', 'Choose gender').'>',
-                                           'ajax' => array(
-                                                'type'=>'POST', //request type
-                                                'url'=>CController::createUrl('sportsmen/dynamicages'), //url to call.
-                                                'update'=>'#Sportsmen_AgeID', //selector to update
-                                    )));
-      //возрастные категории  
-        $data = Sportsmen::getAgesList($model->Gender);
-        echo $form->dropDownListRow($model, 'AgeID', CHtml::listData($data, 'AgeID', 'AgeNameYear'), array(
-                                           'empty' => '<'.Yii::t('controls', 'Choose age category').'>',
-                                           'ajax' => array(
-                                                'type'=>'POST', //request type
-                                                'url'=>CController::createUrl('sportsmen/dynamicweights'), //url to call.
-                                                'update'=>'#Sportsmen_WeightID', //selector to update
-                                           ))); 
-
-      //весовые категории                                     
-        $data = Sportsmen::getWeigthsList($model->AgeID);
-        echo $form->dropDownListRow($model, 'WeigthID', CHtml::listData($data, 'WeightID', 'WeightName'), array(
-                                           'id' => 'Sportsmen_WeightID', 
-                                           'empty' => '<'.Yii::t('controls', 'Choose weigth category').'>'
-                                           )); 
 
       //тренеры
         $data = Sportsmen::getCoachList($model->CommandID); //DebugBreak();
@@ -164,6 +177,46 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         ));    
     ?>
 
-<?php $this->endWidget(); ?>
+<?php $this->endWidget(); //DebugBreak();
+    foreach($years as $db=>$year) {
+        $age_array = array();
+        foreach($ages as $age) {
+            if ($age->YearMin <= $year && $year <= $age->YearMax)
+                $age_array[] = $age;
+        }
+        $age_array = CHtml::listData($age_array, 'AgeID', 'AgeNameYear');
+        //$age_array = array_merge(array('empty' => '<'.Yii::t('controls', 'Choose age category').'>'), $age_array);
+        $age_array = CMap::mergeArray(array('empty' => '<'.Yii::t('controls', 'Choose age category').'>'), $age_array);
+        echo CHTML::dropDownList('ages_byyear_' . $year, null, $age_array, array('style'=>'display: none'));
+    }
+    
+    foreach($ages as $age) {
+        $weigths = $age->relWeigths;
+        $weigths = CHtml::listData($weigths, 'WeightID', 'WeightNameFull');
+        $weigths = CMap::mergeArray(array('empty' => '<'.Yii::t('controls', 'Choose weigth category').'>'), $weigths);
+        echo CHTML::dropDownList('weigths_fromage_' . $age->AgeID, null, $weigths, array('style'=>'display: none'));
+    }
+    
+    $js = '$("#Sportsmen_BirthDate").change(function() {
+                year_elem = $("#ages_byyear_" + $(this).children(":selected").text());
+                age_elem = $("#Sportsmen_AgeID");
+                age_elem.html(year_elem.html());
+                age_elem.attr("readonly", false);
+                weigth_elem = $("#Sportsmen_WeightID");
+                weigth_elem.attr("readonly", true);
+                weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
+           })
+           
+           $("#Sportsmen_AgeID").change(function() {
+                val = $(this).val();
+                id = "weigths_fromage_" + val;
+                age_elem = $("#" + id);
+                weigth_elem = $("#Sportsmen_WeightID");
+                weigth_elem.html(age_elem.html());
+                weigth_elem.attr("readonly", false);
+           })
+           ';
+    Yii::app()->clientScript->registerScript('category_dropdown', $js, CClientScript::POS_READY);
+?>
 
 </div><!-- form -->

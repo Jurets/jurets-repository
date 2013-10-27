@@ -136,5 +136,16 @@ class Command extends CActiveRecord
             ),
         ));
     }
+    
+    public function scopes() {
+        return array(
+            'competition'=>array(
+                  'condition'=>'competitionid = :id',
+                  'params'=>array(':id'=>Yii::app()->competitionId),
+                  'order'=>'CommandName ASC',
+                  //'limit'=>5,
+            ),
+        );    
+    }
 }
 ?>

@@ -252,4 +252,24 @@ class Weightcategory extends CActiveRecord
         }
         return $levelCount;
     }
+    
+  //получить список весовых категорий по возрасту
+    public static function getWeigthsArray($ageid = null) {//DebugBreak();
+        $sqlCommand = Yii::app()->db->createCommand()
+            ->select(array('WeightID', 'S.TossNum'))
+            ->from('weightcategory')
+            //->where('status = 1 AND D.competitionid = '. Yii::app()->competitionId)
+            ->order('AgeID, WeigthID');
+        return $sqlCommand;
+    }
+    
+  //получить список весовых категорий по возрасту (КЭШИРУЕТСЯ!)
+    public static function getWeigthsList($ageid = null) {//DebugBreak();
+        if (isset($ageid)) {
+            $data = Weightcategory::model()->findAllByAttributes(array('AgeID'=>$ageid));
+        } else {
+            $data = Weightcategory::model()->findAll();
+        }
+        return $data;
+    }
 }

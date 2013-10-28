@@ -27,8 +27,6 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         echo $form->errorSummary($model); 
         
         echo $form->hiddenField($model, 'SpID');
-        //echo $form->hiddenField($model, 'SpID');
-    
         echo $form->textFieldRow($model,'LastName');
         echo $form->textFieldRow($model,'FirstName',array('size'=>20,'maxlength'=>20));
         echo $form->textFieldRow($model,'MiddleName',array('size'=>20,'maxlength'=>20));
@@ -42,31 +40,23 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                                 'update'=>'.select_coach'), //selector to update
                                     )); 
         echo $form->hiddenField($model, 'Gender');
-        /*echo $form->dropDownListRow($model, 'Gender', array('м' => 'мужской', 'ж' => 'женский'), 
-                                    array('empty' => '<'.Yii::t('controls', 'Choose gender').'>',
-                                           'ajax' => array(
-                                                'type'=>'POST', //request type
-                                                'url'=>CController::createUrl('sportsmen/dynamicages'), //url to call.
-                                                'update'=>'#Sportsmen_AgeID', //selector to update
-                                    )));*/
         echo $form->dropDownListRow($model, 'BirthDate', $years, array(
                                         'empty' => '<'.Yii::t('controls', 'Choose birth year').'>',
                                         'id' => 'Sportsmen_BirthDate', 
                                     )); 
       //возрастные категории  
-        //$ages = Sportsmen::getAgesList($model->Gender);
-        //DebugBreak();
-        $date = strtotime($model->BirthDate);
-        $year = date("Y", $date);
-        foreach($ages as $age) {
-            if ($age->YearMin <= $year && $year <= $age->YearMax)
-                $age_array[] = $age;
+        $age_array = array();
+        if (isset($model->BirthDate)) {                  //получить возрастные
+            $date = strtotime($model->BirthDate);        //по году рождения
+            $year = date("Y", $date);
+            foreach($ages as $age) {
+                if ($age->YearMin <= $year && $year <= $age->YearMax)
+                    $age_array[] = $age;
+            }
         }
         $age_array = CHtml::listData($age_array, 'AgeID', 'AgeNameYear');
-        //echo $form->dropDownListRow($model, 'AgeID', CHtml::listData($ages, 'AgeID', 'AgeNameYear'), array(
         echo $form->dropDownListRow($model, 'AgeID', $age_array, array(
                                            'empty' => '<'.Yii::t('controls', 'Choose age category').'>',
-                                           //'readonly'=>!isset($model->AgeID) || empty($model->AgeID) //true,
                                            'readonly'=>!isset($model->BirthDate) || empty($model->BirthDate) //true,
                                            )); 
 
@@ -75,23 +65,22 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         echo $form->dropDownListRow($model, 'WeigthID', CHtml::listData($data, 'WeightID', 'WeightNameFull'), array(
                                            'id' => 'Sportsmen_WeightID', 
                                            'empty' => '<'.Yii::t('controls', 'Choose weigth category').'>',
-                                           //'readonly'=>!isset($model->WeigthID) || empty($model->WeigthID), //true,
                                            'readonly'=>!isset($model->AgeID) || empty($model->AgeID), //true,
                                            )); 
 
 
-        echo $form->dropDownListRow($model, 'FstID', CHtml::listData(Fst::getList()/*model()->findAll()*/, 'FstID', 'FstName'), 
+        echo $form->dropDownListRow($model, 'FstID', CHtml::listData(Fst::getList(), 'FstID', 'FstName'), 
                                     array('empty' => '<'.Yii::t('controls', 'Choose FST').'>'
                                     )); 
-        echo $form->dropDownListRow($model, 'CategoryID', CHtml::listData(Sportcategory::getList() /*model()->findAll()*/, 'CategoryID', 'CategoryName'), 
+        echo $form->dropDownListRow($model, 'CategoryID', CHtml::listData(Sportcategory::getList() , 'CategoryID', 'CategoryName'), 
                                     array('empty' => '<'.Yii::t('controls', 'Choose category').'>'
                                     )); 
-        echo $form->dropDownListRow($model, 'AttestLevelID', CHtml::listData(Attestlevel::getList()/*model()->findAll()*/, 'AttestLevelID', 'AttestLevel'), 
+        echo $form->dropDownListRow($model, 'AttestLevelID', CHtml::listData(Attestlevel::getList(), 'AttestLevelID', 'AttestLevel'), 
                                     array('empty' => '<'.Yii::t('controls', 'Choose attest level').'>'
                                     )); 
 
       //тренеры
-        $data = Sportsmen::getCoachList($model->CommandID); //DebugBreak();
+        $data = Sportsmen::getCoachList($model->CommandID); 
         echo $form->dropDownListRow($model, 'Coach2ID', 
                             CHtml::listData($data, 'CoachID', 'CoachName'), 
                             array('id' => 'Sportsmen_Coach2ID', 
@@ -109,7 +98,6 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     $uploadModel = new PPhotoForm;
     $uploadModel->PhotoTitle = 'Фотография';
     $uploadModel->PhotosTitle = 'Фотографии';
-    //DebugBreak();
     if(!empty($model->photoid)) {        //if exists post_id (instance of POST)
         //$isTeaserPreload = true;        //set flags for loading photos
         $isPhotosPreloaded = true;
@@ -177,7 +165,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         ));    
     ?>
 
-<?php $this->endWidget(); //DebugBreak();
+<?php $this->endWidget(); 
     foreach($years as $db=>$year) {
         $age_array = array();
         foreach($ages as $age) {
@@ -219,4 +207,4 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     Yii::app()->clientScript->registerScript('category_dropdown', $js, CClientScript::POS_READY);
 ?>
 
-</div><!-- form -->
+</div>

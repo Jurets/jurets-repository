@@ -105,32 +105,20 @@ class Agecategory extends CActiveRecord
 		));
 	}
     
-    //Jurets: Переопределение магического метода получения значения поля !!!!!!!!!!1
-    /*public function __get($name) {
-        if ($name=='AgeNameYear')       
-           return $this->AgeNameYear(); 
-        else
-           return parent::__get($name);
-    }*/   
-    
-    
     //Jurets: получить название возрастной категории (по ID)
     public function getAgeNameYear() {
-        //$record = Agecategory::model()->findByPk($this->AgeID);
-        //if (isset($record) && !is_null($record)) {
-            $aname = $this->AgeName;
-            $ymin = $this->YearMin;
-            $ymax = $this->YearMax;
-            if (!is_null($ymin) || !is_null($ymax)) {
-                $aname .= ' (';
-                if (!is_null($ymin))
-                    $aname .= $ymin;
-                if (!is_null($ymax))
-                    $aname .= ' - '.$ymax;
-                $aname .= ' р.н.)';
-            }
-            return $aname;
-        //}
+        $aname = $this->AgeName;
+        $ymin = $this->YearMin;
+        $ymax = $this->YearMax;
+        if (!is_null($ymin) || !is_null($ymax)) {
+            $aname .= ' (';
+            if (!is_null($ymin))
+                $aname .= $ymin;
+            if (!is_null($ymax))
+                $aname .= ' - '.$ymax;
+            $aname .= ' р.н.)';
+        }
+        return $aname;
     }
 
 

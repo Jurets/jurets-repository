@@ -234,13 +234,6 @@ class Sportsmen extends CActiveRecord
     }
     
     //Jurets: получить название возрастной категории (по ID)
-/*    public function getAgeID() {
-        //$id = $this->WeigthID;
-        //$id = Weightcategory::model()->findByPk($this->WeigthID); 
-        return Weightcategory::model()->findByPk($this->WeigthID)->getAttribute('AgeID');
-    }   */
-
-    //Jurets: получить название возрастной категории (по ID)
     public function AgeName() {
         $data = Sportsmen::getAgesList();
       //пройтись по массиву и выбрать только нужный итем

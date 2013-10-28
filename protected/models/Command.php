@@ -143,7 +143,6 @@ class Command extends CActiveRecord
                   'condition'=>'competitionid = :id',
                   'params'=>array(':id'=>Yii::app()->competitionId),
                   'order'=>'CommandName ASC',
-                  //'limit'=>5,
             ),
         );    
     }

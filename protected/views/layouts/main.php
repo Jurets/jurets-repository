@@ -45,7 +45,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                     'url' => ($isExtendRole ? array($this->pathCompetition . '/competition/manage') : array($this->pathCompetition . '/competition/view')),
                 ),
                 //array('label'=>'Информация', 'url'=>array('/site/page', 'view'=>'about')),
-                array('label'=>Yii::t('fullnames', 'Commands')/*'Участники'*/, 'url'=>array($this->pathCompetition . '/command/index')),
+                array('label'=>Yii::t('fullnames', 'Commands'), 'url'=>($isExtendRole ? array($this->pathCompetition . '/command/manage') : array($this->pathCompetition . '/command/index'))),
                 array('label'=>'Взвешивание', 'url'=>array($this->pathCompetition . '/weightcategory/list')),
                 array('label'=>'Жеребьевка', 'url'=>array($this->pathCompetition . '/weightcategory/tosser')),
                 array('label'=>'Результаты', 'url'=>array($this->pathCompetition . '/weightcategory/results')),

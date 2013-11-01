@@ -1,5 +1,5 @@
 <?php
-//get params for application (from file "params.php")
+//get params for application - from file "params.php" and "params-local.php" (if you need it, check - if it exists)
 $root = dirname(__FILE__);
 $params = file_exists($root) ? require($root . DIRECTORY_SEPARATOR . 'params.php') : array();
 

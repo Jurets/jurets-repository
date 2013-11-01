@@ -120,6 +120,18 @@ class Sportsmen extends CActiveRecord
 		);
 	}
 
+    /**
+    * поведегния для модели
+    * 
+    */
+    public function behaviors()
+    {
+        return array(
+            // Classname => path to Class
+            'ActiveRecordLogableBehavior'=>
+                'application.behaviors.ActiveRecordLogableBehavior',
+        );
+    }    
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

@@ -28,6 +28,10 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         'federation',
         'club',
         //'status',
+        array(
+            'header'=>'Представитель',
+            'value'=>'$data->relUsers->UserFIO',
+        ),
         'participantcount',
         array(
             'header'=>'Подтв.',

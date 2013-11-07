@@ -198,7 +198,7 @@ class Competition extends CActiveRecord
         $sqlCommand = Yii::app()->db->createCommand()
             ->select(array(
                    'maxparticipants',
-                   '(SELECT COUNT(*) FROM sportsmen WHERE status = 1) as realcount')
+                   '(SELECT COUNT(*) FROM sportsmen S LEFT JOIN command C ON C.commandid = S.commandid WHERE C.competitionid = :id AND S.status = 1) as realcount')
             )->from('competition')
             ->where('id = :id')
             ->bindParam(':id', $competitionId);

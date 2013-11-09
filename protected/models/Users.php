@@ -48,7 +48,7 @@ class Users extends CActiveRecord
 			array('Email, firstname, lastname, country, city', 'required', 'on' => 'create'),
             array('UserName, Password, RoleID, firstname, lastname, country, city', 'required', 'on' => 'update'),
 			array('CommandID, Active, status', 'numerical', 'integerOnly'=>true),
-			array('UserName', 'length', 'max'=>20),
+			array('UserName', 'length', 'max'=>100),
             array('firstname, post, city', 'length', 'max'=>30),
 			array('Password, Salt, lastname, country, club', 'length', 'max'=>50),
 			array('UserFIO, federation, phone, Email', 'length', 'max'=>100),

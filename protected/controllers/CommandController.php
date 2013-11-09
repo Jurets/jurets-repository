@@ -267,7 +267,7 @@ class CommandController extends Controller //ParticipantController
 	 */
 	public function loadModel($id)
 	{
-		$model = Command::model()->findByPk($id);
+		$model = Command::model()->withstat()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'Не найдена команда с ИД: ' . $id);
 		return $model;

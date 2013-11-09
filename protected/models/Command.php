@@ -144,6 +144,11 @@ class Command extends CActiveRecord
                   'params'=>array(':id'=>Yii::app()->competitionId),
                   'order'=>'CommandName ASC',
             ),
+            'withstat'=>array(
+                'select' => 't.*, '.
+                    '(SELECT COUNT(*) FROM sportsmen WHERE sportsmen.commandid = t.commandid AND status = 1) as sportsmen_count, '.
+                    '(SELECT COUNT(*) FROM coach WHERE coach.commandid = t.commandid) as coach_count'
+            )
         );    
     }
 }

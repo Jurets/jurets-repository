@@ -3,12 +3,12 @@
 
 $cssFile = Yii::app()->baseUrl . '/css/tosser.css';
 Yii::app()->clientScript->registerCssFile($cssFile);
+?>
 
+<div>
+<?php $this->breadcrumbs = array('Список участников по категорям'); ?>
 
-$this->breadcrumbs=array(
-    'Список участников по категорям',
-);
-
+<?php
 Yii::app()->user->setFlash('info', 'Для просмотра списка спортсменов весовой категории выберите нужную вкладку с возрастной категорией (горизонтальный список <strong>вверху</strong>), а затем нужную весовую категорию (вертикальный список <strong>слева</strong>): справа отобразится список спортсменов выбранной весовой категории');
 Yii::app()->user->setFlash('success', 'Скачать все протоколы жеребьевки в архиве ZIP будет возможно позже');
 $this->widget('bootstrap.widgets.TbAlert', array(

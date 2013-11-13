@@ -122,10 +122,19 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 ?>
 
 	<?php if(isset($this->breadcrumbs)):?>
-		<?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			'links'=>$this->breadcrumbs,
-		)); ?><!-- breadcrumbs -->
-	<?php endif?>
+        <div style="float: right;"><?php $this->widget('bootstrap.widgets.TbButton', array(
+                    'label'=>'?',
+                    'type'=>'info',
+                    'htmlOptions'=>array('data-title'=>'A Title', 'data-content'=>'And here\'s some amazing content. It\'s very engaging. right?', 'rel'=>'popover', 'placement'=>'left'),
+                )); ?>
+        </div>
+		<div>
+            <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+			    'links'=>$this->breadcrumbs,
+		    )); ?>
+        </div>
+        <span style="overflow: hidden;"></span>
+	<?php endif ?>
 
 	<?php echo $content; ?>
 

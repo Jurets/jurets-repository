@@ -39,7 +39,7 @@ class SportsmenController extends ParticipantController
                 //'roles'=>array('admin','manager'),
             ),
             array('allow', // allow admin user to perform 'admin' and 'delete' actions
-                'actions'=>array('admin'),
+                'actions'=>array('admin', 'test'),
                 'users'=>array('admin'),
             ),
             array('deny',  // deny all users
@@ -389,4 +389,10 @@ class SportsmenController extends ParticipantController
         );
     }
     */
+    
+    
+    
+    public function actionTest() {
+        $this->render('test');
+    }
 }

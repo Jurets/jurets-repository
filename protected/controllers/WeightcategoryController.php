@@ -216,10 +216,12 @@ class WeightcategoryController extends Controller
             foreach ($weigths as $wid=>$weigth) { //DebugBreak();
                 //$sportsmens = $this->weightlist($weigth->WeightID);  
                 $sportsmens = $this->filterWeightlist($allSportsmens, $weigth->WeightID);
+                $count = $this->countWeightlist($allSportsmens, $weigth->WeightID);
                 $arrcategory[$aid]['children'][$wid] = array(
                     'id' => $weigth->WeightID,
                     'text' => $weigth->WeightNameFull,
                     'sportsmens' => $sportsmens,
+                    'count' => $count,
                 );
             }
         }
@@ -286,6 +288,16 @@ class WeightcategoryController extends Controller
         ));    
         return $dataProvider;
     }          
+
+    //выдать кол-во спортсменов весовой категории
+    public function countWeightlist($sportsmens, $wid) {
+        $filteredList = array();
+        foreach($sportsmens as $index => $item) {
+            if ($item['WeigthID'] == $wid)
+                $filteredList[] = $item;
+        }
+        return count($filteredList);
+    }    
     
     //выдать список спортсменов весовой категории
     public function filterWeightlist($sportsmens, $wid) {

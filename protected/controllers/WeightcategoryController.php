@@ -28,7 +28,7 @@ class WeightcategoryController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('tosser', 'tosserold', 'list', 'results', 'getweightlist'/*, 'index','view'*/),
+				'actions'=>array('tosser', 'tosserold', 'list', 'results', 'getweightlist','category'/*, 'index','view'*/),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -196,7 +196,7 @@ class WeightcategoryController extends Controller
     
 
   //ДЕЙСТВИЕ: смотреть жеребъёвку
-    public function actionList() {// DebugBreak();
+    private function getList() {// DebugBreak();
         $arrcategory = array();
         //$allSportsmens = $this->allweightlist();
         $sqlCommand = Sportsmen::sqlTosserList();
@@ -225,7 +225,12 @@ class WeightcategoryController extends Controller
                 );
             }
         }
-        $this->render('list', array('arrcategory'=>$arrcategory));
+        return $arrcategory;
+    }
+    
+  //ДЕЙСТВИЕ: смотреть жеребъёвку
+    public function actionList() {// DebugBreak();
+        $this->render('list', array('arrcategory'=>$this->getList()));
     }
 
   //ДЕЙСТВИЕ: смотреть жеребъёвку
@@ -428,6 +433,11 @@ class WeightcategoryController extends Controller
         $this->renderPartial('_weigthsbyage',array(
             'dataProvider'=>$dataProvider,
         ));
+    }
+    
+    //список + кол-во по категориям
+    public function actionCategory() {
+        $this->render('category', array('arrcategory'=>$this->getList()));
     }
 }
 

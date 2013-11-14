@@ -122,7 +122,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 ?>
 
     <?php if(isset($this->breadcrumbs)) { 
-        if(isset($this->popTopHelp) && !empty($this->popTopHelp)) {DebugBreak(); ?>
+        if(isset($this->popTopHelp) && !empty($this->popTopHelp)) {//DebugBreak(); ?>
             <div style="float: right;">
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
                         'label'=>'?',

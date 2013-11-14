@@ -121,20 +121,29 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 
 ?>
 
-	<?php if(isset($this->breadcrumbs)):?>
-        <div style="float: right;"><?php $this->widget('bootstrap.widgets.TbButton', array(
-                    'label'=>'?',
-                    'type'=>'info',
-                    'htmlOptions'=>array('data-title'=>'A Title', 'data-content'=>'And here\'s some amazing content. It\'s very engaging. right?', 'rel'=>'popover', 'placement'=>'left'),
-                )); ?>
-        </div>
+    <?php if(isset($this->breadcrumbs)) { 
+        if(isset($this->popTopHelp) && !empty($this->popTopHelp)) {DebugBreak(); ?>
+            <div style="float: right;">
+                <?php $this->widget('bootstrap.widgets.TbButton', array(
+                        'label'=>'?',
+                        'type'=>'info',
+                        'htmlOptions'=>array(
+                            'id'=>'btnTopHelp',
+                            'data-title'=>isset($this->popTopHelp['title']) ? $this->popTopHelp['title'] : 'Подсказка', 
+                            'data-content'=>isset($this->popTopHelp['data']) ? $this->popTopHelp['data'] : '', 
+                            'rel'=>'popover', 
+                            'data-placement'=>'left',
+                        ),
+                    )); ?>
+            </div>
+        <?php } ?>
 		<div>
             <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			    'links'=>$this->breadcrumbs,
 		    )); ?>
         </div>
         <span style="overflow: hidden;"></span>
-	<?php endif ?>
+	<?php } ?>
 
 	<?php echo $content; ?>
 
@@ -145,26 +154,6 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
 		All Rights Reserved.<br/>
 		<?php echo Yii::powered(); ?>
 	</div>-->
-<?php
-/*$this->widget('bootstrap.widgets.TbNavbar',array(
-    'type'=>'inverse', // null or 'inverse'
-    'brand'=>'Главная',
-    'brandUrl'=>$this->createUrl('/site/index'),
-    'fixed'=>false, //'bottom',
-    'items'=>array(
-        array(
-            'class'=>'bootstrap.widgets.TbMenu',
-            'items'=>array(
-                array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>$isGuest),
-                array('label'=>'Выход ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!$isGuest),
-                array('label'=>'Регистрация', 'url'=>array('/users/create'), 'visible'=>$isGuest),
-                array('label'=>'Мой Кабинет', 'url'=>array('/users/mycabinet')),
-            ),
-        ),
-    ),
-));*/ 
-    
-?>    
 <!-- footer -->
 
 </div><!-- page -->

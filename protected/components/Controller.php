@@ -24,6 +24,9 @@ class Controller extends CController
 	 */
 	public $breadcrumbs=array();
     
+    //подсказка вверху в бредкрамбсах справа
+    public $popTopHelp = array();
+
     /**
     * Путь для соревнования (для формирования url)
     * 

@@ -32,7 +32,7 @@ class CompetitionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update', 'manage'),
+				'actions'=>array('update', 'manage', 'exportcsv'),
                 'roles'=>array('admin','manager'),
 				//'users'=>array('@'),
 			),
@@ -88,6 +88,21 @@ class CompetitionController extends Controller
         ));
     }
 
+    public function actionExportcsv()
+    {//DebugBreak();
+        Yii::import('ext.csv.ECSVExport');
+        $outputFile = 'participants.csv';
+        $cmd = Yii::app()->db->createCommand("SELECT * FROM fulllist WHERE competitionid = " . Yii::app()->competitionId);
+        $csv = new ECSVExport($cmd);
+        $csv->delimiter = ';';
+        $csv->setOutputFile($outputFile);
+        $csv->toCSV(); // returns string by default
+         
+        //echo file_get_contents($outputFile);
+        $content = file_get_contents($outputFile);
+        Yii::app()->getRequest()->sendFile($outputFile, $content, "text/csv", false);
+    }
+    
 	//ДЕЙСТВИЕ: редактирвоание
 	public function actionUpdate()
 	{

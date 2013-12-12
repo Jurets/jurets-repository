@@ -33,6 +33,7 @@
                     <td>Назначение</td>
                     <td><?=$_POST['ik_desc']?></td>
                 </tr>
+            </tbody>
         </table>
         
     <?php }

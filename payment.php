@@ -2,7 +2,7 @@
 <a href="http://www.interkassa.com/" title="INTERKASSA" target="_blank">
     <img src="http://www.interkassa.com/img/ik_88x31_01.gif" alt="INTERKASSA" />
 </a>
-<p>0.1 USD</p>
+<p>валюта: USD</p>
 
 <?php //DebugBreak();
     //$num = rand(2, 20);
@@ -25,7 +25,7 @@
 <form id="payment" name="payment" method="post" action="https://sci.interkassa.com/" enctype="utf-8">
     <input type="hidden" name="ik_co_id" value="52a86a04bf4efcbb6efd1e6f" />
     <input type="hidden" name="ik_pm_no" value="<?=$ik_lastpay_num?>" />
-    <input type="hidden" name="ik_am" value="0.1" />
+    Сумма <input type="text" name="ik_am" value="25" placeholder="Сумма" /><br>
     <input type="hidden" name="ik_cur" value="USD" />
     <input type="hidden" name="ik_desc" value="оплата работы секретаря" />
     <input type="hidden" name="ik_suc_u" value="http://tkd-card.com.ua/paysuccess.php" />
@@ -37,8 +37,8 @@
     <input type="hidden" name="ik_exp" value="2013-12-15" />
     <input type="hidden" name="ik_loc" value="ru" />
     <input type="hidden" name="ik_enc" value="utf-8" />
-    <input type="text" name="ik_x_payer_name" value="payer1" />
-    <input type="text" name="ik_x_payer_email" value="email1@tmp.com.ua" />
+    Плательщик <input type="text" name="ik_x_payer_name" value="" placeholder="Имя, фамилия" /><br>
+    E-mail <input type="text" name="ik_x_payer_email" value="" placeholder="E-mail плательщика"/><br>
     <input type="submit" value="Оплатить">
 </form>
 

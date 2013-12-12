@@ -1,4 +1,5 @@
 <h1>Ошибка при совершении платежа!</h1>
+<a href="http://tkd-card.com.ua/payment.php">вернуться на страницу оплаты</a>
 <?php
 //DebugBreak();
     $filename = 'saveddata.json';

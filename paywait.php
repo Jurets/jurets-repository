@@ -1,4 +1,4 @@
-<h1>Ошибка при совершении платежа!</h1>
+<h1>Ожидание платежа</h1>
 <?php
 //DebugBreak();
     $filename = 'saveddata.json';
@@ -15,17 +15,7 @@
     $data = json_encode($data);
     file_put_contents($filename, $data);
 
-    if (!empty($_POST)) {
-        //чтото делаем
-        //print_r($_POST); ?>
-        <table>
-            <tbody>
-            <?php foreach($_POST as $key=>$value) { ?>
-                <tr>
-                    <td><?=$key?></td>
-                    <td><?=$value?></td>
-                </tr>
-            <?php } ?>
-            <tbody>
-        </table>
-<?php } ?>
+if (isset($_POST)) {
+    print_r($_POST);
+}
+?>

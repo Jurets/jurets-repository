@@ -20,12 +20,14 @@
         //print_r($_POST); ?>
         <table>
             <tbody>
-            <?php foreach($_POST as $key=>$value) { ?>
+            <?php 
+            foreach($_POST as $key=>$value) { 
+                if ($key != 'ik_co_id') { ?>
                 <tr>
                     <td><?=$key?></td>
                     <td><?=$value?></td>
                 </tr>
-            <?php } ?>
+            <?php } } ?>
             <tbody>
         </table>
 <?php } ?>

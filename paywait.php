@@ -15,7 +15,19 @@
     $data = json_encode($data);
     file_put_contents($filename, $data);
 
-if (isset($_POST)) {
-    print_r($_POST);
-}
-?>
+    if (!empty($_POST)) {
+        //чтото делаем
+        //print_r($_POST); ?>
+        <table>
+            <tbody>
+            <?php 
+            foreach($_POST as $key=>$value) { 
+                if ($key != 'ik_co_id') { ?>
+                <tr>
+                    <td><?=$key?></td>
+                    <td><?=$value?></td>
+                </tr>
+            <?php } } ?>
+            <tbody>
+        </table>
+<?php } ?>

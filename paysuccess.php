@@ -1,4 +1,5 @@
 <h1>Платёж успешно завершён!</h1>
+<a href="http://tkd-card.com.ua/payment.php">вернуться на страницу оплаты</a>
 <?php
     //DebugBreak();
     $filename = 'saveddata.json';
@@ -17,7 +18,23 @@
 
     if (!empty($_POST)) {
         //чтото делаем
-        print_r($_POST);
-    }
+        //print_r($_POST); ?>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Дата платежа</td>
+                    <td><?=$_POST['ik_inv_prc']?></td>
+                </tr>
+                <tr>
+                    <td>Сумма</td>
+                    <td><?=$_POST['ik_am']?></td>
+                </tr> 
+                <tr>
+                    <td>Назначение</td>
+                    <td><?=$_POST['ik_desc']?></td>
+                </tr>
+        </table>
+        
+    <?php }
 
 ?>

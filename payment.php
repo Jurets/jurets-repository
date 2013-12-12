@@ -1,4 +1,7 @@
 <h1>Оплата за работу секретаря</h1>
+<a href="http://www.interkassa.com/" title="INTERKASSA" target="_blank">
+    <img src="http://www.interkassa.com/img/ik_88x31_01.gif" alt="INTERKASSA" />
+</a>
 <p>0.1 USD</p>
 
 <?php //DebugBreak();
@@ -34,5 +37,11 @@
     <input type="hidden" name="ik_exp" value="2013-12-15" />
     <input type="hidden" name="ik_loc" value="ru" />
     <input type="hidden" name="ik_enc" value="utf-8" />
+    <input type="text" name="ik_x_payer_name" value="payer1" />
+    <input type="text" name="ik_x_payer_email" value="email1@tmp.com.ua" />
     <input type="submit" value="Оплатить">
 </form>
+
+<script type="text/javascript">
+
+</script>

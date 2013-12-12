@@ -1,6 +1,6 @@
 <h1>Платёж успешно завершён!</h1>
 <?php
-    DebugBreak();
+    //DebugBreak();
     $filename = 'saveddata.json';
     if (is_file($filename)) {
         $data = file_get_contents($filename);
@@ -17,6 +17,7 @@
 
     if (!empty($_POST)) {
         //чтото делаем
+        print_r($_POST);
     }
 
 ?>

@@ -1,9 +1,27 @@
 <h1>Оплата за работу секретаря</h1>
-<p>25 USD</p>
+<p>0.1 USD</p>
+
+<?php //DebugBreak();
+    //$num = rand(2, 20);
+    $filename = 'saveddata.json';
+    if (is_file($filename)) {
+        $data = file_get_contents($filename);
+        $data = json_decode($data, true);
+        $ik_lastpay_num = $data['ik_lastpay_num'];
+    } else {
+        $ik_lastpay_num = 0;
+        $data = array('ik_lastpay_num'=>$ik_lastpay_num);
+        $data = json_encode($data);
+        file_put_contents($filename, $data);
+    }
+    $ik_lastpay_num = $ik_lastpay_num + 1;
+    //$ik_lastpay_num = 'tc_' . printf("[%04s]\n", $ik_lastpay_num);
+    $ik_lastpay_num = 'tc_' . sprintf("%04d", $ik_lastpay_num);
+?>
 
 <form id="payment" name="payment" method="post" action="https://sci.interkassa.com/" enctype="utf-8">
     <input type="hidden" name="ik_co_id" value="52a86a04bf4efcbb6efd1e6f" />
-    <input type="hidden" name="ik_pm_no" value="tc_0001" />
+    <input type="hidden" name="ik_pm_no" value="<?=$ik_lastpay_num?>" />
     <input type="hidden" name="ik_am" value="0.1" />
     <input type="hidden" name="ik_cur" value="USD" />
     <input type="hidden" name="ik_desc" value="оплата работы секретаря" />

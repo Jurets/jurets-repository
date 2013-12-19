@@ -47,7 +47,7 @@ class Competition extends CActiveRecord
 			array('id, courtcount, isfiling, maxparticipants', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('title, place, addinfo', 'length', 'max'=>255),
-			array('begindate, enddate, filingbegin, filingend', 'safe'),
+			array('begindate, enddate, filingbegin, filingend, invitation', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, title, begindate, enddate, place, courtcount, filingbegin, filingend, isfiling, maxparticipants, addinfo', 'safe', 'on'=>'search'),

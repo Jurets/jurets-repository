@@ -103,10 +103,12 @@ class CompetitionController extends Controller
         Yii::app()->getRequest()->sendFile($outputFile, $content, "text/csv", false);
     }
     
-	//ДЕЙСТВИЕ: редактирвоание
-	public function actionUpdate()
-	{
-		$model=$this->loadModel(0);
+	//ДЕЙСТВИЕ: редактирование
+	public function actionUpdate($id = null) {
+		if ($id === null) {
+            $id = Yii::app()->competitionId;
+        }
+        $model=$this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -126,7 +128,7 @@ class CompetitionController extends Controller
 	//функция: загрузить модель
 	public function loadModel($id = 0)
 	{
-		$model=Competition::model()->findByPk(0);
+		$model=Competition::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');
 		return $model;

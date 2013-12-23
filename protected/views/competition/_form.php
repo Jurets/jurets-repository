@@ -4,7 +4,7 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<!--<div class="form">-->
 
 <?php 
 /*$form=$this->beginWidget('CActiveForm', array(
@@ -12,20 +12,21 @@
 	'enableAjaxValidation'=>false,
 )); */
 
-$form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+/*$form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'competition-form',
     'type'=>'horizontal',
     'enableAjaxValidation'=>false,
     'htmlOptions'=>array('class'=>'well'),
-)); 
+));*/ 
 
 ?>
 
-	<p class="note"><?=Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>'))?></p>
+<p class="note"><?=Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>'))?></p>
 
 <?php 
     //echo $form->errorSummary($model); 
-    echo $form->hiddenField($model, 'id');
+    //echo $form->hiddenField($model, 'id');
+    
         echo $form->textFieldRow($model,'name',array('size'=>50,'maxlength'=>50, 'class'=>'span4'));
         echo $form->textFieldRow($model,'title',array('size'=>60,'maxlength'=>255, 'class'=>'span6'));
 
@@ -83,14 +84,14 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                 ),
         ));    
 
-        echo $form->errorSummary($model); 
+        //echo $form->errorSummary($model); 
         
 ?>
 
 	<!--<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить'); ?>
+		<?php //echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить'); ?>
 	</div>  -->
 
-<?php $this->endWidget(); ?>
+<?php //$this->endWidget(); ?>
 
-</div><!-- form -->
+<!-- </div>form -->

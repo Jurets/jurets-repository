@@ -52,6 +52,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                 'direction' => 'ltr',
                 'minHeight'=>600,
                 'maxHeight'=>600,
+                'linebreaks'=>true,
+                'allowedTags'=>array('p', 'div', 'a', 'br', 'img', 'h1'),
             )
         ), true);
         $tabs[] = array('label'=>'Главная страница', 'content'=>$content, 'active'=>false); 

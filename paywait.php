@@ -1,7 +1,7 @@
-<h1>Платёж успешно завершён!</h1>
+<h1>Ожидание платежа</h1>
 <a href="http://tkd-card.com.ua/payment.php">вернуться на страницу оплаты</a>
 <?php
-    //DebugBreak();
+//DebugBreak();
     $filename = 'saveddata.json';
     if (is_file($filename)) {
         $data = file_get_contents($filename);
@@ -21,21 +21,14 @@
         //print_r($_POST); ?>
         <table>
             <tbody>
+            <?php 
+            foreach($_POST as $key=>$value) { 
+                if ($key != 'ik_co_id') { ?>
                 <tr>
-                    <td>Дата платежа</td>
-                    <td><?=$_POST['ik_inv_prc']?></td>
+                    <td><?=$key?></td>
+                    <td><?=$value?></td>
                 </tr>
-                <tr>
-                    <td>Сумма</td>
-                    <td><?=$_POST['ik_am']?></td>
-                </tr> 
-                <tr>
-                    <td>Назначение</td>
-                    <td><?=$_POST['ik_desc']?></td>
-                </tr>
-            </tbody>
+            <?php } } ?>
+            <tbody>
         </table>
-        
-    <?php }
-
-?>
+<?php } ?>

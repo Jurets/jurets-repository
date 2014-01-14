@@ -65,7 +65,7 @@ class Proposal extends CActiveRecord
 	}
     
     //ограничение на максимальное кол-во участников
-    public function checkMaxParticipants($attribute, $params) {DebugBreak();
+    public function checkMaxParticipants($attribute, $params) {
         if (isset(Yii::app()->params['maxParticipants'])) {
             $max = Yii::app()->params['maxParticipants'];
             if (!empty($max) && is_integer($max) && $this->participantcount > $max)

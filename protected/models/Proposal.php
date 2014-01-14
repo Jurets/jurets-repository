@@ -49,7 +49,8 @@ class Proposal extends CActiveRecord
 		return array(
             //array('commandname, commandid, country, city, participantcount', 'required'),
 			array('commandname, country, city, participantcount', 'required'),
-			array('participantcount, status', 'numerical', 'integerOnly'=>true),
+            array('participantcount, status', 'numerical', 'integerOnly'=>true),
+			array('participantcount', 'checkMaxParticipants'),
 			array('commandname, federation', 'length', 'max'=>100),
 			array('city', 'length', 'max'=>30),
 			array('country, club', 'length', 'max'=>50),
@@ -62,13 +63,21 @@ class Proposal extends CActiveRecord
 			array('propid, commandname, federation, post, country, city, club, address, participantcount, comment, status', 'safe', 'on'=>'search'),
 		);
 	}
-
+    
+    //ограничение на максимальное кол-во участников
+    public function checkMaxParticipants($attribute, $params) {DebugBreak();
+        if (isset(Yii::app()->params['maxParticipants'])) {
+            $max = Yii::app()->params['maxParticipants'];
+            if (!empty($max) && is_integer($max) && $this->participantcount > $max)
+                $this->addError('participantcount', 'Максимальное количество участников в заявке не должно превышать ' . $max);
+        }
+    }
     
     public function checkEmailForExist($attribute, $params) {
         //$this->_identity = new UserIdentity($this->username,$this->password);
         if (User::model()->find('Email = :email', array(':email'=>$this->email)))
             $this->addError('email','Данный адрес email уже зарегистрирован');
-     }
+    }
 
     public function checkLoginForExist($attribute, $params) {
         //$this->_identity = new UserIdentity($this->username,$this->password);

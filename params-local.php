@@ -20,7 +20,10 @@ return array(
     'uploadLoc' =>'http://localhost/wtfweb/trunk/uploads/',
     'defaultPhoto' =>'http://localhost/wtfweb/trunk/images/nophoto.png',
     
-    'defaultCompetitionID' => 2,
+    //ИД текущего соревнования (временная мера, до режима "мульти-компетишн")
+    'defaultCompetitionID' => 3, 
     
+    //ограничение на максимальное кол-во участников в ЗАЯВКЕ
+    'maxParticipants' => 50, 
 );
 ?>

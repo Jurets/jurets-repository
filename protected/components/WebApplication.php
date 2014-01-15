@@ -13,7 +13,7 @@ class WebApplication extends CWebApplication
     private $_defaultCompId = 0;     //ИД соревнования по умолчанию
     private $_competitionId = null;  //ИД запрашиваемого соревнования
     
-    public function getCompetitionId() {//DebugBreak();
+    public function getCompetitionId() {
         if (empty($this->_competitionId)) {
             $path = Yii::app()->request->getParam('path');
             if (isset($path)) {

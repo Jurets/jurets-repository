@@ -113,11 +113,11 @@ class CompetitionController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Competition']))
-		{
+		if(isset($_POST['Competition'])) {
 			$model->attributes=$_POST['Competition'];
-			if($model->save())
+			if($model->save()) {
 				$this->redirect(array('manage','id'=>$model->id));
+            }
 		}
 
 		$this->render('update',array(

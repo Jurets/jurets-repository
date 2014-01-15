@@ -66,6 +66,7 @@ class Coach extends CActiveRecord
 			'CoachID' => 'ИД тренера',
 			'CommandID' => 'Команда',
 			'CoachName' => 'Ф.И.О. тренера',
+            'Commandname' => 'Команда',
 		);
 	}
 
@@ -91,7 +92,13 @@ class Coach extends CActiveRecord
     
     //СТАТ: узнать количество спортсменов
     static function getCoachCount() {
-        $count = Yii::app()->db->createCommand('SELECT COUNT(*) FROM coach')->queryScalar();
+        $sqlCommand = Yii::app()->db->createCommand()
+            ->select('COUNT(*)')
+            ->from('coach C')
+            ->leftJoin('command D', 'D.commandid = C.commandid')
+            ->where('D.competitionid = :competitionid')
+            ->bindParam(':competitionid', $competitionId, PDO::PARAM_INT);
+        $count = $sqlCommand->queryScalar();
         return $count;
     }
     
@@ -108,6 +115,9 @@ class Coach extends CActiveRecord
             $sqlCommand->where('C.commandid = '.$CommandID);
         } else {
             $sqlCommand->leftJoin('command D', 'D.commandid = C.commandid');
+            $sqlCommand->where('D.competitionid = :competitionid');
+            $competitionId = Yii::app()->competitionId;
+            $sqlCommand->bindParam(':competitionid', $competitionId, PDO::PARAM_INT);
         }
         return $sqlCommand;
     }

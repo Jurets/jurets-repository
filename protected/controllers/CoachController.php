@@ -174,11 +174,15 @@ class CoachController extends ParticipantController
         $sqlCommand = Coach::sqlCoachList();
         $dataProvider = new CSqlDataProvider($sqlCommand->text, array(
             'totalItemCount'=>$count,
+            'keyField'=>'CoachID',
             /*'sort'=>array(
                 'attributes'=>array(
                     'Fullname',
                 ),
             ),*/
+            'params'=>array(
+                ':competitionid'=>Yii::app()->competitionId, 
+            ),
             'pagination'=>array(
                 'pageSize'=>20,
             ),

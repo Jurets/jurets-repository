@@ -1,6 +1,6 @@
 <?php
 $myCommandID = Yii::app()->user->getCommandid(); //ИД Моей команды
-$isMyCommand = !Yii::app()->user->isGuest && ($commandid == $myCommandID);
+$isMyCommand = !Yii::app()->user->isGuest && (isset($commandid) && $commandid == $myCommandID);
 $isAccess = Yii::app()->user->isExtendRole() || $isMyCommand;
 
 $arrColumns = array(

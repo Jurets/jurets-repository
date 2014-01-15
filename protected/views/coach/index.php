@@ -15,7 +15,7 @@ $this->renderPartial('/site/_delegate');
 <?php 
     $this->renderPartial('_coach', array(
         //'sportsmen'=>$model->relSportsmen,
-              'commandid'=>$commandid,
+        //      'commandid'=>$commandid,
               'dataProvider'=>$dataProvider,
               ));
 

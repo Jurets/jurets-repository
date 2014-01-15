@@ -19,19 +19,13 @@ $this->renderPartial('/site/manager');
 <div class="form">
 
 <?php 
-/*$form=$this->beginWidget('CActiveForm', array(
-    'id'=>'competition-form',
-    'enableAjaxValidation'=>false,
-)); */
-
 $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'competition-form',
     'type'=>'horizontal',
     'enableAjaxValidation'=>false,
     'htmlOptions'=>array('class'=>'well'),
 )); 
-?>
-    <?php 
+
         echo $form->errorSummary($model); 
         echo $form->hiddenField($model, 'id');
 
@@ -59,8 +53,9 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                     'ul', 'ol', 'li', 
                     'b', 'i', 'u', 'strike',
                 ),
+                'changeCallback' => 'js:function(html){$("#Competition_isInviteChanged").attr("value", "1");}',
             )
-        ), true);
+        ), true) . '<br>';
         $tabs[] = array('label'=>'Главная страница', 'content'=>$content, 'active'=>false); 
         
         //вывести Табы для редактирования соревнования
@@ -69,6 +64,15 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             'placement'=>'above', // 'above', 'right', 'below' or 'left'
             'tabs'=>$tabs,
         ));
+        
+        //кнопка сабмита
+        $this->widget('bootstrap.widgets.TbButton', array(
+            'label'=>($model->isNewRecord ? Yii::t('controls', 'Create') : Yii::t('controls', 'Save')), 'type'=>'primary',
+            'buttonType'=>'submit',
+            'htmlOptions'=>array(
+                //'onclick'=>'$("#Sportsmen_CommandID").attr("disabled", false)',
+                ),
+        ));        
     ?>
 
     <!--<div class="row buttons">

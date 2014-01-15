@@ -115,6 +115,9 @@ class CompetitionController extends Controller
 
 		if(isset($_POST['Competition'])) {
 			$model->attributes=$_POST['Competition'];
+            if ($model->isInviteChanged) { //если было изменение главной страницы - то сохраняем его
+                $model->invitation = $_POST['Competition']['invitation'];
+            }
 			if($model->save()) {
 				$this->redirect(array('manage','id'=>$model->id));
             }

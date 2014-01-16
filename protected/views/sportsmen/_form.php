@@ -150,34 +150,54 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 ?>
 <!--</div> -->
 <?php
-
-//----------------------
-        
+        //---------------------- Кнопки
         $this->widget('bootstrap.widgets.TbButton', array(
-            'label'=>($model->isNewRecord ? Yii::t('controls', 'Create') : Yii::t('controls', 'Save')), 
+            'label'=>Yii::t('controls', 'Save'),
             'type'=>'primary',
             'buttonType'=>'submit',
             'htmlOptions'=>array(
-                //'data-toggle'=>'modal', 'data-target'=>'#myModal',
-                //'data-content'=>$form->errorSummary($model), 
+                'name'=>'save_exit',
+                'title'=>($model->isNewRecord ? Yii::t('controls', 'Добавить спортсмена') : Yii::t('controls', 'Сохранить изменения')),
+                'style'=>'margin-left: 20px;',
                 'onclick'=>'$("#Sportsmen_CommandID").attr("disabled", false)',
-                ),
-        ));    
-    ?>
+            ),
+        ));        
 
-<?php $this->endWidget(); 
+        if ($model->isNewRecord) {
+            $this->widget('bootstrap.widgets.TbButton', array(
+                'label'=>Yii::t('controls', 'Сохранить + новый'), 
+                'type'=>'primary',
+                'buttonType'=>'submit',
+                'htmlOptions'=>array(
+                    'name'=>'save_new',
+                    'title'=>Yii::t('controls', 'Сохранить изменения и Добавить нового спортсмена'),
+                    'style'=>'margin-left: 20px;',
+                    'onclick'=>'$("#Sportsmen_CommandID").attr("disabled", false)',
+                ),
+            ));        
+        }
+        
+$this->endWidget(); //form
+?>
+
+<?php 
+//подготовить данные для формы
+
+    //год рождения
     foreach($years as $db=>$year) {
         $age_array = array();
         foreach($ages as $age) {
             if ($age->YearMin <= $year && $year <= $age->YearMax)
                 $age_array[] = $age;
         }
+        //возрастные категории
         $age_array = CHtml::listData($age_array, 'AgeID', 'AgeNameYear');
         //$age_array = array_merge(array('empty' => '<'.Yii::t('controls', 'Choose age category').'>'), $age_array);
         $age_array = CMap::mergeArray(array('empty' => '<'.Yii::t('controls', 'Choose age category').'>'), $age_array);
         echo CHTML::dropDownList('ages_byyear_' . $year, null, $age_array, array('style'=>'display: none'));
     }
     
+    //весовые категории - по возрастным
     foreach($ages as $age) {
         $weigths = $age->relWeigths;
         $weigths = CHtml::listData($weigths, 'WeightID', 'WeightNameFull');

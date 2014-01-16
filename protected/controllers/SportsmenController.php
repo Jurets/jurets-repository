@@ -243,6 +243,8 @@ class SportsmenController extends ParticipantController
         $model = new Sportsmen;
         $model->CommandID = $id;  //присвоить модели ИД команды
 
+        $command = Command::model()->findByPk($id);
+        
         //если пришли данные из формы
         if (isset($_POST['Sportsmen']))        
         {
@@ -261,17 +263,21 @@ class SportsmenController extends ParticipantController
                   }
                }
             } 
-
+            
             if($model->save()) {
                 //$this->redirect(array('/command/view','id'=>$id, 'tab'=>'1'));
                 //$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/command/index'));
                 Yii::app()->user->setFlash('success', 'Новый спортсмен успешно добавлен: ' . $model->LastName . ' ' . $model->FirstName);
-                $this->redirect(array('/sportsmen/create', 'id'=>$id));
+                if (isset($_POST['save_new'])) {  //если была нажата кнопка "добавить и нового"
+                    $this->redirect(array('/sportsmen/create', 'id'=>$id));
+                } else if (isset($_POST['save_exit'])) { //если была нажата кнопка "добавить и вернуться"
+                    $this->redirect(array('command/view', 'id'=>$command->CommandID));
+                }
             }
         }
         
         $breadcrumbs = array('Команды'=>array('command/index'));
-        $command = Command::model()->findByPk($id);
+        //$command = Command::model()->findByPk($id);
         if (isset($command))
             $breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$command->CommandID)));
         //$breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$id)));

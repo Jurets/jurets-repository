@@ -63,7 +63,7 @@ class CommandController extends Controller //ParticipantController
         $tabnum = Yii::app()->request->getParam('tab');
         $tabnum = !empty($tabnum) ? $tabnum : 1;
         //DebugBreak();
-        $model = $this->loadModel($id);
+        $model = $this->loadModelAll($id);
         
 //        $criteria = Command::commandCriteria();
 //        $criteria->compare('CommandID',$id);
@@ -273,7 +273,16 @@ class CommandController extends Controller //ParticipantController
 		return $model;
 	}
 
-	/**
+    
+    public function loadModelAll($id)
+    {
+        $model = Command::model()->with('relProposal', 'relProposal.relUsers')->withstat()->findByPk($id);
+        if($model===null)
+            throw new CHttpException(404,'Не найдена команда с ИД: ' . $id);
+        return $model;
+    }
+    
+    /**
 	 * Performs the AJAX validation.
 	 * @param CModel the model to be validated
 	 */

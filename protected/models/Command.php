@@ -62,7 +62,8 @@ class Command extends CActiveRecord
             'relCoach' => array(self::HAS_MANY, 'Coach', 'CommandID'),
             'sportsmenCount' => array(self::STAT, 'Sportsmen', 'CommandID'),
             'coachCount' => array(self::STAT, 'Coach', 'CommandID'),
-            'relProposal' => array(self::HAS_MANY, 'Proposal', 'commandid'),
+            //'relProposal' => array(self::HAS_MANY, 'Proposal', 'commandid'), //схему "1 команда-много заявок" пока не применяем
+            'relProposal' => array(self::HAS_ONE, 'Proposal', 'commandid'),
         );
     }
 

@@ -170,6 +170,7 @@ return array_merge(array(
     'fromEmail' => 'noreply@competition.ftu.com.ua',
     
     'errorcodes' => array(
+        400 => 'Ошибка',
         401 => 'Доступ запрещен',
         402 => 'Ограничение соревнования',
         409 => 'Редактирование информации запрещено',

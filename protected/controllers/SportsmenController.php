@@ -223,7 +223,7 @@ class SportsmenController extends ParticipantController
                 ':competitionid'=>Yii::app()->competitionId, 
                 'userid' => Yii::app()->userid)
             );
-            if (isset($proposal))
+            if (isset($proposal)) 
                 $status = $proposal->status;
             if (!isset($status))
                 throw new CHttpException(401, "Запрещено добавление спортсменов! Вначале необходимо подать заявку на соревнование!\r\n".
@@ -231,6 +231,10 @@ class SportsmenController extends ParticipantController
             if ($status <> Proposal::STATUS_ACTIVE)
                 throw new CHttpException(400, "Запрещено добавление спортсменов! Ваша заявка не подтверждена!"."\n\r".
                     "Для разрешения проблемы свяжитесь с организаторами соревнований");
+            if ($proposal->participantcount >= Yii::app()->params['maxParticipants']) {
+                throw new CHttpException(400, "Запрещено добавление участников больше, чем максимально допустимое количество: ".Yii::app()->params['maxParticipants']."! \n\r".
+                    "Для разрешения проблемы свяжитесь с организаторами соревнований");
+            }
             else {
               //узнать ИД команды по текущему юзеру и запихнуть в модель
                 $myCommandID = Yii::app()->user->getCommandid();

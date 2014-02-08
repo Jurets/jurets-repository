@@ -30,6 +30,7 @@ $docpath = Yii::app()->baseUrl.'/document/';
 
 <?php
 
+if (false) {  /////////////////////////////////////ВРЕМЕННО!!!!!!
  if (!empty($arrcategory)) {
   //цикл по возрастным категориям - сформировать табы по возрастам
     foreach ($arrcategory as $aid=>$age) {  
@@ -65,21 +66,22 @@ $docpath = Yii::app()->baseUrl.'/document/';
 } else { 
 ?>
 <p style="color: maroon; font-weight: bold;">Внимание! Списки спортсменов по категориям временно не отображаются. Просим прощения за временные неудобства...</p>
-<?php } ?>
+<?php } } ?>
 
 </div>
 
 <!--<p>Чтобы скачать необходимый протокол - выберите тип документа (Распаровка или Результат), затем нужную возрастную категорию и кликните по соответствующей ссылке ниже</p>-->
-<!--<a id="all-download" href="<?php echo $docpath.'p_child.pdf'?>" target="_blank" style="color: maroon; ">Дети (2003 - 2005 г.р.) категория А</a>
+<p>Чтобы скачать необходимый протокол - выберите нужную возрастную категорию и кликните по соответствующей ссылке ниже:</p>
+<a id="all-download" href="<?php echo $docpath.'Htz2014_child.pdf'?>" target="_blank" style="color: maroon; ">Дети (2004 - 2006 г.р.) категория А</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'p_young.pdf'?>" target="_blank" style="color: maroon; ">Юноши (2001 - 2003 г.р.)</a>
+<a id="all-download" href="<?php echo $docpath.'Htz2014_young.pdf'?>" target="_blank" style="color: maroon; ">Юноши (2002 - 2004 г.р.)</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'p_cadet.pdf'?>" target="_blank" style="color: maroon; ">Кадеты (1999 - 2001 г.р.)</a>
+<a id="all-download" href="<?php echo $docpath.'Htz2014_cadet.pdf'?>" target="_blank" style="color: maroon; ">Кадеты (2000 - 2002 г.р.)</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'p_junior.pdf'?>" target="_blank" style="color: maroon; ">Юниоры (1996 - 1999 г.р.)</a>
-<br><br>-->
+<a id="all-download" href="<?php echo $docpath.'Htz2014_junior.pdf'?>" target="_blank" style="color: maroon; ">Юниоры (1997 - 2000 г.р.)</a>
+<br><br>
 
-
+<!--
 <p>Чтобы скачать необходимый протокол - выберите нужную возрастную категорию и кликните по соответствующей ссылке ниже:</p>
 
 <h3>Дети (2003 - 2005 г.р.) категория А</h3>
@@ -165,7 +167,7 @@ $docpath = Yii::app()->baseUrl.'/document/';
     <a id="all-download" href="<?php echo $docpath.'junior_f_55.pdf'?>" target="_blank" style="color: maroon; ">Юниорки до 55 кг (объединённая)</a><br>
 </td>
 </table>
-
+       -->
 
 <!--<h3>Дети (2003 - 2005 г.р.) категория А</h3>
     <a id="all-download" href="<?php echo $docpath.'child_m_22.pdf'?>" target="_blank" style="color: maroon; ">Мальчики до 22 кг</a><br>

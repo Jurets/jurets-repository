@@ -34,4 +34,4 @@ $this->breadcrumbs=array(
 <br><br>
 
 <p>Дополнительно:</p>
-<a id="all-download" href="<?php echo $docpath.'teampoints.pdf'?>" target="_blank" style="color: maroon; ">Командные результаты</a>
+<a id="all-download" href="<?php echo $docpath.'HTZ2014_result_COMMAND.pdf'?>" target="_blank" style="color: maroon; ">Командные результаты</a>

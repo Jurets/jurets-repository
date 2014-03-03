@@ -31,12 +31,21 @@ return array(
     'Coaches' => 'Тренеры',
     'Commands' => 'Команды',
     
-    'Cabinet' => 'Кабинет',
-    'My Cabinet' => 'Мой Кабинет',
+    'Homepage' => 'Главная',
     'Competition' => 'Соревнование',
     'Tournament' => 'Чемпионат',
     'Categories' => 'Категории',
+    'Weighing' => 'Взвешивание',
+    'Toss' => 'Жеребьевка',
+    'Results' => 'Результаты',
+    'Photo' => 'Фото',
+    
+    'Cabinet' => 'Кабинет',
+    'My Cabinet' => 'Мой Кабинет',
+    'Regin' => 'Регистрация',
+		'Login' => 'Вход',    
 
+    
     'Proposal' => 'Заявка',
     'Proposals' => 'Предварительные заявки',
     //'Proposals' => 'Заявки',
@@ -79,11 +88,14 @@ return array(
     'Country' => 'Страна',
     'City' => 'Город',
     'Address' => 'Адрес',
+    'Delegate' => 'Представитель',
 
     'CommandID' => 'ИД команды',
     'CommandName' => 'Название команды',   
     'sportsmenCount' => 'Кол-во спортсменов',
     'coachCount' => 'Кол-во тренеров',
+    'Overview' => 'Общие сведения',
+    
     
     'FstName' => 'ФСТ',
     'Command' => 'Команда',
@@ -111,6 +123,7 @@ return array(
     'Comment' => 'Комментарий',
     'Status' => 'Статус',
     'Login' => 'Логин',
+    'Exit' => 'Выход',
     
     'Agecategories' => 'Возрастные категории',
     'Postings' => 'Фотогалереи',
@@ -142,6 +155,11 @@ return array(
 
     'Is Active' => 'Активность',
     'More information' => 'Подробнее',
+    
+    'Заявка подана' => 'Заявка подана',
+    'Заявлено участников' => 'Заявлено участников',
+    
+    
     
     'Please fill out the following form with your login credentials' => 'Пожалуйста, заполните следующую форму с вашими учетные данные для входа',
     

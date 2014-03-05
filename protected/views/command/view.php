@@ -58,35 +58,35 @@
                 'value'=>$model->sportsmen_count,
             ),
             array(
-                'label'=>'Заявлено участников',
+                'label'=>Yii::t('fullnames', 'Заявлено участников'),
                 'value'=>$model->relProposal->participantcount,
             ),
             array(
-                'label'=>'Заявка подана',
+                'label'=>Yii::t('fullnames', 'Заявка подана'),
                 'value'=>$model->relProposal->created,
             ),
             array(
-                'label'=>'Представитель',
+                'label'=>Yii::t('fullnames', 'Delegate'),
                 'value'=>$model->relProposal->relUsers->UserFIO,
             ),
             array(
-                'label'=>'Федерация',
+                'label'=>Yii::t('fullnames', 'Federation'),
                 'value'=>$model->relProposal->federation,
             ),
             array(
-                'label'=>'Страна',
+                'label'=>Yii::t('fullnames', 'Country'),
                 'value'=>$model->relProposal->country,
             ),
             array(
-                'label'=>'Город',
+                'label'=>Yii::t('fullnames', 'City'),
                 'value'=>$model->relProposal->city,
             ),
             array(
-                'label'=>'Клуб',
+                'label'=>Yii::t('fullnames', 'Club'),
                 'value'=>$model->relProposal->club,
             ),
             array(
-                'label'=>'Адрес',
+                'label'=>Yii::t('fullnames', 'Address'),
                 'value'=>$model->relProposal->address,
             ),
             
@@ -117,7 +117,7 @@
         'tabs'=>array(
             array('label'=>Yii::t('fullnames', 'Sportsmens'), 'content'=>$sportsmenContent, 'active'=>($tabnum == 1)),
             array('label'=>Yii::t('fullnames', 'Coaches'), 'content'=>$coachContent, 'active'=>($tabnum == 2)),
-            array('label'=>Yii::t('fullnames', 'Общие сведения'), 'content'=>$infoContent, 'active'=>($tabnum == 3)),
+            array('label'=>Yii::t('fullnames', 'Overview'), 'content'=>$infoContent, 'active'=>($tabnum == 3)),
         ),
     ));
 

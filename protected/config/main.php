@@ -186,7 +186,7 @@ return array(
     ),
     
     'sourceLanguage'=>'en_us',
-    'language'=>'ru',   
+    'language'=>'ua',   
 );
 
 ?>

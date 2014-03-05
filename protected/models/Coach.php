@@ -64,9 +64,9 @@ class Coach extends CActiveRecord
 	{
 		return array(
 			'CoachID' => 'ИД тренера',
-			'CommandID' => 'Команда',
-			'CoachName' => 'Ф.И.О. тренера',
-            'Commandname' => 'Команда',
+			'CoachName' => Yii::t('fullnames', 'Coach Name'),
+			//'CommandID' => Yii::t('fullnames', 'CommandID'),
+			//'CommandName' => Yii::t('fullnames', 'CommandName'),
 		);
 	}
 
@@ -107,7 +107,7 @@ class Coach extends CActiveRecord
         $arrFields = array('C.CoachID',
                            'CoachName');
         if (!isset($CommandID) || empty($CommandID))
-            $arrFields[] = 'D.Commandname';    
+            $arrFields[] = 'D.CommandName';    
         $sqlCommand = Yii::app()->db->createCommand()
             ->select($arrFields)
             ->from('coach C');

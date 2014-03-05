@@ -12,8 +12,8 @@ $arrColumns = array(
  
 if (!isset($commandid) || empty($commandid))
     $arrColumns[] = array(
-            'header'=>Yii::t('fullnames', 'Commandname'),
-            'name'=>'Commandname',
+            'header'=>Yii::t('fullnames', 'CommandName'),
+            'name'=>'CommandName',
         );
 
 $arrColumns = CMap::mergeArray($arrColumns, array(

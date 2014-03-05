@@ -37,7 +37,7 @@ $userName = $isGuest ? '' : '<span class="label label-info pull-right" style="ma
     
 $this->widget('bootstrap.widgets.TbNavbar',array(
     'type'=>'inverse', // null or 'inverse'
-    'brand'=>'Главная',
+    'brand'=>Yii::t('fullnames', 'Homepage'),
     'fixed'=>false, //'top',
     'brandUrl'=>$this->createUrl('/site/index'),
     'items'=>array(
@@ -50,12 +50,12 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 //array('label'=>'Информация', 'url'=>array('/site/page', 'view'=>'about')),
                 array('label'=>Yii::t('fullnames', 'Commands'), 'url'=>($isExtendRole ? array($this->pathCompetition . '/command/manage') : array($this->pathCompetition . '/command/index'))),
                 //array('label'=>'', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Категории', 'url'=>array($this->pathCompetition . '/weightcategory/category')),
+                array('label'=>Yii::t('fullnames', 'Categories'), 'url'=>array($this->pathCompetition . '/weightcategory/category')),
                 //)),
-                array('label'=>'Взвешивание', 'url'=>array($this->pathCompetition . '/weightcategory/list')),
-                array('label'=>'Жеребьевка', 'url'=>array($this->pathCompetition . '/weightcategory/tosser')),
-                array('label'=>'Результаты', 'url'=>array($this->pathCompetition . '/weightcategory/results')),
-                array('label'=>'Фото', 'url'=>array('/posting/default/index')),
+                array('label'=>Yii::t('fullnames', 'Weighing'), 'url'=>array($this->pathCompetition . '/weightcategory/list')),
+                array('label'=>Yii::t('fullnames', 'Toss'), 'url'=>array($this->pathCompetition . '/weightcategory/tosser')),
+                array('label'=>Yii::t('fullnames', 'Results'), 'url'=>array($this->pathCompetition . '/weightcategory/results')),
+                array('label'=>Yii::t('fullnames', 'Photo'), 'url'=>array('/posting/default/index')),
                 //array('label'=>'Контакты', 'url'=>array('/site/contact')),
                 //array('label'=>'Регистрация', 'url'=>array('/proposal/create'), 'visible'=>Yii::app()->user->isGuest),
             ),
@@ -66,20 +66,20 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
             'class'=>'bootstrap.widgets.TbMenu',
             'htmlOptions'=>array('class'=>'pull-right'),
             'items'=>array(
-                array('label'=>'Регистрация', 'url'=>array('/users/create'), 'visible'=>$isGuest),
-                array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>$isGuest),
-                array('label'=>'Мой Кабинет', 'url'=>array('/users/mycabinet'), 'visible'=>!$isGuest),
+                array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),
+                array('label'=>Yii::t('fullnames', 'Login'), 'url'=>array('/site/login'), 'visible'=>$isGuest),
+                array('label'=>Yii::t('fullnames', 'My Cabinet'), 'url'=>array('/users/mycabinet'), 'visible'=>!$isGuest),
                 array('label'=>'', 'url'=>'#', 'items'=>array(
-                    array('label'=>'Регистрация', 'url'=>array('/users/create'), 'visible'=>$isGuest),                
-                    array('label'=>'Вход', 'url'=>array('/site/login'), 'visible'=>$isGuest),
+                    array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),                
+                    array('label'=>Yii::t('fullnames', 'Login'), 'url'=>array('/site/login'), 'visible'=>$isGuest),
                     array('label'=>Yii::t('fullnames', 'Users'), 'url'=>array('/users/index'), 'icon'=>'user', 'visible'=>$isExtendRole),
                     array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('proposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
-                    array('label'=>'Управление', 
+                    array('label'=>Yii::t('controls', 'Manage'), 
                         'url'=>array('/competition/manage'), 
                         'icon'=>'wrench', 
                         'visible'=>Yii::app()->user->isManagerRole()
                     ),
-                    array('label'=>'Управление', 
+                    array('label'=>Yii::t('controls', 'Manage'), 
                         //'url'=>array('/competition/admin'), //ToDo: Функционал АДМИНа пока не работает
                         'url'=>array('/competition/manage'), 
                         'icon'=>'book', 
@@ -114,7 +114,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
             ),*/
             
                     '---',
-                    array('label'=>'Выход ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'icon'=>'arrow-right', 'visible'=>!$isGuest),
+                    array('label'=>Yii::t('fullnames', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'icon'=>'arrow-right', 'visible'=>!$isGuest),
                 ), 'visible'=>!$isGuest),
             ),
         ),   

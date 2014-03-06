@@ -54,5 +54,21 @@ return array(
     'Choose attest level' => 'Выберите куп/дан',
     'Choose count' => 'Выберите кількість',
     
+    'You have successfully registered.' => 'Ви успішно зареєструвались.',
+    'Within a maximum of three days, your registration will be confirmed and indicated on your E-mail will be sent a confirmation letter and registration data' => 'Протягом максимум трьох днів Ваша реєстрація буде підтверджена та на вказаний Вами E-mail буде висланий лист з підтвердженням та реєстраційними даними.',
+    'Your account is active' => 'Ваш акаунт активний',
+    'You can perform the following operations' => 'Ви можете здійснювати наступні операцій',
+    'apply for participation in the competition' => 'подати заявку на участь у змаганні',
+    'edit your personal data' => 'редагувати свої персональні дані',
+    'change your password' => 'змінити свій пароль',
+    
+    'You are the manager of competition' => 'Вы являетесь менеджером соревнования',
+    'manage users (team leaders)' => 'управлять пользователями (представителями команд)',
+    'add participants (athletes, coaches)' => 'добавлять участников (спортсмены, тренеры)',
+    'delete and edit entered information' => 'удалять и редактировать введенную информацию',
+    'While you can not edit data - wait for confirmation of registration!' => 'Пока что Вы не можете редактировать данные - дождитесь подтверждения регистрации!',
+    'However, you can apply for the current competition.' => 'Однако Вы можете подать заявку на текущее соревнование.',
+    'Below are the personal data you have entered:' => 'Ниже приведены введённые Вами персональные данные:',
+    
 );  
 ?>

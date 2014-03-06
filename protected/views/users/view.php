@@ -48,26 +48,26 @@
     if ($isMyUserID) {
         if ($isExtendRole) {
             echo CHtml::tag('p', array('class'=>'note'), 
-                '<b>Вы являетесь менеджером соревнования.</b> '.
-                'Вы можете выполнять следующие операции:<ul>'.
-                '<li>управлять пользователями (представителями команд)</li>'.
-                '<li>добавлять участников (спортсмены, тренеры)</li>'.
-                '<li>удалять и редактировать введенную информацию</li></ul>', true);
+                '<b>'.Yii::t('controls', 'You are the manager of competition').'</b> '.
+                Yii::t('controls', 'You can perform the following operations').':<ul>'.
+                '<li>'.Yii::t('controls', 'manage users (team leaders)').'</li>'.
+                '<li>'.Yii::t('controls', 'add participants (athletes, coaches)').'</li>'.
+                '<li>'.Yii::t('controls', 'delete and edit entered information').'</li></ul>', true);
         } elseif ($model->status == Users::STATUS_NEW) {
             echo CHtml::tag('p', array('class'=>'note'), 
-                 'Вы успешно зарегистрировались. В течение максимум трёх дней Ваша регистрация будет подтверждена и на указаный Вами E-mail будет выслано письмо '.
-                 'с подтверждением и регистрационными данными.'.
-                 'Пока что Вы не можете редактировать данные - дождитесь подтверждения регистрации!'.
-                 'Однако Вы можете подать заявку на текущее соревнование.'.
-                 '<br>Ниже приведены введённые Вами персональные данные:', true);
+                 Yii::t('controls', 'You have successfully registered.').
+                 Yii::t('controls', 'Within a maximum of three days, your registration will be confirmed and indicated on your E-mail will be sent a confirmation letter and registration data.').
+                 Yii::t('controls', 'While you can not edit data - wait for confirmation of registration!').
+                 Yii::t('controls', 'However, you can apply for the current competition.').
+                 '<br>'.Yii::t('controls', 'Below are the personal data you have entered:'), true);
         } 
         elseif ($model->status == Users::STATUS_ACTIVE) {
             echo CHtml::tag('p', array('class'=>'note'), 
-                '<b>Ваша учётная запись активна!</b> '.
-                'Вы можете выполнять следующие операции:<ul>'.
-                '<li>подать заявку на участие в соревновании</li>'.
-                '<li>редактировать свои персональные данные</li>'.
-                '<li>поменять свой пароль</li></ul>', true);
+                '<b>'.Yii::t('controls', 'Your account is active').'!</b> '.
+                Yii::t('controls', 'You can perform the following operations').':<ul>'.
+                '<li>'.Yii::t('controls', 'apply for participation in the competition').'</li>'.
+                '<li>'.Yii::t('controls', 'edit your personal data').'</li>'.
+                '<li>'.Yii::t('controls', 'change your password').'</li></ul>', true);
         } 
     } elseif ($isExtendRole) {
         echo CHtml::tag('p', array('class'=>'note'), 

@@ -75,7 +75,7 @@ if (false) {  /////////////////////////////////////ВРЕМЕННО!!!!!!
 
 <!--<p>Чтобы скачать необходимый протокол - выберите тип документа (Распаровка или Результат), затем нужную возрастную категорию и кликните по соответствующей ссылке ниже</p>-->
 <p>Щоб скачати необхідний протокол - оберіть потрібну вікову групу:</p>
-<a id="all-download" href="<?php echo $docpath.'IF2014_child.pdf'?>" target="_blank" style="color: maroon; ">Діти (2004 - 2006 р.н.) категорія А</a>
+<a id="all-download" href="<?php echo $docpath.'IF2014_child.pdf'?>" target="_blank" style="color: maroon; ">Діти (2005 - 2006 р.н.) категорія А</a>
 <br><br>
 <a id="all-download" href="<?php echo $docpath.'IF2014_young.pdf'?>" target="_blank" style="color: maroon; ">Юнаки (2002 - 2004 р.н.) категорія А</a>
 <br><br>

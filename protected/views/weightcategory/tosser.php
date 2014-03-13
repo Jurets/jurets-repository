@@ -12,7 +12,7 @@ $this->breadcrumbs=array(
 $docpath = Yii::app()->baseUrl.'/document/';
 ?>
 
-<h1 id="tosser-head">Предварительная жеребьевка</h1>
+<h1 id="tosser-head">Попереднє жеребкування</h1>
 
 <!--<a id="all-download" href="<?php echo $docpath.'all.zip'?>" style="color: maroon; font-weight: bold;">Списки по весовым</a>
 <br><br>-->
@@ -70,15 +70,20 @@ if (false) {  /////////////////////////////////////ВРЕМЕННО!!!!!!
 
 </div>
 
+<p style="color: red; font-weight: bold;">До уваги представників команд! Перевірте наявність та категорію своїх спортсменів</p>
+
+
 <!--<p>Чтобы скачать необходимый протокол - выберите тип документа (Распаровка или Результат), затем нужную возрастную категорию и кликните по соответствующей ссылке ниже</p>-->
-<p>Чтобы скачать необходимый протокол - выберите нужную возрастную категорию и кликните по соответствующей ссылке ниже:</p>
-<a id="all-download" href="<?php echo $docpath.'Htz2014_child.pdf'?>" target="_blank" style="color: maroon; ">Дети (2004 - 2006 г.р.) категория А</a>
+<p>Щоб скачати необхідний протокол - оберіть потрібну вікову групу:</p>
+<a id="all-download" href="<?php echo $docpath.'IF2014_child.pdf'?>" target="_blank" style="color: maroon; ">Діти (2004 - 2006 р.н.) категорія А</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'Htz2014_young.pdf'?>" target="_blank" style="color: maroon; ">Юноши (2002 - 2004 г.р.)</a>
+<a id="all-download" href="<?php echo $docpath.'IF2014_young.pdf'?>" target="_blank" style="color: maroon; ">Юнаки (2002 - 2004 р.н.) категорія А</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'Htz2014_cadet.pdf'?>" target="_blank" style="color: maroon; ">Кадеты (2000 - 2002 г.р.)</a>
+<a id="all-download" href="<?php echo $docpath.'IF2014_cadet.pdf'?>" target="_blank" style="color: maroon; ">Кадети (2000 - 2002 р.н.)</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'Htz2014_junior.pdf'?>" target="_blank" style="color: maroon; ">Юниоры (1997 - 2000 г.р.)</a>
+<a id="all-download" href="<?php echo $docpath.'IF2014_junior.pdf'?>" target="_blank" style="color: maroon; ">Юніори (1997 - 2000 р.н.)</a>
+<br><br>
+<a id="all-download" href="<?php echo $docpath.'IF2014_senior.pdf'?>" target="_blank" style="color: maroon; ">Молодь (1994 - 1998 р.н.)</a>
 <br><br>
 
 <!--

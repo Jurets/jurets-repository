@@ -141,8 +141,10 @@ class CoachController extends ParticipantController
 		if(isset($_POST['Coach']))
 		{
 			$model->attributes=$_POST['Coach'];
-			if($model->save())
-				$this->redirect(array('/command/view&id='.$commandid.'#tab2'));
+			if($model->save()) {
+                $this->redirect(array('/command/view/'.$commandid.'#command_tab_2'));
+				//$this->redirect(array('/command/view', 'id'=>$commandid, '#tab2'));
+            }
 		}
 
         $breadcrumbs = array('Команды'=>array('command/index'));

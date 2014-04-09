@@ -38,7 +38,7 @@
         //array('label'=>'Список команд', 'url'=>array('index')),
     );
 
-    //echo CHtml::tag('h3', array(), $strTitle, true);
+    echo CHtml::tag('h3', array(), $model->CommandName, true);
     ?>
 
     <?php //DebugBreak();

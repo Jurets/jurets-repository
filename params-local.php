@@ -21,7 +21,7 @@ return array(
     'defaultPhoto' =>'http://localhost/wtfweb/trunk/images/nophoto.png',
     
     //ИД текущего соревнования (временная мера, до режима "мульти-компетишн")
-    'defaultCompetitionID' => 3, 
+    'defaultCompetitionID' => 5, 
     
     //ограничение на максимальное кол-во участников в ЗАЯВКЕ
     'maxParticipants' => 50, 

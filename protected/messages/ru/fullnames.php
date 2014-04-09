@@ -39,6 +39,7 @@ return array(
     'Toss' => 'Жеребьевка',
     'Results' => 'Результаты',
     'Photo' => 'Фото',
+    'Archive' => 'Архив',
     
     'Cabinet' => 'Кабинет',
     'My Cabinet' => 'Мой Кабинет',

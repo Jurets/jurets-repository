@@ -93,6 +93,51 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                   'class' => 'select_coach'));
         //echo $form->textFieldRow($model,'MedicSolve');
 
+    
+// Working with selector
+/*$tags=array('Satu','Dua','Tiga');
+echo CHtml::textField('test','',array('id'=>'test', 'class'=>'span5'));
+$this->widget('ext.select2.ESelect2',array(
+  'selector'=>'#test',
+  'options'=>array(
+    'tags'=>$tags,
+  ),
+  'htmlOptions'=>array(
+    'multiple'=>false,
+  ),
+));
+
+$this->widget('ext.select2.ESelect2',array(
+  'model'=>$model,
+  'attribute'=>'MiddleName',
+  'data'=>array(
+    0=>'Nol',
+    1=>'Satu',
+    2=>'Dua',
+  ),
+));*/
+
+/*$this->widget('ext.combobox.EJuiComboBox', array(
+    'model' => $model,
+    'attribute' => 'MiddleName',
+    // data to populate the select. Must be an array.
+    'data' => array('yii','is','fun','!'),
+    // options passed to plugin
+    'options' => array(
+        // JS code to execute on 'select' event, the selected item is
+        // available through the 'item' variable.
+//        'onSelect' => 'alert("selected value : " + item.value);',
+        // JS code to be executed on 'change' event, the input is available
+        // through the '$(this)' variable.
+//        'onChange' => 'alert("changed value : " + $(this).val());',
+        // If false, field value must be present in the select.
+        // Defaults to true.
+        'allowText' => true,
+    ),
+    // Options passed to the text input
+    'htmlOptions' => array('size' => 10, 'placeholder'=>'<введите>'),
+));*/
+        
 //Форма для загрузки фото ----------------------
 //создать форму для загрузки
     $uploadModel = new PPhotoForm;
@@ -147,6 +192,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
        'storedDataUrl'=>$url_list, //url for ajax upload of images (title=false - list of photos)   
        'htmlOptions' => array('id'=>'ufiles'),
     ));    
+    
+    
 ?>
 <!--</div> -->
 <?php
@@ -177,6 +224,9 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             ));        
         }
         
+        
+        
+        
 $this->endWidget(); //form
 ?>
 
@@ -192,8 +242,8 @@ $this->endWidget(); //form
         }
         //возрастные категории
         $age_array = CHtml::listData($age_array, 'AgeID', 'AgeNameYear');
-        //$age_array = array_merge(array('empty' => '<'.Yii::t('controls', 'Choose age category').'>'), $age_array);
-        $age_array = CMap::mergeArray(array('empty' => '<'.Yii::t('controls', 'Choose age category').'>'), $age_array);
+        $age_array = CMap::mergeArray(array('' => '<'.Yii::t('controls', 'Choose age category').'>'), $age_array);
+        //$age_array = CMap::mergeArray(array('empty' => '<'.Yii::t('controls', 'Choose age category').'>'), $age_array);
         echo CHTML::dropDownList('ages_byyear_' . $year, null, $age_array, array('style'=>'display: none'));
     }
     
@@ -201,7 +251,8 @@ $this->endWidget(); //form
     foreach($ages as $age) {
         $weigths = $age->relWeigths;
         $weigths = CHtml::listData($weigths, 'WeightID', 'WeightNameFull');
-        $weigths = CMap::mergeArray(array('empty' => '<'.Yii::t('controls', 'Choose weigth category').'>'), $weigths);
+        //$weigths = CMap::mergeArray(array('empty' => '<'.Yii::t('controls', 'Choose weigth category').'>'), $weigths);
+        $weigths = CMap::mergeArray(array('' => '<'.Yii::t('controls', 'Choose weigth category').'>'), $weigths);
         echo CHTML::dropDownList('weigths_fromage_' . $age->AgeID, null, $weigths, array('style'=>'display: none'));
     }
     

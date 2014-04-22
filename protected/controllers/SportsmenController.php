@@ -167,31 +167,36 @@ class SportsmenController extends ParticipantController
                   }
                }
             } 
-            $transaction = Yii::app()->db->beginTransaction();                         
-            try {   
-                if ($model->save()) {
-                    if ($flgDelPhoto && isset($photo))
-                        $photo->delete();
-                } else
-                    throw new Exception(sprintf('Ошибка при сохранении спортсмена %d!', $model->SpID));  
-                $transaction->commit();            
-                $success = true;
-            } catch (Exception $e){
-                $transaction->rollBack();
-                //PJournalRecord::log($e->getMessage());
-                $success = false;
-                $error = $e->getMessage();
-            }       
-            //стереть сессию урла возврата
-            Yii::app()->user->setState('urlReferrerUpdate', null);
             
-            if ($success) { //успешное выполнение  
-                if (!empty($urlReferrer) && ($urlRequest <> $urlReferrer)) {
-                    $this->redirect($urlReferrer);  //переход по запомненной
-                } else                              //иначе - на вью спортсмена
-                    $this->redirect(array('view','id'=>$model->SpID));
-            } else {
-                throw new CHttpException(401, $error);
+            if ($model->validate()) {
+                //стереть сессию урла возврата
+                Yii::app()->user->setState('urlReferrerUpdate', null);
+                //стартовать транзакцию и сохранить инфо
+                $transaction = Yii::app()->db->beginTransaction();                         
+                try {
+                    if ($model->save()) {
+                        if ($flgDelPhoto && isset($photo))
+                            $photo->delete();
+                    } else {
+                        throw new Exception(sprintf('Ошибка при сохранении спортсмена %d!', $model->SpID));  
+                    }
+                    $transaction->commit();            
+                    $success = true;
+                } catch (Exception $e){
+                    $transaction->rollBack();
+                    //PJournalRecord::log($e->getMessage());
+                    $success = false;
+                    $error = $e->getMessage();
+                }       
+                
+                if ($success) { //успешное выполнение  
+                    if (!empty($urlReferrer) && ($urlRequest <> $urlReferrer)) {
+                        $this->redirect($urlReferrer);  //переход по запомненной
+                    } else                              //иначе - на вью спортсмена
+                        $this->redirect(array('view','id'=>$model->SpID));
+                } else {
+                    throw new CHttpException(401, $error);
+                }
             }
         }
 
@@ -231,10 +236,10 @@ class SportsmenController extends ParticipantController
             if ($status <> Proposal::STATUS_ACTIVE)
                 throw new CHttpException(400, "Запрещено добавление спортсменов! Ваша заявка не подтверждена!"."\n\r".
                     "Для разрешения проблемы свяжитесь с организаторами соревнований");
-            if ($proposal->participantcount >= Yii::app()->params['maxParticipants']) {
-                throw new CHttpException(400, "Запрещено добавление участников больше, чем максимально допустимое количество: ".Yii::app()->params['maxParticipants']."! \n\r".
-                    "Для разрешения проблемы свяжитесь с организаторами соревнований");
-            }
+            //if ($proposal->participantcount >= Yii::app()->params['maxParticipants']) {
+            //    throw new CHttpException(400, "Запрещено добавление участников больше, чем максимально допустимое количество: ".Yii::app()->params['maxParticipants']."! \n\r".
+            //        "Для разрешения проблемы свяжитесь с организаторами соревнований");
+            //}
             else {
               //узнать ИД команды по текущему юзеру и запихнуть в модель
                 $myCommandID = Yii::app()->user->getCommandid();
@@ -281,11 +286,9 @@ class SportsmenController extends ParticipantController
         }
         
         $breadcrumbs = array('Команды'=>array('command/index'));
-        //$command = Command::model()->findByPk($id);
         if (isset($command))
             $breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$command->CommandID)));
-        //$breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$id)));
-        $breadcrumbs = array_merge($breadcrumbs, array(/*$model->FullName()=>array('sportsmen/view', 'id'=>$model->SpID), */Yii::t('controls', 'Create')));
+        $breadcrumbs = array_merge($breadcrumbs, array(Yii::t('controls', 'Create')));
             
         $this->render('create',array(
             'model'=>$model,

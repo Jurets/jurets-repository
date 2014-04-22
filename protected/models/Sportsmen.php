@@ -494,11 +494,17 @@ class Sportsmen extends CActiveRecord
     * 
     */
     public function beforeValidate() {//DebugBreak();
-        if (!isset($this->Gender) || empty($this->Gender)) {
+        //if (!isset($this->Gender) || empty($this->Gender)) 
+        {
             if (isset($this->AgeID)) {
-                $age = Agecategory::model()->findByPk($this->AgeID);
-                if (isset($age->Gender))
-                    $this->Gender = $age->Gender;
+                //$age = Agecategory::model()->findByPk($this->AgeID);
+                $ages = Sportsmen::getAgesList();
+                foreach($ages as $age) {
+                    if ($age->AgeID == $this->AgeID && isset($age->Gender)) {
+                        $this->Gender = $age->Gender;
+                        break;
+                    }
+                }
             }
         }
         return true;

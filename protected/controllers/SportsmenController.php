@@ -122,7 +122,7 @@ class SportsmenController extends ParticipantController
                 ),
             ),*/
             'pagination'=>array(
-                'pageSize'=>20,
+                'pageSize'=>50,
             ),
         ));    
         $this->render('index',array(

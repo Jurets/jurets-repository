@@ -86,7 +86,7 @@ class CommandController extends Controller //ParticipantController
                 ),
             ),*/
             'pagination'=>array(
-                'pageSize'=>30,
+                'pageSize'=>50,
             ),
         )); 
         // $dataProvider->getData() will return a list of arrays.

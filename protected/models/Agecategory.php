@@ -74,7 +74,8 @@ class Agecategory extends CActiveRecord
     public function defaultScope() {
         return array(
             //'order'=>$this->getTableAlias().'ordernum, '.$this->getTableAlias().'AgeID ASC'
-            'order'=>'t.ordernum, t.AgeID ASC'
+            'alias'=>'age',
+            'order'=>'age.ordernum, age.AgeID ASC'
         );
     }
     

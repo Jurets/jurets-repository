@@ -196,13 +196,12 @@ class WeightcategoryController extends Controller
     
 
   //ДЕЙСТВИЕ: смотреть жеребъёвку
-    private function getList() {// DebugBreak();
+    private function getList() {
         $arrcategory = array();
         //$allSportsmens = $this->allweightlist();
         $sqlCommand = Sportsmen::sqlTosserList();
         $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
 
-        //$ages = Agecategory::model()->findAll();  
         $ages = Sportsmen::getAgesList();  //список возрастов (кэш)
 
         foreach ($ages as $aid=>$age) {
@@ -211,9 +210,8 @@ class WeightcategoryController extends Controller
                  'text' => $age->AgeName,//$age->AgeNameYear(),
                  'expanded' => false,
             );
-            //$weigths = Weightcategory::model()->findAll('AgeID = :ageid', array(':ageid'=>$age->AgeID)); 
             $weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  
-            foreach ($weigths as $wid=>$weigth) { //DebugBreak();
+            foreach ($weigths as $wid=>$weigth) {
                 //$sportsmens = $this->weightlist($weigth->WeightID);  
                 $sportsmens = $this->filterWeightlist($allSportsmens, $weigth->WeightID);
                 $count = $this->countWeightlist($allSportsmens, $weigth->WeightID);
@@ -229,18 +227,17 @@ class WeightcategoryController extends Controller
     }
     
   //ДЕЙСТВИЕ: смотреть жеребъёвку
-    public function actionList() {// DebugBreak();
+    public function actionList() {
         $this->render('list', array('arrcategory'=>$this->getList()));
     }
 
   //ДЕЙСТВИЕ: смотреть жеребъёвку
-    public function actionTosser() {// DebugBreak();
+    public function actionTosser() {
         $arrcategory = array();
         //$allSportsmens = $this->allweightlist();
         $sqlCommand = Sportsmen::sqlTosserList();
         $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
 
-        //$ages = Agecategory::model()->findAll();  
         $ages = Sportsmen::getAgesList();  //список возрастов (кэш)
 
         $weigth = new Weightcategory;
@@ -252,7 +249,6 @@ class WeightcategoryController extends Controller
                  'text' => $age->AgeName,//$age->AgeNameYear(),
                  'expanded' => false,
             );
-            //$weigths = Weightcategory::model()->findAll('AgeID = :ageid', array(':ageid'=>$age->AgeID)); 
             $weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  
             
             foreach ($weigths as $wid=>$weigth) { 

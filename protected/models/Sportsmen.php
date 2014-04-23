@@ -422,13 +422,13 @@ class Sportsmen extends CActiveRecord
     }
 
   //получить список возрастных категорий по полу (КЭШИРУЕТСЯ!)
-    public static function getAgesList($gender = null) {//DebugBreak();
+    public static function getAgesList($gender = null) {
         $out = array();
         $_cacheID = 'cacheAgeListFull';
         $data = Yii::app()->cache->get($_cacheID);   //проверить кэш
         if ($data === false) {
             // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
-            $data = Agecategory::model()->findAll();
+            $data = Agecategory::model()->findAll('AgeID not in (9,10)');
             // и сохраняем его в кэше для дальнейшего использования:
             Yii::app()->cache->set($_cacheID, $data, 28800);  //8 часов
         }

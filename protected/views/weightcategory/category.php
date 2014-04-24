@@ -31,11 +31,11 @@
         $ageCount = 0;
         foreach ($age['children'] as $wid=>$weight) {
             if ($weight['count'] == 0) 
-                $type = 'important';
+                $type = 'default';//'important';
             else if ($weight['count'] < 4) 
-                $type = 'warning';
+                $type = 'warning';//'warning';
             else 
-                $type = 'default';
+                $type = 'success'; //'default';
             $count = $this->widget('bootstrap.widgets.TbBadge', array(
                 'type'=>$type, // 'success', 'warning', 'important', 'info' or 'inverse'
                 'label'=>$weight['count'],

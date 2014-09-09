@@ -168,6 +168,7 @@ return array(
         'Після реєстрації на цю адресу буде надіслано листа з інформацією про початковому паролі для входу. Тільки після цього Ви зможете вводити інформацію про заявки.',
         
     'This page will be published results of the championship'=> 'На цій сторінці будуть розміщені результати чемпіонату',
+    'On this page will be posted preliminary draws' => 'На цій сторінці буде розміщено попереднє жеребкування',
     'Choose gallery for viewing by click on ref or image'=>'Оберіть фотогалерею для перегляду кліком на назві або зображенні',
     
     'Are you sure you want to delete this item?'=>'Ви дійсно хочете видалити цей елемент?',

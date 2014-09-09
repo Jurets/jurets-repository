@@ -173,6 +173,7 @@ return array(
         'После регистрации на этот адрес будет выслано письмо с информацией о начальном пароле для входа. Только после этого Вы сможете вводить информацию о заявках.',
         
     'This page will be published results of the championship' => 'На этой странице будут размещены результаты чемпионата',
+    'On this page will be posted preliminary draws' => 'На этой странице будет размещена предварительная жеребьевка',
     'Choose gallery for viewing by click on ref or image' => 'Выберите фотогалерею для просмотра кликом на названии или картинке',
     
     'Are you sure you want to delete this item?' => 'Вы действительно хотите удалить этот элемент?',

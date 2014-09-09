@@ -14,12 +14,29 @@ $docpath = Yii::app()->baseUrl.'/document/';
 
 <!--<h1 id="tosser-head">Попереднє жеребкування</h1>-->
 <h1 id="tosser-head">Предварительная жеребьевка</h1>
+<p><?php echo Yii::t('fullnames', 'On this page will be posted preliminary draws')?></p>
+
+<!--<p style="color: red; font-weight: bold;">Вниманию представителей команд! Проверьте наличие и категорию своих спортсменов</p>-->
+
+<!--<a id="all-download" href="<?php echo $docpath.'htz2014apr_toss_child.pdf'?>" target="_blank" style="color: maroon; ">Дети (2007 г.р.)</a>
+<br><br>
+<a id="all-download" href="<?php echo $docpath.'htz2014apr_toss_smyoung.pdf'?>" target="_blank" style="color: maroon; ">Младшие юноши (2005 - 2006 г.р.)</a>
+<br><br>
+<a id="all-download" href="<?php echo $docpath.'htz2014apr_toss_young.pdf'?>" target="_blank" style="color: maroon; ">Юноши (2003 - 2004 р.н.) категорія А</a>
+<br><br>
+<a id="all-download" href="<?php echo $docpath.'htz2014apr_toss_cadet.pdf'?>" target="_blank" style="color: maroon; ">Кадеты (2000 - 2002 г.р.)</a>
+<br><br>
+<a id="all-download" href="<?php echo $docpath.'htz2014apr_toss_junior.pdf'?>" target="_blank" style="color: maroon; ">Юниоры (1997 - 1999 г.р.)</a>
+<br><br>-->
+
+<!--<a id="all-download" href="<?php echo $docpath.'IF2014_senior.pdf'?>" target="_blank" style="color: maroon; ">Молодь (1994 - 1998 р.н.)</a>
+<br><br>-->
 
 <!--<a id="all-download" href="<?php echo $docpath.'all.zip'?>" style="color: maroon; font-weight: bold;">Списки по весовым</a>
 <br><br>-->
 
 <!--<p style="color: maroon; font-weight: bold;">Скачать все протоколы жеребьевки в архиве ZIP будет возможно позже</p>-->
-<p style="color: maroon; font-weight: bold;">Протоколы жеребьевки можно будет скачать в пятницу 25.04.2014 </p>
+<!--<p style="color: maroon; font-weight: bold;">Протоколы жеребьевки можно будет скачать в пятницу 25.04.2014 </p>-->
 
 
 <!--<p>Для просмотра списка спортсменов весовой категории выберите нужную вкладку с возрастной категорией (горизонтальный список вверху), 

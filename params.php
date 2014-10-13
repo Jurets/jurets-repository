@@ -31,16 +31,11 @@ $commonParamsLocal = file_exists($commonParamsLocalFile) ? require ($commonParam
 
 //CMap::mergeArray(
 return array_merge(array(
-    'YII.path' => 'f:\Jurets\Projects\granat\trunk\common\lib\vendor\yiisoft\yii\framework',
-    
     'env.code' => 'private',
-    // DB connection configurations
-    'db.name' => 'ftudb',
-    'db.connectionString' => 'mysql:host=localhost;dbname=u9140_ftudb',
-    'db.username' => 'u9140_root',
-    'db.password' => 'jurets75',
-    'db.emulatePrepare' => true,
-    'db.charset' => 'utf8',
+
+    //path to YII-framwork directory ... see in file "params-local.php"
+    
+    // DB connection configurations  ... see in file "params-local.php"
 
     //настройки каталога для загрузки картинок
     'uploadDir'=>'./uploads/',

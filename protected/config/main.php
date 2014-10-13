@@ -1,22 +1,14 @@
 <?php
 
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
-
-//set params for application
-$root = dirname(__FILE__) . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..';
-$params = file_exists($root) ? require($root . DIRECTORY_SEPARATOR . 'params.php') : array();
-
 //set alias for bootstrap component
-Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+Yii::setPathOfAlias('bootstrap', $params['bootstrap.path']);
 
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'Відкритий чемпіонат ДЮСШ Металіст 2013',
+	'name'=>'Система регистрации TKD-card',
 
     //Jurets
     //'execdate'=>'13 декабря 2012 года',
@@ -186,7 +178,7 @@ return array(
     ),
     
     'sourceLanguage'=>'en_us',
-    'language'=>'ru',
+    'language'=>isset($params['language']) ? $params['language'] : 'ru',
 );
 
 ?>

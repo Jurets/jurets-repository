@@ -13,12 +13,18 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL',3);
 $yii = $params['YII.path']; //path for YII ()
 require_once($yii);
 
-//path for application configure file
-$config = dirname(__FILE__).'/protected/config/main.php';
+//set local settings for application
+$params = file_exists($root) ? require($root . DIRECTORY_SEPARATOR . 'params.php') : array();
+//build config for application, including local settings
+$config_path = dirname(__FILE__).'/protected/config/main.php';//path for application configure file
+$config = require($config_path);
 
 $basedirectory = dirname(__FILE__) . DIRECTORY_SEPARATOR . 'protected';
 require_once($basedirectory . str_replace('/', DIRECTORY_SEPARATOR, '/components/WebApplication.php'));
 
+//create application instance
 $app = Yii::createApplication('WebApplication', $config);
+
+//run  application
 $app->run();
 ?>

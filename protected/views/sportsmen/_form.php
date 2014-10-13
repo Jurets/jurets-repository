@@ -21,8 +21,9 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
     <?php 
         //все возрастные и весовые (сразу - жадная загрузка)
-        $ages = Agecategory::model()->with('relWeigths')->findAll();
-            
+        //$ages = Agecategory::getAges();
+        //$ages = Agecategory::model()->with('relWeigths')->findAll();
+        
         //показать ошибки
         echo $form->errorSummary($model); 
         

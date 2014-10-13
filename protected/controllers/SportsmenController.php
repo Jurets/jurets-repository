@@ -211,6 +211,7 @@ class SportsmenController extends ParticipantController
             'model'=>$model,
             'extendRole'=>Yii::app()->isExtendRole,
             'years'=>$this->getYears(),
+            'ages'=>Agecategory::getAges(), //выборка категорий соревнования (возрастные с весовыми)
             'crumbs'=>$breadcrumbs
         ));
     }    
@@ -289,10 +290,11 @@ class SportsmenController extends ParticipantController
         if (isset($command))
             $breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$command->CommandID)));
         $breadcrumbs = array_merge($breadcrumbs, array(Yii::t('controls', 'Create')));
-            
+        
         $this->render('create',array(
             'model'=>$model,
             'years'=>$this->getYears(),
+            'ages'=>Agecategory::getAges(), //выборка категорий соревнования (возрастные с весовыми)
             'extendRole'=>Yii::app()->isExtendRole,
             'crumbs'=>$breadcrumbs,
         ));

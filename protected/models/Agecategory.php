@@ -14,7 +14,9 @@
  */
 class Agecategory extends CActiveRecord
 {
-	/**
+	const TABLE_NAME = 'agecategory';
+    
+    /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
 	 * @return Agecategory the static model class
@@ -34,7 +36,7 @@ class Agecategory extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'agecategory';
+		return self::TABLE_NAME;
 	}
 
 	/**
@@ -133,5 +135,59 @@ class Agecategory extends CActiveRecord
         return $aname;
     }
 
+    //выбрать возрастные категории (с весовыми) для соревнования
+    public static function getAges() {
+        $_cacheID = 'cacheAgeList';
+        $ages = Yii::app()->cache->get($_cacheID);   //проверить кэш
+        if ($ages === false) {
+        //$compId = Yii::app()->competitionId; //вычислить ИД соревнования
+            $compId = self::competitionIdWithAges(); //вычислить ИД соревнования
+            $ages = Agecategory::model()
+                ->with('relWeigths')
+                ->findAll('CompetitionID = :compId', array(':compId'=>$compId));
+            if (empty($ages)) {  //если нет категорий по такому ИД сор-ия
+                $ages = Agecategory::model()
+                ->with('relWeigths')
+                ->findAll('CompetitionID = :compId', array(':compId'=>0));
+            }
+            // и сохраняем его в кэше для дальнейшего использования:
+            Yii::app()->cache->set($_cacheID, $ages, 3600 * 1);  //1 час
+        }
+        return $ages;
+    }
+    
+    //вычислить ИД соревнования, по которому есть возрастные категории
+    private static function competitionIdWithAges() {//DebugBreak();
+        $compId = Yii::app()->competitionId;
+        $cmd = Yii::app()->db->createCommand();
+        //$count = $cmd->createCountCommand(self::TABLE_NAME, Yii::app()->db->createCriteria('CompetitionID = :compId', array(':compId'=>$compId)))->queryScalar();
+        $count = $cmd->select('COUNT(*)')->from(self::TABLE_NAME)->where('CompetitionID = :compId')->queryScalar(array(':compId'=>$compId));
+        return ($count > 0 ? $count : 0);
+    }
+    
+    //выбрать диапазон годов рождения по соревнованию
+    //(от минимального до максимального)
+    public static function getYears() {
+        $_cacheID = 'cacheAgeYearPeriod';
+        //Yii::app()->cache->delete($_cacheID);     //удаление из кэша
+        $row = Yii::app()->cache->get($_cacheID);   //проверить кэш
+        if ($row === false) {
+            // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
+            $compId = self::competitionIdWithAges(); //вычислить ИД соревнования
+            $row = Yii::app()->db->createCommand(/*'SELECT MIN(YearMin) AS YearMin, MAX(YearMax) AS YearMax FROM agecategory'*/)
+                ->select('MIN(YearMin) AS YearMin, MAX(YearMax) AS YearMax')
+                ->from(self::TABLE_NAME)
+                ->where('CompetitionID = :compId')
+                ->queryRow(true, array(':compId'=>$compId));
+            // и сохраняем его в кэше для дальнейшего использования:
+            Yii::app()->cache->set($_cacheID, $row, 3600 * 1);  //1 час
+        }
+        $ymin = $row['YearMin'];
+        $ymax = $row['YearMax'];
 
+        $years = array();
+        for ($year = $ymax; $year >= $ymin; $year--)
+            $years[$year.'-01-01'] = $year;            //ВРЕМЕННО!!!! -------- надо будет переделать
+        return $years;
+    }    
 }

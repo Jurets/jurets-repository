@@ -25,5 +25,6 @@ echo $this->renderPartial('_form', array(
     'model'=>$model,
     'extendRole'=>$extendRole,
     'years'=>$years,
+    'ages'=>$ages,
 )); 
 ?>

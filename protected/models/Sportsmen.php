@@ -247,7 +247,7 @@ class Sportsmen extends CActiveRecord
     
     //Jurets: получить название возрастной категории (по ID)
     public function AgeName() {
-        $data = Sportsmen::getAgesList();
+        $data = Agecategory::getAges();
       //пройтись по массиву и выбрать только нужный итем
         foreach($data as $index => $item) 
             if ($item->AgeID == $this->AgeID) {
@@ -498,7 +498,7 @@ class Sportsmen extends CActiveRecord
         {
             if (isset($this->AgeID)) {
                 //$age = Agecategory::model()->findByPk($this->AgeID);
-                $ages = Sportsmen::getAgesList();
+                $ages = Agecategory::getAges();
                 foreach($ages as $age) {
                     if ($age->AgeID == $this->AgeID && isset($age->Gender)) {
                         $this->Gender = $age->Gender;

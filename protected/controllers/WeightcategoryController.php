@@ -201,9 +201,9 @@ class WeightcategoryController extends Controller
         //$allSportsmens = $this->allweightlist();
         $sqlCommand = Sportsmen::sqlTosserList();
         $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
-
-        $ages = Sportsmen::getAgesList();  //список возрастов (кэш)
-
+        //список возрастов (кэш)
+        $ages = Agecategory::getAges();
+        //список весовых по возрастным
         foreach ($ages as $aid=>$age) {
             $arrcategory[$aid] = array(
                  'id' => $age->AgeID,
@@ -237,12 +237,12 @@ class WeightcategoryController extends Controller
         //$allSportsmens = $this->allweightlist();
         $sqlCommand = Sportsmen::sqlTosserList();
         $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
-
-        $ages = Sportsmen::getAgesList();  //список возрастов (кэш)
-
+        //список возрастов (кэш)
+        $ages = Agecategory::getAges();
+        
         $weigth = new Weightcategory;
         $tosserManager = $weigth->tosserManager;
-            
+        //список весовых по возрастным    
         foreach ($ages as $aid=>$age) {
             $arrcategory[$aid] = array(
                  'id' => $age->AgeID,

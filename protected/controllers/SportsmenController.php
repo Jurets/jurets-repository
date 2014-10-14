@@ -30,7 +30,7 @@ class SportsmenController extends ParticipantController
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions'=>array('index','view','dynamicages', 'dynamicweights', 'dynamiccoaches'),
+                'actions'=>array('index', 'view', /*'dynamicages',*/ 'dynamicweights', 'dynamiccoaches'),
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -323,22 +323,23 @@ class SportsmenController extends ParticipantController
     }
     
     //динамически: подгрузить список возрастов в зависимости от пола
-    public function actionDynamicages() {
+    /*public function actionDynamicages() {
         $gender = $_POST['Sportsmen']['Gender'];
-        $data = Sportsmen::getAgesList($gender);   //получить список моделей возрастов по полу
+        //$data = Sportsmen::getAgesList($gender);   //получить список моделей возрастов по полу
+        $data = Agecategory::getAges();   //получить список моделей возрастов по полу
         $data = CHtml::listData($data, 'AgeID', 'AgeNameYear');  //перевести в список
         echo CHtml::tag('option', array('value' => ''), '<Выберите возрастную категорию>', true);
-        /*if ($_POST['Sportsmen']['SpID'] <> "") {
-            $id = (int)$_POST['Sportsmen']['SpID'];
-            $id = $this->loadModel($id)->AgeID;       //Текущий ИД возраста
-        }*/
+        //if ($_POST['Sportsmen']['SpID'] <> "") {
+//            $id = (int)$_POST['Sportsmen']['SpID'];
+//            $id = $this->loadModel($id)->AgeID;       //Текущий ИД возраста
+//        }
         foreach($data as $value => $name) {
             $options = array('value' => $value);
             //if (isset($id) && $value == $id)          //поставить запомненный ИД возраста 
             //    $options['selected'] = 'selected';    //как выбранный
             echo CHtml::tag('option', $options, CHtml::encode($name), true);
         }
-    }
+    }*/
 
     //динамически: подгрузить список весов в зависимости от возраста
     public function actionDynamicweights() {

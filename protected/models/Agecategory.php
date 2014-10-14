@@ -171,23 +171,32 @@ class Agecategory extends CActiveRecord
         $compId = self::competitionIdWithAges(); //вычислить ИД соревнования
         $_cacheID = 'cacheAgeYearPeriod' . $compId;
         //Yii::app()->cache->delete($_cacheID);     //удаление из кэша
-        $row = Yii::app()->cache->get($_cacheID);   //проверить кэш
-        if ($row === false) {
+        $years = Yii::app()->cache->get($_cacheID);   //проверить кэш
+        if ($years === false) {
             // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
             $row = Yii::app()->db->createCommand(/*'SELECT MIN(YearMin) AS YearMin, MAX(YearMax) AS YearMax FROM agecategory'*/)
                 ->select('MIN(coalesce(YearMin, 1970)) AS YearMin, MAX(YearMax) AS YearMax')
                 ->from(self::TABLE_NAME)
                 ->where('CompetitionID = :compId')
                 ->queryRow(true, array(':compId'=>$compId));
-            // и сохраняем его в кэше для дальнейшего использования:
-            Yii::app()->cache->set($_cacheID, $row, 3600 * 1);  //1 час
-        }
-        $ymin = $row['YearMin'];
-        $ymax = $row['YearMax'];
 
-        $years = array();
-        for ($year = $ymax; $year >= $ymin; $year--)
-            $years[$year.'-01-01'] = $year;            //ВРЕМЕННО!!!! -------- надо будет переделать
+            $ymin = $row['YearMin'];
+            $ymax = $row['YearMax'];
+            if (!$ymin)
+                $ymin = 1970;
+            if (!$ymax)
+                $ymax = date('Y', time());
+            if ($ymin > $ymax) {
+                $ymin = 1970;
+                $ymax = date('Y', time());
+            }
+
+            $years = array();
+            for ($year = $ymax; $year >= $ymin; $year--)
+                $years[$year.'-01-01'] = $year;            //ВРЕМЕННО!!!! -------- надо будет переделать
+            // и сохраняем его в кэше для дальнейшего использования:
+            Yii::app()->cache->set($_cacheID, $years, 3600 * 1);  //1 час
+        }
         return $years;
     }    
 }

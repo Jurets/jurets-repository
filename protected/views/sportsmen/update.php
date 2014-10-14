@@ -11,4 +11,5 @@ $this->breadcrumbs = $crumbs;
     'model'=>$model,
     'extendRole'=>$extendRole,
     'years'=>$years,
+    'ages'=>$ages,
 )); ?>

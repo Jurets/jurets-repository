@@ -210,7 +210,7 @@ class SportsmenController extends ParticipantController
         $this->render('update',array(
             'model'=>$model,
             'extendRole'=>Yii::app()->isExtendRole,
-            'years'=>$this->getYears(),
+            'years'=>Agecategory::getYears(),
             'ages'=>Agecategory::getAges(), //выборка категорий соревнования (возрастные с весовыми)
             'crumbs'=>$breadcrumbs
         ));

@@ -175,7 +175,7 @@ class Agecategory extends CActiveRecord
             // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
             $compId = self::competitionIdWithAges(); //вычислить ИД соревнования
             $row = Yii::app()->db->createCommand(/*'SELECT MIN(YearMin) AS YearMin, MAX(YearMax) AS YearMax FROM agecategory'*/)
-                ->select('MIN(YearMin) AS YearMin, MAX(YearMax) AS YearMax')
+                ->select('MIN(coalesce(YearMin, 1970)) AS YearMin, MAX(YearMax) AS YearMax')
                 ->from(self::TABLE_NAME)
                 ->where('CompetitionID = :compId')
                 ->queryRow(true, array(':compId'=>$compId));

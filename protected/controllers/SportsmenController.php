@@ -220,7 +220,7 @@ class SportsmenController extends ParticipantController
   //СОЗДАТЬ спортсмена ---------------------------------------------------------------------
   //$id - ИД команды, куда будет добавляться спортсмен
   // перед действием будут выполнены проверки (см. ФИЛЬТРЫ для контроллера)  
-    public function actionCreate($id = null) {//DebugBreak();
+    public function actionCreate($id = null) {
         // $this->performAjaxValidation($model); // Uncomment the following line if AJAX validation is needed
 
       //РАЗЛИЧНЫЕ ПРОВЕРКИ  
@@ -293,7 +293,7 @@ class SportsmenController extends ParticipantController
         
         $this->render('create',array(
             'model'=>$model,
-            'years'=>$this->getYears(),
+            'years'=>AgeCategory::getYears(),
             'ages'=>Agecategory::getAges(), //выборка категорий соревнования (возрастные с весовыми)
             'extendRole'=>Yii::app()->isExtendRole,
             'crumbs'=>$breadcrumbs,

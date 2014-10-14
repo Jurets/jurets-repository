@@ -157,12 +157,11 @@ class Agecategory extends CActiveRecord
     }
     
     //вычислить ИД соревнования, по которому есть возрастные категории
-    private static function competitionIdWithAges() {//DebugBreak();
+    private static function competitionIdWithAges() {
         $compId = Yii::app()->competitionId;
         $cmd = Yii::app()->db->createCommand();
-        //$count = $cmd->createCountCommand(self::TABLE_NAME, Yii::app()->db->createCriteria('CompetitionID = :compId', array(':compId'=>$compId)))->queryScalar();
         $count = $cmd->select('COUNT(*)')->from(self::TABLE_NAME)->where('CompetitionID = :compId')->queryScalar(array(':compId'=>$compId));
-        return ($count > 0 ? $count : 0);
+        return ($count > 0 ? $compId : 0);
     }
     
     //выбрать диапазон годов рождения по соревнованию

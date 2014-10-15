@@ -161,9 +161,13 @@ return array_merge(array(
                 ),
            ),
        ),
-    'adminEmail' => 'admin@competition.ftu.com.ua',
-    'fromEmail' => 'noreply@competition.ftu.com.ua',
-    
+    'adminEmail' => 'admin@tkd-card.com.ua',
+    'fromEmail' => 'noreply@tkd-card.com.ua',
+
+    //настройки почты (могут меняться в зависимости от хостинга)
+    'mail.transportType' => 'php',
+    'mail.transportOptions' => array(),
+
     'errorcodes' => array(
         400 => 'Ошибка',
         401 => 'Доступ запрещен',

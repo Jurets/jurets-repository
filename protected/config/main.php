@@ -29,6 +29,8 @@ return array(
         //'application.extensions.yiidebugtb.*', //YII Debugger
         //'ext.yii-debug-toolbar.*',
         'application.extensions.yii-debug-toolbar.*',
+        //расширение для работы с почтой
+        'application.extensions.yii-mail.YiiMailMessage',
 	),
 
     'aliases' => array(
@@ -164,7 +166,17 @@ return array(
             'mimeParams'=>array(
                 //...
             ),
-    ),
+        ),
+        
+        'mail' => array(
+            'class' => 'ext.yii-mail.YiiMail',
+            'transportType' => $params['mail.transportType'],
+            'transportOptions' => $params['mail.transportOptions'],
+            'viewPath' => 'application.views.mail',
+            'logging' => true,
+            'dryRun' => false,
+        ),
+        
     ),
 
 	// application-level parameters that can be accessed

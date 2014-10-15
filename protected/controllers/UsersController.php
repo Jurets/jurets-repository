@@ -69,7 +69,13 @@ class UsersController extends Controller
 		{
 			$model->attributes=$_POST['Users'];
 			if($model->save(true)) {
-				$success = MailSender::send(
+				$success = EmailHelper::send(
+                    array($model->Email),                         //кому
+                    Yii::t('fullnames', 'Регистрация в системе'), //тема
+                    'invitation',                                 //шаблон - вьюшка
+                    array('user' => $model)                       //параметры
+                );
+                   /*MailSender::send(
                     array($model->Email), 
                     Yii::app()->params['emailsender']['templates']['invitation'],
                     array(
@@ -77,7 +83,7 @@ class UsersController extends Controller
                         '{login}' => $model->Email,
                         '{password}' => $model->new_password,
                     )
-                );
+                );*/
                 //если юзер = Гость - залогиниться с введённым паролем
                 if (Yii::app()->user->isGuest) {
                     $loginForm = new LoginForm;
@@ -111,7 +117,14 @@ class UsersController extends Controller
 		{
 			$model->attributes=$_POST['Users'];
 			if($model->save(true)) {
-                $success = MailSender::send(
+                $success = EmailHelper::send(
+                    array($model->Email),                         //кому
+                    Yii::t('fullnames', 'Изменение персональных данных'), //тема
+                    'changedata',                                 //шаблон - вьюшка
+                    array('user' => $model)                       //параметры
+                );
+                
+                /*MailSender::send(
                     array($model->Email), 
                     Yii::app()->params['emailsender']['templates']['changedata'],
                     array(
@@ -119,7 +132,7 @@ class UsersController extends Controller
                         '{firstname}' => $model->firstname,
                         '{lastname}' => $model->lastname,
                     )
-                );
+                );*/
 				$this->redirect(array('view','id'=>$model->UserID));
             }
 		}

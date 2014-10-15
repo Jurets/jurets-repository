@@ -77,11 +77,12 @@ class Command extends CActiveRecord
             'CommandName' => Yii::t('fullnames', 'CommandName'),
             'sportsmenCount' => Yii::t('fullnames', 'sportsmenCount'),
             'coachCount' => Yii::t('fullnames', 'coachCount'),
+            'Delegate' => Yii::t('fullnames', 'Delegate'),
         );
     }
 
     public static function commandCriteria() {
-        $criteria=new CDbCriteria;
+        $criteria = new CDbCriteria;
         //$criteria->join = 'INNER JOIN proposal ON proposal.commandid = t.commandid';
         //$criteria->addCondition('proposal.competitionid = :competitionid');
         $criteria->select = 't.*, '.
@@ -125,9 +126,12 @@ class Command extends CActiveRecord
             ':status'=>Proposal::STATUS_ACTIVE
         );*/
         $criteria = self::commandCriteria();
+        //добавить связь с заявкой
+        $criteria->with = array('relProposal', 'relProposal.relUsers');
+        //$criteria->with = array('relProposal', array('with'=>'relUsers'));
         
         $criteria->compare('CommandID',$this->CommandID);
-        $criteria->compare('competitionid',$this->competitionid);
+        $criteria->compare($this->getTableAlias() . '.competitionid',$this->competitionid);
         $criteria->compare('CommandName',$this->CommandName,true);
         
         return new CActiveDataProvider($this, array(
@@ -141,7 +145,7 @@ class Command extends CActiveRecord
     public function scopes() {
         return array(
             'competition'=>array(
-                  'condition'=>'competitionid = :id',
+                  'condition'=>$this->getTableAlias() . '.competitionid = :id',
                   'params'=>array(':id'=>Yii::app()->competitionId),
                   'order'=>'CommandName ASC',
             ),

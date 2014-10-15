@@ -18,6 +18,11 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'value'=>'CHtml::link(CHtml::encode($data->CommandName), Yii::app()->createAbsoluteUrl($this->grid->controller->pathCompetition . "/command/view", array("id"=>$data->CommandID)))',
         ),
         array(
+            'name'=>'Delegate',
+            'type'=>'raw',
+            'value'=>'$data->relProposal->relUsers->UserFIO',
+        ),
+        array(
             'name'=>'sportsmenCount',
             //'type'=>'html',
             //'value'=>'$data->sportsmenCount',

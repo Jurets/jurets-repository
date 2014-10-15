@@ -211,14 +211,8 @@ class CommandController extends Controller //ParticipantController
 	//ДЕЙСТВИЕ: просмотр списка команд
 	public function actionIndex()
 	{
-		/*$dataProvider=new CActiveDataProvider('Command', array(
-            'pagination'=>array(
-                'pageSize'=>20,
-            ),
-        ));*/
-        
         //данные для списка команд
-        $model = New Command;//DebugBreak();
+        $model = New Command;
         $model->competitionid = Yii::app()->competitionId;
         $dataProvider = $model->search();
         //данные по статистике

@@ -277,17 +277,20 @@ class UsersController extends Controller
         if(isset($auto) || isset($_POST['Users']))
         {
             $model->scenario = isset($auto) ? 'autopassword' : 'password';
-            $model->attributes=$_POST['Users'];
+            if (!empty($_POST['Users'])) {
+                $model->attributes = $_POST['Users'];
+            }
             if($model->save(true, array('Password', 'Salt'))) 
             {
                 if (isset($auto)) {
-                    $object = MailSender::send(array($model->Email), Yii::app()->params['emailsender']['templates']['autopassword'],
-                        array(
-                            '{hostname}' => Yii::app()->createAbsoluteUrl('/'),
-                            '{login}' => $model->UserName,
-                            '{password}' => $model->new_password,
-                        ));
-                    if ($object)
+                    $success = EmailHelper::send( //отослать сообщение на емейл
+                        array($model->Email),                //кому
+                        Yii::t('fullnames', 'Новый пароль'), //тема
+                        'autopassword',                      //шаблон - вьюшка
+                        array('user' => $model)              //параметры
+                    );
+                        
+                    if ($success)
                         Yii::app()->user->setFlash('success', 'Сообщение о новом пароле пользователя успешно отослано на его e-mail');
                     else
                         Yii::app()->user->setFlash('warning', 'Ошибка при отсылке сообщения');
@@ -295,8 +298,7 @@ class UsersController extends Controller
                     Yii::app()->user->setFlash('success', 'Пароль успешно изменён');
 
                 $this->redirect(array('view','id'=>$model->UserID));
-            }
-            else if (isset($auto))
+            } else if (isset($auto))
                 $this->redirect(array('view','id'=>$model->UserID));
         }
 

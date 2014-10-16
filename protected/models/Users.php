@@ -222,7 +222,7 @@ class Users extends CActiveRecord
     }
     
     //функция перед записью: инициализация значений
-    public function beforeSave() {//DebugBreak();
+    public function beforeSave() {
         if ($this->isNewRecord) {
             //$this->Active = self::STATUS_NOACTIVE; //юзер при создании НЕАКТИВЕН
             $this->status = self::STATUS_NEW; //юзер при создании НЕАКТИВЕН
@@ -232,15 +232,14 @@ class Users extends CActiveRecord
             $this->new_password = $password; //сохранить исходный текст пароля (для отправки)
             $this->Password = $this->hashPassword($password, $this->Salt); //хешить пароль
             $this->RoleID = 'delegate';  //роль - представитель
-        }
-        else if ($this->scenario == 'activity') {
-            return true;
-        }
+        } else if ($this->scenario == 'activity') {
+            return true;                                                                 
+        } //автогенерация пароля
         else if ($this->scenario == 'autopassword' || $this->scenario == 'password') {
-            if ($this->scenario == 'autopassword') {
+            if ($this->scenario == 'autopassword') { //автогенерация пароля
                $this->new_password = $this->generatePassword(rand(6,10));
             }
-            else if ($this->scenario == 'password') {
+            else if ($this->scenario == 'password') { //смена пароля юзером
                 if ($this->Password <> $this->hashPassword($this->old_password, $this->Salt))
                     $this->addError('Password', Yii::t('fullnames', 'Your typed old password do not match with your current existing password'));
                 else if ($this->new_password <> $this->retype_password)

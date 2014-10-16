@@ -1,4 +1,3 @@
-
 <?php
 
 $isGuest = Yii::app()->isGuestUser; //определить: текущий юзер - гость
@@ -129,7 +128,7 @@ if (!$isGuest)
     );
     
   //если юзер неактивен - сделать все пункты меню дисэйблеными, а по клику выводить модальное окно с сообщением
-    if (!$active)
+    if ($active <> Proposal::STATUS_ACTIVE)
         foreach($menu as $key=>$menuitem) {
             $menuitem['disabled'] = true;
             $menuitem['url'] = '#myModal';

@@ -14,9 +14,9 @@ $docpath = Yii::app()->baseUrl.'/document/';
 
 <!--<h1 id="tosser-head">Попереднє жеребкування</h1>-->
 <h1 id="tosser-head">Предварительная жеребьевка</h1>
-<!--<p><?php echo Yii::t('fullnames', 'On this page will be posted preliminary draws')?></p>-->
+<p><?php echo Yii::t('fullnames', 'On this page will be posted preliminary draws')?></p>
 
-<p style="color: red; font-weight: bold;">Вниманию представителей команд! Проверьте наличие и категорию своих спортсменов</p>
+<!--<p style="color: red; font-weight: bold;">Вниманию представителей команд! Проверьте наличие и категорию своих спортсменов</p>
 
 <a id="all-download" href="<?php echo $docpath.'htz2014sep_toss_child(2007).pdf'?>" target="_blank" style="color: maroon; ">Дети (2007 г.р.)</a>
 <br><br>
@@ -27,7 +27,7 @@ $docpath = Yii::app()->baseUrl.'/document/';
 <a id="all-download" href="<?php echo $docpath.'htz2014sep_toss_cadet(2000-2002).pdf'?>" target="_blank" style="color: maroon; ">Кадеты (2000 - 2002 г.р.)</a>
 <br><br>
 <a id="all-download" href="<?php echo $docpath.'htz2014sep_toss_junior(1997-1999).pdf'?>" target="_blank" style="color: maroon; ">Юниоры (1997 - 1999 г.р.)</a>
-<br><br>
+<br><br>-->
 
 <!--<a id="all-download" href="<?php echo $docpath.'IF2014_senior.pdf'?>" target="_blank" style="color: maroon; ">Молодь (1994 - 1998 р.н.)</a>
 <br><br>-->

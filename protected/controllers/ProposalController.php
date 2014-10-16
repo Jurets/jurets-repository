@@ -231,8 +231,13 @@ class ProposalController extends Controller
             $message_str = ($status == Proposal::STATUS_ACTIVE ? 'Заявка успешно подтверждена' : 'Заявка временно деактивирована');
             Yii::app()->user->setFlash('success', $message_str);  //создать алерт
             //отсылка по почте уведомления
-            $object = MailSender::send(array($model->relUsers->Email), Yii::app()->params['emailsender']['templates'][($status == Proposal::STATUS_ACTIVE ? 'confirm' : 'cancel')]);
-            if (!$object)
+            $success = EmailHelper::send( //отослать сообщение о смене статуса заявки (например подтверждение)
+                    array($model->relUsers->Email),    //кому
+                    Yii::t('fullnames', ($status == Proposal::STATUS_ACTIVE ? 'Подтверждение заявки' : 'Деактивация заявки')), //тема
+                    ($status == Proposal::STATUS_ACTIVE ? 'proposalconfirm' : 'proposalcancel'), //шаблон - вьюшка
+                    array('user' => $model)  //параметры
+                );
+            if (!$success)
                 Yii::app()->user->setFlash('warning', 'Ошибка при отсылке сообщения');
         } else
             Yii::app()->user->setFlash('error', $error);

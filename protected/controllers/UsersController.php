@@ -75,15 +75,6 @@ class UsersController extends Controller
                     'invitation',                                 //шаблон - вьюшка
                     array('user' => $model)                       //параметры
                 );
-                   /*MailSender::send(
-                    array($model->Email), 
-                    Yii::app()->params['emailsender']['templates']['invitation'],
-                    array(
-                        '{hostname}' => Yii::app()->createAbsoluteUrl('/'),
-                        '{login}' => $model->Email,
-                        '{password}' => $model->new_password,
-                    )
-                );*/
                 //если юзер = Гость - залогиниться с введённым паролем
                 if (Yii::app()->user->isGuest) {
                     $loginForm = new LoginForm;
@@ -117,21 +108,12 @@ class UsersController extends Controller
 		{
 			$model->attributes=$_POST['Users'];
 			if($model->save(true)) {
-                $success = EmailHelper::send(
-                    array($model->Email),                         //кому
+                //пока отключаем данную отсылку (нужно ли оно???????????????)
+                /*$success = EmailHelper::send( //отослать сообщение о смене персональных данных
+                    array($model->Email),    //кому
                     Yii::t('fullnames', 'Изменение персональных данных'), //тема
-                    'changedata',                                 //шаблон - вьюшка
-                    array('user' => $model)                       //параметры
-                );
-                
-                /*MailSender::send(
-                    array($model->Email), 
-                    Yii::app()->params['emailsender']['templates']['changedata'],
-                    array(
-                        '{hostname}' => Yii::app()->createAbsoluteUrl('/'),
-                        '{firstname}' => $model->firstname,
-                        '{lastname}' => $model->lastname,
-                    )
+                    'changedata',            //шаблон - вьюшка
+                    array('user' => $model)  //параметры
                 );*/
 				$this->redirect(array('view','id'=>$model->UserID));
             }

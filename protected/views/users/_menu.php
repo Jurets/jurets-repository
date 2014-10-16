@@ -57,7 +57,7 @@ if (!$isGuest)
             )),
         
         array('label'=>Yii::t('controls', 'Activate'), 
-            'url'=>'#', 
+            'url'=>'#',
             'icon'=>'check',
             'linkOptions'  => array(
                 'title'=>Yii::t('controls','Activate').Yii::t('fullnames', ' user'), 
@@ -68,9 +68,13 @@ if (!$isGuest)
             ),
         
         array('label'=>Yii::t('controls', 'Deactivate'), 
-            'url'=>array('users/deactivate', 'id'=>$model->UserID), 
+            'url'=>'#',
             'icon'=>'check', 
-            'title'=>Yii::t('controls', 'Dectivate').Yii::t('fullnames', ' user'), 
+            'linkOptions'  => array(
+                'title'=>Yii::t('controls', 'Dectivate').Yii::t('fullnames', ' user'), 
+                'confirm'=>Yii::t('controls', "Deactivate account for user\n{name}?", array('{name}'=>$model->UserName)),
+                'submit'=>array('users/deactivate', 'id'=>$model->UserID),
+            ),
             'visible'=>(!$isMyUserID && $isExtendRole && $model->Active)
             ),
 

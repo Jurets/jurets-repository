@@ -42,6 +42,7 @@ return array(
     "Are you sure you want to {operation} {item}\n{name}?" => "Ви дійсно хочете {operation} {item}\n{name}?",
     "Generate new password for user\n{name}?" => "Генерувати новий пароль для користувача\n{name}?",
     "Activate account for user\n{name}?" => "Активувати обліковий запис для користувача\n{name}?",
+    "Deactivate account for user\n{name}?" => "Деактивувати обліковий запис для користувача\n{name}?",
     
     'Choose gender' => 'Виберіть стать',
     'Choose age category' => 'Виберіть вікову категорію',

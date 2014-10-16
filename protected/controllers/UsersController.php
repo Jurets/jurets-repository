@@ -230,12 +230,19 @@ class UsersController extends Controller
             //$this->render('view',array('model'=>$model));
         if ($success) {
             $message_str = ($status == Users::STATUS_ACTIVE ? 'Пользователь успешно активирован' : 'Пользователь успешно деактивирован');
-            Yii::app()->user->setFlash('success', $message_str);  //создать алерт
-            $object = MailSender::send(array($model->Email), Yii::app()->params['emailsender']['templates'][($status == Users::STATUS_ACTIVE ? 'activation' : 'deactivation')]);
-            if ($object)
-                Yii::app()->user->setFlash('success', 'Сообщение о смене статуса пользователя успешно отослано на его e-mail');
+            //Yii::app()->user->setFlash('success', $message_str);  //создать алерт
+            $mailsuccess = EmailHelper::send(  //отсылка мейла о активации / деактивации
+                array($model->Email),                         //кому
+                Yii::t('fullnames', ($status == Users::STATUS_ACTIVE ? 'Активация учётной записи' : 'Деактивация учётной записи')), //тема
+                ($status == Users::STATUS_ACTIVE ? 'useractivation' : 'userdeactivation'), //шаблон - вьюшка
+                array('user' => $model)                       //параметры
+            );
+            if ($mailsuccess)
+                Yii::app()->user->setFlash('success', $message_str . '. Сообщение о смене статуса пользователя успешно отослано на его e-mail');
             else
-                Yii::app()->user->setFlash('error', 'Ошибка при отсылке сообщения');
+                Yii::app()->user->setFlash('warning', $message_str . 'Ошибка при отсылке сообщения');
+        } else {
+            Yii::app()->user->setFlash('error', 'Ошибка при попытке изменить статус');
         }
         return $success;
     }

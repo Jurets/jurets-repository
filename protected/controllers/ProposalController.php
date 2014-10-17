@@ -259,7 +259,7 @@ class ProposalController extends Controller
     //ДЕЙСТВИЕ: просмотр списка заявок
     public function actionIndex() { 
         $criteria = new CDbCriteria;
-        $criteria->with = array('relCommand');
+        $criteria->with = array('relCommand', 'relUsers');
         $criteria->condition = 't.competitionid = '.Yii::app()->competitionId;
         
         $dataProvider=new CActiveDataProvider('Proposal', array(
@@ -276,7 +276,7 @@ class ProposalController extends Controller
     //ДЕЙСТВИЕ: просмотр списка заявок
     public function actionManage() { 
         $criteria = new CDbCriteria;
-        $criteria->with = array('relCommand');
+        $criteria->with = array('relCommand', 'relUsers');
         $criteria->condition = 't.competitionid = '.Yii::app()->competitionId;
         $dataProvider=new CActiveDataProvider('Proposal', array(
             'criteria' => $criteria,

@@ -271,4 +271,15 @@ class Users extends CActiveRecord
         return $success;
     }
     
+    //список заявок на соревнования
+    public function getCompetitionList() {
+        $sqlCommand = Yii::app()->db->createCommand()
+            ->select(array('competition.id', 'competition.name','competition.begindate','competition.enddate'))
+            ->from('proposal')
+            ->leftJoin('competition', 'proposal.competitionid = competition.id')
+            ->where('proposal.userid = :userid')
+            ->order('competition.begindate ASC');
+        $dataProvider = new CSqlDataProvider($sqlCommand->text, array('params'=>array(':userid'=>$this->UserID,),));
+        return $dataProvider;
+    }    
 }

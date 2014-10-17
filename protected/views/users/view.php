@@ -76,5 +76,50 @@
     }
 
     //вывести инфо по юзеру в виджете
-    $this->renderPartial('application.views.site._userdata', array('user'=>$model, 'isAccess'=>$isExtendRole));
+    $complistContent = $this->widget('bootstrap.widgets.TbGridView', array(
+        'id'=>'complist-grid',
+        'dataProvider'=>$dataComplist,
+        //'template'=>"{pager}<br>{items}<br>{pager}",
+        'template'=>"{items}",
+        'columns'=>array(
+            array(
+                'header'=>Yii::t('fullnames', 'Name'),
+                'value'=>'$data["name"]',
+            ),
+            array(
+                'header'=>Yii::t('fullnames', 'Дата начала'),
+                'type'=>'date',
+                'value'=>'strtotime($data["begindate"])',
+            ),
+            array(
+                'header'=>Yii::t('fullnames', 'Дата окончания'),
+                'type'=>'date',
+                'value'=>'strtotime($data["enddate"])',
+            ),
+        ),
+    ), true);
+    
+    //ТабВью: показать данные на вкладках раздельно
+    $tabnum = Yii::app()->request->getParam('tab');
+    $tabnum = !empty($tabnum) ? $tabnum : 1;
+    
+    $this->widget('bootstrap.widgets.TbTabs', array(
+        //'skin'=>'default',
+        'id'=>'usertab',
+        'type'=>'tabs', //'pills'
+        'placement'=>'above', // 'above', 'right', 'below' or 'left'
+        'tabs'=>array(
+            array(
+                'label'=>Yii::t('fullnames', 'Персональные данные'), 
+                'content'=>$this->renderPartial('application.views.site._userdata', array('user'=>$model, 'isAccess'=>$isExtendRole), true), 
+                'active'=>($tabnum == 1)
+            ),
+            array(
+                'label'=>Yii::t('fullnames', 'Статистика'), 
+                'content'=>$complistContent, 
+                'active'=>($tabnum == 2)
+            ),
+        ),
+    ));
+    
 ?>

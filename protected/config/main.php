@@ -177,6 +177,12 @@ return array(
             'dryRun' => false,
         ),
         
+        'format' => array(
+            //'class' => 'common.components.EDateFormatter',
+            //'locale' => 'en_US',
+            'dateFormat' => 'd.m.Y',
+        ),
+
     ),
 
 	// application-level parameters that can be accessed

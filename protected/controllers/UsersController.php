@@ -48,8 +48,11 @@ class UsersController extends Controller
 	// Displays a particular model. @param integer $id the ID of the model to be displayed
 	public function actionView($id)
 	{
+        $model = $this->loadModel($id);
+        $dataComplist = $model->getCompetitionList();
 		$this->render('view',array(
-			'model'=>$this->loadModel($id),
+            'model'=>$model,
+			'dataComplist'=>$dataComplist,
 		));
 	}
 

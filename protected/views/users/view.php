@@ -75,35 +75,6 @@
              '<br>Ниже приведены персональные данные Пользователя:', true);  
     }
 
-    $this->widget('bootstrap.widgets.TbLabel', array(
-        // 'success', 'warning', 'important', 'info' or 'inverse'
-        'type'=>$model->statusCss,  
-        //'type'=>($model->status == Users::STATUS_NEW ? 'warning' : ($model->status == Users::STATUS_NOACTIVE ? 'important' : 'success')),
-        'label'=>$model->statusTitle,
-        //'htmlOptions'=>('')
-    ));
-    
-    $this->widget('bootstrap.widgets.TbDetailView', array(
-	'data'=>$model,
-    'nullDisplay'=>'<span class="null">'.Yii::t('fullnames', 'no data').'</span>',
-	'attributes'=>array(
-		'UserName',
-        'lastname',
-        'firstname',
-        'federation',
-        'post',
-        'country',
-        'city',
-        'club',
-        'address',
-        'phone',
-        'Email',
-        'www',
-        'comment',
-        array(
-            'label'=>Yii::t('fullnames', 'Status'),
-            'value'=>$model->statusTitle,
-        ),
-	),
-)); 
+    //вывести инфо по юзеру в виджете
+    $this->renderPartial('application.views.site._userdata', array('user'=>$model, 'isAccess'=>$isExtendRole));
 ?>

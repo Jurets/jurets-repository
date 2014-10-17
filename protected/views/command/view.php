@@ -8,12 +8,14 @@
 
     $strTitle = ($isMyCommand ? Yii::t('fullnames', 'My Command') : Yii::t('fullnames', 'Command View'));
 
-    $this->breadcrumbs=array(
+    //хлебные крошки
+    $this->breadcrumbs = array(
         Yii::t('fullnames', 'Commands')=>array('index'),
         ($isMyCommand ? Yii::t('fullnames', 'My Command') : $model->CommandName),
     );
 
-    $this->menu=array(
+    //меню
+    $this->menu = array(
         //array('label'=>'Создать команду', 'url'=>array('create'), 'visible'=>Yii::app()->user->isExtendRole()),
         array('label'=>Yii::t('controls', 'Change name'), 
             'url'=>array('update', 'id'=>$model->CommandID), 
@@ -38,10 +40,12 @@
         //array('label'=>'Список команд', 'url'=>array('index')),
     );
 
+    
+    //ЗАГОЛОВОК
     echo CHtml::tag('h3', array(), $model->CommandName, true);
-    ?>
-
-    <?php //DebugBreak();
+    
+    
+    // --------- содержимое вкладки "Общие сведения" ----------
     $infoContent = CHtml::tag('h3', array(), $strTitle, true);
     $infoContent .= $this->widget('bootstrap.widgets.TbDetailView', array(
         'data'=>$model,
@@ -50,7 +54,6 @@
             'CommandName',
             array(
                 'label'=>Yii::t('fullnames', 'coachCount'),
-                //'value'=>$model->coachCount,
                 'value'=>$model->coach_count,
             ),
             array(
@@ -91,23 +94,29 @@
             ),
             
             'CommandID',
+            array(
+                'label'=>Yii::t('fullnames', 'ИД заявки'),
+                'value'=>$model->relProposal->propid,
+            ),
         ),
     ), true); 
 
-    //echo '<br>';
-    //echo '<hr>';
-
+    // --------- содержимое вкладки "Спортсмены" ----------
     $sportsmenContent = $this->renderPartial('/sportsmen/_sportsmen', array(
         'commandid'=>$model->CommandID,
         'dataProvider'=>$dataSportsmenList
     ), true);
 
+    // --------- содержимое вкладки "Тренеры" ----------
     $coachContent = $this->renderPartial('/coach/_coach', array(
         'commandid'=>$model->CommandID,
         'dataProvider'=>$dataCoachList,
     ), true);
-
-
+    
+    // --------- содержимое вкладки "представитель" ----------
+    $delegateContent = CHtml::tag('h3', array(), 'Сведения о представителе', true);
+    $delegateContent .= $this->renderPartial('application.views.site._userdata', array('user'=>$model->relProposal->relUsers, 'isAccess'=>$isAccess), true);
+      
     //ТабВью: показать на страничках раздельно спортсменов и тренеров
     $this->widget('bootstrap.widgets.TbTabs', array(
         //'skin'=>'default',
@@ -118,6 +127,7 @@
             array('label'=>Yii::t('fullnames', 'Sportsmens'), 'content'=>$sportsmenContent, 'active'=>($tabnum == 1)),
             array('label'=>Yii::t('fullnames', 'Coaches'), 'content'=>$coachContent, 'active'=>($tabnum == 2)),
             array('label'=>Yii::t('fullnames', 'Overview'), 'content'=>$infoContent, 'active'=>($tabnum == 3)),
+            array('label'=>Yii::t('fullnames', 'Delegate'), 'content'=>$delegateContent, 'active'=>($tabnum == 4)),
         ),
     ));
 

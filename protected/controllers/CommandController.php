@@ -62,37 +62,22 @@ class CommandController extends Controller //ParticipantController
 	public function actionView($id, $path = '') {
         $tabnum = Yii::app()->request->getParam('tab');
         $tabnum = !empty($tabnum) ? $tabnum : 1;
-        //DebugBreak();
+        //загрузить модель со всеми связями
         $model = $this->loadModelAll($id);
-        
-//        $criteria = Command::commandCriteria();
-//        $criteria->compare('CommandID',$id);
-//        $model = Command::model()->find($criteria);
-                
-        //$model = $this->loadModel($id);
-        //$count = $model->sportsmenCount;
-        
         //проверка перед просмотром
         $this->beforeCommandAction($model);
         
-        //$count = $model->sportsmen_count;
+        //загрузить список спортсменов
         $sqlCommand = Sportsmen::sqlSportsmenList($model->CommandID);
         $dataSportsmenList = new CSqlDataProvider($sqlCommand->text, array(
             'totalItemCount'=>$model->sportsmen_count, //$count,
             'keyField'=>'SpID',
-            /*'sort'=>array(
-                'attributes'=>array(
-                    'Fullname',
-                ),
-            ),*/
             'pagination'=>array(
                 'pageSize'=>50,
             ),
         )); 
-        // $dataProvider->getData() will return a list of arrays.
 
-        //$count = $model->coachCount;
-        //$count = $model->coach_count;
+        //загрузить список тренеров
         $sqlCommand = Coach::sqlCoachList($model->CommandID);
         $dataCoachList = new CSqlDataProvider($sqlCommand->text, array(
             'totalItemCount'=>$model->coach_count, //$count,
@@ -102,6 +87,7 @@ class CommandController extends Controller //ParticipantController
             ),
         )); 
         
+        //вывести вьюшку
 		$this->render('view',array(
 			'model'=>$model,
             'commandid'=>$model->CommandID,

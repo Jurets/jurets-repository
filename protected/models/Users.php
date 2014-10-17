@@ -131,7 +131,7 @@ class Users extends CActiveRecord
             'old_password' => Yii::t('fullnames', 'Old password'),
             'new_password' => Yii::t('fullnames', 'New password'),
             'retype_password' => Yii::t('fullnames', 'Retype password'),
-            
+            'created' => Yii::t('fullnames', 'Date Create'),
 		);
 	}
 

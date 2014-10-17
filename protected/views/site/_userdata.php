@@ -6,7 +6,22 @@
     */
     $isAccess = isset($isAccess) ? $isAccess : false;
     
-    $attributes = array('lastname', 'firstname', 'federation', 'post', 'country', 'city', 'club', 'address', 'phone', );
+    $attributes = array(
+        array(
+            'name'=>Yii::t('fullnames', 'Date Create'),
+            'value'=>strtotime($user->created), 
+            'type'=>'date'
+        ),
+        'lastname', 
+        'firstname', 
+        'federation', 
+        'post', 
+        'country', 
+        'city', 
+        'club', 
+        'address', 
+        'phone', 
+    );
     if (Yii::app()->controller->id == 'users' && Yii::app()->controller->action->id == 'view')
         $value = $user->UserName;
     else

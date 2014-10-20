@@ -208,11 +208,12 @@ class UsersController extends Controller
         //$proposalid = 
         //$url = $this->createUrl('/proposal/view',array('id'=>$proposalid));
         $this->redirect($url);*/
-
+        
         if (isset($userid)) {
             $model = $this->loadModel($userid);
+            $dataComplist = $model->getCompetitionList();
             if (isset($model))
-                $this->render('view',array('model'=>$model));
+                $this->render('view',array('model'=>$model, 'dataComplist'=>$dataComplist));
         }
         //$this->actionView($propid);
     }

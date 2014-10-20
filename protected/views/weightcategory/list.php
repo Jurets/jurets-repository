@@ -48,7 +48,7 @@ $docpath = Yii::app()->baseUrl.'/document/prot/';
       //цикл по весовым категориям
         foreach ($age['children'] as $wid=>$weight) {
             $weigthcontent = $weight['sportsmens'];
-            $weigths[] = array('label'=>$weight['text'], 'content'=>$weigthcontent, 'active'=>!$wid);
+            $weigths[] = array('label'=>$weight['text'] . ($weight['count'] ? ' (' . $weight['count'] . ')' : ''), 'content'=>$weigthcontent, 'active'=>!$wid);
         }
         //сформировать табы по весам
         $agecontent = $this->widget('bootstrap.widgets.TbTabs', array(
@@ -64,6 +64,7 @@ $docpath = Yii::app()->baseUrl.'/document/prot/';
         'type'=>'tabs',
         'placement'=>'above', // 'above', 'right', 'below' or 'left'
         'tabs'=>$ages,
+        'htmlOptions'=>array('style'=>'font-size: 12px'),
     ));
     
 } else {  

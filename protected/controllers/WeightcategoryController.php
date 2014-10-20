@@ -196,7 +196,7 @@ class WeightcategoryController extends Controller
     
 
   //ДЕЙСТВИЕ: смотреть жеребъёвку
-    private function getList() {
+    private function getList($amode = 'short', $wmode = 'full') {
         $arrcategory = array();
         //$allSportsmens = $this->allweightlist();
         $sqlCommand = Sportsmen::sqlTosserList();
@@ -207,7 +207,7 @@ class WeightcategoryController extends Controller
         foreach ($ages as $aid=>$age) {
             $arrcategory[$aid] = array(
                  'id' => $age->AgeID,
-                 'text' => $age->AgeNameYear,//$age->AgeName,
+                 'text' => $amode == 'full' ? $age->AgeNameYear : $age->AgeName,
                  'expanded' => false,
             );
             //$weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  ----- так много запросов
@@ -218,7 +218,7 @@ class WeightcategoryController extends Controller
                 $count = $this->countWeightlist($allSportsmens, $weigth->WeightID);
                 $arrcategory[$aid]['children'][$wid] = array(
                     'id' => $weigth->WeightID,
-                    'text' => $weigth->WeightNameShort,
+                    'text' => $wmode == 'full' ? $weigth->WeightNameFull : $weigth->WeightNameShort,
                     'sportsmens' => $sportsmens,
                     'count' => $count,
                 );
@@ -227,7 +227,7 @@ class WeightcategoryController extends Controller
         return $arrcategory;
     }
     
-  //ДЕЙСТВИЕ: смотреть жеребъёвку
+  //ДЕЙСТВИЕ: смотреть жеребьевку
     public function actionList() {
         $this->render('list', array('arrcategory'=>$this->getList()));
     }
@@ -434,7 +434,7 @@ class WeightcategoryController extends Controller
     
     //список + кол-во по категориям
     public function actionCategory() {
-        $this->render('category', array('arrcategory'=>$this->getList()));
+        $this->render('category', array('arrcategory'=>$this->getList('full', 'short')));
     }
 }
 

@@ -207,17 +207,18 @@ class WeightcategoryController extends Controller
         foreach ($ages as $aid=>$age) {
             $arrcategory[$aid] = array(
                  'id' => $age->AgeID,
-                 'text' => $age->AgeName,//$age->AgeNameYear(),
+                 'text' => $age->AgeNameYear,//$age->AgeName,
                  'expanded' => false,
             );
-            $weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  
+            //$weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  ----- так много запросов
+            $weigths = $age->relWeigths;  //список весов (из связанной модели по жадной загрузке) --- так лучше ))
             foreach ($weigths as $wid=>$weigth) {
                 //$sportsmens = $this->weightlist($weigth->WeightID);  
                 $sportsmens = $this->filterWeightlist($allSportsmens, $weigth->WeightID);
                 $count = $this->countWeightlist($allSportsmens, $weigth->WeightID);
                 $arrcategory[$aid]['children'][$wid] = array(
                     'id' => $weigth->WeightID,
-                    'text' => $weigth->WeightNameFull,
+                    'text' => $weigth->WeightNameShort,
                     'sportsmens' => $sportsmens,
                     'count' => $count,
                 );

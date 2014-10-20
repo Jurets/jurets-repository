@@ -167,6 +167,7 @@ class Weightcategory extends CActiveRecord
 		// class name for the relations automatically generated below.
 		return array(
             'relAgecategory'=> array(self::BELONGS_TO, 'Agecategory', 'AgeID'),
+            'countSportsmen'=> array(self::STAT, 'Sportsmen', 'WeigthID'),
 		);
 	}
 
@@ -216,7 +217,15 @@ class Weightcategory extends CActiveRecord
             return 'до '.$this->WeightTo.' кг';
     }
     
-
+    //Jurets: получить название весовой категории (по ID)
+    public function getWeightNameShort() {
+        //return //mb_strtoupper($this->relAgecategory->Gender, 'UTF-8').' '.
+        //    $this->WeightName();
+        if (is_null($this->WeightTo)) 
+            return '+'.$this->WeightFrom.'кг';
+        else 
+            return '-'.$this->WeightTo.'кг';
+    }
     
     //Функция: вычисление числа уровней по кол-ву боёв
     public static function getFigthCount($sportsmencount) {

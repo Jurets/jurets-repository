@@ -33,7 +33,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
     'type'=>'inverse', // null or 'inverse'
     'brand'=>'Главная',
     'fixed'=>false, //'top',
-    'brandUrl'=>$this->createUrl('/site/index'),
+    'brandUrl'=>Yii::app()->createAbsoluteUrl('/'),
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',

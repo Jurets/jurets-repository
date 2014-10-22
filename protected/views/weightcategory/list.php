@@ -47,7 +47,23 @@ $docpath = Yii::app()->baseUrl.'/document/prot/';
         $weigths = array();
       //цикл по весовым категориям
         foreach ($age['children'] as $wid=>$weight) {
-            $weigthcontent = $weight['sportsmens'];
+            //$weigthcontent = $weight['sportsmens'];
+            //создать источник данных (для виджета грида, который во вьюшке _weigthlist)
+            $dataProvider = new CArrayDataProvider($weight['sportsmens'], array(
+                'totalItemCount'=>count($weight['sportsmens']),
+                'keyField'=>false,
+                'pagination'=>array(
+                    'pageSize'=>50,
+                ),
+            ));    
+            //прорендерить вьюшку _weigthlist одной весовой категории
+            $weigthcontent = $this->renderPartial('/sportsmen/_weigthlist', array(
+                'commandid'=>null,
+                'dataProvider'=>$dataProvider,
+                'isCache'=>false,
+                'weigthid'=>$weight['id'],
+            ), true, false);
+            
             $weigths[] = array('label'=>$weight['text'] . ($weight['count'] ? ' (' . $weight['count'] . ')' : ''), 'content'=>$weigthcontent, 'active'=>!$wid);
         }
         //сформировать табы по весам

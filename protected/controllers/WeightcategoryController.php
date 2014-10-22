@@ -308,19 +308,7 @@ class WeightcategoryController extends Controller
             if ($item['WeigthID'] == $wid)
                 $filteredList[] = $item;
         }
-        $dataProvider = new CArrayDataProvider($filteredList, array(
-            'totalItemCount'=>count($filteredList),
-            'keyField'=>false,
-            'pagination'=>array(
-                'pageSize'=>50,
-            ),
-        ));    
-        return $this->renderPartial('/sportsmen/_weigthlist',array(
-            'commandid'=>null,
-            'dataProvider'=>$dataProvider,
-            'isCache'=>false,
-            'weigthid'=>$wid,
-        ), true, false);
+        return $filteredList;
     }          
     
     //ДЕЙСТВИЕ: смотреть жеребъёвку

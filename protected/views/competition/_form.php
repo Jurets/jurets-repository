@@ -16,7 +16,10 @@
     echo $form->textFieldRow($model,'path',array('size'=>20,'maxlength'=>20, 'class'=>'span2'));
 
     //флаг: было ли изменение в поле "главная страница"
-    echo $form->hiddenField($model,'isInviteChanged', array('id'=>'Competition_isInviteChanged'));
+    echo $form->hiddenField($model,'isInviteChanged', array(
+        'id'=>'Competition_isInviteChanged',
+        'value'=>1,  //временно
+    ));
     
     echo $form->textFieldRow($model,'begindate');
     $this->widget('zii.widgets.jui.CJuiDatePicker',array(

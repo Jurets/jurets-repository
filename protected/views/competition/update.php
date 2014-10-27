@@ -31,7 +31,9 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
         $content = $this->renderPartial('_form', array('model'=>$model, 'form'=>$form), true) ;
         $tabs[] = array('label'=>'Основные', 'content'=>$content, 'active'=>true);
-        $content = $this->widget('ImperaviRedactorWidget', array(
+        
+        //вкладка "Главная страница соревнования"
+        /*$content = $this->widget('ImperaviRedactorWidget', array(
             // You can either use it for model attribute
             'model' => $model,
             'attribute' => 'invitation',
@@ -55,7 +57,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                 ),
                 'changeCallback' => 'js:function(html){$("#Competition_isInviteChanged").attr("value", "1");}',
             )
-        ), true) . '<br>';
+        ), true) . '<br>';*/
+        $content = $form->textArea($model,'invitation', array('rows' => 10, 'cols' => 100, 'style'=>'width: 800px; height: 446px'));
         $tabs[] = array('label'=>'Главная страница', 'content'=>$content, 'active'=>false); 
         
         //вывести Табы для редактирования соревнования

@@ -50,7 +50,7 @@ class Competition extends CActiveRecord
 			array('id, courtcount, isfiling, maxparticipants', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('title, place, addinfo', 'length', 'max'=>255),
-			array('begindate, enddate, filingbegin, filingend, isInviteChanged', 'safe'),  //"invitation" убираем из безопасных атрибутов, а флаг добавляем
+			array('begindate, enddate, filingbegin, filingend, isInviteChanged, path', 'safe'),  //"invitation" убираем из безопасных атрибутов, а флаг добавляем
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
 			array('id, name, title, begindate, enddate, place, courtcount, filingbegin, filingend, isfiling, maxparticipants, addinfo', 'safe', 'on'=>'search'),
@@ -85,7 +85,8 @@ class Competition extends CActiveRecord
 			'filingbegin' => Yii::t('fullnames', 'Filing begin'),
 			'filingend' => Yii::t('fullnames', 'Filing end'),
 			'isfiling' => Yii::t('fullnames', 'Isfiling'),
-			'maxparticipants' => Yii::t('fullnames', 'Max participants'),
+            'maxparticipants' => Yii::t('fullnames', 'Max participants'),
+			'path' => Yii::t('fullnames', 'Path'),
 		);
 	}
 
@@ -159,6 +160,17 @@ class Competition extends CActiveRecord
         return $model;
     }
 
+    //выдать следующий ИД соревнования
+    public static function getNewID() {
+        //узнать максимальный ИД из существующих
+        $id = Yii::app()->db->createCommand()
+            ->select('MAX(id)')
+            ->from(self::model()->tableName())
+            ->queryScalar();
+        return isset($id) ? ($id + 1) : 0;
+    }
+    
+    
     public static function getCompetitionParam($param) {
         $model = self::getModel();
         $res = $model[$param];

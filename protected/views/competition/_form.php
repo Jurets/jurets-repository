@@ -13,6 +13,7 @@
 
     echo $form->textFieldRow($model,'name',array('size'=>50,'maxlength'=>50, 'class'=>'span4'));
     echo $form->textFieldRow($model,'title',array('size'=>60,'maxlength'=>255, 'class'=>'span6'));
+    echo $form->textFieldRow($model,'path',array('size'=>20,'maxlength'=>20, 'class'=>'span2'));
 
     //флаг: было ли изменение в поле "главная страница"
     echo $form->hiddenField($model,'isInviteChanged', array('id'=>'Competition_isInviteChanged'));

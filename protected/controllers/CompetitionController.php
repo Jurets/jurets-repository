@@ -32,7 +32,7 @@ class CompetitionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update', 'manage', 'exportcsv'),
+				'actions'=>array('update', 'manage', 'exportcsv', 'create'),
                 'roles'=>array('admin','manager'),
 				//'users'=>array('@'),
 			),
@@ -103,6 +103,29 @@ class CompetitionController extends Controller
         Yii::app()->getRequest()->sendFile($outputFile, $content, "text/csv", false);
     }
     
+    //ДЕЙСТВИЕ: создание
+    public function actionCreate() {
+        $model = New Competition();
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+        if(isset($_POST['Competition'])) {
+            $model->attributes = $_POST['Competition'];
+            if (empty($model->id)) { //если не определен ИД соревнования, то поставить авто
+                $model->id = Competition::getNewID();
+            }
+            if ($model->isInviteChanged) { //если было изменение главной страницы - то сохраняем его
+                $model->invitation = $_POST['Competition']['invitation'];
+            }
+            if($model->save()) {
+                Yii::app()->user->setFlash('success', 'Новое соревнование успешно добавлено: ' . $model->path . ' (ИД: ' . $model->id . ')');
+                $this->redirect(array('manage','id'=>$model->id));
+            }
+        }
+        $this->render('update',array(
+            'model'=>$model,
+        ));
+    }
+
 	//ДЕЙСТВИЕ: редактирование
 	public function actionUpdate($id = null) {
 		if ($id === null) {
@@ -114,7 +137,7 @@ class CompetitionController extends Controller
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Competition'])) {
-			$model->attributes=$_POST['Competition'];
+			$model->attributes = $_POST['Competition'];
             if ($model->isInviteChanged) { //если было изменение главной страницы - то сохраняем его
                 $model->invitation = $_POST['Competition']['invitation'];
             }

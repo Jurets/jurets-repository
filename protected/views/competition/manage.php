@@ -28,6 +28,14 @@ echo CHtml::form();
             'title'=>Yii::t('fullnames', 'Экспорт данных в CSV-файл'),
             'style'=>'margin-left: 20px;'
         ), Yii::t('controls','Экспорт'));
+        
+        echo CHtml::tag('a', array(
+            'href'=>Yii::app()->createUrl('/competition/create'),
+            'class'=>'btn btn-primary',
+            'title'=>Yii::t('fullnames', 'Создать новое соревнование'),
+            'style'=>'margin-left: 60px;'
+        ), Yii::t('controls','Create'));
+        
     }
         
     $this->renderPartial('_stat', array('dataStat'=>$dataStat));

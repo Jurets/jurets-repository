@@ -125,12 +125,20 @@ class Agecategory extends CActiveRecord
         $ymin = $this->YearMin;
         $ymax = $this->YearMax;
         if (!is_null($ymin) || !is_null($ymax)) {
-            $aname .= ' (';
-            if (!is_null($ymin))
-                $aname .= $ymin;
-            if (!is_null($ymax))
-                $aname .= ' - '.$ymax;
-            $aname .= ' р.н.)';
+            if (!is_null($ymin) && !is_null($ymax)) {
+                $aname .= ' (' . $ymin . ' - ' . $ymax . ' р.н.)';
+            } else if (!is_null($ymin) && is_null($ymax)){
+                $aname .= ' (від ' . $ymin . ' р.н.)';
+            } else if (is_null($ymin) && !is_null($ymax)){
+                $aname .= ' (до ' . $ymax . ' р.н.)';
+            } else {
+                $aname .= ' (';
+                if (!is_null($ymin))
+                    $aname .= $ymin;
+                if (!is_null($ymax))
+                    $aname .= ' - '.$ymax;
+                $aname .= ' р.н.)';
+            }
         }
         return $aname;
     }
@@ -142,8 +150,10 @@ class Agecategory extends CActiveRecord
         $_cacheID = 'cacheAgeList' . $compId;
         $ages = Yii::app()->cache->get($_cacheID);   //проверить кэш
         if ($ages === false) {
+            //$criteria = New CDbCriteria();
+            //$criteria->select($this->getTableAlias() . '*, ((SELECT COUNT(*) FROM sportsmen S LEFT JOIN command C ON C.commandid = S.commandid WHERE C.competitionid = :id AND S.status = 1) as realcount)')
             $ages = Agecategory::model()
-                ->with('relWeigths')
+                ->with('relWeigths'/*, 'relWeigths.countSportsmen'*/)
                 ->findAll('CompetitionID = :compId', array(':compId'=>$compId));
             if (empty($ages)) {  //если нет категорий по такому ИД сор-ия
                 $ages = Agecategory::model()
@@ -173,29 +183,25 @@ class Agecategory extends CActiveRecord
         $years = Yii::app()->cache->get($_cacheID);   //проверить кэш
         if ($years === false) {
             // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
-            $row = Yii::app()->db->createCommand(/*'SELECT MIN(YearMin) AS YearMin, MAX(YearMax) AS YearMax FROM agecategory'*/)
-                ->select('MIN(coalesce(YearMin, 1970)) AS YearMin, MAX(YearMax) AS YearMax')
+            $rowsages = Yii::app()->db->createCommand()
+                ->select('coalesce(YearMin, 1970) AS YearMin, YearMax')
                 ->from(self::TABLE_NAME)
                 ->where('CompetitionID = :compId')
-                ->queryRow(true, array(':compId'=>$compId));
-
-            $ymin = $row['YearMin'];
-            $ymax = $row['YearMax'];
-            if (!$ymin)
-                $ymin = 1970;
-            if (!$ymax)
-                $ymax = date('Y', time());
-            if ($ymin > $ymax) {
-                $ymin = 1970;
-                $ymax = date('Y', time());
+                ->queryAll(true, array(':compId'=>$compId));
+            
+            $yearsages = array();
+            foreach ($rowsages as $age) {
+                $ymin = (int)$age['YearMin'];
+                $ymax = (int)$age['YearMax'];
+                for ($year = $ymax; $year >= $ymin; $year--) {
+                    if (!isset($yearsages[$year . '-01-01'])) {
+                        $yearsages[$year . '-01-01'] = $year;
+                    }
+                }
             }
-
-            $years = array();
-            for ($year = $ymax; $year >= $ymin; $year--)
-                $years[$year.'-01-01'] = $year;            //ВРЕМЕННО!!!! -------- надо будет переделать
             // и сохраняем его в кэше для дальнейшего использования:
             Yii::app()->cache->set($_cacheID, $years, 3600 * 1);  //1 час
         }
-        return $years;
+        return $yearsages;
     }    
 }

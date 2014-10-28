@@ -12,6 +12,22 @@ $this->breadcrumbs=array(
 <!--<p><?php echo Yii::t('fullnames', 'This page will be published results of the championship')?></p>-->
 <!--<p>Чтобы скачать необходимый протокол - выберите тип документа (Распаровка или Результат), затем нужную возрастную категорию и кликните по соответствующей ссылке ниже</p>-->
 
+<h3>Відкритий чемпіонат Мереф'янської ДЮСШ Харківської районної ради Харківської області з тхеквондо (ВТФ)</h3>
+<p>Розпаровки</p>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_restoss_child(2007).pdf'?>" target="_blank" style="color: maroon; ">Діти (2007 г.р.)</a><br>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_restoss_smyoung(2005-2006).pdf'?>" target="_blank" style="color: maroon; ">Молодші юнаки (2005 - 2006 р.н.)</a> <br>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_restoss_young(2003-2004).pdf'?>" target="_blank" style="color: maroon; ">Юнаки (2003 - 2004 р.н.)</a> <br>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_restoss_cadet(2000-2002).pdf'?>" target="_blank" style="color: maroon; ">Кадети (2000 - 2002 р.н.)</a><br>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_restoss_junior(1997-1999).pdf'?>" target="_blank" style="color: maroon; ">Юніори (1997 - 1999 р.н.)</a><br><br>
+
+<p>Результати</p>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_res_child(2007).pdf'?>" target="_blank" style="color: maroon; ">Діти (2007 г.р.)</a><br>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_res_smyoung(2005-2006).pdf'?>" target="_blank" style="color: maroon; ">Молодші юнаки (2005 - 2006 р.н.)</a><br>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_res_young(2003-2004).pdf'?>" target="_blank" style="color: maroon; ">Юнаки (2003 - 2004 р.н.)</a><br>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_res_cadet(2000-2002).pdf'?>" target="_blank" style="color: maroon; ">Кадети (2000 - 2002 р.н.)</a><br>
+<a id="all-download" href="<?php echo $docpath.'merefa2014sep_res_junior(1997-1999).pdf'?>" target="_blank" style="color: maroon; ">Юніори (1997 - 1999 р.н.)</a><br>
+
+
 <h3>Открытый кубок КЗ КДЮСШ «ХТЗ» ХОР 2014, сентябрь (Харьков)</h3>
 <p>Сетки</p>
 <a id="all-download" href="<?php echo $docpath.'htz2014sep_restoss_child(2007).pdf'?>" target="_blank" style="color: maroon; ">Дети (2007 г.р.)</a><br>

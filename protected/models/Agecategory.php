@@ -189,19 +189,19 @@ class Agecategory extends CActiveRecord
                 ->where('CompetitionID = :compId')
                 ->queryAll(true, array(':compId'=>$compId));
             
-            $yearsages = array();
+            $years = array();
             foreach ($rowsages as $age) {
                 $ymin = (int)$age['YearMin'];
                 $ymax = (int)$age['YearMax'];
                 for ($year = $ymax; $year >= $ymin; $year--) {
-                    if (!isset($yearsages[$year . '-01-01'])) {
-                        $yearsages[$year . '-01-01'] = $year;
+                    if (!isset($years[$year . '-01-01'])) {
+                        $years[$year . '-01-01'] = $year;
                     }
                 }
             }
             // и сохраняем его в кэше для дальнейшего использования:
             Yii::app()->cache->set($_cacheID, $years, 3600 * 1);  //1 час
         }
-        return $yearsages;
+        return $years;
     }    
 }

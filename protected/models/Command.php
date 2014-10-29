@@ -78,6 +78,7 @@ class Command extends CActiveRecord
             'sportsmenCount' => Yii::t('fullnames', 'sportsmenCount'),
             'coachCount' => Yii::t('fullnames', 'coachCount'),
             'Delegate' => Yii::t('fullnames', 'Delegate'),
+            'city' => Yii::t('fullnames', 'City'),
         );
     }
 

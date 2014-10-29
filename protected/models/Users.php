@@ -143,20 +143,22 @@ class Users extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
-
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('UserID',$this->UserID);
 		$criteria->compare('UserName',$this->UserName,true);
-		$criteria->compare('Password',$this->Password,true);
-		$criteria->compare('Salt',$this->Salt,true);
 		$criteria->compare('CommandID',$this->CommandID);
-		$criteria->compare('UserFIO',$this->UserFIO,true);
+		//$criteria->compare('UserFIO',$this->UserFIO,true);
 		$criteria->compare('Email',$this->Email,true);
 		$criteria->compare('Active',$this->Active);
-
+        
+        $criteria->order = 'UserID DESC';
+        
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>50,
+            ),
 		));
 	}
 

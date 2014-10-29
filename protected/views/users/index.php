@@ -47,26 +47,22 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'rowCssClassExpression' => '($row % 2 ? "even" : "odd")." bColor pt-5 pb-5 pl-10 pr-10 mb-5"',
     'columns'=>array(
         array(
-            'header'=>Yii::t('fullnames', 'UserName'),
-            //'name'=>'UserName',
-            //'value'=>$data->FstName  
+            'name'=>'UserName',
             'type'=>'html',
             'value'=>'CHtml::link(CHtml::encode($data->UserName), CHtml::normalizeUrl(array("users/view", "id"=>$data->UserID)))',
         ),
-        array(
-            'header'=>Yii::t('fullnames', 'UserFIO'),
-            'name'=>'UserFIO',
-        ), 
+        'UserFIO',
+        'city',
         array(
             'header'=>Yii::t('fullnames', 'Status'),
-            'name'=>'statusTitle',
-            //'type'=>'html',
-            //'value'=>'CHtml::link(CHtml::encode($data->statusTitle), CHtml::normalizeUrl(array("sportsmen/view", "id"=>$data->UserID)))',
-            //'value'=>'$controller->widget("bootstrap.widgets.TbLabel", array("type"=>$data->statusCss, "label"=>$data->statusTitle))',
-            //'value'=>'<span class="label label-'.$data->statusCss.'">Success</span>',
-            //'value'=>'CHtml::encode(\'<span class="label label-success">Success</span>\')',
-            //'value'=>'<span class="label label-success">Success</span>',
+            'value'=>'$data->status == Users::STATUS_NEW ? Yii::app()->controller->widget("bootstrap.widgets.TbLabel", array("type"=>$data->statusCss,  "label"=>$data->statusTitle), true) : $data->statusTitle',
+            'type'=>'html',
         ), 
+        array(
+            'name'=>'created',
+            'value'=>'strtotime($data->created)', 
+            'type'=>'date'
+        ),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
             'template'=> ($isAccess ? '{view}{update}{delete}' : '{view}'),

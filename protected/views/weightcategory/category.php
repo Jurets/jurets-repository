@@ -61,7 +61,7 @@
         //'skin'=>'default',
         'id'=>'category-stat',
         'type'=>'tabs', //'pills'
-        'placement'=>'right', // 'above', 'right', 'below' or 'left'
+        'placement'=>'above', // 'above', 'right', 'below' or 'left'
         'tabs'=>array(
             array('label'=>Yii::t('fullnames', 'В разрезе'), 'content'=>$categoryContent, 'active'=>true),
             array('label'=>Yii::t('fullnames', 'Суммарно'), 'content'=>$summaryContent, 'active'=>false/*($tabnum == 2)*/),

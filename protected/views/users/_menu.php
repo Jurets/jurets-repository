@@ -100,10 +100,11 @@ if (!$isGuest)
             'linkOptions'=>array(
                 'title'=>Yii::t('fullnames', 'Make Proposal').' '.Yii::t('fullnames', 'on Competition'), 
             ),
-            'visible'=>($isExtendRole && !$isMyUserID && !$isProposalExists) || (!$isExtendRole && $isMyUserID && !$isProposalExists)
-            ),
-            
-        array('label'=>Yii::t('controls', Yii::t('controls', 'View').Yii::t('fullnames', ' of proposal')), 
+            'visible'=>($isExtendRole && !$isMyUserID /*&& !$isProposalExists*/) || (!$isExtendRole && $isMyUserID /*&& !$isProposalExists*/)
+        ),
+        
+        //комментируем, т.к. несколько команд    
+        /*array('label'=>Yii::t('controls', Yii::t('controls', 'View').Yii::t('fullnames', ' of proposal')), 
             'url'=>array('proposal/view', 'id'=>($isProposalExists ? $proposal->propid : null)),
             'icon'=>'flag', 
             'linkOptions'=>array(
@@ -112,14 +113,15 @@ if (!$isGuest)
             'visible'=>($isMyUserID && $isProposalExists)
             ),
 
-        array('label'=>Yii::t('controls', Yii::t('fullnames', 'My Command'/*'Enter Proposal'*/)), 
+        
+        array('label'=>Yii::t('controls', Yii::t('fullnames', 'My Command')), 
             'url'=>array('/command/view', 'id'=>Yii::app()->user->getCommandID()),
             'icon'=>'list', 
             'linkOptions'=>array(
                 'title'=>'Ввод данных своей команды (тренеры, спортсмены)', //Yii::t('fullnames', Yii::t('fullnames', 'Entering list of sportsmen')), 
                 ),
             'visible'=>($isMyUserID && $isProposalExists && $isProposalActive),
-            ),
+        ),*/
             
         array('label'=>'Управление', 'url'=>array('/competition/manage'), 'icon'=>'wrench', 'visible'=>Yii::app()->user->isManagerRole()),
         array('label'=>'Админ', 'url'=>array('/competition/admin'), 'icon'=>'book', 'visible'=>Yii::app()->user->isAdminRole()),

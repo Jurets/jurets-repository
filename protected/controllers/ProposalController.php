@@ -58,7 +58,7 @@ class ProposalController extends Controller
 	//ДЕЙСТВИЕ: создание заявки
 	public function actionCreate() {
 		$this->checkIsFiling();
-        Competition::checkIsProposal();
+        //Competition::checkIsProposal();   //не делаем проверку на существованеи заявки
         
         $model = new Proposal;
         $userid = Yii::app()->request->getParam('userid');

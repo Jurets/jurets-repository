@@ -61,10 +61,20 @@ $this->menu=array(
                 '{item}'=>Yii::t('fullnames', ' proposal'), 
                 '{name}'=> 'команда: ' . $model->relCommand->CommandName . "\nпредставитель: " . $model->relUsers->UserFIO,
             )),
-        'visible'=>($isMyUserID || $isExtendRole) && ($model->status == Proposal::STATUS_NEW),
-        'title'=>'Удалить заявку'
+            'title'=>'Удалить заявку'
         ),
+        'visible'=>($isMyUserID || $isExtendRole) && ($model->status == Proposal::STATUS_NEW),
     ),
+    
+    array('label'=>Yii::t('controls', Yii::t('fullnames', 'Редактировать команду')),
+        'url'=>array('/command/view', 'id'=>$model->commandid),
+        'icon'=>'list', 
+        'linkOptions'=>array(
+            'title'=>'Ввод данных своей команды (тренеры, спортсмены)', //Yii::t('fullnames', Yii::t('fullnames', 'Entering list of sportsmen')), 
+        ),
+        'visible'=>($isMyUserID /*&& $isProposalExists */&& $model->status == Proposal::STATUS_ACTIVE),
+    ),
+    
 );
 
 ?>
@@ -86,10 +96,9 @@ $this->menu=array(
 
 //подсказка в зависимости от текущего юзера и активности его    
 if ($isMyUserID) {
-    if (!$model->status) {
+    if ($model->status == Proposal::STATUS_NEW) {
         echo CHtml::tag('p', array('class'=>'note'), 'Вы подали заявку на соревнование. В течение трёх дней она будет подтверждена и на указаный Вами E-mail будет выслано письмо с подтверждением и регистрационными данными.<br>Ниже приведены данные о заявке:', true);
-    } 
-    else {
+    } else if ($model->status == Proposal::STATUS_ACTIVE){
         echo CHtml::tag('p', array('class'=>'note'), '<b>Ваша заявка подтверждена!</b> '.
         'Вы можете выполнять следующие операции:<ul>'.
         '<li>добавлять участников (спортсмены, тренеры)</li>'.

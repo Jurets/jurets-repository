@@ -1,9 +1,11 @@
 <?php
     /* @var $this CommandController */
     /* @var $model Command */
-
-    $myCommandID = Yii::app()->user->commandid; //ИД Моей команды
-    $isMyCommand = !Yii::app()->isGuestUser && ($model->CommandID == $myCommandID);
+    
+//    $myCommandID = Yii::app()->user->commandid; //ИД Моей команды
+    //$isMyCommand = !Yii::app()->isGuestUser && ($model->CommandID == $myCommandID);
+    $isMyCommand = Yii::app()->user->isMyCommand($model->CommandID);
+    
     $isAccess = Yii::app()->isExtendRole || $isMyCommand;
 
     $strTitle = ($isMyCommand ? Yii::t('fullnames', 'My Command') : Yii::t('fullnames', 'Command View'));

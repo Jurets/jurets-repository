@@ -8,7 +8,7 @@
     
     $attributes = array(
         array(
-            'name'=>Yii::t('fullnames', 'Date Create'),
+            'name'=>'created',//Yii::t('fullnames', 'Date Create'),
             'value'=>strtotime($user->created), 
             'type'=>'date'
         ),

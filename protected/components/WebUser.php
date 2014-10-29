@@ -59,6 +59,22 @@
             }
         }
     }
+    
+    /**
+    * моя ли это команда?
+    * 
+    */
+    public function isMyCommand($commandid) {
+        $userid = $this->userid;
+        $compid = Yii::app()->competitionId;
+        $commands = Yii::app()->db->createCommand('SELECT commandid FROM proposal WHERE competitionid = :competitionid AND userid = :userid')
+            ->bindParam('userid', $userid, PDO::PARAM_INT)
+            ->bindParam('competitionid', $compid, PDO::PARAM_INT)
+            ->queryAll();
+        $commandsarray = array();
+        foreach($commands as $item) {$commandsarray[] = $item['commandid'];}
+        return in_array($commandid, $commandsarray);
+    }
 
   //вернуть ИД текущего юзера  
     function getUserid() {

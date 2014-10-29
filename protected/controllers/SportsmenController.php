@@ -243,8 +243,9 @@ class SportsmenController extends ParticipantController
             //}
             else {
               //узнать ИД команды по текущему юзеру и запихнуть в модель
-                $myCommandID = Yii::app()->user->getCommandid();
-                $isMyCommand = ($id == $myCommandID);
+                //$myCommandID = Yii::app()->user->getCommandid();
+                //$isMyCommand = ($id == $myCommandID);
+                $isMyCommand = Yii::app()->user->isMyCommand($id);
                 if (!Yii::app()->isExtendRole && !$isMyCommand)
                     throw new CHttpException(400, 'Запрещено добавлять спортсменов в чужой команде! Для ввода информации выберите свою команду');
             }

@@ -45,8 +45,7 @@ $this->menu = array(
             ),
             array(
                 'header'=>Yii::t('fullnames', 'Field'),
-                'value'=>'array_key_exists($data["field"], Sportsmen::model()->attributeLabels()) ? Sportsmen::model()->attributeLabels()[$data["field"]] : $data["field"]',
-                //'value'=>'$data["field"]',
+                'value'=>'Sportsmen::model()->getAttributeLabel($data["field"])',
             ),
             array(
                 'header'=>Yii::t('fullnames', 'Date Create'),

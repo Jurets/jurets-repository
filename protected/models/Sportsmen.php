@@ -522,4 +522,9 @@ class Sportsmen extends CActiveRecord
         return $dataProvider;
     }    
     
+    //выборка алиаса атрибута
+    public function getAttributeLabel($name) {
+        $array = $this->attributeLabels();
+        array_key_exists($name, $array) ? $array[$name] : $name;
+    }
 }

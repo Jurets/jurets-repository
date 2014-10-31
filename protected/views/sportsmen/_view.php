@@ -1,70 +1,69 @@
-<?php
-/* @var $this SportsmenController */
-/* @var $data Sportsmen */
-?>
+<style type="text/css">
+    .table {
+        width: 70% !important; 
+    }
+</style>
 
-<div class="view">
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('SpID')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->SpID), array('view', 'id'=>$data->SpID)); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('LastName')); ?>:</b>
-	<?php echo CHtml::encode($data->LastName); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('FirstName')); ?>:</b>
-	<?php echo CHtml::encode($data->FirstName); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('MiddleName')); ?>:</b>
-	<?php echo CHtml::encode($data->MiddleName); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('BirthDate')); ?>:</b>
-	<?php echo CHtml::encode($data->BirthDate); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('Gender')); ?>:</b>
-	<?php echo CHtml::encode($data->Gender); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('CommandID')); ?>:</b>
-	<?php 
-        //echo CHtml::encode($data->CommandID); 
-        echo CHtml::encode($data->CommandName()); 
-    ?>
-	<br />
-
-	<?php /*
-	<b><?php echo CHtml::encode($data->getAttributeLabel('FstID')); ?>:</b>
-	<?php echo CHtml::encode($data->FstID); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('CategoryID')); ?>:</b>
-	<?php echo CHtml::encode($data->CategoryID); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('AttestLevelID')); ?>:</b>
-	<?php echo CHtml::encode($data->AttestLevelID); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('WeigthID')); ?>:</b>
-	<?php echo CHtml::encode($data->WeigthID); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('Coach1ID')); ?>:</b>
-	<?php echo CHtml::encode($data->Coach1ID); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('Coach2ID')); ?>:</b>
-	<?php echo CHtml::encode($data->Coach2ID); ?>
-	<br />
-
-	<b><?php echo CHtml::encode($data->getAttributeLabel('MedicSolve')); ?>:</b>
-	<?php echo CHtml::encode($data->MedicSolve); ?>
-	<br />
-
-	*/ ?>
-
+<div id="sportsmen_photo" style="float: right;">
+    <label class="control-label" for="sportsmen_photo">Фотография спортсмена</label>
+    <?php if(isset($model->relPhoto)) : ?>
+        <img width="190" height="265" title="Фото спортсмена" alt="Фото спортсмена" src="<?= Yii::app()->getUploadImageUrl($model->relPhoto->filename)?>"/>
+    <?php endif ?>
 </div>
+
+<?php $this->widget('bootstrap.widgets.TbDetailView', array(
+    'data'=>$model,
+    'nullDisplay'=>'<span class="null">'.Yii::t('fullnames', 'no data').'</span>',
+    //=>array('CommandName'=>$model->CommandName())
+    'attributes'=>array(
+        array(
+            'label'=>Yii::t('fullnames', 'FullName'),
+            'value'=>$model->FullName()
+        ),
+        'IdentCode',
+        array(
+            'label'=>Yii::t('fullnames', 'BirthDate'),
+            'value'=>$model->BirthYear()
+        ),
+        array(
+            'label'=>Yii::t('fullnames', 'Command'),
+            //'value'=>$model->CommandName(),
+            'value'=>$model->relCommand->CommandName
+        ),
+        array(
+            'label'=>Yii::t('fullnames', 'FstName'),
+            //'value'=>$model->FstName()
+            //'value'=>$model->relFst->FstName
+            'value'=>$model->fstName
+        ),
+        array(
+            'label'=>Yii::t('fullnames', 'CategoryName'),
+            //'value'=>$model->relCategory->CategoryName
+            'value'=>$model->CategoryName
+        ),
+        array(
+            'label'=>Yii::t('fullnames', 'AttestLevelName'),
+            //'value'=>$model->relAttestlevel->AttestLevel
+            'value'=>$model->AttestLevelName
+        ),
+        array(
+            'label'=>Yii::t('fullnames', 'AgeName'),
+            'value'=>$model->relAgecategory->AgeNameYear
+        ),
+        array(
+            'label'=>Yii::t('fullnames', 'WeightName'),
+            'value'=>mb_strtoupper($model->Gender, 'UTF-8').' '.$model->relWeightcategory->WeightNameFull
+        ),
+        array(
+            'label'=>Yii::t('fullnames', 'CoachFirst'),
+            'value'=>(isset($model->relCoachFirst) ? $model->relCoachFirst->CoachName : null)
+        ),
+        array(
+            'label'=>Yii::t('fullnames', 'Coach'),
+            'value'=>(isset($model->relCoach) ? $model->relCoach->CoachName : null)
+        ),
+        //'MedicSolve',
+        'SpID'
+    )
+));
+?>

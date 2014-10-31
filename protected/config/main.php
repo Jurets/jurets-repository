@@ -181,6 +181,7 @@ return array(
             //'class' => 'common.components.EDateFormatter',
             //'locale' => 'en_US',
             'dateFormat' => 'd.m.Y',
+            'datetimeFormat' => 'd.m.Y h:i:s',
         ),
 
     ),

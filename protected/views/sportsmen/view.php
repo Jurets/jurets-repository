@@ -1,91 +1,82 @@
-<style type="text/css">
-    .table {
-        width: 70% !important; 
-    }
-</style>
 <?php
 /* @var $this SportsmenController */
 /* @var $model Sportsmen */
 
 Yii::import('posting.models.*');
 
+$isMyCommand = Yii::app()->user->isMyCommand($model->CommandID);
+$isAccess = Yii::app()->user->isExtendRole() || $isMyCommand;
+
+//хлеб крошки
 $this->breadcrumbs = $crumbs;
 
-$this->menu=array(
+//меню
+$this->menu = array(
 	array('label'=>Yii::t('controls', 'Update'), 'url'=>array('update', 'id'=>$model->SpID), 'icon'=>'pencil', 'visible'=>!Yii::app()->user->isGuest),
 	array('label'=>Yii::t('controls', 'Delete'), 'url'=>'#', 'icon'=>'trash', 
         'linkOptions'=>array(
             'submit'=>array('delete','id'=>$model->SpID),
             'confirm'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>$model->Fullname())), 
-            ),
-        'visible'=>!Yii::app()->user->isGuest,
         ),
+        'visible'=>!Yii::app()->user->isGuest,
+    ),
 );
 
 ?>
 
 <h1><?php echo Yii::t('controls', 'View').': '.Yii::t('fullnames', 'sportsmen'); ?></h1>
 
-<div id="sportsmen_photo" style="float: right;">
-    <label class="control-label" for="sportsmen_photo">Фотография спортсмена</label>
-    <?php if(isset($model->relPhoto)) : ?>
-        <img width="190" height="265" title="Фото спортсмена" alt="Фото спортсмена" src="<?= Yii::app()->getUploadImageUrl($model->relPhoto->filename)?>"/>
-    <?php endif ?>
-</div>
+<?php  
+    
+    //вывести инфо по юзеру в виджете
+    $changelogContent = $this->widget('bootstrap.widgets.TbGridView', array(
+        'id'=>'complist-grid',
+        'dataProvider'=>$dataChangeLog,
+        //'template'=>"{pager}<br>{items}<br>{pager}",
+        'template'=>"{items}",
+        'columns'=>array(
+            array(
+                'header'=>Yii::t('fullnames', 'Username'),
+                'value'=>'!empty($data["username"]) ? $data["username"] : $data["userid"]',
+            ),  
+            array(
+                'header'=>Yii::t('fullnames', 'Action'),
+                'value'=> 'ActiveRecordLog::actionName($data["action"])',
+            ),
+            array(
+                'header'=>Yii::t('fullnames', 'Field'),
+                'value'=>'array_key_exists($data["field"], Sportsmen::model()->attributeLabels()) ? Sportsmen::model()->attributeLabels()[$data["field"]] : $data["field"]',
+                //'value'=>'$data["field"]',
+            ),
+            array(
+                'header'=>Yii::t('fullnames', 'Date Create'),
+                'type'=>'datetime',
+                'value'=>'strtotime($data["creationdate"])',
+                'htmlOptions'=>array('style'=>'width: 150px'),
+            ),
+        ),
+    ), true); 
 
-<?php $this->widget('bootstrap.widgets.TbDetailView', array(
-	'data'=>$model,
-    'nullDisplay'=>'<span class="null">'.Yii::t('fullnames', 'no data').'</span>',
-    //=>array('CommandName'=>$model->CommandName())
-	'attributes'=>array(
-        array(
-            'label'=>Yii::t('fullnames', 'FullName'),
-            'value'=>$model->FullName()
+    $this->widget('bootstrap.widgets.TbTabs', array(
+        //'skin'=>'default',
+        'id'=>'usertab',
+        'type'=>'tabs', //'pills'
+        'placement'=>'above', // 'above', 'right', 'below' or 'left'
+        'htmlOptions' => array(
+            'class' => 'table-list',
+            'style' => 'font-size: 12px;'),
+        'tabs'=>array(
+            array(
+                'label'=>Yii::t('fullnames', 'Персональные данные'), 
+                'content'=>$this->renderPartial('_view', array('model'=>$model), true), 
+                'active'=>true,
+            ),
+            array(
+                'label'=>Yii::t('fullnames', 'Изменения'), 
+                'content'=>$changelogContent, 
+                'active'=>false,
+                'visible'=>$isAccess,
+            ),
         ),
-        'IdentCode',
-        array(
-            'label'=>Yii::t('fullnames', 'BirthDate'),
-            'value'=>$model->BirthYear()
-        ),
-        array(
-            'label'=>Yii::t('fullnames', 'Command'),
-            //'value'=>$model->CommandName(),
-            'value'=>$model->relCommand->CommandName
-        ),
-        array(
-            'label'=>Yii::t('fullnames', 'FstName'),
-            //'value'=>$model->FstName()
-            //'value'=>$model->relFst->FstName
-            'value'=>$model->fstName
-        ),
-        array(
-            'label'=>Yii::t('fullnames', 'CategoryName'),
-            //'value'=>$model->relCategory->CategoryName
-            'value'=>$model->CategoryName
-        ),
-        array(
-            'label'=>Yii::t('fullnames', 'AttestLevelName'),
-            //'value'=>$model->relAttestlevel->AttestLevel
-            'value'=>$model->AttestLevelName
-        ),
-        array(
-            'label'=>Yii::t('fullnames', 'AgeName'),
-            'value'=>$model->relAgecategory->AgeNameYear
-        ),
-        array(
-            'label'=>Yii::t('fullnames', 'WeightName'),
-            'value'=>mb_strtoupper($model->Gender, 'UTF-8').' '.$model->relWeightcategory->WeightNameFull
-        ),
-        array(
-            'label'=>Yii::t('fullnames', 'CoachFirst'),
-            'value'=>(isset($model->relCoachFirst) ? $model->relCoachFirst->CoachName : null)
-        ),
-        array(
-            'label'=>Yii::t('fullnames', 'Coach'),
-            'value'=>(isset($model->relCoach) ? $model->relCoach->CoachName : null)
-        ),
-		//'MedicSolve',
-        'SpID'
-	)
-));
+    ));
 ?>

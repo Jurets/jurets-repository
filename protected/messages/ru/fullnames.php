@@ -155,13 +155,18 @@ return array(
     'Num Comments' => 'Количество комментариев',
     'Date Create' => 'Дата создания',  
 
+    'Field' => 'Поле',
+    'Action' => 'Действие',
+    
     'Is Active' => 'Активность',
     'More information' => 'Подробнее',
     
     'Заявка подана' => 'Заявка подана',
     'Заявлено участников' => 'Заявлено участников',
     
-    
+    'Creation' => 'Создание',
+    'Changing' => 'Изменение',
+    'Deleting' => 'Удалние',
     
     'Please fill out the following form with your login credentials' => 'Пожалуйста, заполните следующую форму с вашими учетные данные для входа',
     

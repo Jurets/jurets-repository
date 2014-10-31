@@ -60,6 +60,7 @@ class ActiveRecordLog extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+            
 		);
 	}
 
@@ -104,4 +105,13 @@ class ActiveRecordLog extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+    
+    public static function actionName($key) {
+        $array = array(
+            'CREATE' => Yii::t('fullnames', 'Creation'),
+            'CHANGE' => Yii::t('fullnames', 'Changing'),
+            'DELETE' => Yii::t('fullnames', 'Deleting'),
+        ); 
+        return key_exists($key, $array) ? $array[$key] : '-';
+    }
 }

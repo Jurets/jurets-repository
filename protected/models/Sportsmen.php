@@ -510,4 +510,16 @@ class Sportsmen extends CActiveRecord
         return true;
     }
     
+    //список заявок на соревнования
+    public function getChangeLog() {
+        $sqlCommand = Yii::app()->db->createCommand()
+            ->select(array('A.id', 'A.userid', 'A.action', 'A.field', 'A.creationdate', 'A.description', 'concat(U.lastname, " ", U.firstname) as username'))
+            ->from('activerecordlog A')
+            ->leftJoin('user U', 'U.UserName = A.userid')
+            ->where(array('AND', 'idmodel = :idmodel', 'model = :model'))
+            ->order('creationdate DESC');
+        $dataProvider = new CSqlDataProvider($sqlCommand->text, array('params'=>array(':idmodel'=>$this->SpID, ':model'=>"Sportsmen")));
+        return $dataProvider;
+    }    
+    
 }

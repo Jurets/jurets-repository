@@ -93,14 +93,17 @@ class SportsmenController extends ParticipantController
             $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('/command/index'));
     }    
     
-    //ДЕЙСТВИЕ: смотреть данные о спорстмене
-    public function actionView($id) {//DebugBreak();
+    /**
+    * ДЕЙСТВИЕ: смотреть данные о спорстмене
+    * @param mixed $id
+    */
+    public function actionView($id) {
         $sportsmen = $this->loadModelAll($id);
-        //$command = $this->loadModel($id)->Command;
-        //$sportsmen = Sportsmen::model()->with('Command', 'relPhoto')->findByPk($id);
         $command = $sportsmen->relCommand;
+        $dataChangeLog = $sportsmen->getChangeLog();
         $this->render('view',array(
             'model'=>$sportsmen,
+            'dataChangeLog'=>$dataChangeLog,
             'crumbs'=>array(
                 'Команды'=>array('command/index'),
                 $command->CommandName=>array('command/view', 'id'=>$command->CommandID),

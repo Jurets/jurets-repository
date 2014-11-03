@@ -7,11 +7,6 @@
     $isAccess = isset($isAccess) ? $isAccess : false;
     
     $attributes = array(
-        array(
-            'name'=>'created',//Yii::t('fullnames', 'Date Create'),
-            'value'=>strtotime($user->created), 
-            'type'=>'date'
-        ),
         'lastname', 
         'firstname', 
         'federation', 
@@ -21,12 +16,22 @@
         'club', 
         'address', 
         'phone', 
+        array(
+            'name'=>'created',
+            'value'=>strtotime($user->created), 
+            'type'=>'date'
+        ),
     );
-    if (Yii::app()->controller->id == 'users' && Yii::app()->controller->action->id == 'view')
-        $value = $user->UserName;
-    else
-        $value = CHtml::link($user->UserName, Yii::app()->createAbsoluteUrl('/users/view', array('id'=>$user->UserID)));
     if ($isAccess) { //если админ или своя команда - добавить поля, скрываемые для других
+        if (Yii::app()->controller->id == 'users' && Yii::app()->controller->action->id == 'view') {
+            $value = $user->UserName;
+        } else {
+            if (Yii::app()->isExtendRole) {
+                $value = CHtml::link($user->UserName, Yii::app()->createAbsoluteUrl('/users/view', array('id'=>$user->UserID)));
+            } else {
+                $value = $user->UserName;
+            }
+        }
         $username = array(
             'name' => 'UserName',
             'type' => 'html',
@@ -39,9 +44,7 @@
     $this->widget('bootstrap.widgets.TbLabel', array(
             // 'success', 'warning', 'important', 'info' or 'inverse'
             'type'=>$user->statusCss,  
-            //'type'=>($model->status == Users::STATUS_NEW ? 'warning' : ($model->status == Users::STATUS_NOACTIVE ? 'important' : 'success')),
             'label'=>$user->statusTitle,
-            //'htmlOptions'=>('')
         ));
     
     $this->widget('bootstrap.widgets.TbDetailView', array(

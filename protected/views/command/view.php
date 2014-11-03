@@ -2,18 +2,16 @@
     /* @var $this CommandController */
     /* @var $model Command */
     
-//    $myCommandID = Yii::app()->user->commandid; //ИД Моей команды
-    //$isMyCommand = !Yii::app()->isGuestUser && ($model->CommandID == $myCommandID);
-    $isMyCommand = Yii::app()->user->isMyCommand($model->CommandID);
-    
+    $isMyCommand = !Yii::app()->isGuestUser && Yii::app()->user->isMyCommand($model->CommandID);
     $isAccess = Yii::app()->isExtendRole || $isMyCommand;
-
+    
+    //заголовок
     $strTitle = ($isMyCommand ? Yii::t('fullnames', 'My Command') : Yii::t('fullnames', 'Command View'));
 
     //хлебные крошки
     $this->breadcrumbs = array(
         Yii::t('fullnames', 'Commands')=>array('index'),
-        ($isMyCommand ? Yii::t('fullnames', 'My Command') : $model->CommandName),
+        ($model->CommandName),
     );
 
     //меню
@@ -41,15 +39,19 @@
         array('label'=>Yii::t('controls', 'Create Coach'), 'url'=>array('coach/create','id'=>$model->CommandID), 'icon'=>'user', 'visible'=>$isAccess),//'visible'=>!Yii::app()->user->isGuest),
         //array('label'=>'Список команд', 'url'=>array('index')),
     );
-
     
     //ЗАГОЛОВОК
     echo CHtml::tag('h3', array(), $model->CommandName, true);
-    
+    //если моя команда - добавить лабел статуса
+    if ($isMyCommand) {
+        $this->widget('bootstrap.widgets.TbLabel', array(
+                'type'=>'success',   // 'success', 'warning', 'important', 'info' or 'inverse'
+                'label'=>Yii::t('fullnames', 'My Command'),
+            ));
+    }
     
     // --------- содержимое вкладки "Общие сведения" ----------
-    $infoContent = CHtml::tag('h3', array(), $strTitle, true);
-    $infoContent .= $this->widget('bootstrap.widgets.TbDetailView', array(
+    $infoContent = $this->widget('bootstrap.widgets.TbDetailView', array(
         'data'=>$model,
         'nullDisplay'=>'<span class="null">'.Yii::t('fullnames', 'no data').'</span>',
         'attributes'=>array(

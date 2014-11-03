@@ -142,8 +142,11 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
             </div>
         <?php } ?>
 		<div>
-            <?php $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			    'links'=>$this->breadcrumbs,
+            <?php 
+            $competition = Competition::getModel();
+            $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
+			    'homeLink'=>CHtml::link($competition->name, Yii::app()->createAbsoluteUrl('/')),
+                'links'=>$this->breadcrumbs,
 		    )); ?>
         </div>
         <span style="overflow: hidden;"></span>

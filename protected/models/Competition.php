@@ -126,9 +126,16 @@ class Competition extends CActiveRecord
   //вернуть модель Соревнование (ИД берётся пока что из хардкода)
     public static function getModel($id = null)
     {
-        if (empty($id))
+        if (empty($id)) {
             $id = Yii::app()->competitionId;
-        $model = Competition::model()->findByPk($id);
+            //$id = self::competitionIdWithAges(); //вычислить ИД соревнования
+        }
+        $_cacheID = 'cacheCompetition' . $id;
+        $model = Yii::app()->cache->get($_cacheID);   //проверить кэш
+        if ($model === false) {
+            $model = Competition::model()->findByPk($id);
+            Yii::app()->cache->set($_cacheID, $model, 3600 * 1);  //1 час
+        }
         if($model===null)
             throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');
         return $model;
@@ -136,7 +143,7 @@ class Competition extends CActiveRecord
 
   //вернуть модель Соревнование (ИД берётся пока что из хардкода)
     public static function getModelPath($path)
-    {//DebugBreak();
+    {
         $model = Competition::model()->findByAttributes(array('path'=>$path));
         if($model===null)
             throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');

@@ -9,11 +9,11 @@ $this->breadcrumbs=array(
     'Жеребьевка',
 );
 
-$docpath = Yii::app()->baseUrl.'/document/';
+$docpath = Yii::app()->baseUrl . DIRECTORY_SEPARATOR . 'document';
 
-//Yii::app()->user->setFlash('warning', '<strong>Вниманию представителей команд!</strong> Проверьте наличие и категорию своих спортсменов');
+Yii::app()->user->setFlash('warning', '<strong>Вниманию представителей команд!</strong> Проверьте наличие и категорию своих спортсменов');
 //Yii::app()->user->setFlash('info', 'Остальные распаровки в процессе обработки... Скачать их можно будет в течение ближайшего времени.');
-Yii::app()->user->setFlash('info', Yii::t('fullnames', 'On this page will be posted preliminary draws'));
+//Yii::app()->user->setFlash('info', Yii::t('fullnames', 'On this page will be posted preliminary draws'));
 
 $this->widget('bootstrap.widgets.TbAlert', array(
         'block'=>true, // display a larger alert block?
@@ -27,21 +27,17 @@ $this->widget('bootstrap.widgets.TbAlert', array(
 ?>
 
 <h1 id="tosser-head">Предварительная жеребьевка</h1>
-<!--<p><?php echo Yii::t('fullnames', 'On this page will be posted preliminary draws')?></p>-->
+<?php $doc_tosser = $docpath . DIRECTORY_SEPARATOR . 'tosser' . DIRECTORY_SEPARATOR; ?>
 
 <!--<p style="color: red; font-weight: bold;">Вниманию представителей команд! Проверьте наличие и категорию своих спортсменов</p>-->
-
-<!--<a id="all-download" href="<?php echo $docpath.'merefa2014_toss_child(2007).pdf'?>" target="_blank" style="color: maroon; ">Дети (2007 г.р.)</a>
+<a id="all-download" href="<?php echo $doc_tosser.'khoft2014_toss_smyoung(2005-2006).pdf'?>" target="_blank" style="color: maroon;">Младшие юноши (2005 - 2006 г.р.)</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'merefa2014_toss_smyoung(2005-2006).pdf'?>" target="_blank" style="color: maroon; ">Младшие юноши (2005 - 2006 г.р.)</a>
+<a id="all-download" href="<?php echo $doc_tosser.'khoft2014_toss_young(2003-2004).pdf'?>" target="_blank"   style="color: maroon;">Юноши (2003 - 2004 г.р.)</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'merefa2014_toss_young(2003-2004).pdf'?>" target="_blank" style="color: maroon; ">Юноши (2003 - 2004 р.н.) категорія А</a>
+<a id="all-download" href="<?php echo $doc_tosser.'khoft2014_toss_cadet(2000-2002).pdf'?>" target="_blank"   style="color: maroon;">Кадеты (2000 - 2002 г.р.)</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'merefa2014_toss_cadet(2000-2002).pdf'?>" target="_blank" style="color: maroon; ">Кадеты (2000 - 2002 г.р.)</a>
+<a id="all-download" href="<?php echo $doc_tosser.'khoft2014_toss_junior(1997-1999).pdf'?>" target="_blank"  style="color: maroon;">Юниоры (1997 - 1999 г.р.)</a>
 <br><br>
-<a id="all-download" href="<?php echo $docpath.'merefa2014_toss_junior(1997-1999).pdf'?>" target="_blank" style="color: maroon; ">Юниоры (1997 - 1999 г.р.)</a>
-<br><br> -->
-
 
 <?php $this->widget('bootstrap.widgets.TbAlert', array(
         'block'=>true, // display a larger alert block?

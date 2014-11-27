@@ -171,6 +171,18 @@ class Weightcategory extends CActiveRecord
 		);
 	}
 
+    /**
+    * put your comment there...
+    * 
+    */
+    public function defaultScope() {
+        return array(
+            //'order'=>$this->getTableAlias().'ordernum, '.$this->getTableAlias().'AgeID ASC'
+            'alias'=>'weigth',
+            'order'=>'weigth.ordernum, weigth.AgeID ASC'
+        );
+    }
+        
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */

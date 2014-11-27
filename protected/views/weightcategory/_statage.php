@@ -27,7 +27,7 @@ $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
         }
         if (empty($sportsmens)) $sportsmens = 'Пустая категория';
         ?>
-        <div style="width: 90px; margin-right: 0; float: left;">
+        <div style="width: 84px; margin-right: 0; float: left;">
             <?php 
             if ($weight['count']) {
                 $this->widget('bootstrap.widgets.TbButton', array(

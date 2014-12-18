@@ -29,9 +29,9 @@
             'linkOptions'=>array(
                 'title'=>Yii::t('controls', 'Delete').Yii::t('fullnames', ' command'),
                 'submit'=>array('delete','id'=>$model->CommandID),
-                'confirm'=>'Вы действительно хотите удалить команду?'
+                'confirm'=>'При удалении все спортсмены и сама команда перейдут в НЕАКТИВНЫЙ статус. Возможно восстановление. Удалить команду?'
                 ), 
-            'visible'=>Yii::app()->isAdmin //isExtendRole
+            'visible'=>Yii::app()->isExtendRole //isAdmin
             ),
         //array('label'=>'Фильтр / Поиск', 'url'=>array('admin')),
         array('label'=>Yii::t('controls', 'Create Sportsmen'), 'url'=>array('sportsmen/create','id'=>$model->CommandID), 'icon'=>'user', 'visible'=>$isAccess),//'visible'=>!Yii::app()->user->isGuest),

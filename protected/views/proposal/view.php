@@ -141,7 +141,12 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
         //'login',
 		//'email',
 		'participantcount',
-		'comment',
+        'comment',
+		array(
+            'name'=>'created',
+            'type'=>'datetime',
+            'value'=>strtotime($model->created),
+        ),
         'propid',
 	),
 )); 

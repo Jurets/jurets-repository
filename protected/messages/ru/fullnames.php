@@ -91,6 +91,8 @@ return array(
     'City' => 'Город',
     'Address' => 'Адрес',
     'Delegate' => 'Представитель',
+    
+    'Created' => 'Дата',
 
     'CommandID' => 'ИД команды',
     'CommandName' => 'Название команды',   
@@ -122,6 +124,7 @@ return array(
     'E-mail' => 'E-mail',
     'Web-site' => 'Web-сайт',
     'Participant count' => 'Количество участников',
+    'Part.count' => 'Кол-во участ-ов',
     'Comment' => 'Комментарий',
     'Status' => 'Статус',
     'Login' => 'Логин',

@@ -125,6 +125,8 @@ class Proposal extends CActiveRecord
             
 			'commandid' => Yii::t('fullnames', 'Command'),
 			'modeCommand' => Yii::t('fullnames', 'Mode'),
+            
+            'created' => Yii::t('fullnames', 'Created'),
 		);
 	}
 
@@ -158,6 +160,9 @@ class Proposal extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>50,
+            ),
 		));
 	}
     public function searchNew()

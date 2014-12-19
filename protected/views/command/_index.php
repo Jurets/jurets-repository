@@ -12,7 +12,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     'columns'=>array(
         array(
             'header'=>'#',
-            'value'=>'$row',
+            'value'=>'$row + 1',
         ),
         array(
             'name'=>'CommandName',

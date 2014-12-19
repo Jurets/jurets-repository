@@ -11,6 +11,10 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     //'filter'=>$model,
     'columns'=>array(
         array(
+            'header'=>'#',
+            'value'=>'$row',
+        ),
+        array(
             'name'=>'CommandName',
             'type'=>'html',
             //'value'=>'CHtml::link(CHtml::encode($data->CommandName), CHtml::normalizeUrl(array("/command/view", "id"=>$data->CommandID)))',

@@ -1,5 +1,8 @@
 <?php
+//объект соревнования
+$competition = Competition::getModel();
 
+//настроечные вычисления
 $myCommandID = Yii::app()->user->getCommandid(); //ИД Моей команды
 $isMyCommand = !Yii::app()->user->isGuest && ($commandid == $myCommandID);
 $isAccess = Yii::app()->user->isExtendRole() || $isMyCommand;
@@ -67,6 +70,7 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
         array(
             'header'=>Yii::t('fullnames', 'Weight'),
             'name'=>'WeightNameFull',
+            'visible'=>!$competition->isCamp,
         ),
         array(
             'header'=>Yii::t('fullnames', 'Coach'),

@@ -19,7 +19,13 @@
 <div class="container" id="page">
 
 <?php 
-$isGuest = Yii::app()->isGuestUser;
+//получить объект Соревнования
+$competition = Competition::getModel();
+//$isCompetition = ($competition->type == Competition::TYPE_COMPETITION);
+$isCamp = $competition->isCamp;
+
+//определить права текущего юзера
+$isGuest = Yii::app()->isGuestUser; //определить - является ли юзер гостем
 if (!$isGuest) 
     $isExtendRole = Yii::app()->isExtendRole; 
 else
@@ -52,9 +58,9 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 //array('label'=>'', 'url'=>'#', 'items'=>array(
                 array('label'=>Yii::t('fullnames', 'Categories'), 'url'=>array($this->pathCompetition . '/weightcategory/category')),
                 //)),
-                array('label'=>Yii::t('fullnames', 'Weighing'), 'url'=>array($this->pathCompetition . '/weightcategory/list')),
-                array('label'=>Yii::t('fullnames', 'Toss'), 'url'=>array($this->pathCompetition . '/weightcategory/tosser')),
-                array('label'=>Yii::t('fullnames', 'Results'), 'url'=>array($this->pathCompetition . '/weightcategory/results')),
+                array('label'=>Yii::t('fullnames', 'Weighing'), 'url'=>array($this->pathCompetition . '/weightcategory/list'), 'visible'=>!$isCamp),
+                array('label'=>Yii::t('fullnames', 'Toss'), 'url'=>array($this->pathCompetition . '/weightcategory/tosser'), 'visible'=>!$isCamp),
+                array('label'=>Yii::t('fullnames', 'Results'), 'url'=>array($this->pathCompetition . '/weightcategory/results'), 'visible'=>!$isCamp),
                 //array('label'=>Yii::t('fullnames', 'Photo'), 'url'=>array('/posting/default/index')),
                 array('label'=>Yii::t('fullnames', 'Archive'), 'url'=>array('/competition/archive')),
                 //array('label'=>'Контакты', 'url'=>array('/site/contact')),
@@ -143,7 +149,6 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
         <?php } ?>
 		<div>
             <?php 
-            $competition = Competition::getModel();
             $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
 			    'homeLink'=>CHtml::link($competition->name, Yii::app()->createAbsoluteUrl('/')),
                 'links'=>$this->breadcrumbs,

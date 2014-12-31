@@ -1,4 +1,10 @@
 <?php
+    //получить объект Соревнования
+    $competition = Competition::getModel();
+    //является ли тип соревнования "сборы"
+    $isCamp = $competition->isCamp;
+    
+    //
     $this->breadcrumbs=array(
         'Количество участников по категориям',
     );
@@ -19,21 +25,25 @@
         $age_array[] = array('id'=>++$id, 'name'=>$age['text'], 'count'=>$ageCount);
         $totalCount += $ageCount;
         //отрендерить вьюшку по одной возрастной        
-        $categoryContent .= $this->renderPartial('_statage', array('age'=>$age), true);
+        if (!$isCamp) {
+            $categoryContent .= $this->renderPartial('_statage', array('age'=>$age), true);
+        }
     }
     $age_array[] = array('id'=>'', 'name'=>'ИТОГО', 'weigths'=>null, 'count'=>$totalCount);
     
     //легенда
-    $categoryContent .= CHtml::tag('hr');
-    $categoryContent .= CHtml::tag('span', array(), 'Пояснения: ', true);
-    $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'success', 'label'=>4), true);
-    $categoryContent .= CHtml::tag('span', array(), ' - нормальное кол-во  ', true);
-    $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'warning', 'label'=>3), true);
-    $categoryContent .= CHtml::tag('span', array(), ' - меньше четырёх  ', true);
-    $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'important', 'label'=>1), true);
-    $categoryContent .= CHtml::tag('span', array(), ' - один человек в категории  ', true);
-    $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'default', 'label'=>0), true);
-    $categoryContent .= CHtml::tag('span', array(), ' - пустая категория', true);
+    if (!$isCamp) {
+        $categoryContent .= CHtml::tag('hr');
+        $categoryContent .= CHtml::tag('span', array(), 'Пояснения: ', true);
+        $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'success', 'label'=>4), true);
+        $categoryContent .= CHtml::tag('span', array(), ' - нормальное кол-во  ', true);
+        $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'warning', 'label'=>3), true);
+        $categoryContent .= CHtml::tag('span', array(), ' - меньше четырёх  ', true);
+        $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'important', 'label'=>1), true);
+        $categoryContent .= CHtml::tag('span', array(), ' - один человек в категории  ', true);
+        $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'default', 'label'=>0), true);
+        $categoryContent .= CHtml::tag('span', array(), ' - пустая категория', true);
+    }
         
     //общая статистика
     $gridDataProvider = new CArrayDataProvider($age_array, array(
@@ -49,12 +59,14 @@
             array('name'=>'id', 'header'=>'#'),
             array('name'=>'name', 'header'=>'Возрастная категория'),
             array('name'=>'count', 'header'=>'Количество участников'),
-            /*array(
-                'class'=>'bootstrap.widgets.TbButtonColumn',
-                'htmlOptions'=>array('style'=>'width: 50px'),
-            ), */
         ),  
     ), true); 
+  
+    $tabs = array();
+    if (!$isCamp) {
+        $tabs[] = array('label'=>Yii::t('fullnames', 'В разрезе'), 'content'=>$categoryContent, 'active'=>true);
+    }
+    $tabs[] = array('label'=>Yii::t('fullnames', 'Суммарно'), 'content'=>$summaryContent, 'active'=>$isCamp/*($tabnum == 2)*/);
   
     //ТабВью: показать на вкладках раздельно 
     $this->widget('bootstrap.widgets.TbTabs', array(
@@ -62,9 +74,6 @@
         'id'=>'category-stat',
         'type'=>'tabs', //'pills'
         'placement'=>'above', // 'above', 'right', 'below' or 'left'
-        'tabs'=>array(
-            array('label'=>Yii::t('fullnames', 'В разрезе'), 'content'=>$categoryContent, 'active'=>true),
-            array('label'=>Yii::t('fullnames', 'Суммарно'), 'content'=>$summaryContent, 'active'=>false/*($tabnum == 2)*/),
-        ),
+        'tabs'=>$tabs
     ));
 ?>

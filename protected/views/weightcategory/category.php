@@ -19,20 +19,24 @@
     foreach ($arrcategory as $aid=>$age) {
         $ageCount = 0;
         //посчитать кол-во участников по возрастной
-        foreach ($age['children'] as $weight) {
-            $ageCount += $weight['count'];
+        if (isset($age['children']) && is_array($age['children'])) {
+            foreach ($age['children'] as $weight) {
+                $ageCount += $weight['count'];
+            }
         }
         $age_array[] = array('id'=>++$id, 'name'=>$age['text'], 'count'=>$ageCount);
         $totalCount += $ageCount;
         //отрендерить вьюшку по одной возрастной        
-        if (!$isCamp) {
+        //if (!$isCamp) 
+        {
             $categoryContent .= $this->renderPartial('_statage', array('age'=>$age), true);
         }
     }
     $age_array[] = array('id'=>'', 'name'=>'ИТОГО', 'weigths'=>null, 'count'=>$totalCount);
     
     //легенда
-    if (!$isCamp) {
+    //if (!$isCamp) 
+    {
         $categoryContent .= CHtml::tag('hr');
         $categoryContent .= CHtml::tag('span', array(), 'Пояснения: ', true);
         $categoryContent .= $this->widget('bootstrap.widgets.TbBadge', array('type'=>'success', 'label'=>4), true);
@@ -63,10 +67,11 @@
     ), true); 
   
     $tabs = array();
-    if (!$isCamp) {
+    //if (!$isCamp) 
+    {
         $tabs[] = array('label'=>Yii::t('fullnames', 'В разрезе'), 'content'=>$categoryContent, 'active'=>true);
     }
-    $tabs[] = array('label'=>Yii::t('fullnames', 'Суммарно'), 'content'=>$summaryContent, 'active'=>$isCamp/*($tabnum == 2)*/);
+    $tabs[] = array('label'=>Yii::t('fullnames', 'Суммарно'), 'content'=>$summaryContent, 'active'=>false /*$isCamp*//*($tabnum == 2)*/);
   
     //ТабВью: показать на вкладках раздельно 
     $this->widget('bootstrap.widgets.TbTabs', array(

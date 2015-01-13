@@ -48,9 +48,9 @@ $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
                     ),
                 ));
             } else {
-                echo $weight['text'];
+                echo "<p>".$weight['text']."</p>";
             }
-            echo ' - ';
+           // echo ' - ';
             
             $this->widget('bootstrap.widgets.TbBadge', array(
                 'type'=>$type, // 'success', 'warning', 'important', 'info' or 'inverse'

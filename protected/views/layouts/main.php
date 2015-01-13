@@ -6,10 +6,12 @@
 	<meta name="language" content="en" />
     <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl; ?>/css/stylesinv.css" />-->
     <!--<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />-->
-    <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" />
-
+    
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
     	<?php Yii::app()->bootstrap->register(); ?>
+        
+        <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/javascript/engine.js" ></script>
+        <link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" />
 </head>
 
 <body>
@@ -34,15 +36,18 @@ if ($isProposalExists) {
 }
     
 $userName = $isGuest ? '' : '<span class="label label-info pull-right" style="margin-top: 10px; margin-left: 30px;">'.Yii::app()->user->name.'</span>';
-    
+   
+echo "<div class='main-nav'>";
+echo "<a href='#' id='open-close'><i class='icon-align-justify icon-white'></i></a>";
 $this->widget('bootstrap.widgets.TbNavbar',array(
     'type'=>'inverse', // null or 'inverse'
-    'brand'=>Yii::t('fullnames', 'Homepage'),
+    'brand'=>'<i class="icon-home  icon-white"></i>',//Yii::t('fullnames', 'Homepage'), //
     'fixed'=>false, //'top',
     'brandUrl'=>Yii::app()->createAbsoluteUrl('/'),
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
+            'htmlOptions'=>array('class'=>'navigation'),
             'items'=>array(
                 array('label'=>Yii::t('fullnames', 'Competition'), 
                     'url' => ($isExtendRole ? array($this->pathCompetition . '/competition/manage') : array($this->pathCompetition . '/competition/view')),
@@ -122,6 +127,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
      $userName,
     ),
 )); 
+echo"</div>";
 
 ?>
 

@@ -18,6 +18,9 @@
  */
 class Competition extends CActiveRecord
 {
+    const TYPE_COMPETITION = 'competition';
+    const TYPE_CAMP = 'camp';
+    
     //флаг: было ли изменение в поле "главная страница"
     public $isInviteChanged = false;
     
@@ -144,6 +147,8 @@ class Competition extends CActiveRecord
   //вернуть модель Соревнование (ИД берётся пока что из хардкода)
     public static function getModelPath($path)
     {
+        if ($path == 'gii')
+            return true;
         $model = Competition::model()->findByAttributes(array('path'=>$path));
         if($model===null)
             throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');
@@ -281,5 +286,9 @@ class Competition extends CActiveRecord
         ));
         return $dataProvider;
    }
-    
+   
+   //является ли тип соревнования лагерем (сборы)
+   public function getIsCamp(){
+        return ($this->type == self::TYPE_CAMP); 
+   }
 }

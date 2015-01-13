@@ -90,6 +90,8 @@ return array(
     'City'=> 'Місто',
     'Address'=>'Адреса',
     'Delegate' => 'Представник',
+    
+    'Created' => 'Дата',
 
     'CommandID'=>'ІД команди',
     'CommandName'=>'Назва команди',
@@ -120,6 +122,7 @@ return array(
     'E-mail'=> 'E-mail',
     'Web-site'=>'Web-сайт',
     'Participant count'=>'Кількість учасників',
+    'Part.count' => 'Кіл-nm учас-ів',
     'Comment'=>'Коментар',
     'Status'=>'Статус',
     'Login'=>'Логін',

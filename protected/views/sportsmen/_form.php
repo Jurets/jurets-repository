@@ -4,7 +4,9 @@
 /* @var $form CActiveForm */
 Yii::import('application.modules.posting.models.*');
 
-    $isDisabled = (!$extendRole) && (isset($model->CommandID) && !empty($model->CommandID));
+$isDisabled = (!$extendRole) && (isset($model->CommandID) && !empty($model->CommandID));
+//объект соревнования
+$competition = Competition::getModel();
 ?>
 
 <div class="form">
@@ -60,15 +62,18 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                            'empty' => '<'.Yii::t('controls', 'Choose age category').'>',
                                            'readonly'=>!isset($model->BirthDate) || empty($model->BirthDate) //true,
                                            )); 
-
+        
       //весовые категории                                     
         $data = Sportsmen::getWeigthsList($model->AgeID);
-        echo $form->dropDownListRow($model, 'WeigthID', CHtml::listData($data, 'WeightID', 'WeightNameFull'), array(
-                                           'id' => 'Sportsmen_WeightID', 
-                                           'empty' => '<'.Yii::t('controls', 'Choose weigth category').'>',
-                                           'readonly'=>!isset($model->AgeID) || empty($model->AgeID), //true,
-                                           )); 
-
+        if ($competition->isCamp) { //если СБОРЫ - то скрытое поле весовой категории
+            echo $form->hiddenField($model, 'WeigthID', array('id' => 'Sportsmen_WeightID'));
+        } else { //иначе показать выпадающий список весовой категории
+            echo $form->dropDownListRow($model, 'WeigthID', CHtml::listData($data, 'WeightID', 'WeightNameFull'), array(
+               'id' => 'Sportsmen_WeightID', 
+               'empty' => '<'.Yii::t('controls', 'Choose weigth category').'>',
+               'readonly'=>!isset($model->AgeID) || empty($model->AgeID), //true,
+            )); 
+        }
 
         echo $form->dropDownListRow($model, 'FstID', CHtml::listData(Fst::getList(), 'FstID', 'FstName'), 
                                     array('empty' => '<'.Yii::t('controls', 'Choose FST').'>'
@@ -265,17 +270,50 @@ $this->endWidget(); //form
                 weigth_elem = $("#Sportsmen_WeightID");
                 weigth_elem.attr("readonly", true);
                 weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
-           })
+           })';
            
-           $("#Sportsmen_AgeID").change(function() {
-                val = $(this).val();
-                id = "weigths_fromage_" + val;
-                age_elem = $("#" + id);
-                weigth_elem = $("#Sportsmen_WeightID");
-                weigth_elem.html(age_elem.html());
-                weigth_elem.attr("readonly", false);
-           })
-           ';
+    //разные обработчики, если соревнование является сборами (весовая категория ставится по умолчанию) КОСТЫЛЬ!!!
+    if ($competition->isCamp) {
+         $js = '
+               $("#Sportsmen_BirthDate").change(function() {
+                    year_elem = $("#ages_byyear_" + $(this).children(":selected").text());
+                    age_elem = $("#Sportsmen_AgeID");
+                    age_elem.html(year_elem.html());
+                    age_elem.attr("readonly", false);
+               });
+               
+               $("#Sportsmen_AgeID").change(function() {
+                    val = $(this).val();
+                    id = "weigths_fromage_" + val;
+                    age_elem = $("#" + id);
+                    weigth_elem = $("#Sportsmen_WeightID");
+                    elem = age_elem.children("option").eq(1); //второй эл-т в списке
+                    value = elem.val();
+                    weigth_elem.val(value);
+               })
+               ';
+    } else {
+         $js = '
+               $("#Sportsmen_BirthDate").change(function() {
+                    year_elem = $("#ages_byyear_" + $(this).children(":selected").text());
+                    age_elem = $("#Sportsmen_AgeID");
+                    age_elem.html(year_elem.html());
+                    age_elem.attr("readonly", false);
+                    weigth_elem = $("#Sportsmen_WeightID");
+                    weigth_elem.attr("readonly", true);
+                    weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
+               });
+               
+               $("#Sportsmen_AgeID").change(function() {
+                    val = $(this).val();
+                    id = "weigths_fromage_" + val;
+                    age_elem = $("#" + id);
+                    weigth_elem = $("#Sportsmen_WeightID");
+                    weigth_elem.html(age_elem.html());
+                    weigth_elem.attr("readonly", false);
+               })
+               ';
+    }
     Yii::app()->clientScript->registerScript('category_dropdown', $js, CClientScript::POS_READY);
 ?>
 

@@ -162,20 +162,22 @@ class CommandController extends Controller //ParticipantController
 	}
 
 	/**
-	 * Deletes a particular model.
-	 * If deletion is successful, the browser will be redirected to the 'admin' page.
-	 * @param integer $id the ID of the model to be deleted
+	 * Удаление команды
+     *  - подразумевает установку статуса равным НУЛЮ (т.н. деактивация)
+	 *  - если удаление НЕ через аякс, то редирект на стр. "команды"
+	 * @param integer $id ИД команды
 	 */
 	public function actionDelete($id)
 	{//DebugBreak();
         $db = Yii::app()->db;
         $transaction = $db->beginTransaction();
         try {
-            //$db->createCommand('DELETE FROM sportsmen WHERE commandid = :commandid')->execute(array(':commandid'=>$id));
-            //$db->createCommand('DELETE FROM coach WHERE commandid = :commandid')->execute(array(':commandid'=>$id));
+            //деактивировать спортсменов
+            $db->createCommand()->update('sportsmen', array('status'=>Sportsmen::STATUS_NOACTIVE), 'commandid = :commandid', array(':commandid'=>$id));
+            //'DELETE FROM coach WHERE commandid = :commandid')->execute();
             
-            $db->createCommand('UPDATE proposal SET status = 0 WHERE commandid = :commandid')->execute(array(':commandid'=>$id));
             //$db->createCommand('UPDATE proposal SET status = 0 WHERE commandid = :commandid')->execute(array(':commandid'=>$id));
+            $db->createCommand()->update('proposal', array('status'=>Command::STATUS_NOACTIVE), 'commandid = :commandid', array(':commandid'=>$id));
             
             $model = $this->loadModel($id);
             $model->status = Proposal::STATUS_NOACTIVE;
@@ -188,7 +190,6 @@ class CommandController extends Controller //ParticipantController
                 $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('index'));
         } catch (Exception $e){
             $transaction->rollBack();
-            //PJournalRecord::log($e->getMessage());
             $success = false;
             $error = $e->getMessage();
         } 

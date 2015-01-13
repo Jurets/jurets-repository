@@ -265,7 +265,7 @@ class ProposalController extends Controller
         $dataProvider=new CActiveDataProvider('Proposal', array(
             'criteria' => $criteria,
             'pagination'=>array(
-                'pageSize'=>20,
+                'pageSize'=>50,
             ),
         ));
         $this->render('index',array(

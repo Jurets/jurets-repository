@@ -25,14 +25,23 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         'country',
         'city',
-        'federation',
-        'club',
+        //'federation',
+        //'club',
         //'status',
         array(
             'header'=>'Представитель',
             'value'=>'$data->relUsers->UserFIO',
         ),
-        'participantcount',
+        array(
+            'name'=>'participantcount',
+            'header'=>Yii::t('fullnames', 'Part.count'),
+            'htmlOptions' => array('style' => 'width: 30px;'),
+        ),
+        array(
+            'name'=>'created',
+            'type'=>'datetime',
+            'value'=>'strtotime($data->created)',
+        ),
         array(
             'header'=>'Подтв.',
             'class'=>'ext.ECheckBoxColumn',

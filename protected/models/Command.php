@@ -9,6 +9,10 @@
  */
 class Command extends CActiveRecord
 {
+    const STATUS_NOACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_NEW = -1;
+
     public $sportsmen_count;
     public $coach_count;
     /**

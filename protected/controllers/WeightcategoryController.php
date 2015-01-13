@@ -209,6 +209,7 @@ class WeightcategoryController extends Controller
                  'id' => $age->AgeID,
                  'text' => $amode == 'full' ? $age->AgeNameYear : $age->AgeName,
                  'expanded' => false,
+                 'children' => array(),
             );
             //$weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  ----- так много запросов
             $weigths = $age->relWeigths;  //список весов (из связанной модели по жадной загрузке) --- так лучше ))

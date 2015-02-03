@@ -114,26 +114,13 @@ class Command extends CActiveRecord
     {
         // Warning: Please modify the following code to remove attributes that
         // should not be searched.
-
         /*$criteria=new CDbCriteria;
         //$criteria->join = 'INNER JOIN proposal ON proposal.commandid = t.commandid';
         //$criteria->addCondition('proposal.competitionid = :competitionid');
-        $criteria->select = 't.*, '.
-            '(SELECT COUNT(*) FROM sportsmen WHERE sportsmen.commandid = t.commandid AND status = 1) as sportsmen_count, '.
-            '(SELECT COUNT(*) FROM coach WHERE coach.commandid = t.commandid) as coach_count';
-        
-        $criteria->addCondition('EXISTS (SELECT 1 from proposal P WHERE P.commandid = t.commandid '.
-            //'AND P.competitionid = :competitionid '.
-            'AND P.status = :status)');
-        $criteria->addCondition('t.status = 1 AND competitionid = :competitionid');
-        $criteria->params = array(
-            ':competitionid'=>Yii::app()->competitionId, 
-            ':status'=>Proposal::STATUS_ACTIVE
-        );*/
+        */
         $criteria = self::commandCriteria();
         //добавить связь с заявкой
         $criteria->with = array('relProposal', 'relProposal.relUsers');
-        //$criteria->with = array('relProposal', array('with'=>'relUsers'));
         
         $criteria->compare('CommandID',$this->CommandID);
         $criteria->compare($this->getTableAlias() . '.competitionid',$this->competitionid);
@@ -141,6 +128,28 @@ class Command extends CActiveRecord
         
         return new CActiveDataProvider($this, array(
             'criteria'=>$criteria,
+            'sort'=>array(
+                'defaultOrder'=> $this->tableAlias . '.CommandName ASC',
+                'attributes'=>array(
+                    'Delegate'=>array(
+                        'asc'=>'relUsers.lastname ASC, relUsers.firstname ASC',
+                        'desc'=>'relUsers.lastname DESC, relUsers.firstname DESC',
+                    ),
+                    'city'=>array(
+                        'asc'=>'relProposal.city ASC, ' . $this->tableAlias . '.CommandName ASC',
+                        'desc'=>'relProposal.city DESC, ' . $this->tableAlias . '.CommandName DESC',
+                    ),  
+                    'sportsmenCount'=>array(
+                        'asc'=>'sportsmen_count ASC',
+                        'desc'=>'sportsmen_count DESC',
+                    ),
+                    'coachCount'=>array(
+                        'asc'=>'coach_count ASC, sportsmen_count ASC',
+                        'desc'=>'coach_count DESC, sportsmen_count DESC',
+                    ),
+                    '*',
+                ),
+            ),
             'pagination'=>array(
                 'pageSize'=>50,
             ),

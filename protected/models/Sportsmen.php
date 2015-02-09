@@ -27,7 +27,13 @@ class Sportsmen extends CActiveRecord
     const STATUS_ACTIVE = 1;
     //const STATUS_NEW = -1;
 
-	//public $AgeID;  //Jurets
+    //public $AgeID;  //Jurets
+    public $FullName;  //Jurets
+    /*public $BirthYear;  //Jurets
+    public $AgeName;  //Jurets
+    public $WeightNameFull;  //Jurets
+    public $Coachname;  //Jurets
+	public $Coachname1;*/  //Jurets
     
     /**
 	 * Returns the static model of the specified AR class.
@@ -337,7 +343,7 @@ class Sportsmen extends CActiveRecord
     
 
     //ЗАПРОС: список спортсменов команды
-    static public function sqlSportsmenList($CommandID = null) {
+    static public function sqlSportsmenList($CommandID = null, $filter = array()) {
         $arrFields = array('S.SpID',
                            'CONCAT(S.lastname, " ", S.firstname) AS FullName');
         if (!isset($CommandID) || empty($CommandID))
@@ -371,7 +377,24 @@ class Sportsmen extends CActiveRecord
             //->where('S.status = 1');
             ->where('S.status = 1 AND D.competitionid = '.Yii::app()->competitionId);
         }
-        $sqlCommand->order('FullName');
+        if (!empty($filter)) {
+            $fields = array();
+            $values = array();
+            foreach($filter as $key=>$value) {
+                if (strtolower($key) == 'fullname') {
+                    $condition = 'CONCAT(S.lastname, " ", S.firstname) LIKE :'.$key;
+                } else if (strtolower($key) == 'fstname') {
+                    $condition = 'FstID = :'.$key;
+                }
+                $field = $key;
+                $fields[] = $field.' like :'.$key;
+                $values[':'.$key] = '%'.$value.'%';
+            }
+            $fields = implode(' AND ', $fields);
+            $sqlCommand->andWhere($fields, $values);
+            $sqlCommand->params = $values;
+        }
+        //$sqlCommand->order('FullName');
         return $sqlCommand;
     }
 
@@ -483,6 +506,9 @@ class Sportsmen extends CActiveRecord
         return $out;
     }
 
+    public function getAgeName() {
+        return isset($this->relAgecategory) ? $this->relAgecategory->AgeName : null;
+    }
     public function getFstName() {
         return isset($this->relFst) ? $this->relFst->FstName : null;
     }
@@ -491,6 +517,21 @@ class Sportsmen extends CActiveRecord
     }
     public function getCategoryName() {
         return isset($this->relCategory) ? $this->relCategory->CategoryName : null;
+    }
+    public function getCoachName() {
+        return isset($this->relCoach) ? $this->relCoach->CoachName : null;
+    }
+    public function getCoachFirstName() {
+        return isset($this->relCoachFirst) ? $this->relCoachFirst->CoachName : null;
+    }
+    
+    //Jurets: получить название весовой категории (по ID)
+    public function getWeightNameFull() {
+        return isset($this->relWeightcategory) ? $this->relWeightcategory->WeightNameFull : null;
+    }
+    //Jurets: получить название весовой категории (по ID)
+    public function getWeightNameShort() {
+        return isset($this->relWeightcategory) ? $this->relWeightcategory->WeightNameShort : null;
     }
     
     /**

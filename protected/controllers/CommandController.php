@@ -1,4 +1,5 @@
 <?php
+YiiBase::import('posting.models.*');
 //YiiBase::import('application.controllers.ParticipantController');
 Yii::app()->bootstrap->register();
                                
@@ -69,9 +70,57 @@ class CommandController extends Controller //ParticipantController
         
         //загрузить список спортсменов
         $sqlCommand = Sportsmen::sqlSportsmenList($model->CommandID);
-        $dataSportsmenList = new CSqlDataProvider($sqlCommand->text, array(
+        
+        $criteria = new CDbCriteria;
+        //$expr = new CDbExpression('IF(WeightTo IS NULL, CONCAT(WeightFrom, "+"), CONCAT("-", WeightTo)) AS WeightNameFull');
+        $criteria->alias = 'S';
+        $criteria->with = array(
+            //'relCommand', 
+            //'relPhoto', 
+            'relFst' => array('select'=>'FstName'),
+            'relCategory' => array('select'=>'relCategory.CategoryName'),
+            'relAttestlevel' => array('select'=>'relAttestlevel.AttestLevel'),
+            'relAgecategory' => array('select'=>'relAgecategory.AgeName'),
+            'relWeightcategory' => array('select'=>array('relWeightcategory.WeightFrom', 'relWeightcategory.WeightTo')),
+            'relCoach' => array('select'=>'relCoach.CoachName'),
+            'relCoachFirst' => array('select'=>'relCoachFirst.CoachName as Coachname1'),
+        );
+        $criteria->select = array(
+           'S.SpID',
+           'CONCAT(S.lastname, " ", S.firstname) AS FullName',
+           //'relFst.FstName',
+           //'relCategory.CategoryName',
+           //'relAttestlevel.Attestlevel AS AttestLevelName',
+           ////'YEAR(S.birthdate) AS BirthYear',
+           'S.BirthDate',
+           //'relAgecategory.AgeName',
+           //'IF(relWeightcategory.WeightTo IS NULL, CONCAT(relWeightcategory.WeightFrom, "+"), CONCAT("-", relWeightcategory.WeightTo)) AS WeightNameFull',
+           //'relCoach.Coachname',
+           //'relCoachFirst.Coachname as Coachname1'
+        );
+        $criteria->addCondition(array('S.status = :status', 'S.commandid = :commandid'));
+        $criteria->params = array(':commandid'=>$model->CommandID, ':status'=>1);
+        
+        $modelSportsmen = new Sportsmen();
+        
+        //$dataSportsmenList = new CSqlDataProvider($sqlCommand->text, array(
+        $dataSportsmenList = new CActiveDataProvider(/*$modelSportsmen*/'Sportsmen', array(
+            'criteria'=>$criteria,
             'totalItemCount'=>$model->sportsmen_count, //$count,
-            'keyField'=>'SpID',
+            //'keyField'=>'SpID',
+            'sort'=>array(
+                'defaultOrder'=> 'CONCAT(S.lastname, " ", S.firstname) ASC',
+                'attributes'=>array(
+                    /*'date_create'=>array(
+                        'asc'=>'post.date_create',
+                        'desc'=>'post.date_create DESC',
+                    ),
+                    'title'=>array(
+                        'asc'=>'post.title',
+                        'desc'=>'post.title DESC',
+                    ), */
+                    '*'),
+            ),
             'pagination'=>array(
                 'pageSize'=>50,
             ),

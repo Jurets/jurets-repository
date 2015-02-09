@@ -49,7 +49,6 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
         array(
             'header'=>Yii::t('fullnames', 'FstName'),
             'name'=>'FstName',
-            //'value'=>$data->FstName  
         ),
         array(
             'header'=>Yii::t('fullnames', 'CategoryName'),
@@ -62,6 +61,7 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
         array(
             'header'=>Yii::t('fullnames', 'BirthYear'),
             'name'=>'BirthYear',
+            'value'=>'date("Y", strtotime($data->BirthDate))',
         ), 
         array(
             'header'=>Yii::t('fullnames', 'Age'),
@@ -70,11 +70,12 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
         array(
             'header'=>Yii::t('fullnames', 'Weight'),
             'name'=>'WeightNameFull',
+            'value'=>'$data->WeightNameShort',
             'visible'=>!$competition->isCamp,
         ),
         array(
             'header'=>Yii::t('fullnames', 'Coach'),
-            'name'=>'Coachname',
+            'name'=>'CoachName',
         ),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',

@@ -151,15 +151,25 @@ class Users extends CActiveRecord
 		//$criteria->compare('UserFIO',$this->UserFIO,true);
 		$criteria->compare('Email',$this->Email,true);
 		$criteria->compare('Active',$this->Active);
-        
-        $criteria->order = 'UserID DESC';
+//        DebugBreak();
+        //$criteria->order = 'UserID DESC';
         
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
             'pagination'=>array(
                 'pageSize'=>50,
             ),
-		));
+            'sort'=>array(
+                'defaultOrder'=>'UserID DESC', 
+                'attributes'=>array(
+                    'UserFIO'=>array(
+                        'asc'=>'lastname, firstname',
+                        'desc'=>'lastname, firstname DESC',
+                    ),
+                    '*',
+                ),
+            ),
+    	));
 	}
 
     
@@ -237,7 +247,9 @@ class Users extends CActiveRecord
                 $this->new_password = $password; //сохранить исходный текст пароля (для отправки)
             }
             $this->Password = $this->hashPassword($this->new_password, $this->Salt); //хешить пароль
-            $this->RoleID = 'delegate';  //роль - представитель
+            if (empty($this->RoleID)) {
+                $this->RoleID = 'delegate';  //по умолчанию роль = представитель
+            }
         } else if ($this->scenario == 'activity') {
             return true;                                                                 
         } //автогенерация пароля

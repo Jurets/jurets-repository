@@ -62,6 +62,7 @@ class Sportsmen extends CActiveRecord
 		// will receive user inputs.
 		return array(
             array('LastName, FirstName, BirthDate, CommandID, Gender, AgeID, WeigthID', 'required'),
+            array('CategoryID, AttestLevelID', 'required'), //
 			//array('LastName, FirstName, BirthDate, CommandID, AgeID, WeigthID', 'required'),
 			array('CommandID, FstID, CategoryID, AttestLevelID, WeigthID, Coach1ID, Coach2ID, MedicSolve, AgeID', 'numerical', 'integerOnly'=>true),
 			array('LastName', 'length', 'max'=>30),

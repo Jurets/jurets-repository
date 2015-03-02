@@ -32,7 +32,7 @@ class CompetitionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update', 'manage', 'exportcsv', 'create'),
+				'actions'=>array('update', /*'manage', */'exportcsv', 'create'),
                 'roles'=>array('admin','manager'),
 				//'users'=>array('@'),
 			),
@@ -73,20 +73,21 @@ class CompetitionController extends Controller
     //ДЕЙСТВИЕ: просмотр
     public function actionView()
     {
-        $this->render('view',array(
+        //$this->render('view',array(
+        $this->render('manage',array(
             'model'=>Competition::getModel(),
             'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
         ));
     }
 
     //ДЕЙСТВИЕ: управление
-    public function actionManage()
+    /*public function actionManage()
     {
         $this->render('manage',array(
             'model'=>Competition::getModel(),
             'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
         ));
-    }
+    }*/
 
     public function actionExportcsv()
     {//DebugBreak();

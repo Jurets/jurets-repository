@@ -39,7 +39,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
             'class'=>'bootstrap.widgets.TbMenu',
             'items'=>array(
                 array('label'=>Yii::t('fullnames', 'Competition'), 
-                    'url' => ($isExtendRole ? array('/competition/manage') : array('/competition/view')),
+                    'url' => ($isExtendRole ? array('/competition/view') : array('/competition/view')),
                 ),
                 //array('label'=>'Информация', 'url'=>array('/site/page', 'view'=>'about')),
                 array('label'=>Yii::t('fullnames', 'Commands')/*'Участники'*/, 'url'=>array('/command/index')),
@@ -66,13 +66,13 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                     array('label'=>Yii::t('fullnames', 'Users'), 'url'=>array('/users/index'), 'icon'=>'user', 'visible'=>$isExtendRole),
                     /*array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('proposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
                     array('label'=>'Управление', 
-                        'url'=>array('/competition/manage'), 
+                        'url'=>array('/competition/view'), 
                         'icon'=>'wrench', 
                         'visible'=>Yii::app()->user->isManagerRole()
                     ),
                     array('label'=>'Управление', 
                         //'url'=>array('/competition/admin'), //ToDo: Функционал АДМИНа пока не работает
-                        'url'=>array('/competition/manage'), 
+                        'url'=>array('/competition/view'), 
                         'icon'=>'book', 
                         'visible'=>Yii::app()->user->isAdminRole()
                     ),

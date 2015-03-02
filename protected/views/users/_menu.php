@@ -123,7 +123,7 @@ if (!$isGuest)
             'visible'=>($isMyUserID && $isProposalExists && $isProposalActive),
         ),*/
             
-        array('label'=>'Управление', 'url'=>array('/competition/manage'), 'icon'=>'wrench', 'visible'=>Yii::app()->user->isManagerRole()),
+        array('label'=>'Управление', 'url'=>array('/competition/view'), 'icon'=>'wrench', 'visible'=>Yii::app()->user->isManagerRole()),
         array('label'=>'Админ', 'url'=>array('/competition/admin'), 'icon'=>'book', 'visible'=>Yii::app()->user->isAdminRole()),
         
         //array('label'=>Yii::t('fullnames', 'Enter Proposal'), 'url'=>array('/command/view', 'id'=>Yii::app()->user->getCommandID()), 'icon'=>'list', 'visible'=>(!$isGuest && !$isExtendRole)),            

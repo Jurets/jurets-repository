@@ -24,7 +24,7 @@ $this->widget('bootstrap.widgets.TbAlert', array(
 
 $this->menu=array(
     array('label'=>Yii::t('fullnames', 'Competition'), 
-        'url'=>array($this->pathCompetition . '/competition/manage'), 
+        'url'=>array($this->pathCompetition . '/competition/view'), 
         'icon'=>'cog',
         'linkOptions'=>array(
             'title'=>Yii::t('fullnames', 'Настройки параметров соревнований'), 

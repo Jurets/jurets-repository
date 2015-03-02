@@ -6,7 +6,7 @@ $isExtendRole = Yii::app()->isExtendRole;
 
 if ($isExtendRole)
     $this->breadcrumbs=array(
-        Yii::t('fullnames', 'Manage')=>array('/competition/manage'),
+        Yii::t('fullnames', 'Manage')=>array('/competition/view'),
         Yii::t('fullnames', 'Proposals')
         //$model->relCommand->CommandName,
     );

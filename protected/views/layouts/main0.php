@@ -69,7 +69,7 @@ $docpath = Yii::app()->baseUrl.'/document/';
                 array('label'=>'Регистрация', 'url'=>array('/proposal/create'), 'visible'=>Yii::app()->user->isGuest),
                 array('label'=>'Ввод заявок', 'url'=>array('/command/view&id='.Yii::app()->user->getCommandID()), 'visible'=>(!Yii::app()->user->isGuest && !Yii::app()->user->isExtendRole())),
                 array('label'=>'Мой Кабинет', 'url'=>array('/proposal/mycabinet'), 'visible'=>(!Yii::app()->user->isGuest && !Yii::app()->user->isExtendRole())),
-                array('label'=>'Управление', 'url'=>array('/competition/manage'), 'visible'=>Yii::app()->user->isManagerRole()),
+                array('label'=>'Управление', 'url'=>array('/competition/view'), 'visible'=>Yii::app()->user->isManagerRole()),
                 array('label'=>'Админ', 'url'=>array('/competition/admin'), 'visible'=>Yii::app()->user->isAdminRole()),
             ),
         ));*/ ?>

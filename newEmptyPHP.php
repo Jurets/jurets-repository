@@ -48,7 +48,7 @@
             за адресою <strong>м. Вінниця, вул. Генерала Арабея, 3, легкоатлетичний манеж «Колос»</strong></p>
 
         <div class="left-column">
-            <p class="centext colblue1 text14">У змаганнях приймають участь</p>
+            <p class="centext colblue1 text14">Вікові групи</p>
             <ul>
                 <li><strong>Юнаки та дівчата</strong> (2002-2004 р.н.)</li>
                 <li><strong>Кадети та кадетки</strong> (2000-2002 р.н.)</li>

@@ -64,6 +64,17 @@ class Attestlevel extends CActiveRecord
 			'AttestLevel' => 'Attest Level',
 		);
 	}
+    
+    /**
+    * скоуп по умолчанию
+    * 
+    */
+    public function defaultScope() {
+        return array(
+            'alias'=>'alevel',
+            'order'=>'alevel.ordernum ASC'
+        );
+    }
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
@@ -84,6 +95,10 @@ class Attestlevel extends CActiveRecord
 		));
 	}
     
+    /**
+    * Получить список аттест. уровней
+    * 
+    */
     public static function getList() {//DebugBreak();
         $_cacheID = 'cacheAttestLevel';
         $data = Yii::app()->cache->get($_cacheID);

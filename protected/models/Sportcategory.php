@@ -65,6 +65,17 @@ class Sportcategory extends CActiveRecord //CatalogTable
 		);
 	}
 
+    /**
+    * скоуп по умолчанию
+    * 
+    */
+    public function defaultScope() {
+        return array(
+            'alias'=>'scategory',
+            'order'=>'scategory.ordernum ASC'
+        );
+    }
+
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
@@ -84,6 +95,10 @@ class Sportcategory extends CActiveRecord //CatalogTable
 		));
 	}
     
+    /**
+    * получить список спортивных категорий
+    * 
+    */
     public static function getList() {
         $_cacheID = 'cacheCategories';
         $data = Yii::app()->cache->get($_cacheID);

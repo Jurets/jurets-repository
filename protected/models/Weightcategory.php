@@ -221,8 +221,6 @@ class Weightcategory extends CActiveRecord
     
     //Jurets: получить название весовой категории (по ID)
     public function getWeightNameFull() {
-        //return //mb_strtoupper($this->relAgecategory->Gender, 'UTF-8').' '.
-        //    $this->WeightName();
         if (is_null($this->WeightTo)) 
             return 'свыше '.$this->WeightFrom.' кг';
         else 
@@ -231,8 +229,6 @@ class Weightcategory extends CActiveRecord
     
     //Jurets: получить название весовой категории (по ID)
     public function getWeightNameShort() {
-        //return //mb_strtoupper($this->relAgecategory->Gender, 'UTF-8').' '.
-        //    $this->WeightName();
         if (is_null($this->WeightTo)) 
             return '+'.$this->WeightFrom.'кг';
         else 

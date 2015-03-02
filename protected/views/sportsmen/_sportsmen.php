@@ -34,7 +34,6 @@ $delConfirm = 'js:"' . Yii::t('controls', "Are you sure you want to delete sport
 $arrColumns = array(
         array(
             'header'=>Yii::t('fullnames', 'LastName').', '.Yii::t('fullnames', 'FirstName'),
-            //'value'=>$data->FullName,
             'type'=>'html',
             'value'=>'CHtml::link(CHtml::encode($data["FullName"]), CHtml::normalizeUrl(array("sportsmen/view", "id"=>$data["SpID"])))',
         ));

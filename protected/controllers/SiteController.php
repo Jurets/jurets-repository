@@ -50,6 +50,29 @@ class SiteController extends Controller
         
 	}
 
+    public function actionMain()
+    {
+        // renders the view file 'protected/views/site/index.php'
+        // using the default layout 'protected/views/layouts/main.php'
+
+        $this->layout = '//layouts/competition';
+        
+        $competition = New Competition;
+        $dataProvider = $competition->search();
+        $this->render('index', array(
+            'dataProvider'=>$dataProvider,
+            'competition'=>$competition,
+        ));
+        
+//        $model = //!empty($path) ? Competition::getModelPath($path) : 
+//            Competition::getModel();
+//        $this->render('application.views.competition.invitation',array(
+//            'model'=>$model,
+//            //'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
+//        ));
+        
+    }
+    
 	/**
 	 * This is the action to handle external exceptions.
 	 */
@@ -116,7 +139,7 @@ class SiteController extends Controller
                 if ($currenturl == $homeurl || $currenturl == $homeurl.'index.php') {
                     if (Yii::app()->user->isExtendRole()) {
                         //$url = $this->createUrl('/users/index');
-                        $url = $this->createUrl('/competition/manage');
+                        $url = $this->createUrl('/competition/view');
                     } else {
                         $commandid = Yii::app()->user->getCommandID(); //определить команду вошедшего юзера
                         if (Yii::app()->isUserActive && isset($commandid) && !empty($commandid))

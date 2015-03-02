@@ -4,17 +4,17 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="form">
+<!--<div class="form">-->
 
 <?php 
-    $isMyUserID = (Yii::app()->user->userid == $model->UserID); 
+$isMyUserID = (Yii::app()->user->userid == $model->UserID); 
 
-    $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
-        'id'=>'users-form',
-        'type'=>'horizontal',
-        'enableAjaxValidation'=>true,
-        'htmlOptions'=>array('class'=>'well'),
-    )); 
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
+    'id'=>'users-form',
+    'type'=>'horizontal',
+    'enableAjaxValidation'=>true,
+    'htmlOptions'=>array('class'=>'well'),
+)); 
 
     echo Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>')).'<br><br>';
     
@@ -75,6 +75,6 @@
             ),
     ));    
 
-    $this->endWidget(); 
+$this->endWidget(); 
 ?>    
-</div><!-- form -->
+<!--</div> form -->

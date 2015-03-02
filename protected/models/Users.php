@@ -26,6 +26,8 @@ class Users extends CActiveRecord
     public $new_password;
     public $retype_password;
     
+    public $searchUserFio;
+    
 	// Returns the static model of the specified AR class. 
     // @param string $className active record class name. @return Users the static model class
 	public static function model($className=__CLASS__)
@@ -64,7 +66,8 @@ class Users extends CActiveRecord
             //array('Email, login', 'unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('UserID, UserName, Password, RoleID, Salt, CommandID, UserFIO, Email, Active', 'safe', 'on'=>'search'),
+            array('UserID, UserName, Password, RoleID, Salt, CommandID, Email, Active, searchUserFio', 'safe', 'on'=>'search'),
+			array('UserFIO', 'unsafe', 'on'=>'search'),
             //array('propid, commandname, firstname, lastname, federation, post, country, city, club, address, phone, email, www, participantcount, comment, login, status', 'safe', 'on'=>'search'),
             array('new_password', 'length', 'min'=>4, 'max'=>50),
             array('new_password', 'match', 'pattern'=>'/^[a-zA-Z0-9]+$/', 'on'=>array('create','update'), 'message'=>'Разрешены только латинские буквы и цифры'),
@@ -146,14 +149,15 @@ class Users extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('UserID',$this->UserID);
-		$criteria->compare('UserName',$this->UserName,true);
+        $criteria->compare('UserName',$this->UserName,true);
+		$criteria->compare('CONCAT(lastname, " ", firstname)',$this->searchUserFio,true);
 		$criteria->compare('CommandID',$this->CommandID);
 		//$criteria->compare('UserFIO',$this->UserFIO,true);
 		$criteria->compare('Email',$this->Email,true);
 		$criteria->compare('Active',$this->Active);
 //        DebugBreak();
         //$criteria->order = 'UserID DESC';
-        
+                        
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
             'pagination'=>array(
@@ -162,7 +166,7 @@ class Users extends CActiveRecord
             'sort'=>array(
                 'defaultOrder'=>'UserID DESC', 
                 'attributes'=>array(
-                    'UserFIO'=>array(
+                    'searchUserFio'=>array(
                         'asc'=>'lastname, firstname',
                         'desc'=>'lastname, firstname DESC',
                     ),

@@ -152,7 +152,7 @@ class UsersController extends Controller
             $model->attributes=$_GET['Users'];
 
 		$this->render('index',array(
-			'dataProvider'=>$model->search(),
+			'model'=>$model,
 		));
 	}
 

@@ -7,13 +7,14 @@
 //$isMyCommand = !Yii::app()->user->isGuest && ($commandid == $myCommandID);
 $isAccess = Yii::app()->user->isExtendRole() /*|| $isMyCommand*/;
 
-$pageid = 'page_usersindex';
+/////// кэширование пока отключаем
+/*$pageid = 'page_usersindex';
 $paramid = Yii::app()->request->getParam('Users_page');
 if (isset($paramid))
     $pageid .= ('_'.$paramid);
 $notCached = $this->beginCache($pageid, array('duration'=>60));
-if($notCached) 
-{
+if($notCached)*/ 
+//{
 
 /*$isGuest = Yii::app()->isGuestUser; //определить: текущий юзер - гость
 
@@ -36,9 +37,8 @@ if ($isExtendRole) */
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'users-grid',
-    'dataProvider'=>$dataProvider,
-    //'filter'=>$model,
-    //'cssFile'=>null,
+    'dataProvider'=>$model->search(),
+    'filter'=>$model,
     'template'=>"{pager}<br>{items}<br>{pager}",
     'type'=>'striped bordered condensed',
     'htmlOptions' => array(
@@ -50,9 +50,17 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'name'=>'UserName',
             'type'=>'html',
             'value'=>'CHtml::link(CHtml::encode($data->UserName), CHtml::normalizeUrl(array("users/view", "id"=>$data->UserID)))',
+            'filterInputOptions'=>array('style'=>'width: 180px;'),
         ),
-        'UserFIO',
-        'city',
+        array(
+            'name'=>'searchUserFio',
+            'value'=>'$data->UserFio',
+            'filterInputOptions'=>array('style'=>'width: 180px;'),
+        ),
+        array(
+            'name'=>'city',
+            'filterInputOptions'=>array('style'=>'width: 100px;'),
+        ),
         array(
             'header'=>Yii::t('fullnames', 'Status'),
             'value'=>'$data->status == Users::STATUS_NEW ? Yii::app()->controller->widget("bootstrap.widgets.TbLabel", array("type"=>$data->statusCss,  "label"=>$data->statusTitle), true) : $data->statusTitle',
@@ -61,12 +69,13 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         array(
             'name'=>'created',
             'value'=>'strtotime($data->created)', 
-            'type'=>'date'
+            'type'=>'date',
+            'filterInputOptions'=>array('style'=>'width: 100px;'),
         ),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'template'=> ($isAccess ? '{view}{update}{delete}' : '{view}'),
-            'htmlOptions'=>array('style'=>'width: 50px; text-align: center'),
+            'template'=> ($isAccess ? '{view}&nbsp;&nbsp;{update}&nbsp;&nbsp;{delete}' : '{view}'),
+            'htmlOptions'=>array('style'=>'width: 80px; text-align: center'),
             'deleteConfirmation'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>'$data["LastName"]')),
             'buttons'=>array (
                 'view' => array (
@@ -89,6 +98,6 @@ $this->widget('bootstrap.widgets.TbGridView', array(
     )
 ));
 
-$this->endCache(); 
-}
+//$this->endCache(); 
+//}
 ?>

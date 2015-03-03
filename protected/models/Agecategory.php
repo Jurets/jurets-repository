@@ -70,8 +70,7 @@ class Agecategory extends CActiveRecord
 	}
 
     /**
-    * put your comment there...
-    * 
+    * SQL-параметры по умолчанию
     */
     public function defaultScope() {
         return array(

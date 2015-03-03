@@ -108,7 +108,8 @@
     // --------- содержимое вкладки "Спортсмены" ----------
     $sportsmenContent = $this->renderPartial('/sportsmen/_sportsmen', array(
         'commandid'=>$model->CommandID,
-        'dataProvider'=>$dataSportsmenList
+        'dataProvider'=>$dataSportsmenList,
+        'modelSportsmen'=>$modelSportsmen,
     ), true);
 
     // --------- содержимое вкладки "Тренеры" ----------

@@ -33,8 +33,13 @@ $delConfirm = 'js:"' . Yii::t('controls', "Are you sure you want to delete sport
                                
 $arrColumns = array(
         array(
+            //'name'=>'searchFullName',
+            'name'=>'FullName',
             'header'=>Yii::t('fullnames', 'LastName').', '.Yii::t('fullnames', 'FirstName'),
             'type'=>'html',
+            //'value'=>'$data->FullName',
+            'filterInputOptions'=>array('style'=>'width: 180px;'),
+            'headerHtmlOptions'=>array('style'=>'width: 190px;'),
             'value'=>'CHtml::link(CHtml::encode($data["FullName"]), CHtml::normalizeUrl(array("sportsmen/view", "id"=>$data["SpID"])))',
         ));
  
@@ -42,43 +47,63 @@ if (!isset($commandid) || empty($commandid))
     $arrColumns[] = array(
             'header'=>Yii::t('fullnames', 'Command'),
             'name'=>'Commandname',
+            'filter'=>false,
         );
 
 $arrColumns = CMap::mergeArray($arrColumns, array(
         array(
             'header'=>Yii::t('fullnames', 'FstName'),
             'name'=>'FstName',
+            'filter'=>false,
         ),
         array(
             'header'=>Yii::t('fullnames', 'CategoryName'),
             'name'=>'CategoryName',
+            'filter'=>false,
         ), 
         array(
             'header'=>Yii::t('fullnames', 'AttestLevelName'),
             'name'=>'AttestLevelName',
+            'filter'=>false,
         ), 
         array(
-            'header'=>Yii::t('fullnames', 'BirthYear'),
             'name'=>'BirthYear',
+            'header'=>Yii::t('fullnames', 'BirthYear'),
+            'filter'=>false,
             'value'=>'date("Y", strtotime($data->BirthDate))',
         ), 
         array(
+            'name'=>'searchAgeName',
             'header'=>Yii::t('fullnames', 'Age'),
-            'name'=>'AgeName',
+            'value'=>'$data->AgeName',
+            'filter'=>CHtml::listData(Agecategory::getAges(), 'AgeID', 'AgeNameYear'), 
+            /*'filter'=>CHtml::activeDropDownList($modelSportsmen, 'AgeID', 
+                CHtml::listData(Agecategory::getAges(), 'AgeID', 'AgeNameYear'),
+                array('empty' => ''*/ 
+                      /*'<'.Yii::t('controls', 'Choose age category').'>',*/
+                      //'readonly'=>!isset($model->BirthDate) || empty($model->BirthDate //true,
+                //)),
+            'filterInputOptions'=>array('style'=>'width: 150px; font-size: 12px;'),
+            'headerHtmlOptions'=>array('style'=>'width: 160px;'),
         ),
         array(
             'header'=>Yii::t('fullnames', 'Weight'),
             'name'=>'WeightNameFull',
+            'filter'=>false,
             'value'=>'$data->WeightNameShort',
             'visible'=>!$competition->isCamp,
         ),
         array(
             'header'=>Yii::t('fullnames', 'Coach'),
-            'name'=>'CoachName',
+            'name'=>'searchCoachName',
+            'value'=>'$data->CoachName',
+            'filter'=>CHtml::listData(Sportsmen::getCoachList($commandid), 'CoachID', 'CoachName'),
+            'filterInputOptions'=>array('style'=>'width: 150px; font-size: 12px;'),
+            'headerHtmlOptions'=>array('style'=>'width: 160px;'),
         ),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'template'=> ($isAccess ? '{view}{update}{delete}' : '{view}'),
+            'template'=> ($isAccess ? '{view}&nbsp;{update}&nbsp;{delete}' : '{view}'),
             'htmlOptions'=>array('style'=>'width: 50px; text-align: center'),
             //'deleteConfirmation'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array('{item}'=>Yii::t('fullnames', ' sportsmen'), '{name}'=>'$data["LastName"]')),
             'deleteConfirmation'=>$delConfirm,
@@ -111,7 +136,7 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'sportsmen-grid',
     'dataProvider'=>$dataProvider,
-    //'filter'=>$model,
+    'filter'=>$modelSportsmen,
     //'cssFile'=>null,
     'template'=>"{pager}<br>{items}<br>{pager}",
     'type'=>'striped bordered condensed',

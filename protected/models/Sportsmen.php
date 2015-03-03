@@ -27,8 +27,9 @@ class Sportsmen extends CActiveRecord
     const STATUS_ACTIVE = 1;
     //const STATUS_NEW = -1;
 
-    //public $AgeID;  //Jurets
-    public $FullName;  //Jurets
+    public $searchAgeName;   //
+    public $FullName;        //
+    public $searchCoachName; //
     /*public $BirthYear;  //Jurets
     public $AgeName;  //Jurets
     public $WeightNameFull;  //Jurets
@@ -72,7 +73,9 @@ class Sportsmen extends CActiveRecord
             array('MedicSolve', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('SpID, LastName, FirstName, MiddleName, BirthDate, Gender, CommandID, FstID, CategoryID, AttestLevelID, WeigthID, Coach1ID, Coach2ID, MedicSolve, AgeID', 'safe', 'on'=>'search'),
+            array('SpID, LastName, FirstName, MiddleName, BirthDate, Gender, CommandID, FstID, CategoryID, AttestLevelID, WeigthID, Coach1ID, Coach2ID, MedicSolve, AgeID', 'safe', 'on'=>'search'),
+            array('FullName, searchAgeName, searchCoachName', 'safe', 'on'=>'search'),
+			//array('searchFullName', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -205,7 +208,7 @@ class Sportsmen extends CActiveRecord
     //Jurets: получить 1-го тренера (по ID)
     public function Coach1Name() {
         //$record = Coach::model()->findByPk($this->Coach1ID);
-        $data = Sportsmen::getCoachList($this->CommandID);
+        $data = self::getCoachList($this->CommandID);
       //пройтись по массиву и выбрать только нужный итем
         foreach($data as $index => $item) 
             if ($item->CoachID == $this->Coach1ID) {

@@ -69,14 +69,18 @@ class CommandController extends Controller //ParticipantController
         $this->beforeCommandAction($model);
         
         //загрузить список спортсменов
-        $sqlCommand = Sportsmen::sqlSportsmenList($model->CommandID);
-        
+        //$sqlCommand = Sportsmen::sqlSportsmenList($model->CommandID);
+        //DebugBreak();
+        // построить модель ля фильтра
+        $modelSportsmen = new Sportsmen('search');
+        $modelSportsmen->unsetAttributes();  // clear any default values
+        if(isset($_GET['Sportsmen']))
+            $modelSportsmen->attributes=$_GET['Sportsmen'];
+        // сформировать критерию
         $criteria = new CDbCriteria;
-        //$expr = new CDbExpression('IF(WeightTo IS NULL, CONCAT(WeightFrom, "+"), CONCAT("-", WeightTo)) AS WeightNameFull');
         $criteria->alias = 'S';
-        $criteria->with = array(
-            //'relCommand', 
-            //'relPhoto', 
+        $criteria->select = array('S.SpID', 'CONCAT(S.lastname, " ", S.firstname) AS FullName', 'S.BirthDate');
+        $criteria->with = array(//'relCommand',  //'relPhoto', 
             'relFst' => array('select'=>'FstName'),
             'relCategory' => array('select'=>'relCategory.CategoryName'),
             'relAttestlevel' => array('select'=>'relAttestlevel.AttestLevel'),
@@ -85,40 +89,38 @@ class CommandController extends Controller //ParticipantController
             'relCoach' => array('select'=>'relCoach.CoachName'),
             'relCoachFirst' => array('select'=>'relCoachFirst.CoachName as Coachname1'),
         );
-        $criteria->select = array(
-           'S.SpID',
-           'CONCAT(S.lastname, " ", S.firstname) AS FullName',
-           //'relFst.FstName',
-           //'relCategory.CategoryName',
-           //'relAttestlevel.Attestlevel AS AttestLevelName',
-           ////'YEAR(S.birthdate) AS BirthYear',
-           'S.BirthDate',
-           //'relAgecategory.AgeName',
-           //'IF(relWeightcategory.WeightTo IS NULL, CONCAT(relWeightcategory.WeightFrom, "+"), CONCAT("-", relWeightcategory.WeightTo)) AS WeightNameFull',
-           //'relCoach.Coachname',
-           //'relCoachFirst.Coachname as Coachname1'
-        );
         $criteria->addCondition(array('S.status = :status', 'S.commandid = :commandid'));
         $criteria->params = array(':commandid'=>$model->CommandID, ':status'=>1);
+        // Добавить собственно фильтр
+        $criteria->compare('CONCAT(S.lastname, " ", S.firstname)', $modelSportsmen->FullName, true);
+        $criteria->compare('S.AgeID', $modelSportsmen->searchAgeName);
+        $criteria->compare('S.Coach1ID', $modelSportsmen->searchCoachName);
+        //$criteria->compare('CommandID',$this->CommandID);
         
-        $modelSportsmen = new Sportsmen();
-        
-        //$dataSportsmenList = new CSqlDataProvider($sqlCommand->text, array(
-        $dataSportsmenList = new CActiveDataProvider(/*$modelSportsmen*/'Sportsmen', array(
+        // сформирвоать провайдер набора данных
+        $dataSportsmenList = new CActiveDataProvider('Sportsmen', array(
             'criteria'=>$criteria,
-            'totalItemCount'=>$model->sportsmen_count, //$count,
-            //'keyField'=>'SpID',
+            'totalItemCount'=>$model->sportsmen_count,
             'sort'=>array(
-                'defaultOrder'=> 'CONCAT(S.lastname, " ", S.firstname) ASC',
+                'defaultOrder'=>'CONCAT(S.lastname, " ", S.firstname) ASC',
+                'defaultOrder'=>'S.lastname, S.firstname ASC',
                 'attributes'=>array(
-                    /*'date_create'=>array(
-                        'asc'=>'post.date_create',
-                        'desc'=>'post.date_create DESC',
+                    'FullName'=>array(
+                        'asc'=>'S.lastname, S.firstname ASC',
+                        'desc'=>'S.lastname, S.firstname DESC',
                     ),
-                    'title'=>array(
-                        'asc'=>'post.title',
-                        'desc'=>'post.title DESC',
-                    ), */
+                    'searchAgeName'=>array(
+                        'asc'=>'age.ordernum ASC',
+                        'desc'=>'age.ordernum DESC',
+                    ),
+                    'WeightNameFull'=>array(
+                        'asc'=>'weigth.WeightFrom ASC',
+                        'desc'=>'weigth.WeightFrom DESC',
+                    ),                    
+                    'searchCoachName'=>array(
+                        'asc'=>'relCoach.CoachName ASC',
+                        'desc'=>'relCoach.CoachName DESC',
+                    ),
                     '*'),
             ),
             'pagination'=>array(
@@ -138,11 +140,13 @@ class CommandController extends Controller //ParticipantController
         
         //вывести вьюшку
 		$this->render('view',array(
-			'model'=>$model,
+            'model'=>$model,
+			'modelSportsmen'=>$modelSportsmen,
             'commandid'=>$model->CommandID,
             'dataSportsmenList'=>$dataSportsmenList,
             'dataCoachList'=>$dataCoachList,
             'tabnum'=>$tabnum,
+            'filterAges'=>Agecategory::getAges(), //выборка категорий соревнования (возрастные с весовыми)
 		));
 	}
 

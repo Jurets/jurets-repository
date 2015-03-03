@@ -81,11 +81,11 @@ class CoachController extends ParticipantController
 		// $this->performAjaxValidation($model);
 
         //узнать ИД команды по текущему юзеру и запихнуть в модель
-        if (Yii::app()->isExtendRole) {                    //если расширенная роль
+        ////////if (Yii::app()->isExtendRole) 
+        {                    //если расширенная роль
             $command = Command::model()->findByPk($id); //взять команду из входного параметра
-        }
-        else
-            $command = $this->getUserCommand();        //иначе - по юзеру
+        } //else
+            ///////$command = $this->getUserCommand();        //иначе - по юзеру
 
 		if(isset($_POST['Coach']))
 		{

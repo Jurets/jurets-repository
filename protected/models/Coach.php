@@ -57,6 +57,16 @@ class Coach extends CActiveRecord
 		);
 	}
 
+    /**
+    * SQL-параметры по умолчанию
+    */
+    /*public function defaultScope() {
+        return array(
+            //'alias'=>'coach',
+            'order'=>'coach.CoachName ASC'
+        );
+    }*/
+    
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */

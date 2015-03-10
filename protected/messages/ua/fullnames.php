@@ -56,6 +56,7 @@ return array(
     'View Proposal on Competition'=>'Переглянути заявку на Змагання',
 
     'Make Proposal'=>'Подати заявку',
+    'Judge Proposal' => 'Заявка судьи',
     'on Competition'=>'на Змагання',
     'Users '=> 'Користувачі',
     

@@ -33,5 +33,15 @@
         'bizRule' => null,
         'data' => null
     ),
+    'judge' => array(
+        'type' => CAuthItem::TYPE_ROLE,
+        'description' => 'Judge of competition',
+        'children' => array(
+            'guest', // унаследуемся от гостя
+        ),
+        'bizRule' => null,
+        'data' => null
+    ),
+    
 );
 ?>

@@ -16,8 +16,15 @@
  * @property integer $commandid
  * @property string $userid
  * */
-class Proposal extends ProposalBase
+class ProposalBase extends CActiveRecord
 {
+	const COMMAND_NEW = 1;   //режим ввода заявки - новая команда
+    const COMMAND_EXIST = 0; //режим ввода заявки - существующая
+
+    const STATUS_NOACTIVE = 0;
+    const STATUS_ACTIVE = 1;
+    const STATUS_NEW = -1;
+    
     public $modeCommand = self::COMMAND_EXIST;   //режим ввода заявки
     public $commandname;   //введенная (новая) команда
     
@@ -29,13 +36,13 @@ class Proposal extends ProposalBase
 	}
 
 	// @return string the associated database table name
-	public function tableName()
+	/*public function tableName()
 	{
 		return 'proposal';
-	}
+	}*/
 
 	// @return array validation rules for model attributes.
-	public function rules()
+	/*public function rules()
 	{
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
@@ -76,12 +83,12 @@ class Proposal extends ProposalBase
         //$this->_identity = new UserIdentity($this->username,$this->password);
         if (User::model()->find('UserName = :uname', array(':uname'=>$this->login)))
             $this->addError('login','Данный логин уже зарегистрирован');
-     }
+     }*/
     
 	/**
 	 * @return array relational rules.
 	 */
-	public function relations()
+	/*public function relations()
 	{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
@@ -90,31 +97,35 @@ class Proposal extends ProposalBase
             'relCommand' => array(self::BELONGS_TO, 'Command', 'commandid'),
             'relUsers' => array(self::BELONGS_TO, 'Users', 'userid'),
 		);
-	}
+	}*/
 
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
 	public function attributeLabels()
 	{
-		return CMap::mergeArray(parent::attributeLabels(), array(
-			'propid' => 'ИД',
-			'commandname' => Yii::t('fullnames', 'Command'),
-			'firstname' => Yii::t('fullnames', 'FirstName'),
-			'lastname' => Yii::t('fullnames', 'Прізвище'),
-			'participantcount' => Yii::t('fullnames', 'Participant count'),
-			'login' => Yii::t('fullnames', 'Login'),
-            
-			'commandid' => Yii::t('fullnames', 'Command'),
-			'modeCommand' => Yii::t('fullnames', 'Mode'),
-		));
+		return array(
+			'id' => 'ИД',
+            'federation' => Yii::t('fullnames', 'Federation'),
+            'post' => Yii::t('fullnames', 'Post'),
+            'country' => Yii::t('fullnames', 'Country'),
+            'city' => Yii::t('fullnames', 'City'),
+            'club' => Yii::t('fullnames', 'Club'),
+            'address' => Yii::t('fullnames', 'Address'),
+            'phone' => 'Телефон',
+            'email' => 'E-mail',
+            'www' => Yii::t('fullnames', 'Web-site'),
+			'comment' => Yii::t('fullnames', 'Comment'),
+			'status' => Yii::t('fullnames', 'Status'),
+            'created' => Yii::t('fullnames', 'Created'),
+		);
 	}
 
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	/*public function search()
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -144,7 +155,7 @@ class Proposal extends ProposalBase
                 'pageSize'=>50,
             ),
 		));
-	}
+	}*/
     public function searchNew()
     {
         $criteria = new CDbCriteria();
@@ -155,32 +166,14 @@ class Proposal extends ProposalBase
         ));
     }
 
-    //критерия для поиска заявки пользователя на соревнование
-    private static function criteriaPropForCompetition($competitionid, $userid) {
-        $criteria = new CDbCriteria;
-        $criteria->select = '*';  // выбираем все поля
-        $criteria->addCondition('userid = :userid');
-        $criteria->addCondition('competitionid = :competitionid');
-        $criteria->params = array(':userid'=>$userid, ':competitionid'=>$competitionid);
-        return $criteria;
+    public function getStatusTitle() {
+        if ($this->status == self::STATUS_NEW) return 'Новый';
+        if ($this->status == self::STATUS_NOACTIVE) return 'Не активен';
+        if ($this->status == self::STATUS_ACTIVE) return 'Активен';
     }
     
-    //возвращает заявку пользователя на соревнование
-    public static function proposalForCompetition($compid, $userid) {//DebugBreak();
-    //!!! НЕ записывать заявку в сессию - получаются НЕАКТУАЛЬНЫЕ данные (пример - после активации)    
-        /*$user = Yii::app()->user;
-        if ($proposal = $user->getState('userProposal'))
-            return $proposal;
-        else*/ {
-            $proposal = self::model()->find(self::criteriaPropForCompetition($compid, $userid));
-            //$user->setState('userProposal', $proposal); 
-        }
-        return $proposal;
-    }    
+    public function getStatusCss() {
+        return ($this->status == self::STATUS_NEW ? 'warning' : ($this->status == self::STATUS_NOACTIVE ? 'important' : 'success'));
+    }
 
-    //определение - есть ли заявка пользователя на соревнование
-    public static function isProposalForCompetition($compid, $userid){
-        $criteria = self::criteriaPropForCompetition($compid, $userid);
-        return self::model()->exists($criteria);
-    }    
 }

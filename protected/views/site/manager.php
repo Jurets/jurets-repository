@@ -66,5 +66,24 @@ $this->menu=array(
             'title'=>Yii::t('fullnames', 'Переход к списку тренеров'), 
         ),
     ),
+    '---',
+    array('label'=>Yii::t('fullnames', 'Make Proposal'), 
+            'url'=>array('proposal/create'),
+            'icon'=>'flag',   
+            'linkOptions'=>array(
+                'title'=>Yii::t('fullnames', 'Make Proposal').' '.Yii::t('fullnames', 'on Competition'), 
+            ),
+            //'visible'=>($isExtendRole && !$isMyUserID) || (!$isExtendRole && $isMyUserID)
+            'visible'=>(Yii::app()->user->role == 'delegate')
+        ),    
+    array('label'=>Yii::t('fullnames', 'Judge Proposal'), 
+            'url'=>array('judgeproposal/create'),
+            'icon'=>'flag',   
+            'linkOptions'=>array(
+                'title'=>Yii::t('fullnames', 'Judge Proposal').' '.Yii::t('fullnames', 'on Competition'), 
+            ),
+            //'visible'=>($isExtendRole && !$isMyUserID) || (!$isExtendRole && $isMyUserID)
+            'visible'=>(Yii::app()->user->role == 'judge')
+        ),    
 );
 ?>

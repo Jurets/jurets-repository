@@ -235,7 +235,12 @@ class WeightcategoryController extends Controller
 
   //ДЕЙСТВИЕ: смотреть жеребъёвку
     public function actionTosser() {
-        $arrcategory = array();
+        $competition = Competition::getModel();
+        $this->render('tosser', array(
+            'competition' => $competition,
+        ));
+        //!TODO - Ниже закомментированное - НА БУДУЩЕЕ!!!!!!
+        /*$arrcategory = array();
         //$allSportsmens = $this->allweightlist();
         $sqlCommand = Sportsmen::sqlTosserList();
         $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
@@ -273,7 +278,7 @@ class WeightcategoryController extends Controller
         $this->render('tosser', array(
             'tosserManager' => $tosserManager,
             'arrcategory'=>$arrcategory,
-        ));
+        ));*/
     }
 
     //выдать список спортсменов весовой категории

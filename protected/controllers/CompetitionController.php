@@ -32,7 +32,7 @@ class CompetitionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update', /*'manage', */'exportcsv', 'create'),
+				'actions'=>array('update', /*'manage', */'exportcsv', 'create', 'tosserupdate'),
                 'roles'=>array('admin','manager'),
 				//'users'=>array('@'),
 			),
@@ -182,4 +182,30 @@ class CompetitionController extends Controller
     public function actionArchive() {
         $this->render('archive');
     }
+    
+    //ДЕЙСТВИЕ: редактирование
+    public function actionTosserupdate($id = null) {
+        if ($id === null) {
+            $id = Yii::app()->competitionId;
+        }
+        $model = $this->loadModel($id);
+        $model->scenario = 'tosser';
+
+        // Uncomment the following line if AJAX validation is needed
+        // $this->performAjaxValidation($model);
+
+        if(isset($_POST['Competition'])) {
+            $model->attributes = $_POST['Competition'];
+            //if ($model->isInviteChanged) { //если было изменение главной страницы - то сохраняем его
+            //    $model->invitation = $_POST['Competition']['invitation'];
+            //}
+            if($model->save()) {
+                $this->redirect(array('weightcategory/tosser'));
+            }
+        }
+        // вывести вьюшку
+        $this->render('tosserupdate',array(
+            'model'=>$model,
+        ));
+    }    
 }

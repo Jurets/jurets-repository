@@ -56,7 +56,8 @@ class Competition extends CActiveRecord
 			array('begindate, enddate, filingbegin, filingend, isInviteChanged, path', 'safe'),  //"invitation" убираем из безопасных атрибутов, а флаг добавляем
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, name, title, begindate, enddate, place, courtcount, filingbegin, filingend, isfiling, maxparticipants, addinfo', 'safe', 'on'=>'search'),
+            array('id, name, title, begindate, enddate, place, courtcount, filingbegin, filingend, isfiling, maxparticipants, addinfo', 'safe', 'on'=>'search'),
+			array('tosserstatus, tossercontent', 'safe', 'on'=>'tosser'),
 		);
 	}
 
@@ -137,7 +138,7 @@ class Competition extends CActiveRecord
         $model = Yii::app()->cache->get($_cacheID);   //проверить кэш
         if ($model === false) {
             $model = Competition::model()->findByPk($id);
-            Yii::app()->cache->set($_cacheID, $model, 3600 * 1);  //1 час
+            Yii::app()->cache->set($_cacheID, $model, 30);  //3600 = 1 час
         }
         if($model===null)
             throw new CHttpException(404,'Запрашиваемая страница не найдена. Сообщите об ошибке организаторам соревнований');

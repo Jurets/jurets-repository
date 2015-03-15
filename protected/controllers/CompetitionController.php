@@ -32,7 +32,7 @@ class CompetitionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update', /*'manage', */'exportcsv', 'create', 'tosserupdate'),
+				'actions'=>array('update', /*'manage', */'exportcsv', 'create', 'tosserupdate', 'resultupdate'),
                 'roles'=>array('admin','manager'),
 				//'users'=>array('@'),
 			),
@@ -183,13 +183,13 @@ class CompetitionController extends Controller
         $this->render('archive');
     }
     
-    //ДЕЙСТВИЕ: редактирование
-    public function actionTosserupdate($id = null) {
+    // общая функция
+    private function updateContent($id, $page_name) {
         if ($id === null) {
             $id = Yii::app()->competitionId;
         }
         $model = $this->loadModel($id);
-        $model->scenario = 'tosser';
+        $model->scenario = $page_name;
 
         // Uncomment the following line if AJAX validation is needed
         // $this->performAjaxValidation($model);
@@ -200,12 +200,34 @@ class CompetitionController extends Controller
             //    $model->invitation = $_POST['Competition']['invitation'];
             //}
             if($model->save()) {
-                $this->redirect(array('weightcategory/tosser'));
+                $this->redirect(array('weightcategory/'.$page_name));
             }
         }
         // вывести вьюшку
         $this->render('tosserupdate',array(
+        //$this->render($page_name.'update',array(
             'model'=>$model,
+            'content_field'=>$page_name.'content',
+            'status_field'=>$page_name.'status',
         ));
     }    
+    
+    /**
+    * ДЕЙСТВИЕ: редактирование ;tht,m`dtb
+    * 
+    * @param mixed $id
+    */
+    public function actionTosserupdate($id = null) {
+        $this->updateContent($id, 'tosser');
+    }
+    
+    /**
+    * ДЕЙСТВИЕ: редактирование результата
+    * 
+    * @param mixed $id
+    */
+    public function actionResultupdate($id = null) {
+        $this->updateContent($id, 'result');
+    }
+    
 }

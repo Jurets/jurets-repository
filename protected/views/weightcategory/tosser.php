@@ -13,6 +13,8 @@ if ($competition->tosserstatus == Weightcategory::TOSSER_NEW) {
     Yii::app()->user->setFlash('info', Yii::t('fullnames', 'On this page will be posted preliminary draws'));
 } else if ($competition->tosserstatus == Weightcategory::TOSSER_ACTIVE) {
     Yii::app()->user->setFlash('warning', '<strong>Вниманию представителей команд!</strong> Проверьте наличие и категорию своих спортсменов');
+} else if ($competition->tosserstatus == Weightcategory::TOSSER_WAIT) {
+    Yii::app()->user->setFlash('info', 'Некоторые документы в процессе обработки... Открыть их можно будет в течение ближайшего времени.');
 }
 //Yii::app()->user->setFlash('info', 'Остальные распаровки в процессе обработки... Скачать их можно будет в течение ближайшего времени.');
 
@@ -32,7 +34,7 @@ $this->widget('bootstrap.widgets.TbAlert', array(
 
 <?php
     // вывести содержимое страницы
-    if ($competition->tosserstatus == Weightcategory::TOSSER_ACTIVE) {
+    if ($competition->resultstatus != Weightcategory::TOSSER_NEW) {
         echo $competition->tossercontent;
     }
     

@@ -57,7 +57,8 @@ class Competition extends CActiveRecord
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
             array('id, name, title, begindate, enddate, place, courtcount, filingbegin, filingend, isfiling, maxparticipants, addinfo', 'safe', 'on'=>'search'),
-			array('tosserstatus, tossercontent', 'safe', 'on'=>'tosser'),
+            array('tosserstatus, tossercontent', 'safe', 'on'=>'tosser'),
+			array('resultstatus, resultcontent', 'safe', 'on'=>'result'),
 		);
 	}
 

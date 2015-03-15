@@ -28,7 +28,7 @@ class WeightcategoryController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('tosser', 'tosserold', 'list', 'results', 'getweightlist','category'/*, 'index','view'*/),
+				'actions'=>array('tosser', 'tosserold', 'list', 'result', 'getweightlist','category'/*, 'index','view'*/),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -318,8 +318,12 @@ class WeightcategoryController extends Controller
     }          
     
     //ДЕЙСТВИЕ: смотреть жеребъёвку
-    public function actionResults() {
-        $this->render('results');
+    public function actionResult() {
+        $competition = Competition::getModel();
+        $this->render('result', array(
+            'competition' => $competition,
+        ));
+        //$this->render('results');
     }
 
     //выдать список спортсменов весовой категории

@@ -15,8 +15,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         echo $form->errorSummary($model); 
         echo $form->hiddenField($model, 'id');
 
-        echo $form->textArea($model, 'tossercontent', array('rows' => 20, 'cols' => 100, 'style'=>'width: 800px; height: 446px'));
-        echo $form->textFieldRow($model, 'tosserstatus', array('size'=>3,'maxlength'=>5, 'class'=>'span1'));
+        echo $form->textArea($model, $content_field, array('rows' => 20, 'cols' => 100, 'style'=>'width: 800px; height: 446px'));
+        echo $form->textFieldRow($model, $status_field, array('size'=>3,'maxlength'=>5, 'class'=>'span1'));
         
         //кнопка сабмита
         $this->widget('bootstrap.widgets.TbButton', array(

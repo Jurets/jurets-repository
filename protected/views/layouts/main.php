@@ -65,7 +65,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 //)),
                 array('label'=>Yii::t('fullnames', 'Weighing'), 'url'=>array($this->pathCompetition . '/weightcategory/list'), /*'visible'=>!$isCamp*/),
                 array('label'=>Yii::t('fullnames', 'Toss'), 'url'=>array($this->pathCompetition . '/weightcategory/tosser'), 'visible'=>!$isCamp),
-                array('label'=>Yii::t('fullnames', 'Results'), 'url'=>array($this->pathCompetition . '/weightcategory/results'), 'visible'=>!$isCamp),
+                array('label'=>Yii::t('fullnames', 'Results'), 'url'=>array($this->pathCompetition . '/weightcategory/result'), 'visible'=>!$isCamp),
                 //array('label'=>Yii::t('fullnames', 'Photo'), 'url'=>array('/posting/default/index')),
                 array('label'=>Yii::t('fullnames', 'Archive'), 'url'=>array('/competition/archive')),
                 //array('label'=>'Контакты', 'url'=>array('/site/contact')),

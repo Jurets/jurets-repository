@@ -15,6 +15,7 @@ class Weightcategory extends CActiveRecord
     // статусы страницы жеребьёвки
     const TOSSER_NEW = 0;
     const TOSSER_ACTIVE = 1;
+    const TOSSER_WAIT = 2;
     
     public $tosserGrid = array(
         'grids'=>array(

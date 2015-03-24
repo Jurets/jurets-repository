@@ -19,7 +19,7 @@ if ($isExtendRole)
         Yii::t('fullnames', 'Competition Manager') => array('competition/manager'),
         Yii::t('fullnames', 'Proposals')=>array('/judgeproposal/index'),
         //'Заявки'=>array('index'),
-	    $model->relCommand->CommandName,
+	    $model->judge->user->userFIO,
     );
 else
     $this->breadcrumbs=array(

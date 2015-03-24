@@ -44,11 +44,13 @@ return array(
     'Cabinet' => 'Кабинет',
     'My Cabinet' => 'Мой Кабинет',
     'Regin' => 'Регистрация',
-		'Login' => 'Вход',    
+    'Regjudge' => 'Регистрация судьи',
+	'Login' => 'Вход',    
 
     
     'Proposal' => 'Заявка',
     'Proposals' => 'Предварительные заявки',
+    'Judge Proposals' => 'Предварительные заявки судей',
     //'Proposals' => 'Заявки',
     ' proposal' => ' заявку',
     ' of proposal' => ' заявки',
@@ -128,7 +130,7 @@ return array(
     'Part.count' => 'Кол-во участ-ов',
     'Comment' => 'Комментарий',
     'Status' => 'Статус',
-    'Login' => 'Логин',
+    
     'Exit' => 'Выход',
     
     'Agecategories' => 'Возрастные категории',

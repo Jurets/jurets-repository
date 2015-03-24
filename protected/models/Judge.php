@@ -48,11 +48,13 @@ class Judge extends CActiveRecord
 		return array(
             //array('userid, category, competitionid, status, created', 'required'),
 			array('category', 'required'),
-			array('userid, competitionid, commandid, status', 'numerical', 'integerOnly'=>true),
+            //array('userid, competitionid, commandid, status', 'numerical', 'integerOnly'=>true),
+			array('userid, competitionid, status', 'numerical', 'integerOnly'=>true),
 			array('category, level', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, userid, category, level, competitionid, commandid, status, created', 'safe', 'on'=>'search'),
+            array('id, userid, category, level, competitionid, status, created', 'safe', 'on'=>'search'),
+			//array('id, userid, category, level, competitionid, commandid, status, created', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,7 +66,7 @@ class Judge extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'command' => array(self::BELONGS_TO, 'Command', 'commandid'),
+			//'command' => array(self::BELONGS_TO, 'Command', 'commandid'),
 			'competition' => array(self::BELONGS_TO, 'Competition', 'competitionid'),
 			'user' => array(self::BELONGS_TO, 'Users', 'userid'),
 		);
@@ -81,7 +83,7 @@ class Judge extends CActiveRecord
 			'category' => 'Категория',
 			'level' => 'Квалификация (Дан)',
 			'competitionid' => 'Competitionid',
-			'commandid' => 'Commandid',
+			//'commandid' => 'Commandid',
 			'status' => 'Status',
 			'created' => 'Created',
             
@@ -116,7 +118,7 @@ class Judge extends CActiveRecord
 		$criteria->compare('category',$this->category,true);
 		$criteria->compare('level',$this->level,true);
 		$criteria->compare('competitionid',$this->competitionid);
-		$criteria->compare('commandid',$this->commandid);
+		//$criteria->compare('commandid',$this->commandid);
 		$criteria->compare('status',$this->status);
 		$criteria->compare('created',$this->created,true);
 

@@ -43,11 +43,13 @@ return array(
     'Cabinet'=>'Кабінет',
     'My Cabinet'=>'Мій Кабінет',
     'Regin' => 'Реєстрація',
-		'Login' => 'Вхід', 
+    'Regjudge' => 'Реєстрація судді',
+	'Login' => 'Вхід', 
     'Exit' => 'Вихід', 
 
     'Proposal'=>'Заявка',
     'Proposals'=>'Попередні заявки',
+    'Judge Proposals' => 'Предварительные заявки судей',
     // 'Proposals'=>'Заявки',
     ' proposal'=>'заявку',
     ' of proposal'=>'заявки',
@@ -126,7 +128,7 @@ return array(
     'Part.count' => 'Кіл-nm учас-ів',
     'Comment'=>'Коментар',
     'Status'=>'Статус',
-    'Login'=>'Логін',
+    
     
     'Agecategories'=>'Вікові категорії',
     'Postings'=>'Фотогалереї',

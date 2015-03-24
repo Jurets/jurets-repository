@@ -4,7 +4,7 @@
     $urlview = 'Yii::app()->createUrl("proposal/confirm", array("id"=>$data["propid"]))';
 }
 else
-{*/
+{*/ 
     $urlview = 'Yii::app()->createUrl("judgeproposal/view", array("id"=>$data["id"]))';
 //}
 $this->widget('bootstrap.widgets.TbGridView', array(
@@ -32,7 +32,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'header'=>'ФИО',
             'type'=>'html',
             'value'=>'CHtml::link(CHtml::encode($data->judge->user->UserFIO), '.$urlview.')',
-            'value'=>'$data->judge->user->UserFIO',
+            //'value'=>'$data->judge->user->UserFIO',
         ),
         array(
             'header'=>'Категория',

@@ -100,9 +100,19 @@ if (!$isGuest)
             'linkOptions'=>array(
                 'title'=>Yii::t('fullnames', 'Make Proposal').' '.Yii::t('fullnames', 'on Competition'), 
             ),
-            'visible'=>($isExtendRole && !$isMyUserID /*&& !$isProposalExists*/) || (!$isExtendRole && $isMyUserID /*&& !$isProposalExists*/)
+            'visible'=>($isExtendRole && !$isMyUserID /*&& !$isProposalExists*/) || (!$isExtendRole && (Yii::app()->user->role == 'delegate') && $isMyUserID /*&& !$isProposalExists*/)
         ),
         
+        array('label'=>Yii::t('fullnames', 'Judge Proposal'), 
+            'url'=>array('judgeproposal/create'),
+            'icon'=>'flag',   
+            'linkOptions'=>array(
+                'title'=>Yii::t('fullnames', 'Judge Proposal').' '.Yii::t('fullnames', 'on Competition'), 
+            ),
+            //'visible'=>($isExtendRole && !$isMyUserID) || (!$isExtendRole && $isMyUserID)
+            'visible'=>(Yii::app()->user->role == 'judge')
+        ),    
+
         //комментируем, т.к. несколько команд    
         /*array('label'=>Yii::t('controls', Yii::t('controls', 'View').Yii::t('fullnames', ' of proposal')), 
             'url'=>array('proposal/view', 'id'=>($isProposalExists ? $proposal->propid : null)),

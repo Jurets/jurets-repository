@@ -213,8 +213,8 @@ class JudgeProposalController extends Controller
             $success = $model->updateByPk($id, array('status'=>$status));  //обновить статус заявки
             if (!$success)
                 throw new Exception(sprintf('Ошибка при смене статуса заявки %d. Текущий статус: "'.$model->statusTitle.'"!', $model->propid));  
-            else
-                Command::model()->updateByPk($model->commandid, array('status'=>$status)); //установить такой же статус для команды
+            //else
+                //Command::model()->updateByPk($model->commandid, array('status'=>$status)); //установить такой же статус для команды
             /*if ($status == Proposal::STATUS_ACTIVE) {                      //если данный процесс -Активация
                 $command = Command::model()->findByPk($model->commandid);  //выбрать команду заявки
                 if (isset($command))                                       
@@ -236,10 +236,10 @@ class JudgeProposalController extends Controller
             Yii::app()->user->setFlash('success', $message_str);  //создать алерт
             //отсылка по почте уведомления
             $success = EmailHelper::send( //отослать сообщение о смене статуса заявки (например подтверждение)
-                    array($model->relUsers->Email),    //кому
+                    array($model->judge->user->Email),    //кому
                     Yii::t('fullnames', ($status == JudgeProposal::STATUS_ACTIVE ? 'Подтверждение заявки' : 'Деактивация заявки')), //тема
                     ($status == JudgeProposal::STATUS_ACTIVE ? 'proposalconfirm' : 'proposalcancel'), //шаблон - вьюшка
-                    array('user' => $model)  //параметры
+                    array('user' => $model->judge->user)  //параметры
                 );
             if (!$success)
                 Yii::app()->user->setFlash('warning', 'Ошибка при отсылке сообщения');

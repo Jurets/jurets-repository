@@ -119,7 +119,7 @@ class CompetitionController extends Controller
             }
             if($model->save()) {
                 Yii::app()->user->setFlash('success', 'Новое соревнование успешно добавлено: ' . $model->path . ' (ИД: ' . $model->id . ')');
-                $this->redirect(array('manage','id'=>$model->id));
+                $this->redirect(array('view'));
             }
         }
         $this->render('update',array(
@@ -143,7 +143,7 @@ class CompetitionController extends Controller
                 $model->invitation = $_POST['Competition']['invitation'];
             }
 			if($model->save()) {
-				$this->redirect(array('manage','id'=>$model->id));
+                $this->redirect(array('view'));
             }
 		}
 

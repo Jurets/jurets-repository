@@ -174,6 +174,14 @@ class Competition extends CActiveRecord
         return $model;
     }
 
+    /**
+    * после сохранения объекта Соревнования
+    */
+    public function afterSave() {
+        $_cacheID = 'cacheCompetition' . Yii::app()->competitionId;
+        Yii::app()->cache->delete($_cacheID);  //очистить кэш
+    }
+    
     //выдать следующий ИД соревнования
     public static function getNewID() {
         //узнать максимальный ИД из существующих

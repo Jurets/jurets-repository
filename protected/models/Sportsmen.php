@@ -36,6 +36,8 @@ class Sportsmen extends CActiveRecord
     public $Coachname;  //Jurets
 	public $Coachname1;*/  //Jurets
     
+    private $_weightlist = array();
+    
     /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -492,9 +494,9 @@ class Sportsmen extends CActiveRecord
     }
 
   //получить список тренеров по команде (КЭШИРУЕТСЯ!)
-    public static function getCoachList($commandid) {//DebugBreak();
+    public static function getCoachList($commandid) {
         $out = array();
-        $_cacheID = 'cacheCoachListFull';
+        $_cacheID = 'cacheCoachListFull' . Yii::app()->competitionId;
         $data = Yii::app()->cache->get($_cacheID);   //проверить кэш
         if ($data === false) {
             // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
@@ -536,6 +538,56 @@ class Sportsmen extends CActiveRecord
     //Jurets: получить название весовой категории (по ID)
     public function getWeightNameShort() {
         return isset($this->relWeightcategory) ? $this->relWeightcategory->WeightNameShort : null;
+    }
+    
+    /**
+    * выдать HTML-код показа весовой категории с дропдаун-меню для её смены 
+    * 
+    */
+    public function getWeightSelectWidget() {
+        /*$widget = Yii::app()->controller->widget('bootstrap.widgets.TbButton', array(
+                    'id'=>'sp_'.$this->SpID,
+                    'label'=>'EXAMPLE',
+                    'items'=>array(
+                        array('label'=>'Home', 'url'=>array('site/index')),
+                        array('label'=>'Products', 'url'=>array('product/index')), 
+                        array('label'=>'Login', 'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest),
+                    ),
+                ), true);
+        $widget = CHtml::openTag('div', array('style'=>"position: relative;")) .
+                    $widget .
+                  CHtml::closeTag('div');*/
+        $widget = 
+'<div class="dropdown">
+  <a class="btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+    Dropdown
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+  </ul>
+</div>';
+   //     DebugBreak();
+        if (!isset($this->_weightlist[$this->AgeID]))
+        $this->_weightlist[$this->AgeID] = self::getWeigthsList($this->AgeID);
+        $list = '';
+        foreach ($this->_weightlist[$this->AgeID] as $item) {
+            $list .= $item;
+        }
+        $widget = 
+            '<div class="dropdown">
+              <a class="btn-default dropdown-toggle" type="button" id="weightslist' . $this->SpID . '" data-toggle="dropdown" aria-expanded="true">
+                ' . $this->getWeightNameShort() . '
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                   ' . $list . '
+              </ul>
+            </div>';
+        return $widget;
     }
     
     /**

@@ -132,4 +132,12 @@ class Coach extends CActiveRecord
         return $sqlCommand;
     }
     
+    
+    /**
+    * после сохранения объекта Тренер
+    */
+    public function afterSave() {
+        $_cacheID = 'cacheCoachListFull' . Yii::app()->competitionId;
+        Yii::app()->cache->delete($_cacheID);  //очистить кэш
+    }    
 }

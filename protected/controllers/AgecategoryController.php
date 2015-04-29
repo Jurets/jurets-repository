@@ -89,16 +89,17 @@ class AgecategoryController extends Controller
 	 */
 	public function actionUpdate($id)
 	{
-		$model=$this->loadModel($id);
+		$model = $this->loadModel($id);
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Agecategory']))
-		{
+		if(isset($_POST['Agecategory'])) {
 			$model->attributes=$_POST['Agecategory'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->AgeID));
+			if($model->save()) {
+                //$this->redirect(array('view','id'=>$model->AgeID));
+				$this->redirect(array('index'));
+            }
 		}
 
 		$this->render('update',array(
@@ -126,13 +127,14 @@ class AgecategoryController extends Controller
 	public function actionIndex()
 	{
         $criteria = new CDbCriteria;
-
         $criteria->compare('CompetitionID', Yii::app()->CompetitionID);
-        //$criteria->compare('LastName',$this->LastName,true);
         
 		$dataProvider = new CActiveDataProvider('Agecategory', array(
             'criteria'=>$criteria,
-        ));;
+            'pagination'=>array(
+                'pageSize'=>20,
+            ),
+        ));
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

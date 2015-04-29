@@ -33,5 +33,31 @@
     <?php echo CHtml::link(CHtml::encode($data->AgeID), array('view', 'id'=>$data->AgeID)); ?>
     <br />
 
-
+<?php
+    if (Yii::app()->user->isExtendRole()) {
+        /*echo CHtml::tag('a', array(
+            'href'=>Yii::app()->createUrl('/competition/update'),
+            'class'=>'btn btn-primary',
+            'title'=>Yii::t('fullnames', 'Изменить параметры соревнования')
+        ), Yii::t('controls','Update'));
+     
+        //эксопрт в CSV
+        echo CHtml::tag('a', array(
+            'href'=>Yii::app()->createUrl('/competition/exportcsv'),
+            'class'=>'btn btn-primary',
+            'title'=>Yii::t('fullnames', 'Экспорт данных в CSV-файл'),
+            'style'=>'margin-left: 20px;'
+        ), Yii::t('controls','Экспорт')); */
+        
+        echo CHtml::tag('a', array(
+            'href'=>Yii::app()->createUrl('/agecategory/update', array('id'=>$data->AgeID)),
+            'class'=>'btn btn-mini btn-primary',
+            'title'=>Yii::t('fullnames', 'Edit'),
+            //'style'=>'margin-left: 60px;'
+        ), Yii::t('controls','Edit'));
+        
+    }
+    
+    
+?>
 </div>

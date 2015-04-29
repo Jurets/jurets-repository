@@ -50,5 +50,14 @@ $this->widget('zii.widgets.CListView', array(
 
 echo $actions;
 
-   
+if (Yii::app()->user->isExtendRole()) {
+    $model = new Weightcategory;
+    $model->AgeID = $age->AgeID;
+    $model->ordernum = $model->getMaxOrdernum($model->AgeID) + 1;
+
+    $this->renderPartial('create',array(
+        'age'=>$age,
+        'model'=>$model,
+    ));
+}   
 ?>

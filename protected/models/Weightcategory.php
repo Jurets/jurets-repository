@@ -154,7 +154,8 @@ class Weightcategory extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('AgeID, WeightName', 'required'),
+            //array('AgeID, WeightName', 'required'),
+			array('AgeID', 'required'),
 			array('AgeID, WeightFrom, WeightTo', 'numerical', 'integerOnly'=>true),
 			array('WeightName', 'length', 'max'=>20),
 			// The following rule is used by search().

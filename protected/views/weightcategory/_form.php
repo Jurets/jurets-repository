@@ -9,6 +9,7 @@
 <?php $form=$this->beginWidget('CActiveForm', array(
 	'id'=>'weightcategory-form',
 	'enableAjaxValidation'=>false,
+    'action'=>$this->createUrl('/weightcategory/create', array('id'=>$age->AgeID))
 )); ?>
 
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
@@ -35,11 +36,11 @@
 		<?php echo $form->error($model,'WeightTo'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'WeightName'); ?>
+	<!--<div class="row">
+		<?php /*echo $form->labelEx($model,'WeightName'); ?>
 		<?php echo $form->textField($model,'WeightName',array('size'=>20,'maxlength'=>20)); ?>
-		<?php echo $form->error($model,'WeightName'); ?>
-	</div>
+		<?php echo $form->error($model,'WeightName');*/ ?>
+	</div>-->
     
     <div class="row">
         <?php echo $form->labelEx($model,'ordernum'); ?>

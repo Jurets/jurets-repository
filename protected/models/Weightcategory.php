@@ -277,4 +277,17 @@ class Weightcategory extends CActiveRecord
         }
         return $data;
     }
+    
+    /**
+    * получить максимальный номер по порядку в пределах соревнования
+    * 
+    */
+    public function getMaxOrdernum($id) {
+        $compid = Yii::app()->CompetitionID;
+        return Yii::app()->db->createCommand()
+            ->select('COALESCE(MAX(ordernum), 0)')
+            ->from($this->tableName())
+            ->where('AgeID = :AgeID', array(':AgeID'=>$id))
+            ->queryScalar();
+    }    
 }

@@ -30,4 +30,13 @@ $this->menu=array(
 		'YearMin',
 		'YearMax',
 	),
-)); ?>
+)); 
+
+echo CHtml::tag('a', array(
+    'href'=>Yii::app()->createUrl('/weightcategory/index', array('id'=>$model->AgeID)),
+    'class'=>'btn btn-primary',
+    'title'=>Yii::t('fullnames', 'Весовые'),
+    'style'=>'margin-left: 60px;'
+), Yii::t('controls', 'Весовые'));
+
+?>

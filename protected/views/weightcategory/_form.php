@@ -15,11 +15,13 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'AgeID'); ?>
+    <?php echo $form->hiddenField($model, 'AgeID'); ?>
+    
+	<!--<div class="row">
+		<?php /*echo $form->labelEx($model,'AgeID'); ?>
 		<?php echo $form->textField($model,'AgeID'); ?>
-		<?php echo $form->error($model,'AgeID'); ?>
-	</div>
+		<?php echo $form->error($model,'AgeID');*/ ?>
+	</div>-->
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'WeightFrom'); ?>
@@ -38,6 +40,12 @@
 		<?php echo $form->textField($model,'WeightName',array('size'=>20,'maxlength'=>20)); ?>
 		<?php echo $form->error($model,'WeightName'); ?>
 	</div>
+    
+    <div class="row">
+        <?php echo $form->labelEx($model,'ordernum'); ?>
+        <?php echo $form->textField($model,'ordernum'); ?>
+        <?php echo $form->error($model,'ordernum'); ?>
+    </div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

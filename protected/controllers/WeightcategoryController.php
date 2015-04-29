@@ -32,7 +32,7 @@ class WeightcategoryController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update','tossnumset'),
+				'actions'=>array('create','update','tossnumset', 'index','view'),
 				'roles'=>array('admin','manager'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -60,18 +60,21 @@ class WeightcategoryController extends Controller
 	 * Creates a new model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 */
-	public function actionCreate()
+	public function actionCreate($id)
 	{
-		$model=new Weightcategory;
+		$model = new Weightcategory;
+        $model->AgeID = $id;
+        $model->ordernum = $model->getMaxOrdernum($id) + 1;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Weightcategory']))
-		{
-			$model->attributes=$_POST['Weightcategory'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->WeightID));
+		if(isset($_POST['Weightcategory'])) {
+			$model->attributes = $_POST['Weightcategory'];
+			if($model->save()) {
+                //$this->redirect(array('view','id'=>$model->WeightID));
+				$this->redirect(array('index','id'=>$model->AgeID));
+            }
 		}
 
 		$this->render('create',array(
@@ -120,12 +123,22 @@ class WeightcategoryController extends Controller
 	/**
 	 * Lists all models.
 	 */
-	public function actionIndex()
+	public function actionIndex($id = null)
 	{
-		$dataProvider=new CActiveDataProvider('Weightcategory');
-		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+        $criteria = new CDbCriteria;
+        $criteria->compare('AgeID', $id);
+        $criteria->order = 'ordernum';
+        
+        $dataProvider = new CActiveDataProvider('Weightcategory', array(
+            'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>20,
+            ),
+        ));
+		$this->render('index', array(
+            'AgeID' => $id,
+            'dataProvider'=>$dataProvider,
+        ));
 	}
 
 	/**

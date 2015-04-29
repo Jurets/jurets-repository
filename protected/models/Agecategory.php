@@ -53,6 +53,7 @@ class Agecategory extends CActiveRecord
 			array('Gender', 'length', 'max'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
+            array('AgeName, Gender, AgeMin, AgeMax, YearMin, YearMax, ordernum', 'safe', 'on'=>'insert,update'),
 			array('AgeID, AgeName, Gender, AgeMin, AgeMax', 'safe', 'on'=>'search'),
 		);
 	}
@@ -203,4 +204,17 @@ class Agecategory extends CActiveRecord
         }
         return $years;
     }    
+    
+    /**
+    * получить максимальный номер по порядку в пределах соревнования
+    * 
+    */
+    public function getMaxOrdernum() {
+        $compid = Yii::app()->CompetitionID;
+        return Yii::app()->db->createCommand()
+            ->select('COALESCE(MAX(ordernum), 0)')
+            ->from('agecategory')
+            ->where('CompetitionID = :CompetitionID', array(':CompetitionID'=>$compid))
+            ->queryScalar();
+    }
 }

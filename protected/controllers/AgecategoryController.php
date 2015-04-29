@@ -62,16 +62,19 @@ class AgecategoryController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Agecategory;
-
+		$model = new Agecategory;
+        $model->CompetitionID = Yii::app()->CompetitionID;
+        $model->ordernum = $model->getMaxOrdernum() + 1;
+        
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Agecategory']))
-		{
-			$model->attributes=$_POST['Agecategory'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->AgeID));
+		if(isset($_POST['Agecategory'])) {
+			$model->attributes = $_POST['Agecategory'];
+			if($model->save()) {
+                //$this->redirect(array('view','id'=>$model->AgeID));
+                $this->redirect('index');
+            }
 		}
 
 		$this->render('create',array(
@@ -122,7 +125,14 @@ class AgecategoryController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Agecategory');
+        $criteria = new CDbCriteria;
+
+        $criteria->compare('CompetitionID', Yii::app()->CompetitionID);
+        //$criteria->compare('LastName',$this->LastName,true);
+        
+		$dataProvider = new CActiveDataProvider('Agecategory', array(
+            'criteria'=>$criteria,
+        ));;
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));

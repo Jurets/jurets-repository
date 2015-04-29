@@ -125,6 +125,8 @@ class WeightcategoryController extends Controller
 	 */
 	public function actionIndex($id = null)
 	{
+        $age = Agecategory::model()->findByPk($id);
+        
         $criteria = new CDbCriteria;
         $criteria->compare('AgeID', $id);
         $criteria->order = 'ordernum';
@@ -136,7 +138,7 @@ class WeightcategoryController extends Controller
             ),
         ));
 		$this->render('index', array(
-            'AgeID' => $id,
+            'age' => $age,
             'dataProvider'=>$dataProvider,
         ));
 	}

@@ -12,7 +12,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>Weightcategories</h1>
+<h1><?php echo $age->AgeName; ?> - весовые категории</h1>
 
 <?php 
 
@@ -32,7 +32,7 @@ if (Yii::app()->user->isExtendRole()) {
     ), Yii::t('controls','Экспорт')); */
     
     $actions = CHtml::tag('a', array(
-        'href'=>Yii::app()->createUrl('/weightcategory/create', array('id'=>$AgeID)),
+        'href'=>Yii::app()->createUrl('/weightcategory/create', array('id'=>$age->AgeID)),
         'class'=>'btn btn-primary',
         'title'=>Yii::t('fullnames', 'Добавить'),
         'style'=>'margin-top: 20px; margin-bottom: 20px;'

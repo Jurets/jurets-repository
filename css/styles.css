@@ -229,13 +229,15 @@ a#open-close{
         float:left;
     }
     .sideLeft .partnspon a,
-    .sideRight .partnspon a{
+    .sideRight .partnspon a
+    ,.sideBottom .partnspon a{
         display: inline-block;
         height:100%;
         vertical-align: bottom;
     }
     .sideLeft .partnspon a img,
-    .sideRight .partnspon a img{
+    .sideRight .partnspon a img
+    ,.sideBottom .partnspon a img {
         max-height: 120px;
         max-width: 120px;
         width:auto;
@@ -263,9 +265,14 @@ a#open-close{
         float:left;
         margin-right: 5px;
     }
-    .sideRight .partnspon a{float:left; margin-right: 10px; text-align: center;}
+    .sideRight .partnspon a {
+        float:left; 
+        margin-right: 10px; 
+        text-align: center;
+    }
     .sideLeft .partnspon a img,
-    .sideRight .partnspon a img{
+    .sideRight .partnspon a img
+    ,.sideBottom .partnspon a img {
         max-height:100px;
         max-width:100px;  
         margin-right:20px;
@@ -294,7 +301,8 @@ a#open-close{
 @media (max-width:768px){
     
     .sideLeft .partnspon a img,
-    .sideRight .partnspon a img{
+    .sideRight .partnspon a img
+    ,.sideBottom .partnspon a img {
         max-height:80px;
         max-width:80px;       
         margin-right:5px;
@@ -305,29 +313,29 @@ a#open-close{
 @media (max-width:580px){
      h1{font-size:20px; line-height:28px;}
     .sideLeft .partnspon a img,
-    .sideRight .partnspon a img{
+    .sideRight .partnspon a img
+    ,.sideBottom .partnspon a img {
         max-height:50px;
         max-width:50px;       
     }
 }
 
 @media (max-width:520px){
-    .sideLeft .partnspon  p{
+    .sideLeft .partnspon p {
         max-width:90px;
     }
    
-    .sideRight .partnspon   p{
+    .sideRight .partnspon p {
         max-width:110px;
     }
-
 }
 
 @media (max-width:450px){
-    .sideLeft .partnspon  p{
+    .sideLeft .partnspon p {
         max-width:70px;
     }
    
-    .sideRight .partnspon   p{
+    .sideRight .partnspon p {
         max-width:100px;
     }
 
@@ -335,7 +343,8 @@ a#open-close{
 @media (max-width:420px){
    
     .sideLeft .partnspon a img,
-    .sideRight .partnspon a img{
+    .sideRight .partnspon a img
+    ,.sideBottom .partnspon a img {
         max-height:40px;
         max-width:40px; 
         margin-right: 5px;
@@ -352,7 +361,8 @@ a#open-close{
 @media (max-width:380px){
    
     .sideLeft .partnspon a img,
-    .sideRight .partnspon a img{
+    .sideRight .partnspon a img
+    ,.sideBottom .partnspon a img {
         max-height:35px;
         max-width:35px; 
         margin-right: 2px;

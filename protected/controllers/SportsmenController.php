@@ -18,7 +18,7 @@ class SportsmenController extends ParticipantController
                 //'unit'=>'second', //здесб может быть параметр для фильтра
             ),  
             array(
-                'application.filters.CompetitionFilter + create + update',
+                'application.filters.CompetitionFilter + create, update, delete',
             ),  
             array(
                 'application.filters.SportsmenFilter + create',

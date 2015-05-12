@@ -43,7 +43,7 @@ class Proposal extends ProposalBase
             //array('commandname, commandid, country, city, participantcount', 'required'),
 			array('commandname, country, city, participantcount', 'required'),
             array('participantcount, status', 'numerical', 'integerOnly'=>true),
-			array('participantcount', 'checkMaxParticipants'),
+			//////////array('participantcount', 'checkMaxParticipants'),  //временно!!!!!!!!!!!!!!!!!!!!!!!!
 			array('commandname, federation', 'length', 'max'=>100),
 			array('city', 'length', 'max'=>30),
 			array('country, club', 'length', 'max'=>50),

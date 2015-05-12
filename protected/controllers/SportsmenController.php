@@ -14,7 +14,7 @@ class SportsmenController extends ParticipantController
             'accessControl', // perform access control for CRUD operations
             //'postOnly + delete', // we only allow deletion via POST request
             array(
-                'application.filters.UserFilter + create, update',
+                'application.filters.UserFilter + create, update, delete',
                 //'unit'=>'second', //здесб может быть параметр для фильтра
             ),  
             array(

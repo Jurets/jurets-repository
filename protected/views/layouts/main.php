@@ -171,6 +171,47 @@ echo"</div>";
 
 	<div class="clear" style="overflow: hidden; clear: both;"></div>
 
+    
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <ul id="yw0" class="navigation nav">
+                <li>
+                    <a class="" href="http://youtu.be/XIaWEN4dvAk" title="Відео-допомога: Реєстрація на сайті" target="_blank" >
+                        <i class="icon-facetime-video icon-white"></i>&nbsp;Реєстрація
+                    </a>
+                </li>            
+                <!--<li class="divider-vertical"></li>-->
+                <li>
+                    <a class="" href="http://youtu.be/kvAYbqXYNys" title="Відео-допомога: Додати нового учасника змагань" target="_blank" >
+                        <i class="icon-facetime-video icon-white"></i>&nbsp;Додати учасника
+                    </a>
+                </li>            
+            </ul>
+        </div>
+    </div>
+    
+    
+    <!--<div class="well well-small">
+        <a class="btn btn-mini" href="">Помощь</a>
+        <a class="" href="http://youtu.be/XIaWEN4dvAk" title="Відео-допомога: Реєстрація на сайті">
+            <i class="icon-facetime-video icon-white"></i>
+            Реєстрація
+        </a>
+    <div class="partnspon">
+        <p>Відео-допомога</p>
+        <a target="_blank" href="http://youtu.be/XIaWEN4dvAk" title="Відео-допомога: Реєстрація на сайті">
+            <img width="110" height="160" title="Відео-допомога: Реєстрація на сайті" alt="Відео-допомога: Реєстрація на сайті" src="/images/logo/video1.png">
+        </a>
+    </div>
+    
+    <div class="partnspon">
+        <a target="_blank" href="http://youtu.be/kvAYbqXYNys" title="Відео-допомога: Додати нового учасника змагань">
+            <img width="138" height="103" title="Відео-допомога: Додати нового учасника змагань" alt="Відео-допомога: Додати нового учасника змагань" src="/images/logo/video2.png">
+        </a>
+    </div>
+            
+    </div>-->
+    
 	<!--<div id="footer">
 		Copyright &copy; <?php echo date('Y'); ?> by My Company.<br/>
 		All Rights Reserved.<br/>

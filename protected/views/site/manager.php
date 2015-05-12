@@ -36,6 +36,7 @@ $this->menu=array(
         'linkOptions'=>array(
             'title'=>Yii::t('fullnames', 'Настройки категорий'), 
         ),
+        'visible'=>(Yii::app()->user->role == 'manager'),
     ),
     array('label'=>Yii::t('fullnames', 'Proposals'), 
         'url'=>array($this->pathCompetition . '/proposal/manage'),
@@ -43,6 +44,7 @@ $this->menu=array(
         'linkOptions'=>array(
             'title'=>Yii::t('fullnames', 'Управление предварительными заявками'), 
         ),
+        'visible'=>(Yii::app()->user->role == 'manager'),
     ),
     '---',
     array('label'=>Yii::t('fullnames', 'Commands'), 

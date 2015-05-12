@@ -28,17 +28,17 @@ class ProposalController extends Controller
 	public function accessRules()
 	{
 		return array(
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','view'),
+			/*array('allow', // allow authenticated user to perform 'create' and 'update' actions
+				'actions'=>array(),
 				'users'=>array('*'),
                 //'roles'=>array(''),
-			),
+			),*/
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('admin','manage','confirm','delete','index'/*,'indexNew'*/),
+                'actions'=>array('admin','confirm','delete'/*,'manage','index','indexNew'*/),
                 'roles'=>array('admin', 'manager'/*, 'index'*/),
             ),
             array('allow', // разрешение на вход в кабинет
-                'actions'=>array(),
+                'actions'=>array('create','view'),
                 'users'=>array('@'),
             ),
 			array('deny',  // deny all users

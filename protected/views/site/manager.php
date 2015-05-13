@@ -2,7 +2,7 @@
 /* @var $this SiteController */
 
 $this->breadcrumbs=array(
-    Yii::t('fullnames', 'Competition Manager') => array('competition/manager'),
+    Yii::t('fullnames', 'Competition') => array('competition/view'),
 );
 
 //компонент показа всплывающих сообщений (Алерт)  
@@ -39,7 +39,7 @@ $this->menu=array(
         'visible'=>Yii::app()->user->isExtendRole(),
     ),
     array('label'=>Yii::t('fullnames', 'Proposals'), 
-        'url'=>array($this->pathCompetition . '/proposal/manage'),
+        'url'=>array($this->pathCompetition . '/proposal/index'),
         'icon'=>'cog',
         'linkOptions'=>array(
             'title'=>Yii::t('fullnames', 'Управление предварительными заявками'), 

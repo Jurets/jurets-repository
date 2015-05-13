@@ -70,27 +70,24 @@ class CompetitionController extends Controller
 		));
 	}
 
-    //ДЕЙСТВИЕ: просмотр
+    /**
+    * ДЕЙСТВИЕ: просмотр соревнования / управление (для менеджера)
+    * 
+    */
     public function actionView()
     {
-        //$this->render('view',array(
-        $this->render('manage',array(
+        $this->render('view',array(
             'model'=>Competition::getModel(),
-            'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
+            'dataStat'=>$this->getCompetitionStat(),
         ));
     }
 
-    //ДЕЙСТВИЕ: управление
-    /*public function actionManage()
-    {
-        $this->render('manage',array(
-            'model'=>Competition::getModel(),
-            'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
-        ));
-    }*/
-
+    /**
+    * экспорт списка участников сорвенования в CSV-файл
+    * 
+    */
     public function actionExportcsv()
-    {//DebugBreak();
+    {
         Yii::import('ext.csv.ECSVExport');
         $outputFile = 'participants.csv';
         $cmd = Yii::app()->db->createCommand("SELECT * FROM fulllist WHERE competitionid = " . Yii::app()->competitionId);

@@ -35,7 +35,7 @@ class ProposalController extends Controller
 			),*/
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
                 'actions'=>array('admin','confirm','delete','manage','index','indexNew'),
-                'roles'=>array('admin', 'manager'/*, 'index'*/),
+                'roles'=>array('admin', 'manager'),
             ),
             array('allow', // разрешение на вход в кабинет
                 'actions'=>array('create','view'),
@@ -273,22 +273,6 @@ class ProposalController extends Controller
         ));
     }
     
-    //ДЕЙСТВИЕ: просмотр списка заявок
-    public function actionManage() { 
-        $criteria = new CDbCriteria;
-        $criteria->with = array('relCommand', 'relUsers');
-        $criteria->condition = 't.competitionid = '.Yii::app()->competitionId;
-        $dataProvider=new CActiveDataProvider('Proposal', array(
-            'criteria' => $criteria,
-            'pagination'=>array(
-                'pageSize'=>20,
-            ),
-        ));
-        $this->render('manage',array(
-            'dataProvider'=>$dataProvider,
-        ));
-    }
-        
 	/**
 	 * Manages all models.
 	 */

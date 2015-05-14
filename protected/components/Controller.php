@@ -74,4 +74,8 @@ class Controller extends CController
             'При необходимости свяжитесь с организаторами соревнований');
     }
     
+    // Вывести вьюшку об обязательности полей
+    public function viewFieldsReq() {
+        $this->renderPartial('/site/blocks/_fields');
+    }
 }

@@ -15,8 +15,8 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'enableAjaxValidation'=>true,
     'htmlOptions'=>array('class'=>'well'),
 )); 
-
-    echo Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>')).'<br><br>';
+    // вьюшка "обязательноть полей"
+    $this->viewFieldsReq();
     
     $help_str = '';
     if ($isMyUserID) $help_str .= 

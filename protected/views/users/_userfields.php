@@ -18,7 +18,8 @@ $isMyUserID = (Yii::app()->user->userid == $model->UserID);
     'htmlOptions'=>array('class'=>'well'),
 ));*/ 
 
-    echo Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>')).'<br><br>';
+    // вьюшка "обязательноть полей"
+    $this->viewFieldsReq();
     
     echo CHtml::tag('p', array('class'=>'note'), 'Введите Вашу персональную информацию:');
     
@@ -31,6 +32,7 @@ $isMyUserID = (Yii::app()->user->userid == $model->UserID);
             array('{email}'=>'<span class="required">E-mail</span>')).'<br>'.
         Yii::t('fullnames', 'After the registration on this E-mail will send message with info about initiant password. Only after that you may enter information about proposals');
             
+    // ошибки
     echo $form->errorSummary($model); 
     
     echo $form->hiddenField($model, 'UserID');

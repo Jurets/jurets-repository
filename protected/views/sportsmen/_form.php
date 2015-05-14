@@ -18,10 +18,9 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'enableAjaxValidation'=>false,
     'htmlOptions'=>array('class'=>'well'),
 )); 
-?>
-    <p class="note"><?=Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>'))?></p>
-
-    <?php 
+        // вьюшка "обязательноть полей"
+        $this->viewFieldsReq();
+ 
         //все возрастные и весовые (сразу - жадная загрузка)
         //$ages = Agecategory::getAges();
         //$ages = Agecategory::model()->with('relWeigths')->findAll();

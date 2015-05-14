@@ -22,16 +22,12 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'enableAjaxValidation'=>false,
     'htmlOptions'=>array('class'=>'well'),
 )); 
-
+    // ошибки
     echo $form->errorSummary($model); 
 
-?>
+    // вьюшка "обязательноть полей"
+    $this->viewFieldsReq();
 
-	<p class="note">
-        <?=Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>'))?>    <br>
-    </p>
-
-<?php 
     echo $form->hiddenField($model, 'id');
     echo $form->hiddenField($model, 'competitionid');
     echo $form->hiddenField($model, 'judgeid');

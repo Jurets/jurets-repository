@@ -6,11 +6,11 @@
 
 <!--<div class="form">-->
 
-<p class="note"><?=Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>'))?></p>
-
 <?php 
-    //поля на 1-й вкладке редактирвоания соревнования
+    // вьюшка "обязательноть полей"
+    $this->viewFieldsReq();
 
+    //поля на 1-й вкладке редактирвоания соревнования
     echo $form->textFieldRow($model,'name',array('size'=>50,'maxlength'=>50, 'class'=>'span4'));
     echo $form->textFieldRow($model,'title',array('size'=>60,'maxlength'=>255, 'class'=>'span6'));
     echo $form->textFieldRow($model,'path',array('size'=>20,'maxlength'=>20, 'class'=>'span2'));

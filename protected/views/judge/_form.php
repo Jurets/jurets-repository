@@ -9,15 +9,16 @@
 	'type'=>'horizontal',
     'enableAjaxValidation'=>false,
     'htmlOptions'=>array('class'=>'well'),
-)); ?>
+)); 
+    // ошибки
+    echo $form->errorSummary($model); 
 
-    <p class="note"><?=Yii::t('fullnames', 'Fields with {asteriks} are required.', array('{asteriks}'=>'<span class="required">*</span>'))?></p>
+    // вьюшка "обязательноть полей"
+    $this->viewFieldsReq();
 
-	<?php echo $form->errorSummary($model); ?>
+	//echo $form->textFieldRow($model,'commandid',array('class'=>'span5'));
 
-	<?php //echo $form->textFieldRow($model,'commandid',array('class'=>'span5')); ?>
-
-	<?php echo '<p>Персональные данные:</p>';
+	echo '<p>Персональные данные:</p>';
         
         echo $form->textFieldRow($model->user,'lastname', array('size'=>50,'maxlength'=>50, 'class' => 'span4'));
         echo $form->textFieldRow($model->user,'firstname', array('size'=>50,'maxlength'=>50, 'class' => 'span4'));

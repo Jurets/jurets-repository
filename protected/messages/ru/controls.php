@@ -3,6 +3,7 @@ return array(
     'Operations' => 'Операции',
     
     'Save' => 'Сохранить',
+    'Add' => 'Добавить',
     'Registry' => 'Регистрировать',
     
     'Enter' => 'Вход',

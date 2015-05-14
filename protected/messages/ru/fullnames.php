@@ -134,6 +134,7 @@ return array(
     'Exit' => 'Выход',
     
     'Agecategories' => 'Возрастные категории',
+    'Weightcategories' => 'Весовые категории',
     'Postings' => 'Фотогалереи',
     'Command List' => 'Список команд',
     'Command View' => 'Сведения о команде',

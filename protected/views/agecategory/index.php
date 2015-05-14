@@ -10,20 +10,6 @@
     $this->breadcrumbs['Возрастные категории'] = array('agecategory/index');
 
     if (Yii::app()->user->isExtendRole()) {
-        /*echo CHtml::tag('a', array(
-            'href'=>Yii::app()->createUrl('/competition/update'),
-            'class'=>'btn btn-primary',
-            'title'=>Yii::t('fullnames', 'Изменить параметры соревнования')
-        ), Yii::t('controls','Update'));
-     
-        //эксопрт в CSV
-        echo CHtml::tag('a', array(
-            'href'=>Yii::app()->createUrl('/competition/exportcsv'),
-            'class'=>'btn btn-primary',
-            'title'=>Yii::t('fullnames', 'Экспорт данных в CSV-файл'),
-            'style'=>'margin-left: 20px;'
-        ), Yii::t('controls','Экспорт')); */
-        
         $actions = CHtml::tag('a', array(
             'href'=>Yii::app()->createUrl('/agecategory/create'),
             'class'=>'btn btn-primary',
@@ -33,13 +19,16 @@
     } else {
         $actions = '';
     }
-
-    echo $actions;
-    
+    //вывод кнопки добавления
+    //echo $actions;  
+    // вывести список возрастных категорий
     $this->renderPartial('_index', array('dataProvider'=>$dataProvider));
     
 ?>
-    <br>
-<?php echo $actions ?>
-    <br>
-    <br>
+<br>
+<?php 
+    //вывод кнопки добавления
+    echo $actions; 
+?>
+<br>
+<br>

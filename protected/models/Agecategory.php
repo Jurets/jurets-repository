@@ -94,6 +94,7 @@ class Agecategory extends CActiveRecord
 			'AgeMax' => Yii::t('fullnames', 'Age Max'),
             'YearMin' => Yii::t('fullnames', 'Year Min'),
             'YearMax' => Yii::t('fullnames', 'Year Max'),
+            'ordernum' => Yii::t('fullnames', 'Ordernum'),
 		);
 	}
 

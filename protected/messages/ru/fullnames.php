@@ -103,6 +103,7 @@ return array(
     'coachCount' => 'Кол-во тренеров',
     'Overview' => 'Общие сведения',
     
+    'Ordernum' => 'Порядок сортировки',
     
     'FstName' => 'ФСТ',
     'Command' => 'Команда',

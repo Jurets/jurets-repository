@@ -65,30 +65,31 @@
     left:175px;
     margin-left: -100%;*/
 }
-.partnspon 
-{
+.partnspon {
     padding: 6px;
     padding-bottom: 20px;
     /*padding: 4px;*/
     /*text-align: center;*/
 }
 
-.partnspon h3 
-{
-
+.partnspon h3 {
     color: #000000;
     font-size: 14px;
     text-align: left;
     text-transform: uppercase;
 }
  
-.partnspon img 
-{
+.partnspon a {
+    display: block;
+    text-align: center    
+}
+
+.partnspon img {
     /*margin: 10px 0;*/
     margin: 0 0;
 }
-img 
-{
+
+img {
     border: medium none;
 }
 

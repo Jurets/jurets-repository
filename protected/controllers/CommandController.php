@@ -264,7 +264,7 @@ class CommandController extends Controller //ParticipantController
     public function actionManage()
     {
         //данные для списка команд
-        $model = New Command;//DebugBreak();
+        $model = New Command;
         $model->competitionid = Yii::app()->competitionId;
         $dataProvider = $model->search();
         //данные по статистике
@@ -274,7 +274,8 @@ class CommandController extends Controller //ParticipantController
             'dataProvider'=>$dataProvider,
             'dataStat'=>$dataStat,
         ));
-    }    
+    } 
+       
 	/**
 	 * Manages all models.
 	 */

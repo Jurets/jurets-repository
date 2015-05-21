@@ -47,7 +47,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',
-            'template'=>'{view}',
+            'template'=>Yii::app()->user->isExtendRole() ? '{view}&nbsp;{update}' : '{view}',
             'htmlOptions'=>array('style'=>'width: 50px; text-align: center'),
         ),
     ),

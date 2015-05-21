@@ -6,25 +6,35 @@
 
 <div class="form">
 
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php 
+$form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'command-form',
     'enableAjaxValidation'=>false,
-)); ?>
+    'type'=>'horizontal',
+    'htmlOptions'=>array('class'=>'well'),
+)); 
+    // ошибки
+    echo $form->errorSummary($model); 
+    // вьюшка "обязательноть полей"
+    $this->viewFieldsReq();    
 
-    <p class="note">Поля, помеченные звёздочкой <span class="required">*</span> являются обязательными для заполнения.</p>
+    echo $form->textFieldRow($model,'CommandName',array('size'=>50,'maxlength'=>50));
+    echo $form->textFieldRow($model,'secondname',array('size'=>255,'maxlength'=>255, 'class'=>'span6'));
 
-    <?php echo $form->errorSummary($model); ?>
-
-    <div class="row">
-        <?php echo $form->labelEx($model,'CommandName'); ?>
-        <?php echo $form->textField($model,'CommandName',array('size'=>50,'maxlength'=>50)); ?>
-        <?php echo $form->error($model,'CommandName'); ?>
-    </div>
-
-    <div class="row buttons">
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Создать' : 'Сохранить'); ?>
-    </div>
-
-<?php $this->endWidget(); ?>
+    $label = ($model->isNewRecord ? Yii::t('controls', 'Add') : Yii::t('controls', 'Save'));
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'label'=>$label,
+        'type'=>'primary',
+        'buttonType'=>'submit',
+        'htmlOptions'=>array(
+            'name'=>'save_exit',
+            //'title'=>$label,
+            //'style'=>'margin-left: 20px;',
+            //'onclick'=>'$("#Sportsmen_CommandID").attr("disabled", false)',
+        ),
+    ));     
+    
+$this->endWidget(); //form
+?>
 
 </div><!-- form -->

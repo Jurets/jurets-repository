@@ -50,7 +50,8 @@ class Command extends CActiveRecord
             array('CommandName', 'length', 'max'=>50),
             // The following rule is used by search().
             // Please remove those attributes that should not be searched.
-            array('CommandID, CommandName', 'safe', 'on'=>'search'),
+            array('CommandName, secondname', 'safe'),
+            //array('CommandID, CommandName, secondname', 'safe', 'on'=>'search'),
         );
     }
 
@@ -83,6 +84,7 @@ class Command extends CActiveRecord
             'coachCount' => Yii::t('fullnames', 'coachCount'),
             'Delegate' => Yii::t('fullnames', 'Delegate'),
             'city' => Yii::t('fullnames', 'City'),
+            'secondname' => Yii::t('fullnames', 'secondname'),
         );
     }
 

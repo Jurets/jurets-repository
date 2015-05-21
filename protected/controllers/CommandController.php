@@ -197,18 +197,14 @@ class CommandController extends Controller //ParticipantController
             throw new CHttpException(400, $mess);
             return;
         }
-        
-        
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['Command']))
-		{
-			$model->attributes=$_POST['Command'];
-			if($model->save())
+        // если пришли данные редактирвоания из формы:
+		if(isset($_POST['Command'])) {
+			$model->attributes = $_POST['Command'];
+			if ($model->save(false, array('CommandName', 'secondname')))
 				$this->redirect(array('view','id'=>$model->CommandID));
 		}
-
 		$this->render('update',array(
 			'model'=>$model,
 		));

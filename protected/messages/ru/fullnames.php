@@ -99,6 +99,7 @@ return array(
 
     'CommandID' => 'ИД команды',
     'CommandName' => 'Название команды',   
+    'secondname' => 'Второе название',   
     'sportsmenCount' => 'Кол-во спортсменов',
     'coachCount' => 'Кол-во тренеров',
     'Overview' => 'Общие сведения',

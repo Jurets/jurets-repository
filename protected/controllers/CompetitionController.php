@@ -90,8 +90,13 @@ class CompetitionController extends Controller
     {
         Yii::import('ext.csv.ECSVExport');
         $outputFile = 'participants.csv';
-        $cmd = Yii::app()->db->createCommand("SELECT * FROM fulllist WHERE competitionid = " . Yii::app()->competitionId);
-        $csv = new ECSVExport($cmd);
+        //$cmd = Yii::app()->db->createCommand("SELECT * FROM fulllist WHERE competitionid = " . Yii::app()->competitionId);
+        $cmd = Yii::app()->db->createCommand()
+            ->select(array('AgeName', 'FullName', 'Commandname', 'FstName', 'BirthYear', 'CategoryName', 'attestlevel', 'Gender', 'WeightNameFull', 'Coaches', 'competitionid', 'city'))
+            ->from('fulllist')
+            ->where('competitionid = :competitionid');
+        $cmd->params = array(':competitionid'=>Yii::app()->competitionId);
+        $csv = new ECSVExport($cmd, true, true, ';');
         $csv->delimiter = ';';
         $csv->setOutputFile($outputFile);
         $csv->toCSV(); // returns string by default

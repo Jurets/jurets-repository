@@ -57,6 +57,11 @@
         'attributes'=>array(
             'CommandName',
             array(
+                'label'=>Yii::t('fullnames', 'secondname'),
+                'value'=>$model->secondname,
+                'visible'=>Yii::app()->isExtendRole,
+            ),
+            array(
                 'label'=>Yii::t('fullnames', 'coachCount'),
                 'value'=>$model->coach_count,
             ),

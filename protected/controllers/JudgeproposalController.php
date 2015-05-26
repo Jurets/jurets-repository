@@ -263,7 +263,7 @@ class JudgeproposalController extends Controller
     //ДЕЙСТВИЕ: просмотр списка заявок
     public function actionIndex() { 
         $criteria = new CDbCriteria;
-        //$criteria->with = array('relCommand', 'relUsers');
+        //$criteria->with = array('judge', 'judge.user');
         $criteria->condition = 't.competitionid = '.Yii::app()->competitionId;
         
         $model = new JudgeProposal();

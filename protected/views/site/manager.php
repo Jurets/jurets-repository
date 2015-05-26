@@ -46,29 +46,48 @@ $this->menu=array(
         ),
         'visible'=>Yii::app()->user->isExtendRole(),
     ),
+    array('label'=>Yii::t('fullnames', 'Judge Proposals'), 
+        'url'=>array($this->pathCompetition . '/judgeproposal/index'),
+        'icon'=>'cog',
+        'linkOptions'=>array(
+            'title'=>Yii::t('fullnames', 'Manage Judge Proposals'), 
+        ),
+        'visible'=>Yii::app()->user->isExtendRole(),
+    ),
+    
     '---',
+    
     array('label'=>Yii::t('fullnames', 'Commands'), 
         'url'=>array($this->pathCompetition . '/command/manage'), 
         'icon'=>'flag',
         'linkOptions'=>array(
-            'title'=>Yii::t('fullnames', 'Переход к списку команд'), 
+            'title'=>Yii::t('fullnames', 'Go to list of teams'), 
         ),
     ),
     array('label'=>Yii::t('fullnames', 'Sportsmens'), 
         'url'=>array($this->pathCompetition . '/sportsmen/index'), 
         'icon'=>'user',
         'linkOptions'=>array(
-            'title'=>Yii::t('fullnames', 'Переход к списку спортсменов'), 
+            'title'=>Yii::t('fullnames', 'Go to list of contestants'), 
         ),
     ),
     array('label'=>Yii::t('fullnames', 'Coaches'), 
         'url'=>array($this->pathCompetition . '/coach/index'), 
         'icon'=>'user',
         'linkOptions'=>array(
-            'title'=>Yii::t('fullnames', 'Переход к списку тренеров'), 
+            'title'=>Yii::t('fullnames', 'Go to list of coaches'), 
         ),
     ),
+    array('label'=>Yii::t('fullnames', 'Judges'), 
+        'url'=>array($this->pathCompetition . '/judge/index'), 
+        'icon'=>'user',
+        'linkOptions'=>array(
+            'title'=>Yii::t('fullnames', 'Go to list of judges'), 
+        ),
+    ),
+
     '---',
+
     array('label'=>Yii::t('fullnames', 'Make Proposal'), 
             'url'=>array('proposal/create'),
             'icon'=>'flag',   

@@ -7,7 +7,7 @@ $this->breadcrumbs=array(
 	'Тренеры',
 );
 
-$this->renderPartial('/site/_delegate');
+$this->renderPartial('/site/manager');
 ?>
 
 <h1>Список тренеров</h1>

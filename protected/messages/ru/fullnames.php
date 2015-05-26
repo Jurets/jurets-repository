@@ -47,10 +47,17 @@ return array(
     'Regjudge' => 'Регистрация судьи',
 	'Login' => 'Вход',    
 
-    
+    'Manage Judge Proposals' => 'Управление заявками судей',
+
+    'Go to list of teams' => 'Переход к списку команд',
+    'Go to list of contestants' => 'Переход к списку спортсменов',
+    'Go to list of contestants' => 'Go to list of coaches',
+    'Go to list of judges' => 'Переход к списку судей',
+
     'Proposal' => 'Заявка',
     'Proposals' => 'Предварительные заявки',
-    'Judge Proposals' => 'Предварительные заявки судей',
+    'Judge Proposals' => 'Заявки судей',
+    'Judges' => 'Судьи',
     //'Proposals' => 'Заявки',
     ' proposal' => ' заявку',
     ' of proposal' => ' заявки',

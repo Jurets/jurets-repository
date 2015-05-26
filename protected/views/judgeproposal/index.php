@@ -16,7 +16,7 @@ else
         Yii::t('fullnames', 'Proposals')
     );
 
-$this->renderPartial('/site/_delegate');
+$this->renderPartial('/site/manager');
 ?>
 
 <h1>Предварительные заявки судей</h1>

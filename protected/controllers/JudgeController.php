@@ -168,8 +168,17 @@ class JudgeController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Judge');
-		$this->render('index',array(
+	    $criteria = new CDbCriteria;
+        $criteria->with = array('judge');
+        $criteria->condition = 't.competitionid = '.Yii::app()->competitionId;
+
+        $dataProvider = new CActiveDataProvider('JudgeProposal', array(
+            'criteria' => $criteria,
+            'pagination'=>array(
+                'pageSize'=>50,
+            ),
+        ));
+		$this->render('admin',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}

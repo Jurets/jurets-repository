@@ -202,8 +202,12 @@ class CommandController extends Controller //ParticipantController
         // если пришли данные редактирвоания из формы:
 		if(isset($_POST['Command'])) {
 			$model->attributes = $_POST['Command'];
-			if ($model->save(false, array('CommandName', 'secondname')))
-				$this->redirect(array('view','id'=>$model->CommandID));
+			if ($model->save(false, array('CommandName', 'secondname'))) {
+                // !TODO : продумать систему возврата на страницу, с которой была вызвана форма редактирования
+                //if (true) {
+                    $this->redirect(array('view','id'=>$model->CommandID));
+                //} else {}
+            }
 		}
 		$this->render('update',array(
 			'model'=>$model,

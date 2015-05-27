@@ -225,40 +225,34 @@ class SportsmenController extends ParticipantController
   // перед действием будут выполнены проверки (см. ФИЛЬТРЫ для контроллера)  
     public function actionCreate($id = null) {
         // $this->performAjaxValidation($model); // Uncomment the following line if AJAX validation is needed
-
+        // для проверки: выбираем команду и связанную с ней заявку
+        $command = Command::model()->with('relProposal')->findByPk($id);
+        if (!isset($command)) {
+            throw new CHttpException(404, 'Команда с таким ID не существует!');
+        } else if (!isset($command->relProposal)) {
+            throw new CHttpException(410, 'Ошибка в структуре данных команд! Обратитесь к администратору');
+        }
       //РАЗЛИЧНЫЕ ПРОВЕРКИ  
         if (!Yii::app()->isExtendRole) {
-            $proposal = Proposal::model()->find('competitionid = :competitionid AND userid = :userid', array(
-                ':competitionid'=>Yii::app()->competitionId, 
-                'userid' => Yii::app()->userid)
-            );
-            if (isset($proposal)) 
-                $status = $proposal->status;
-            if (!isset($status))
+            $status = $command->relProposal->status;
+            if (!isset($status)) {
                 throw new CHttpException(401, "Запрещено добавление спортсменов! Вначале необходимо подать заявку на соревнование!\r\n".
                     'Для разрешения проблемы свяжитесь с организаторами соревнований');
-            if ($status <> Proposal::STATUS_ACTIVE)
+            }
+            if ($status <> Proposal::STATUS_ACTIVE) {
                 throw new CHttpException(400, "Запрещено добавление спортсменов! Ваша заявка не подтверждена!"."\n\r".
                     "Для разрешения проблемы свяжитесь с организаторами соревнований");
-            //if ($proposal->participantcount >= Yii::app()->params['maxParticipants']) {
-            //    throw new CHttpException(400, "Запрещено добавление участников больше, чем максимально допустимое количество: ".Yii::app()->params['maxParticipants']."! \n\r".
-            //        "Для разрешения проблемы свяжитесь с организаторами соревнований");
-            //}
-            else {
-              //узнать ИД команды по текущему юзеру и запихнуть в модель
-                //$myCommandID = Yii::app()->user->getCommandid();
-                //$isMyCommand = ($id == $myCommandID);
+            } else {
+                // проверка "моя ли это команда"?
                 $isMyCommand = Yii::app()->user->isMyCommand($id);
                 if (!Yii::app()->isExtendRole && !$isMyCommand)
-                    throw new CHttpException(400, 'Запрещено добавлять спортсменов в чужой команде! Для ввода информации выберите свою команду');
+                    throw new CHttpException(400, 'Запрещено добавлять спортсменов в чужой команде! Для ввода данных выберите свою команду');
             }
         } 
       //все проверки пройдены - создаём модель  
         $model = new Sportsmen;
         $model->CommandID = $id;  //присвоить модели ИД команды
 
-        $command = Command::model()->findByPk($id);
-        
         //если пришли данные из формы
         if (isset($_POST['Sportsmen']))        
         {

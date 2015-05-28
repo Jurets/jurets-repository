@@ -47,7 +47,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             'name'=>'recovery_submit',
             //'data-toggle'=>'modal', 'data-target'=>'#myModal',
             //'data-content'=>$form->errorSummary($model), 
-            'onclick'=>'js:$("#recovery_submit").attr("disabled", true)',
+            //'onclick'=>'js:$("#recovery_submit").attr("disabled", true)',
         ),
     ));    
     //echo $form->errorSummary($model); 

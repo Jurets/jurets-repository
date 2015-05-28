@@ -315,9 +315,9 @@ class UsersController extends Controller
                     // отослать сообщение на емейл
                     $success = EmailHelper::send(array($user->Email), Yii::t('fullnames', 'Новый пароль'), 'autopassword', array('user' => $user));
                     // поставить флэш-сообщение
-                    Yii::app()->user->setFlash($success ? 'success' : 'warning', Yii::t('controls', $success ? 
-                        'New password was successfully generated and sent to the entered e-mail' . '. ' . 'Type it in form below': 
-                        'Error during sending a message'
+                    Yii::app()->user->setFlash($success ? 'success' : 'warning', $success ? 
+                            Yii::t('controls', 'New password was successfully generated and sent to the entered e-mail') . '. ' . Yii::t('controls', 'Type it in form below') : 
+                            Yii::t('controls', 'Error during sending a message'
                     ));
                 } 
                 $this->redirect(array('site/login'));

@@ -57,13 +57,18 @@ class Users extends CActiveRecord
             array('address, www', 'length', 'max'=>255),
             array('comment', 'safe'),
             //специальные проверки
-            array('Email', 'email', 'on' => 'create'),
+            //array('Email', 'safe', 'on'=>'autopassword'),
+            array('UserName', 'safe', 'on'=>'autopassword'),
+            //array('Email', 'required', 'on'=>'autopassword'),
+            array('UserName', 'required', 'on'=>'autopassword'),
+            array('Email', 'email', 'on'=>array('create', 'update', 'autopassword')),
+            //array('Email', 'exist', 'on'=>'autopassword', 'message'=>Yii::t('controls', 'This Email not found')),
+            array('UserName', 'exist', 'on'=>'autopassword', 'message'=>Yii::t('controls', 'This user not found')),
             //проверки на уникальность
             array('UserName', 'unique', 'on' => 'create'), //array('UserName, Email', 'unique', 'on' => 'create'),
             //проверять эти поля при смене пароля (сценарий "password")
             array('old_password, new_password, retype_password', 'safe', 'on'=>'password'), 
             //array('Email', 'checkEmailForExist'),
-            //array('Email, login', 'unique'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
             array('UserID, UserName, Password, RoleID, Salt, CommandID, Email, Active, searchUserFio', 'safe', 'on'=>'search'),

@@ -216,6 +216,8 @@ return array(
         'Вы можете использовать для входа <kbd>demo</kbd>/<kbd>demo</kbd> или <kbd>admin</kbd>/<kbd>admin</kbd>',
     'If you enter firstly - see your login and password in your {email}' =>
         'Если Вы входите первый раз - смотрите логин и пароль в Вашем {email}',
+    
+    'Password recovery' => 'Восстановление пароля',
         
     '{email}' => '<span class="required">E-mail</span>',
 );  

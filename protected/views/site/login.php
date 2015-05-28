@@ -9,43 +9,67 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Авторизованый вход</h1>
+<h1><?php echo Yii::t('fullnames', 'Login'); ?></h1>
 
-<p>Пожалуйста заполните форму ниже для входа:</p>
+
+<?php
+  //компонент показа всплывающих сообщений (Алерт)  
+    $this->widget('bootstrap.widgets.TbAlert', array(
+        'block'=>true, // display a larger alert block?
+        'fade'=>true, // use transitions?
+        'closeText'=>'&times;', // close link text - if set to false, no close link is displayed
+        'alerts'=>array( // configurations per alert type
+            'success'=>array('block'=>true, 'fade'=>true/*, 'closeText'=>'&times;'*/), // success, info, warning, error or danger
+            'error'=>array('block'=>true, 'fade'=>true), 
+            'warning'=>array('block'=>true, 'fade'=>true), 
+        ),
+    ));
+?>
 
 <div class="form">
-<?php $form=$this->beginWidget('CActiveForm', array(
+<?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 	'id'=>'login-form',
-	'enableClientValidation'=>true,
+    'type'=>'horizontal',
+    'htmlOptions'=>array('class'=>'well'),
+	'enableClientValidation'=>false,
 	'clientOptions'=>array(
 		'validateOnSubmit'=>true,
 	),
-)); ?>
+)); 
 
-	<p class="note">Поля, помеченные звёздочкой <span class="required">*</span> являются обязательными для заполнения.</p>
+    // ошибки
+    //echo $form->errorSummary($model); 
+    // вьюшка "обязательноть полей"
+    $this->viewFieldsReq();
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'username', array('label' => 'Имя пользователя')); ?>
-		<?php echo $form->textField($model,'username'); ?>
-		<?php echo $form->error($model,'username'); ?>
-	</div>
+    echo $form->textFieldRow($model,'username', array());
+    echo $form->passwordFieldRow($model,'password', array());
+    echo $form->checkBoxRow($model,'rememberMe');
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'password', array('label' => 'Пароль')); ?>
-		<?php echo $form->passwordField($model,'password'); ?>
-		<?php echo $form->error($model,'password'); ?>
-<!--		<p class="hint"> Подсказка: Выможете войти с помощью логина <kbd>demo</kbd> и пароля <kbd>demo</kbd>.</p>   -->
-	</div>
-
-	<div class="row rememberMe">
-		<?php echo $form->checkBox($model,'rememberMe'); ?>
-		<?php echo $form->label($model,'rememberMe'); ?>
-		<?php echo $form->error($model,'rememberMe'); ?>
-	</div>
-
-	<div class="row buttons">
-		<?php echo CHtml::submitButton('Войти'); ?>
-	</div>
-
-<?php $this->endWidget(); ?>
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'label'=>Yii::t('controls', 'Enter'),
+        'type'=>'primary',
+        'buttonType'=>'submit',
+        'htmlOptions'=>array(
+            'name'=>'save_exit',
+            //'title'=>$label,
+            //'style'=>'margin-left: 20px;',
+            //'onclick'=>'$("#Sportsmen_CommandID").attr("disabled", false)',
+        ),
+    ));        
+    
+    $this->widget('bootstrap.widgets.TbButton', array(
+        'label'=>Yii::t('controls', 'Recovery password'),
+        //'type'=>'primary',
+        'buttonType'=>'link',
+        'url'=>Yii::app()->createAbsoluteUrl('users/recovery'),
+        'htmlOptions'=>array(
+            'name'=>'recovery',
+            'class'=>'btn btn-link',
+        ),
+    ));
+    
+$this->endWidget(); //form
+    
+?>
 </div><!-- form -->

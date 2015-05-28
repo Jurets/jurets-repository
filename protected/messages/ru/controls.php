@@ -19,6 +19,7 @@ return array(
     'Activate' => 'Активировать',
     'Deactivate' => 'Деактивировать',
     'Generate' => 'Генерировать',
+    'Send' => 'Отправить',
     
     'to confirm' => 'подтвердить',
     'to cancel' => 'отменить',
@@ -56,7 +57,6 @@ return array(
     'Choose attest level' => 'Выберите куп/дан',
     'Choose count' => 'Выберите кол-во',
     
-    
     'You have successfully registered.' => 'Вы успешно зарегистрировались.',
     'Within a maximum of three days, your registration will be confirmed and indicated on your E-mail will be sent a confirmation letter and registration data' => 'В течение максимум трёх дней Ваша регистрация будет подтверждена и на указаный Вами E-mail будет выслано письмо с подтверждением и регистрационными данными.',
     'Your account is active' => 'Ваша учётная запись активна',
@@ -73,5 +73,18 @@ return array(
     'However, you can apply for the current competition.' => 'Однако Вы можете подать заявку на текущее соревнование.',
     'Below are the personal data you have entered:' => 'Ниже приведены введённые Вами персональные данные:',
     
+    'Forgot your password? Recovery' => 'Забыли пароль? Восстановить',
+    'Recovery password' => 'Восстановить пароль',
+    
+    'Type your email and press the button below' => 'Введите адрес электронной почты и нажмите на кнопку ниже',
+    'Type your username (email) and press the button below' => 'Введите имя пользователя (e-mail) и нажмите на кнопку ниже',
+    'A new password will be generated and sent to this email' => 'Новый пароль будет сгенерирован и выслан на этот адрес',
+    'A new password will be generated and sent to your email' => 'Новый пароль будет сгенерирован и выслан на ваш e-mail',
+    
+    'This Email not found' => 'Емейл не найден',
+    'This user not found' => 'Пользователь не найден',
+    'New password was successfully generated and sent to the entered e-mail' => 'Новый пароль успешно сгенерирован и выслан на введенный e-mail',
+    'Type it in form below'=>'Введите его в форме ниже',
+    'Error during sending a message' => 'Ошибка при отсылке сообщения',
 );  
 ?>

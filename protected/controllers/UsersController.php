@@ -28,15 +28,15 @@ class UsersController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('create'),
+				'actions'=>array('create', 'recovery'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update','mycabinet','password','view'),
+				'actions'=>array('update','mycabinet','password'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('index','admin','delete','activate','deactivate'),
+				'actions'=>array('index','admin','delete','activate','deactivate','view'),
 				'roles'=>array('admin','manager'),
 			),
 			array('deny',  // deny all users
@@ -265,14 +265,12 @@ class UsersController extends Controller
     public function actionPassword($id, $auto = null) 
     {
         $model = $this->loadModel($id);
-        if(isset($auto) || isset($_POST['Users']))
-        {
+        if(isset($auto) || isset($_POST['Users'])) {
             $model->scenario = isset($auto) ? 'autopassword' : 'password';
             if (!empty($_POST['Users'])) {
                 $model->attributes = $_POST['Users'];
-            }
-            if($model->save(true, array('Password', 'Salt'))) 
-            {
+            } //autopassword - автогенерация пароля, password - смена пароля юзером
+            if ($model->save(true, array('Password', 'Salt'))) {
                 if (isset($auto)) {
                     $success = EmailHelper::send( //отослать сообщение на емейл
                         array($model->Email),                //кому
@@ -280,22 +278,54 @@ class UsersController extends Controller
                         'autopassword',                      //шаблон - вьюшка
                         array('user' => $model)              //параметры
                     );
-                        
                     if ($success)
                         Yii::app()->user->setFlash('success', 'Сообщение о новом пароле пользователя успешно отослано на его e-mail');
                     else
                         Yii::app()->user->setFlash('warning', 'Ошибка при отсылке сообщения');
-                } else
+                } else {
                     Yii::app()->user->setFlash('success', 'Пароль успешно изменён');
-
+                }
                 $this->redirect(array('view','id'=>$model->UserID));
             } else if (isset($auto))
                 $this->redirect(array('view','id'=>$model->UserID));
         }
-
         $this->render('password',array(
             'model'=>$model,
         ));
     }
-    
+
+    /**
+    * действие: Восстановление пароля юзера
+    * - автогенерация пароля срабатывает автоматом перед сохранением модели Users::beforeSave() 
+    * @param mixed $id - ID юзера
+    */
+    public function actionRecovery() 
+    {
+        $model = new Users;  // пустая модель
+        if (isset($_POST['Users'])) {
+            $model->scenario = 'autopassword';     // спец. сценарий для автогенерации пароля
+            $model->attributes = $_POST['Users'];
+            // при валидации проверяется правильность и наличие емейла в БД
+            if ($model->validate()) {
+                // найти объект юзера
+                $user = Users::model()->findByAttributes(array('UserName'=>$model->UserName));
+                $user->scenario = 'autopassword';  // спец. сценарий - ещё раз
+                // пробуем сохранить (только пароль и соль)
+                if ($user->save(false, array('Password', 'Salt'))) {
+                    // отослать сообщение на емейл
+                    $success = EmailHelper::send(array($user->Email), Yii::t('fullnames', 'Новый пароль'), 'autopassword', array('user' => $user));
+                    // поставить флэш-сообщение
+                    Yii::app()->user->setFlash($success ? 'success' : 'warning', Yii::t('controls', $success ? 
+                        'New password was successfully generated and sent to the entered e-mail' . '. ' . 'Type it in form below': 
+                        'Error during sending a message'
+                    ));
+                } 
+                $this->redirect(array('site/login'));
+            }
+        }
+        $this->render('recovery',array(
+            'model'=>$model,
+        ));
+    }
+        
 }

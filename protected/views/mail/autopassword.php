@@ -6,7 +6,7 @@
 </p>
 <hr>
 <p style="color: #000; font-size: medium;">
-    Логин: <?=$user->Email?><br>
+    Логин: <?=$user->UserName?><br>
     Пароль: <?=$user->new_password?>
 </p>
 <hr>

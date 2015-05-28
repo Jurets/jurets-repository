@@ -200,20 +200,14 @@ class UsersController extends Controller
     //ДЕЙСТВИЕ: Мой Кабинет
     public function actionMycabinet()
     {
-        //$userid = Yii::app()->user->getUserid();
         $userid = Yii::app()->user->userID;
-        /*$url = $this->createUrl('/proposal/view',array('id'=>$propid));
-        //$proposalid = 
-        //$url = $this->createUrl('/proposal/view',array('id'=>$proposalid));
-        $this->redirect($url);*/
-        
         if (isset($userid)) {
             $model = $this->loadModel($userid);
             $dataComplist = $model->getCompetitionList();
-            if (isset($model))
+            if (isset($model)) {
                 $this->render('view',array('model'=>$model, 'dataComplist'=>$dataComplist));
+            }
         }
-        //$this->actionView($propid);
     }
     
     //действие: Активировать юзера
@@ -272,22 +266,23 @@ class UsersController extends Controller
             } //autopassword - автогенерация пароля, password - смена пароля юзером
             if ($model->save(true, array('Password', 'Salt'))) {
                 if (isset($auto)) {
-                    $success = EmailHelper::send( //отослать сообщение на емейл
-                        array($model->Email),                //кому
-                        Yii::t('fullnames', 'Новый пароль'), //тема
-                        'autopassword',                      //шаблон - вьюшка
-                        array('user' => $model)              //параметры
-                    );
-                    if ($success)
+                    //отослать сообщение на емейл (кому, тема, шаблон - вьюшка, параметры)
+                    if ($success = EmailHelper::send(array($model->Email), Yii::t('fullnames', 'Новый пароль'), 'autopassword', array('user' => $model))) {
                         Yii::app()->user->setFlash('success', 'Сообщение о новом пароле пользователя успешно отослано на его e-mail');
-                    else
+                    } else {
                         Yii::app()->user->setFlash('warning', 'Ошибка при отсылке сообщения');
+                    }
                 } else {
                     Yii::app()->user->setFlash('success', 'Пароль успешно изменён');
                 }
+                if (!isset($auto) && (Yii::app()->user->userid == $model->UserID)) {
+                    $this->redirect(array('mycabinet'));
+                } else {
+                    $this->redirect(array('view','id'=>$model->UserID));
+                }
+            } else if (isset($auto)) {
                 $this->redirect(array('view','id'=>$model->UserID));
-            } else if (isset($auto))
-                $this->redirect(array('view','id'=>$model->UserID));
+            }
         }
         $this->render('password',array(
             'model'=>$model,

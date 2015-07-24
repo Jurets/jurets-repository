@@ -35,10 +35,12 @@ return array(
     'Competition'=>'Змагання',
     'Tournament'=>'Чемпіонат',
     'Categories'=>'Категорії',
-    'Weighing' => 'Зважування',
+    'Weigthing' => 'Зважування',
     'Toss' => 'Жеребкування',
     'Results' => 'Результати',
     'Photo' => 'Фото',
+    'Archive' => 'Архів',
+    'Help' => 'Помощь',
     
     'Cabinet'=>'Кабінет',
     'My Cabinet'=>'Мій Кабінет',

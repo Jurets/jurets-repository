@@ -35,11 +35,12 @@ return array(
     'Competition' => 'Соревнование',
     'Tournament' => 'Чемпионат',
     'Categories' => 'Категории',
-    'Weighing' => 'Взвешивание',
+    'Weigthing' => 'Взвешивание',
     'Toss' => 'Жеребьевка',
     'Results' => 'Результаты',
     'Photo' => 'Фото',
     'Archive' => 'Архив',
+    'Help' => 'Помощь',
     
     'Cabinet' => 'Кабинет',
     'My Cabinet' => 'Мой Кабинет',

@@ -20,6 +20,9 @@ class Competition extends CActiveRecord
 {
     const TYPE_COMPETITION = 'competition';
     const TYPE_CAMP = 'camp';
+    const TYPE_MAIN = 'main';
+    const FLG_YES = 1;
+    const FLG_NO = 0;
     
     //флаг: было ли изменение в поле "главная страница"
     public $isInviteChanged = false;
@@ -74,6 +77,33 @@ class Competition extends CActiveRecord
 		);
 	}
 
+    /**
+     *  Именованные условия (скоупы). Применение:
+     *  - Competition::model()->active()->find(...)
+     * 
+     * @return array scopes.
+     */
+    public function scopes()
+    {
+        // NOTE: you may need to adjust the relation name and the related
+        // class name for the relations automatically generated below.
+        return array(
+            'active' => array(
+                  'alias'=>'competition',
+                  //'condition'=>$this->getTableAlias() . '.isfiling = :flag',
+                  'condition'=>'competition.isfiling = :flag',
+                  'params'=>array(':flag'=>self::FLG_YES), 
+            ),
+        );
+    }
+    
+    public function defaultScope() {
+        return array(
+            'alias'=>'competition',
+            //'order'=>$this->getTableAlias() . '.begindate DESC'
+            'order'=>'competition.begindate DESC'
+        );
+    }    
 	/**
 	 * @return array customized attribute labels (name=>label)
 	 */
@@ -103,7 +133,7 @@ class Competition extends CActiveRecord
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
-
+        
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
@@ -112,6 +142,8 @@ class Competition extends CActiveRecord
 		$criteria->compare('begindate',$this->begindate,true);
 		$criteria->compare('enddate',$this->enddate,true);
 		$criteria->compare('place',$this->place,true);
+        
+        $criteria->scopes = array('active');
 		
         if ($this->scenario == 'search_full') {
             $criteria->compare('courtcount',$this->courtcount);
@@ -121,10 +153,13 @@ class Competition extends CActiveRecord
 		    $criteria->compare('maxparticipants',$this->maxparticipants);
         }
         
-        $criteria->order = 'begindate DESC';
+        //$criteria->order = 'begindate DESC';
         
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+            'pagination'=>array(
+                'pageSize'=>5,
+            ),
 		));
 	}
     
@@ -300,5 +335,15 @@ class Competition extends CActiveRecord
    //является ли тип соревнования лагерем (сборы)
    public function getIsCamp(){
         return ($this->type == self::TYPE_CAMP); 
+   }
+   
+   //является ли тип соревнования соревнованием
+   public function getIsCompetition(){
+        return ($this->type == self::TYPE_COMPETITION); 
+   }
+   
+   //является ли тип соревнования главной страницей (не лагерь, не турнир)
+   public function getIsMain(){
+        return ($this->type == self::TYPE_MAIN); 
    }
 }

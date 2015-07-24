@@ -23,8 +23,6 @@
 <?php 
 //получить объект Соревнования
 $competition = Competition::getModel();
-//$isCompetition = ($competition->type == Competition::TYPE_COMPETITION);
-$isCamp = $competition->isCamp;
 
 //определить права текущего юзера
 $isGuest = Yii::app()->isGuestUser; //определить - является ли юзер гостем
@@ -42,32 +40,65 @@ if ($isProposalExists) {
 }
     
 $userName = $isGuest ? '' : '<span class="label label-info pull-right" style="margin-top: 10px; margin-left: 30px;">'.Yii::app()->user->name.'</span>';
-   
+
+$brandUrl = Yii::app()->createAbsoluteUrl('/');
+
+// ГЛАВНОЕ МЕНЮ
 echo "<div class='main-nav'>";
 echo "<a href='#' id='open-close'><i class='icon-align-justify icon-white'></i></a>";
 $this->widget('bootstrap.widgets.TbNavbar',array(
     'type'=>'inverse', // null or 'inverse'
-    'brand'=>'<i class="icon-home  icon-white"></i>',//Yii::t('fullnames', 'Homepage'), //
+    'brand'=>'<i class="icon-home icon-white"></i>', //Yii::t('fullnames', 'Homepage'), //,
     'fixed'=>false, //'top',
-    'brandUrl'=>Yii::app()->createAbsoluteUrl('/'),
+    'brandUrl'=>$brandUrl,
     'items'=>array(
         array(
             'class'=>'bootstrap.widgets.TbMenu',
             'htmlOptions'=>array('class'=>'navigation'),
             'items'=>array(
-                array('label'=>Yii::t('fullnames', 'Competition'), 
+                array(
+                    'label'=>Yii::t('fullnames', 'Help'), 
+                    'url' => array($this->pathCompetition . '/site/help'),
+                    'visible'=>$competition->isMain,
+                ),
+                array(
+                    'label'=>Yii::t('fullnames', 'Competition'), 
                     'url' => ($isExtendRole ? array($this->pathCompetition . '/competition/view') : array($this->pathCompetition . '/competition/view')),
+                    'visible'=>!$competition->isMain,
                 ),
                 //array('label'=>'Информация', 'url'=>array('/site/page', 'view'=>'about')),
-                array('label'=>Yii::t('fullnames', 'Commands'), 'url'=>($isExtendRole ? array($this->pathCompetition . '/command/manage') : array($this->pathCompetition . '/command/index'))),
+                array(
+                    'label'=>Yii::t('fullnames', 'Commands'), 
+                    'url'=>($isExtendRole ? array($this->pathCompetition . '/command/manage') : array($this->pathCompetition . '/command/index')),
+                    'visible'=>!$competition->isMain,
+                ),
                 //array('label'=>'', 'url'=>'#', 'items'=>array(
-                array('label'=>Yii::t('fullnames', 'Categories'), 'url'=>array($this->pathCompetition . '/weightcategory/category')),
+                array(
+                    'label'=>Yii::t('fullnames', 'Categories'), 
+                    'url'=>array($this->pathCompetition . '/weightcategory/category'),
+                    'visible'=>!$competition->isMain,
+                ),
                 //)),
-                array('label'=>Yii::t('fullnames', 'Weighing'), 'url'=>array($this->pathCompetition . '/weightcategory/list'), /*'visible'=>!$isCamp*/),
-                array('label'=>Yii::t('fullnames', 'Toss'), 'url'=>array($this->pathCompetition . '/weightcategory/tosser'), 'visible'=>!$isCamp),
-                array('label'=>Yii::t('fullnames', 'Results'), 'url'=>array($this->pathCompetition . '/weightcategory/result'), 'visible'=>!$isCamp),
+                array(
+                    'label'=>Yii::t('fullnames', 'Weigthing'), 
+                    'url'=>array($this->pathCompetition . '/weightcategory/list'), 
+                    'visible'=>!$competition->isMain,
+                ),
+                array(
+                    'label'=>Yii::t('fullnames', 'Toss'), 
+                    'url'=>array($this->pathCompetition . '/weightcategory/tosser'), 
+                    'visible'=>$competition->isCompetition,
+                ),
+                array(
+                    'label'=>Yii::t('fullnames', 'Results'), 
+                    'url'=>array($this->pathCompetition . '/weightcategory/result'), 
+                    'visible'=>$competition->isCompetition
+                ),
                 //array('label'=>Yii::t('fullnames', 'Photo'), 'url'=>array('/posting/default/index')),
-                array('label'=>Yii::t('fullnames', 'Archive'), 'url'=>array('/competition/archive')),
+                array(
+                    'label'=>Yii::t('fullnames', 'Archive'), 
+                    'url'=>array('/competition/archive')
+                ),
                 //array('label'=>'Контакты', 'url'=>array('/site/contact')),
                 //array('label'=>'Регистрация', 'url'=>array('/proposal/create'), 'visible'=>Yii::app()->user->isGuest),
             ),
@@ -159,8 +190,9 @@ echo"</div>";
         <?php } ?>
 		<div>
             <?php 
+            $homeLink = CHtml::link(($competition->isMain ? '<i class="icon-home"></i>' : $competition->name), $brandUrl);
             $this->widget('bootstrap.widgets.TbBreadcrumbs', array(
-			    'homeLink'=>CHtml::link($competition->name, Yii::app()->createAbsoluteUrl('/')),
+			    'homeLink'=>$homeLink,
                 'links'=>$this->breadcrumbs,
 		    )); ?>
         </div>

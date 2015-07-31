@@ -21,8 +21,9 @@ class Competition extends CActiveRecord
     const TYPE_COMPETITION = 'competition';
     const TYPE_CAMP = 'camp';
     const TYPE_MAIN = 'main';
-    const FLG_YES = 1;
-    const FLG_NO = 0;
+    const FLG_ACTIVE = 1;    // активное (показывается на главной странице)
+    const FLG_NONACTIVE = 0;  // не активное (показывается на главной странице)
+    const FLG_ARCH = -1;      // в архиве
     
     //флаг: было ли изменение в поле "главная страница"
     public $isInviteChanged = false;
@@ -89,10 +90,21 @@ class Competition extends CActiveRecord
         // class name for the relations automatically generated below.
         return array(
             'active' => array(
-                  'alias'=>'competition',
                   //'condition'=>$this->getTableAlias() . '.isfiling = :flag',
                   'condition'=>'competition.isfiling = :flag',
-                  'params'=>array(':flag'=>self::FLG_YES), 
+                  'params'=>array(':flag'=>self::FLG_ACTIVE), 
+            ),
+            'nonactive' => array(
+                  'condition'=>'competition.isfiling = :flag',
+                  'params'=>array(':flag'=>self::FLG_NONACTIVE), 
+            ),
+            'archive' => array(
+                  'condition'=>'competition.isfiling = :flag',
+                  'params'=>array(':flag'=>self::FLG_ARCH), 
+            ),
+            'visible' => array(
+                  'condition'=>'competition.isfiling <> :flag',
+                  'params'=>array(':flag'=>self::FLG_ARCH), 
             ),
         );
     }
@@ -143,7 +155,7 @@ class Competition extends CActiveRecord
 		$criteria->compare('enddate',$this->enddate,true);
 		$criteria->compare('place',$this->place,true);
         
-        $criteria->scopes = array('active');
+        $criteria->scopes = array('visible');
 		
         if ($this->scenario == 'search_full') {
             $criteria->compare('courtcount',$this->courtcount);

@@ -15,7 +15,7 @@
     <div class="partnspon">
         <a target="_blank" href="http://armada-kharkov.at.ua/" title="Харківська міська обласна організація Армада">
             <img alt="" src="/images/logo/armada.png" title="Харківська міська обласна організація Армада"><br>
-            <p>ХГОО "Армада"</p>
+            <!--<p>ХГОО "Армада"</p>-->
         </a>
     </div>
     

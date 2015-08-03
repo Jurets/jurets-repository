@@ -27,6 +27,7 @@
         
             <?php $this->widget('zii.widgets.CListView', array(
                 'dataProvider'=>$dataProvider,
+                'summaryText'=>false,
                 'itemView'=>'application.views.competition._item2',   // refers to the partial view named '_post'
                 'tagName'=>'div',
                 'itemsTagName'=>'ul',

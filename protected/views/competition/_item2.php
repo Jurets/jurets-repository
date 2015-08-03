@@ -23,6 +23,14 @@ if (is_file($logo_file)) {
     
 ?>
 
+<style type="text/css">
+    .media {
+        background-color: #eee;
+        border-radius: 6px;
+        padding: 10px;
+    }
+</style>
+
 <li class="media" style="border-bottom: 1px gray;">
     <!--<a class="pull-left" href="<?=Yii::app()->createAbsoluteUrl('competition/invite', array('id'=>$data->id))?>">-->
     <a class="pull-left" href="<?=$url?>" target="_blank">

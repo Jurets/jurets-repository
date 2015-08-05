@@ -39,8 +39,8 @@ return array_merge(array(
 
     //настройки каталога для загрузки картинок
     'uploadDir'=>'./uploads/',
-    'uploadLoc' =>'http://tkd-card.com.ua/uploads/',
-    'defaultPhoto' =>'http://tkd-card.com.ua/images/nophoto.png',
+    'uploadLoc' =>'/uploads/',
+    'defaultPhoto' =>'/images/nophoto.png',
 	
 //настройки для размеров загружаемых картинок (по умолчанию)
     'sizeW'=>808,

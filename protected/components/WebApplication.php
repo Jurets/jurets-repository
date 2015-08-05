@@ -59,10 +59,11 @@ class WebApplication extends CWebApplication
     
     public function getUploadImageUrl($fileName)
     {
-        if (!is_file($fileName) && !is_file(Yii::app()->params['uploadDir'].DIRECTORY_SEPARATOR.$fileName))
-            return Yii::app()->params['defaultPhoto'];
-        else
+        if (!is_file($fileName) && !is_file(Yii::app()->params['uploadDir'].DIRECTORY_SEPARATOR.$fileName)) {
+            return Yii::app()->request->hostInfo . Yii::app()->params['defaultPhoto'];
+        } else {
             return Yii::app()->params['uploadLoc'].basename($fileName);
+        }
     }
     
     public function getUploadImageDir()

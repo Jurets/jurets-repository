@@ -4,11 +4,15 @@
     }
 </style>
 
+<?php //DebugBreak(); 
+    $url = isset($model->relPhoto) ? $model->relPhoto->filename : null;
+?>
+
 <div id="sportsmen_photo" style="float: right;">
     <label class="control-label" for="sportsmen_photo">Фотография спортсмена</label>
-    <?php if(isset($model->relPhoto)) : ?>
-        <img width="190" height="265" title="Фото спортсмена" alt="Фото спортсмена" src="<?= Yii::app()->getUploadImageUrl($model->relPhoto->filename)?>"/>
-    <?php endif ?>
+    <?php //if(isset($model->relPhoto)) : ?>
+        <img width="190" height="265" title="Фото спортсмена" alt="Фото спортсмена" src="<?= Yii::app()->getUploadImageUrl($url)?>"/>
+    <?php //endif ?>
 </div>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView', array(

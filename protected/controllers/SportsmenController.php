@@ -8,6 +8,24 @@ class SportsmenController extends ParticipantController
     
     public $layout='//layouts/column2';
     
+    /**
+    * Внешние экшены
+    * 
+    */
+    public function actions()
+    {
+        // return external action classes, e.g.:
+        return array(
+            //// альтерн. вариант загрузки фоток
+            //'saveImageAttachment' => 'ext.imageAttachment.ImageAttachmentAction',
+        );
+    }
+    
+    
+    /**
+    * Фильтры
+    * 
+    */
     public function filters()
     {
         return array(
@@ -137,13 +155,6 @@ class SportsmenController extends ParticipantController
     // РЕДАКТИРОВАТЬ спортсмена ---------------------------------------------------------------------
     public function actionUpdate($id)
     {
-/*DebugBreak();
-Yii::import('application.extensions.image.Image');        
-$image = Yii::app()->image->load('images/test.jpg');
-$image->resize(400, 100)->rotate(-45)->quality(75)->sharpen(20);
-$image->save();*/
-
-        
         $urlRequest = Yii::app()->request->hostInfo.Yii::app()->request->url; //полная ссылка текущего запроса
         
         $urlReferrer = Yii::app()->user->getState('urlReferrerUpdate');  //прочитать пред.ссылку из сессии
@@ -385,31 +396,6 @@ $image->save();*/
         }
     }
 
-    // Uncomment the following methods and override them if needed
-    /*
-    public function filters()
-    {
-        // return the filter configuration for this controller, e.g.:
-        return array(
-            'inlineFilterName',
-            array(
-                'class'=>'path.to.FilterClass',
-                'propertyName'=>'propertyValue',
-            ),
-        );
-    }
-    */
-    
-    
-    public function actions()
-    {
-        // return external action classes, e.g.:
-        return array(
-            //'saveImageAttachment' => 'ext.imageAttachment.ImageAttachmentAction',
-        );
-    }
-    
-    
     
     /**
     * put your comment there...

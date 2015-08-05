@@ -68,16 +68,6 @@ return array(
             'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		
-        
-/*
-'rules'=>array(
-'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>'
-'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-'<controller:\w+>/<id:\d+>/<action:\w+>'=>'<controller>/<action>',
-'<controller:\w+>'=>'<controller>/index',
-'<controller>'=>'<controller>/index', 
-*/        
 		'urlManager'=>array(
 			'urlFormat'=>'path',
             'showScriptName'=>false,

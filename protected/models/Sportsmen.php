@@ -143,32 +143,8 @@ class Sportsmen extends CActiveRecord
     public function behaviors()
     {
         return array(
-            // Classname => path to Class
+            // поведение для логирования
             'ActiveRecordLogableBehavior'=>'application.behaviors.ActiveRecordLogableBehavior',
-            // 
-            /*'preview' => array(
-                'class' => 'ext.imageAttachment.ImageAttachmentBehavior',
-                // size for image preview in widget
-                'previewHeight' => 200,
-                'previewWidth' => 300,
-                // extension for image saving, can be also tiff, png or gif
-                'extension' => 'jpg',
-                // folder to store images
-                //'directory' => Yii::getPathOfAlias('webroot').'/images/productTheme/preview',
-                'directory' => Yii::getPathOfAlias('webroot').'/uploads',
-                // url for images folder
-                //'url' => Yii::app()->request->baseUrl . '/images/productTheme/preview',
-                'url' => Yii::app()->request->baseUrl . '/uploads',
-                // image versions
-                'versions' => array(
-                    'small' => array(
-                        'resize' => array(200, null),
-                    ),
-                    'medium' => array(
-                        'resize' => array(800, null),
-                    )
-                )
-            )*/            
         );
     }    
 	/**

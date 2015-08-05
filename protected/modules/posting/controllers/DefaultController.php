@@ -2,7 +2,7 @@
 Yii::app()->bootstrap->register();
 
 //подключить класс для работы с VKontakte
-require_once('VK.php');
+/////////require_once('VK.php');
 
 class DefaultController extends Controller
 {

@@ -69,6 +69,15 @@ return array(
 		),
 		// uncomment the following to enable URLs in path-format
 		
+        
+/*
+'rules'=>array(
+'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>'
+'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+'<controller:\w+>/<id:\d+>/<action:\w+>'=>'<controller>/<action>',
+'<controller:\w+>'=>'<controller>/index',
+'<controller>'=>'<controller>/index', 
+*/        
 		'urlManager'=>array(
 			'urlFormat'=>'path',
             'showScriptName'=>false,
@@ -78,6 +87,8 @@ return array(
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
                 'posts'=>'posting/default/index',
+                'postupload'=>'posting/default/uploadportrait',
+                'posting/<controller:\w+>/<action:\w+>'=>'posting/<controller>/<action>',
                 
                 //'<path:[a-z0-9\(\)\"\'_\+-]+>'=>'competition/invite/<path>',
                 '<path:\w+>'=>'competition/invite/path/<path>',
@@ -185,6 +196,15 @@ return array(
             'datetimeFormat' => 'd.m.Y h:i:s',
         ),
 
+        /*'image'=>array(
+            'class'=>'application.extensions.image.CImageComponent',
+            // GD or ImageMagick
+            'driver'=>'GD',
+            // ImageMagick setup path
+            'params'=>array(
+                'directory'=>'./uploads/',
+            ),
+        ),*/        
     ),
 
 	// application-level parameters that can be accessed

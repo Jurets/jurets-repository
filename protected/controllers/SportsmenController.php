@@ -34,7 +34,7 @@ class SportsmenController extends ParticipantController
                 'users'=>array('*'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('create','update','delete'),
+                'actions'=>array('create','update','delete','saveImageAttachment'),
                 'users'=>array('@'),
                 //'roles'=>array('admin','manager'),
             ),
@@ -135,7 +135,15 @@ class SportsmenController extends ParticipantController
     }    
     
     // РЕДАКТИРОВАТЬ спортсмена ---------------------------------------------------------------------
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
+/*DebugBreak();
+Yii::import('application.extensions.image.Image');        
+$image = Yii::app()->image->load('images/test.jpg');
+$image->resize(400, 100)->rotate(-45)->quality(75)->sharpen(20);
+$image->save();*/
+
+        
         $urlRequest = Yii::app()->request->hostInfo.Yii::app()->request->url; //полная ссылка текущего запроса
         
         $urlReferrer = Yii::app()->user->getState('urlReferrerUpdate');  //прочитать пред.ссылку из сессии
@@ -158,28 +166,34 @@ class SportsmenController extends ParticipantController
         if(isset($_POST['Sportsmen']))
         {
             $flgDelPhoto = false;
-            $model->attributes=$_POST['Sportsmen'];
-            if (isset($_POST['PostFiles'])) {
-               foreach($_POST['PostFiles'] as $varName=>$value) { 
+            $model->attributes = $_POST['Sportsmen'];
+
+            // Установить фото спортсмена (или удалить)
+            if (isset($model->relPhoto) && !isset($_POST['PostFiles'])) {
+                $photo = $model->relPhoto;
+                $model->photoid = null;
+                $flgDelPhoto = true;
+            } else {
+                $photo = null;
+                foreach($_POST['PostFiles'] as $varName=>$value) { 
                   if (strpos($varName,'photoIds') !== false) {
-                        if (isset($model->relPhoto)) {   //если есть текущее фото -
-                            $photo = $model->relPhoto;  //запомнить (для послед-го удаления)
-                            $flgDelPhoto = true;
-                        }
                         $model->photoid = $value;
                   }
                }
-            } 
+            }
             
+            // Проверить модель и выполнить обработку
             if ($model->validate()) {
                 //стереть сессию урла возврата
                 Yii::app()->user->setState('urlReferrerUpdate', null);
                 //стартовать транзакцию и сохранить инфо
                 $transaction = Yii::app()->db->beginTransaction();                         
                 try {
-                    if ($model->save()) {
-                        if ($flgDelPhoto && isset($photo))
-                            $photo->delete();
+                    if ($model->save()) { //успешное сохранение
+                        // проверить удаленять ли фото
+                        if ($flgDelPhoto && isset($photo)) {
+                            $photo->delete(); //удалить объект + файл картинки
+                        }
                     } else {
                         throw new Exception(sprintf('Ошибка при сохранении спортсмена %d!', $model->SpID));  
                     }
@@ -187,7 +201,6 @@ class SportsmenController extends ParticipantController
                     $success = true;
                 } catch (Exception $e){
                     $transaction->rollBack();
-                    //PJournalRecord::log($e->getMessage());
                     $success = false;
                     $error = $e->getMessage();
                 }       
@@ -256,17 +269,12 @@ class SportsmenController extends ParticipantController
         //если пришли данные из формы
         if (isset($_POST['Sportsmen']))        
         {
-            //$flgDelPhoto = false;
             $model->attributes = $_POST['Sportsmen'];
             $model->UserID = Yii::app()->userid;
-
+            // обработать фото - если было загружено в форму
             if (isset($_POST['PostFiles'])) {
                foreach($_POST['PostFiles'] as $varName=>$value) { 
                   if (strpos($varName,'photoIds') !== false) {
-                        //if (isset($model->relPhoto)) {   //если есть текущее фото -
-                        //    $photo = $model->relPhoto;  //запомнить (для послед-го удаления)
-                        //    $flgDelPhoto = true;
-                        //}
                         $model->photoid = $value;
                   }
                }
@@ -390,22 +398,23 @@ class SportsmenController extends ParticipantController
             ),
         );
     }
-
+    */
+    
+    
     public function actions()
     {
         // return external action classes, e.g.:
         return array(
-            'action1'=>'path.to.ActionClass',
-            'action2'=>array(
-                'class'=>'path.to.AnotherActionClass',
-                'propertyName'=>'propertyValue',
-            ),
+            //'saveImageAttachment' => 'ext.imageAttachment.ImageAttachmentAction',
         );
     }
+    
+    
+    
+    /**
+    * put your comment there...
+    * 
     */
-    
-    
-    
     public function actionTest() {
         $this->render('test');
     }

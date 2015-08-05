@@ -171,9 +171,9 @@ $this->widget('ext.select2.ESelect2',array(
     //control urls (if not set): set to "postid"-mode
     //if (!isset($url_title))
     //    $url_title = yii::app()->createUrl('/posting/default/loadimages',array('id'=>$postId,'title'=>true));
-    if (!isset($url_list))
-        $url_list = yii::app()->createUrl('/posting/default/loadportrait', array('id'=>$model->SpID));
-        //$url_list = yii::app()->createUrl('/posting/default/loadimages', array('id'=>$postId,'title'=>false));
+    if (!isset($url_list)) {
+        $url_list = yii::app()->createUrl('/posting/default/loadportrait', array('id'=>$model->SpID,'title'=>false));
+    }
 ?>
 
 <hr>
@@ -182,7 +182,7 @@ $this->widget('ext.select2.ESelect2',array(
 <?php
     //widget for photo uploading
     Yii::app()->controller->widget('application.widgets.PUploadHorizontal',array(
-       'url' => Yii::app()->createUrl("/posting/default/uploadportrait"),
+       'url' => Yii::app()->createUrl("/postupload"),
        'type' => PUploadHorizontal::TYPE_XUPLOAD,
        'form' => $form, 
        'model' => $uploadModel,
@@ -197,6 +197,14 @@ $this->widget('ext.select2.ESelect2',array(
        'storedDataUrl'=>$url_list, //url for ajax upload of images (title=false - list of photos)   
        'htmlOptions' => array('id'=>'ufiles'),
     ));    
+    
+    
+////// альтернвтивный новый вариант виджета
+    /*$this->widget('ext.imageAttachment.ImageAttachmentWidget', array(
+        'model' => $model,
+        'behaviorName' => 'preview',
+        'apiRoute' => 'sportsmen/saveImageAttachment',
+    ));*/    
     
     
 ?>

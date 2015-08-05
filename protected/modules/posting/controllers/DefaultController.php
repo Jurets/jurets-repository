@@ -235,6 +235,7 @@ class DefaultController extends Controller
                         "url" => Yii::app()->getUploadImageUrl($photoData->filename), //$publicPath.basename($photoData->filename), //
                         "photo_id" =>$photoData->photo_id,
                         "thumbnail_url" => Yii::app()->getUploadImageUrl($photoData->filename), //$publicPath.basename($photoData->thumb_filename), //
+                        //"delete_url" => $this->createUrl( "/posting/default/deletefile",array("id"=>$photoData->photo_id)),
                         "delete_url" => $this->createUrl( "/posting/default/deletefile",array("id"=>$photoData->photo_id)),
                         "delete_type" => "POST"
                     ); 
@@ -266,12 +267,12 @@ class DefaultController extends Controller
 
     //action for delete photo from gallery
     public function actionDeleteFile($id) {
-        header( 'Vary: Accept' );
+        /*header( 'Vary: Accept' );
         if( isset( $_SERVER['HTTP_ACCEPT'] ) && (strpos( $_SERVER['HTTP_ACCEPT'], 'application/json' ) !== false) ) {
             header( 'Content-type: application/json' );
         } else {
             header( 'Content-type: text/plain' );
-        }
+        }*/
         //DebugBreak();
         //$photo = Photo::model()->findByPk($id);
         //$success = $photo->delete();
@@ -286,7 +287,7 @@ class DefaultController extends Controller
         }
 
       //загрузка ландшафтных картинок (портреты)
-        public function  actionUploadPortrait() { //DebugBreak();
+        public function  actionUploadPortrait() {
             $this->doUploads(Yii::app()->params['sizePortrait']);
         }
         
@@ -299,7 +300,7 @@ class DefaultController extends Controller
                 header( 'Content-type: text/plain' );
             }
             $this->init( );
-            DebugBreak();
+            
             $model = new PPhotoForm;
            
             $metrics = new stdClass();

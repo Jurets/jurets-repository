@@ -191,7 +191,7 @@ $this->widget('ext.select2.ESelect2',array(
        'downloadTemplate' =>'template-download2',
        'attribute' => 'file',
        'multiple' => false,
-       'autoUpload' => false,
+       'autoUpload' => true,
        'formView' =>'application.modules.posting.views.default.personphoto',
        'loadStoredData'=>$isPhotosPreloaded,  //flag - if need to load list of photos
        'storedDataUrl'=>$url_list, //url for ajax upload of images (title=false - list of photos)   

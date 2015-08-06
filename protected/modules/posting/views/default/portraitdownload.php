@@ -9,7 +9,9 @@
             <td class="error" colspan="2"><span class="label label-important">{%=locale.fileupload.error%}</span> {%=locale.fileupload.errors[file.error] || file.error%}</td>
         {% } else { %}
             <td class="preview">{% if (file.thumbnail_url) { %}
-                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}"><img src="{%=file.thumbnail_url%}" width='265' height='190'></a>
+                <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery" download="{%=file.name%}">
+                    <img src="{%=file.thumbnail_url%}" width='<?=Yii::app()->params['sizePortrait']['thumb_sizeW']?>' height='<?=Yii::app()->params['sizePortrait']['thumb_sizeH']?>'>
+                </a>
                 <input type="hidden" id="PostFiles_photoIds_{%=file.photo_id%}" name="PostFiles[photoIds_{%=file.photo_id%}]" value="{%=file.photo_id%}" >
      {% } %}</td>
             <!--<td class="name">

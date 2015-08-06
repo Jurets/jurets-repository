@@ -36,7 +36,7 @@ class DefaultController extends Controller
 				'users'=>array('*'),
 			),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('upload','uploads','uploadportrait','delete', 'deletefile'),
+                'actions'=>array('upload','uploads','uploadportrait','delete', 'deletefile', 'eraseimage'),
                 'users'=>array('@'),
             ),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -236,7 +236,7 @@ class DefaultController extends Controller
                         "photo_id" =>$photoData->photo_id,
                         "thumbnail_url" => Yii::app()->getUploadImageUrl($photoData->filename), //$publicPath.basename($photoData->thumb_filename), //
                         //"delete_url" => $this->createUrl( "/posting/default/deletefile",array("id"=>$photoData->photo_id)),
-                        "delete_url" => $this->createUrl( "/posting/default/deletefile",array("id"=>$photoData->photo_id)),
+                        "delete_url" => $this->createUrl( "/posting/default/eraseimage",array("id"=>$photoData->photo_id)),
                         "delete_type" => "POST"
                     ); 
         //}
@@ -273,11 +273,16 @@ class DefaultController extends Controller
         } else {
             header( 'Content-type: text/plain' );
         }*/
-        //DebugBreak();
-        //$photo = Photo::model()->findByPk($id);
-        //$success = $photo->delete();
-        $success = true;
         
+        $photo = Photo::model()->findByPk($id);
+        $success = $photo->delete();
+        //$success = true;
+        echo json_encode( $success );       
+    }
+        
+    //action for erase (actually nothing to do)
+    public function actionEraseImage($id) {
+        $success = true;
         echo json_encode( $success );       
     }
         
@@ -326,7 +331,7 @@ class DefaultController extends Controller
                         "url" => Yii::app()->getUploadImageUrl($model->ImageName), //урл для картинки
                         "photo_id" =>$model->photoId,
                         "thumbnail_url" => Yii::app()->getUploadImageUrl($model->ThumbnailFilename), //урл для иконки
-                        "delete_url" => $this->createUrl("/posting/deletefile", array("id" => $photo->photo_id)), //урл удаления
+                        "delete_url" => $this->createUrl("/posting/default/deletefile", array("id" => $photo->photo_id)), //урл удаления
                         "delete_type" => "POST"     //тип: пост
                     ) ) );
             } else {

@@ -178,19 +178,16 @@ class SportsmenController extends ParticipantController
         {
             $flgDelPhoto = false;
             $model->attributes = $_POST['Sportsmen'];
-
-            // Установить фото спортсмена (или удалить)
-            if (isset($model->relPhoto) && !isset($_POST['PostFiles'])) {
-                $photo = $model->relPhoto;
+            
+            // --- Установить фото спортсмена / заменить / удалить
+            // вначале определяем - удалять ли старый фото и новый ИД фото 
+            $newPhotoId = isset($_POST['PostFiles']) ? array_shift($_POST['PostFiles']) : false;
+            $photoToDelete = (isset($model->relPhoto) && (($newPhotoId == false) || ($newPhotoId <> $model->relPhoto->photo_id))) ? $model->relPhoto : null;
+            // затем ставим новый ИД фото, если есть новое фото, или обнуляем, если фото удалено
+            if ($newPhotoId) {
+                $model->photoid = $newPhotoId;
+            } else if ($photoToDelete) {
                 $model->photoid = null;
-                $flgDelPhoto = true;
-            } else {
-                $photo = null;
-                foreach($_POST['PostFiles'] as $varName=>$value) { 
-                  if (strpos($varName,'photoIds') !== false) {
-                        $model->photoid = $value;
-                  }
-               }
             }
             
             // Проверить модель и выполнить обработку
@@ -202,8 +199,8 @@ class SportsmenController extends ParticipantController
                 try {
                     if ($model->save()) { //успешное сохранение
                         // проверить удаленять ли фото
-                        if ($flgDelPhoto && isset($photo)) {
-                            $photo->delete(); //удалить объект + файл картинки
+                        if ($photoToDelete) {
+                            $photoToDelete->delete(); //удалить объект + файл картинки
                         }
                     } else {
                         throw new Exception(sprintf('Ошибка при сохранении спортсмена %d!', $model->SpID));  

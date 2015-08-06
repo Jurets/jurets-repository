@@ -203,15 +203,17 @@ class DefaultController extends Controller
     }
         
     //Load Portait for Sportsmen model
-    public function actionLoadPortrait($id) {
+    public function actionLoadPortrait($photoid) {
+    //public function actionLoadPortrait($id) {
         //DebugBreak();
         //$photo = new TitlePhoto;
         //$addPhoto = empty($title);
         //$photos = $photo->getPhotoData($id, $addPhoto); //get photos by postid
         
-        $sportsmen = Sportsmen::model()->findByPk($id);
-        if (isset($sportsmen)) {
-            $photoid = $sportsmen->photoid;
+        //$sportsmen = Sportsmen::model()->findByPk($id);
+        //if (isset($sportsmen))
+        {
+            //$photoid = $sportsmen->photoid;
             $photo = Photo::model()->findByPk($photoid);
             //$photos[] = $photo;
         }

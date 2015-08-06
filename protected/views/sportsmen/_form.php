@@ -172,7 +172,8 @@ $this->widget('ext.select2.ESelect2',array(
     //if (!isset($url_title))
     //    $url_title = yii::app()->createUrl('/posting/default/loadimages',array('id'=>$postId,'title'=>true));
     if (!isset($url_list)) {
-        $url_list = yii::app()->createUrl('/posting/default/loadportrait', array('id'=>$model->SpID,'title'=>false));
+        //$url_list = yii::app()->createUrl('/posting/default/loadportrait', array('id'=>$model->SpID,'title'=>false));
+        $url_list = yii::app()->createUrl('/posting/default/loadportrait', array('photoid'=>$model->photoid));
     }
 ?>
 

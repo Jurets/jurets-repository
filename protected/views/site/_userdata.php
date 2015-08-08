@@ -9,6 +9,7 @@
     $attributes = array(
         'lastname', 
         'firstname', 
+        'RoleID', 
         'federation', 
         'post', 
         'country', 

@@ -159,7 +159,8 @@ class Users extends CActiveRecord
 		$criteria->compare('CommandID',$this->CommandID);
 		//$criteria->compare('UserFIO',$this->UserFIO,true);
 		$criteria->compare('Email',$this->Email,true);
-		$criteria->compare('Active',$this->Active);
+        $criteria->compare('Active',$this->Active);
+		$criteria->compare('RoleID',$this->RoleID);
 //        DebugBreak();
         //$criteria->order = 'UserID DESC';
                         

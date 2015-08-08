@@ -32,6 +32,26 @@ if ($isExtendRole) */
 ?>
 
 <h1><?php echo Yii::t('fullnames', 'Users').': '.Yii::t('controls', 'List') ?></h1>
+<div style="position: relative;">
+<?php
+        /*$this->widget('bootstrap.widgets.TbButton', array(
+        'label'=>'EXAMPLE',
+        'items'=>array(
+            // Important: you need to specify url as 'controller/action',
+            // not just as 'controller' even if default acion is used.
+            array('label'=>'Home', 'url'=>array('site/index')),
+            // 'Products' menu item will be selected no matter which tag parameter value is since it's not specified.
+            array('label'=>'Products', 'url'=>array('product/index')), 
+            array('label'=>'Login', 'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest),
+        ),
+    ));*/
+
+?>
+</div>
+
+<div id="forAjaxRefresh"></div>
+ 
+<?php // echo CHtml::ajaxLink('clickMe', array('ajax'), array('update'=>'#forAjaxRefresh'));?>
 
 <?php 
 
@@ -53,6 +73,10 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'filterInputOptions'=>array('style'=>'width: 180px;'),
         ),
         array(
+            'name'=>'RoleID',
+            'filterInputOptions'=>array('style'=>'width: 80px;'),
+        ),
+        array(
             'name'=>'searchUserFio',
             'value'=>'$data->UserFio',
             'filterInputOptions'=>array('style'=>'width: 180px;'),
@@ -70,7 +94,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'name'=>'created',
             'value'=>'strtotime($data->created)', 
             'type'=>'date',
-            'filterInputOptions'=>array('style'=>'width: 100px;'),
+            'filterInputOptions'=>array('style'=>'width: 80px;'),
         ),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',

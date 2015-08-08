@@ -74,7 +74,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name'=>'RoleID',
-            'filterInputOptions'=>array('style'=>'width: 60px;'),
+            'filterInputOptions'=>array('style'=>'width: 50px;'),
         ),
         array(
             'name'=>'searchUserFio',
@@ -94,7 +94,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
             'name'=>'created',
             'value'=>'strtotime($data->created)', 
             'type'=>'date',
-            'filterInputOptions'=>array('style'=>'width: 80px;'),
+            'filterInputOptions'=>array('style'=>'width: 60px;'),
         ),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',

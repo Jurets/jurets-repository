@@ -74,7 +74,7 @@ $this->widget('bootstrap.widgets.TbGridView', array(
         ),
         array(
             'name'=>'RoleID',
-            'filterInputOptions'=>array('style'=>'width: 80px;'),
+            'filterInputOptions'=>array('style'=>'width: 60px;'),
         ),
         array(
             'name'=>'searchUserFio',

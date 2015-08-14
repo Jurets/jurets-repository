@@ -218,6 +218,7 @@ class SiteController extends Controller
         if( !empty($file) ) {
             $message->attach(Swift_Attachment::fromPath($_SERVER['DOCUMENT_ROOT'].$file));
         }
-        return Yii::app()->mail->send($message);
+        $result = Yii::app()->mail->send($message);
+        var_dump($result);
     }
 }

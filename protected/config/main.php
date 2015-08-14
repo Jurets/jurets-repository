@@ -1,5 +1,9 @@
 <?php
 
+// check additional params
+$addparams = include('addparams.php');
+$mailparams = isset($addparams['mailparams']) ? $addparams['mailparams'] : $params['mailparams'];
+
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 
@@ -154,7 +158,7 @@ return array(
             //'responsiveCss' => true,
         ),
         
-        'mailer'=>array(
+        /*'mailer'=>array(
             'class'=>'ext.mail.Mailer',
             'backend'=>'smtp',
             'backendParams'=>array(
@@ -168,12 +172,12 @@ return array(
             'mimeParams'=>array(
                 //...
             ),
-        ),
+        ),*/
         
         'mail' => array(
             'class' => 'ext.yii-mail.YiiMail',
-            'transportType' => $params['mail.transportType'],
-            'transportOptions' => $params['mail.transportOptions'],
+            'transportType' => $mailparams['mail.transportType'],
+            'transportOptions' => $mailparams['mail.transportOptions'],
             'viewPath' => 'application.views.mail',
             'logging' => true,
             'dryRun' => false,

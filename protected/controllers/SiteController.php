@@ -198,4 +198,26 @@ class SiteController extends Controller
         $this->redirect($urlRedirect);
 	}
     
+    /**
+    * тестовая отправка почты
+    * 
+    */
+    public function actionTestmail($email = 'jurets75@gmail.com') {
+        $message = new YiiMailMessage;
+        $message->subject = 'тестовая отправка почты';
+        $message->view = 'hello';
+        $message->setBody(array(), 'text/html');
+        $message->setTo(array($email));
+        //$message->setFrom(array(Yii::app()->params['adminEmail'] => 'Fnetwork.ru'));
+        Yii::log(Yii::app()->params['adminEmail'], 'trace', 'mail');
+        var_dump($email);
+        var_dump(Yii::app()->params['adminEmail']);
+        //Yii::app()->end();
+        $message->from = ($from = Yii::app()->params['adminEmail']) ? $from : 'noreply@jwms.pro';
+        //Yii::log($message->from, 'trace', 'mail');
+        if( !empty($file) ) {
+            $message->attach(Swift_Attachment::fromPath($_SERVER['DOCUMENT_ROOT'].$file));
+        }
+        return Yii::app()->mail->send($message);
+    }
 }

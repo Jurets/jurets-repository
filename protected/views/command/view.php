@@ -126,6 +126,33 @@
     // --------- содержимое вкладки "представитель" ----------
     $delegateContent = CHtml::tag('h3', array(), 'Сведения о представителе', true);
     $delegateContent .= $this->renderPartial('application.views.site._userdata', array('user'=>$model->relProposal->relUsers, 'isAccess'=>$isAccess), true);
+
+    // --------- содержимое вкладки "Галерея" ----------
+    /*$galleryContent = $this->widget('bootstrap.widgets.TbThumbnails', array(
+        'commandid'=>$model->CommandID,
+        'dataProvider'=>$dataSportsmenList,
+        'modelSportsmen'=>$modelSportsmen,
+    ), true);*/
+    
+    $galleryContent = '
+    <ul class="thumbnails">
+      <li class="span4">
+        <a href="#" class="thumbnail">
+          <img src="/images/logo/aif_logo.jpg" alt="">
+        </a>
+      </li>
+      <li class="span4">
+        <a href="#" class="thumbnail">
+          <img src="holder.js/300x200" alt="">
+        </a>
+      </li>
+    </ul>';
+     /*$this->renderPartial('/sportsmen/_gallery', array(
+        'commandid'=>$model->CommandID,
+        'dataProvider'=>$dataSportsmenList,
+        'modelSportsmen'=>$modelSportsmen,
+    ), true);*/
+
       
     //ТабВью: показать на страничках раздельно спортсменов и тренеров
     $this->widget('bootstrap.widgets.TbTabs', array(
@@ -138,6 +165,7 @@
             array('label'=>Yii::t('fullnames', 'Coaches'), 'content'=>$coachContent, 'active'=>($tabnum == 2)),
             array('label'=>Yii::t('fullnames', 'Overview'), 'content'=>$infoContent, 'active'=>($tabnum == 3)),
             array('label'=>Yii::t('fullnames', 'Delegate'), 'content'=>$delegateContent, 'active'=>($tabnum == 4)),
+            array('label'=>Yii::t('fullnames', 'Gallery'), 'content'=>$galleryContent, 'active'=>($tabnum == 5)),
         ),
     ));
 

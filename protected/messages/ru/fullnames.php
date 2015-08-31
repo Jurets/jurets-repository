@@ -25,6 +25,7 @@ return array(
     ' sportsmen' => 'спортсмена',
     
     'Delegate' => 'Делегат',
+    'Gallery' => 'Галерея',
 
     'Participants' => 'Участники',
     'Sportsmens' => 'Спортсмены',

@@ -88,6 +88,7 @@ class CommandController extends Controller //ParticipantController
             'relWeightcategory' => array('select'=>array('relWeightcategory.WeightFrom', 'relWeightcategory.WeightTo')),
             'relCoach' => array('select'=>'relCoach.CoachName'),
             'relCoachFirst' => array('select'=>'relCoachFirst.CoachName as Coachname1'),
+            'relPhoto' => array('select'=>'relPhoto.filename'),
         );
         $criteria->addCondition(array('S.status = :status', 'S.commandid = :commandid'));
         $criteria->params = array(':commandid'=>$model->CommandID, ':status'=>1);

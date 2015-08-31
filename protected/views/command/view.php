@@ -128,30 +128,11 @@
     $delegateContent .= $this->renderPartial('application.views.site._userdata', array('user'=>$model->relProposal->relUsers, 'isAccess'=>$isAccess), true);
 
     // --------- содержимое вкладки "Галерея" ----------
-    /*$galleryContent = $this->widget('bootstrap.widgets.TbThumbnails', array(
+    $galleryContent = $this->renderPartial('/sportsmen/_gallery', array(
         'commandid'=>$model->CommandID,
         'dataProvider'=>$dataSportsmenList,
         'modelSportsmen'=>$modelSportsmen,
-    ), true);*/
-    
-    $galleryContent = '
-    <ul class="thumbnails">
-      <li class="span4">
-        <a href="#" class="thumbnail">
-          <img src="/images/logo/aif_logo.jpg" alt="">
-        </a>
-      </li>
-      <li class="span4">
-        <a href="#" class="thumbnail">
-          <img src="holder.js/300x200" alt="">
-        </a>
-      </li>
-    </ul>';
-     /*$this->renderPartial('/sportsmen/_gallery', array(
-        'commandid'=>$model->CommandID,
-        'dataProvider'=>$dataSportsmenList,
-        'modelSportsmen'=>$modelSportsmen,
-    ), true);*/
+    ), true);
 
       
     //ТабВью: показать на страничках раздельно спортсменов и тренеров

@@ -3,8 +3,7 @@
 $competition = Competition::getModel();
 
 //настроечные вычисления
-$myCommandID = Yii::app()->user->getCommandid(); //ИД Моей команды
-$isMyCommand = !Yii::app()->user->isGuest && ($commandid == $myCommandID);
+$isMyCommand = Yii::app()->user->isMyCommand($commandid);
 $isAccess = Yii::app()->user->isExtendRole() || $isMyCommand;
 
 $btn_update = array (
@@ -71,6 +70,7 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
             'header'=>Yii::t('fullnames', 'BirthYear'),
             'filter'=>false,
             'value'=>'date("Y", strtotime($data->BirthDate))',
+            'headerHtmlOptions'=>array('style'=>'width: 38px;'),
         ), 
         array(
             'name'=>'searchAgeName',
@@ -89,9 +89,11 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
         array(
             'header'=>Yii::t('fullnames', 'Weight'),
             'name'=>'WeightNameFull',
+            'type'=>'raw',
             'filter'=>false,
             'value'=>'$data->WeightNameShort',
-            'visible'=>!$competition->isCamp,
+            ////////////'value'=>'$data->getWeightSelectWidget()',
+            'visible'=>!$competition->isCamp,  //видимый если тип соревнования "не сборы"
         ),
         array(
             'header'=>Yii::t('fullnames', 'Coach'),
@@ -148,3 +150,25 @@ $this->widget('bootstrap.widgets.TbGridView', array(
 ));
     
 ?>
+
+<script type="text/javascript">
+       jQuery("body").on("click", "click", function(e) {
+            act_object = $(this).parent().prev("td").children("select:first");
+            act_type = act_object.attr("value");
+            act_name = act_object.children("option[value=" + act_type + "]").text();
+            isConfirmed = confirm("Активировать пользователя?\n" + act_name);
+            if (isConfirmed) {
+                jQuery.ajax({
+                    type: "POST",
+                    url: $(this).attr("href"),
+                    data: "type=" + act_type,
+                    dataType: "json",
+                    success: function(data) {
+                        $.fn.yiiGridView.update("users-grid");
+                    },
+                    cache: false
+                });
+            }
+            return false;}
+       );    
+</script>

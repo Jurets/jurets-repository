@@ -99,7 +99,7 @@ class Agecategory extends CActiveRecord
 	}
 
     /**
-    * после сохранения объекта Соревнования
+    * после сохранения объекта
     */
     public function afterSave() {
         $_cacheID = 'cacheAgeList' . Yii::app()->competitionId;

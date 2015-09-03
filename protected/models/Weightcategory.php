@@ -203,6 +203,14 @@ class Weightcategory extends CActiveRecord
 		);
 	}
 
+    /**
+    * после сохранения объекта
+    */
+    public function afterSave() {
+        $_cacheID = 'cacheAgeList' . Yii::app()->competitionId;
+        Yii::app()->cache->delete($_cacheID);  //очистить кэш
+    }
+    
 	/**
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.

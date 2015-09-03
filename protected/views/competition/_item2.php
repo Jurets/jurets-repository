@@ -18,7 +18,7 @@ $logo_file = Yii::app()->basePath . '/../images/logo/' . $data->path . '.jpg';
 if (is_file($logo_file)) {
     $logo = Yii::app()->baseUrl . '/images/logo/' . $data->path . '.jpg';
 } else {
-    $logo = Yii::app()->baseUrl . '/images/tkd_57x60.png';
+    $logo = Yii::app()->baseUrl . '/images/tkd_pic60x60.png';
 }
     
 ?>

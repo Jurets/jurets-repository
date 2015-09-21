@@ -76,14 +76,18 @@ return array(
 			'urlFormat'=>'path',
             'showScriptName'=>false,
 			'rules'=>array(
-				'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
-                //'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                // специальные правила
+                'archive'=>'competition/archive',
                 'posts'=>'posting/default/index',
                 'postupload'=>'posting/default/uploadportrait',
                 'posting/<controller:\w+>/<action:\w+>'=>'posting/<controller>/<action>',
-                
+				'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
+                // сокращающие правила
+                '<controller:\w+>/<id:\d+>'=>'<controller>/view',  
+                // стандартные (дефолтные)
+				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+                '<controller:\w+>'=>'<controller>/index',
                 //'<path:[a-z0-9\(\)\"\'_\+-]+>'=>'competition/invite/<path>',
                 '<path:\w+>'=>'competition/invite/path/<path>',
                 '<path:\w+>/<controller:\w+>/<action:\w+>'=>'<controller>/<action>/path/<path>',

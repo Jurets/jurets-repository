@@ -78,6 +78,7 @@ return array(
 			'rules'=>array(
                 // специальные правила
                 'archive'=>'competition/archive',
+                'archiveold'=>'competition/archiveold',
                 'posts'=>'posting/default/index',
                 'postupload'=>'posting/default/uploadportrait',
                 'posting/<controller:\w+>/<action:\w+>'=>'posting/<controller>/<action>',

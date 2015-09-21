@@ -185,7 +185,7 @@ class CompetitionController extends Controller
         $competition = Competition::getModel();
         $this->render('application.views.competition.invitation',array(
             'competition'=>$competition,
-            'dataProvider'=>$competition->search(array('archive')), // archive
+            'dataProvider'=>(new Competition())->search(array('archive', 'subdomain')), // archive
         ));
         //$this->render('archive');
     }

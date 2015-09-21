@@ -106,6 +106,9 @@ class Competition extends CActiveRecord
                   'condition'=>'competition.isfiling <> :flag',
                   'params'=>array(':flag'=>self::FLG_ARCH), 
             ),
+            'subdomain' => array(
+                  'condition'=>'COALESCE(competition.subdomain, "") <> ""',
+            ),
         );
     }
     
@@ -174,7 +177,7 @@ class Competition extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
             'pagination'=>array(
-                'pageSize'=>0, //5,
+                'pageSize'=>20, //5,
             ),
 		));
 	}

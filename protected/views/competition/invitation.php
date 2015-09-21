@@ -13,12 +13,17 @@
 <?php 
     //echo $model->invitation;  
     //echo $model->path;  
-    $competition = Competition::getModel();
+    if (!isset($competition)) {
+        $competition = Competition::getModel();
+    }
     
     if ($competition->type == Competition::TYPE_MAIN)
     {
         $competition = New Competition();
-        $dataProvider = $competition->search();
+        // создать провайдер данных, если его он не передан из контроллера
+        if (!isset($dataProvider)) {
+            $dataProvider = $competition->search();
+        }
         
         // вывод левого сайд-бара
         $this->widget('application.widgets.sidebar.SideBar'); ?>

@@ -46,7 +46,7 @@ if (is_file($logo_file)) {
         switch ($data->isfiling) {
             case Competition::FLG_ACTIVE : $label = 'заявки принимаются'; $type = 'success'; break;
             case Competition::FLG_NONACTIVE : $label = 'ожидается открытие'; $type = 'warning'; break;
-            case Competition::FLG_ARCH : $label = 'неактивно'; $type = 'important'; break;
+            case Competition::FLG_ARCH : $label = 'архив'; $type = 'important'; break;
         }
         $this->widget('bootstrap.widgets.TbLabel', array(
             'type'=>$type, // 'success', 'warning', 'important', 'info' or 'inverse'

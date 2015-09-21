@@ -182,8 +182,14 @@ class CompetitionController extends Controller
     * @param mixed $id
     */
     public function actionArchive() {
-        $this->render('archive');
+        $competition = Competition::getModel();
+        $this->render('application.views.competition.invitation',array(
+            'competition'=>$competition,
+            'dataProvider'=>$competition->search(array('archive')), // archive
+        ));
+        //$this->render('archive');
     }
+
     
     // общая функция
     private function updateContent($id, $page_name) {

@@ -51,7 +51,7 @@ class SiteController extends Controller
         
         $model = /*!empty($path) ? Competition::getModelPath($path) : */Competition::getModel();
         $this->render('application.views.competition.invitation',array(
-            'model'=>$model,
+            'competition' => $model,
             //'dataStat'=>$this->getCompetitionStat(), //$dataProvider,
         ));
         

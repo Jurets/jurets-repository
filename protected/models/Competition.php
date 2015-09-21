@@ -141,7 +141,7 @@ class Competition extends CActiveRecord
 	 * Retrieves a list of models based on the current search/filter conditions.
 	 * @return CActiveDataProvider the data provider that can return the models based on the search/filter conditions.
 	 */
-	public function search()
+	public function search($scopes = null)
 	{
 		// Warning: Please modify the following code to remove attributes that
 		// should not be searched.
@@ -155,7 +155,11 @@ class Competition extends CActiveRecord
 		$criteria->compare('enddate',$this->enddate,true);
 		$criteria->compare('place',$this->place,true);
         
-        $criteria->scopes = array('visible');
+        if (isset($scopes)) {
+            $criteria->scopes = $scopes;
+        } else {
+            $criteria->scopes = array('visible');
+        }
 		
         if ($this->scenario == 'search_full') {
             $criteria->compare('courtcount',$this->courtcount);
@@ -170,7 +174,7 @@ class Competition extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
             'pagination'=>array(
-                'pageSize'=>5,
+                'pageSize'=>0, //5,
             ),
 		));
 	}

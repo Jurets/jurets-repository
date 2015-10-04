@@ -196,6 +196,7 @@ class Agecategory extends CActiveRecord
                 ->select('coalesce(YearMin, 1970) AS YearMin, YearMax')
                 ->from(self::TABLE_NAME)
                 ->where('CompetitionID = :compId')
+                ->order('YearMin DESC, YearMax DESC')
                 ->queryAll(true, array(':compId'=>$compId));
             
             $years = array();

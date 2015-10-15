@@ -62,8 +62,19 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     echo '<p>Ниже Вы можете ввести любую дополнительную информацию:</p>';
     echo $form->textAreaRow($model,'comment', array('rows'=>4, 'cols'=>50, 'class' => 'span6'));
     
-    echo '<p>После успешного процесса регистрации на указанный адрес электронной почты будет выслано письмо с регистрационными данными</p>';
-    
+        if($model->scenario =='create'){
+            echo '<p>Для завершения регистрации Вам необходимо пройти проверку:</p>';
+            //добавление капчи
+            echo '<p>Введите код проверки в поле, расположенное ниже</p>';
+                $this->widget('CCaptcha');
+            //поле для ввода текста капчи
+            echo '<br>'.CHtml::activeTextField($model, 'verifyCode');
+            echo CHtml::error($model, 'verifyCode');
+            echo CHtml::errorSummary($model).'<br>'; 
+            echo '<br>';
+            echo '<p>После успешного процесса регистрации на указанный адрес электронной почты будет выслано письмо с регистрационными данными</p>';
+        }
+        
     $this->widget('bootstrap.widgets.TbButton', array(
         'label'=>($model->isNewRecord ? Yii::t('controls', 'Registry') : Yii::t('controls', 'Save')), 
         'type'=>'primary',
@@ -77,4 +88,5 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
 $this->endWidget(); 
 ?>    
+
 <!--</div> form -->

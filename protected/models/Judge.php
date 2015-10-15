@@ -20,6 +20,7 @@
  */
 class Judge extends CActiveRecord
 {
+    public $verifyCode; //параметр для добавления валидационных правил капчи
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -38,12 +39,12 @@ class Judge extends CActiveRecord
 		return 'judge';
 	}
 
-	/**
+        	/**
 	 * @return array validation rules for model attributes.
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
+               	// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
             //array('userid, category, competitionid, status, created', 'required'),
@@ -53,8 +54,10 @@ class Judge extends CActiveRecord
 			array('category, level', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('id, userid, category, level, competitionid, status, created', 'safe', 'on'=>'search'),
+                        array('id, userid, category, level, competitionid, status, created', 'safe', 'on'=>'search'),
 			//array('id, userid, category, level, competitionid, commandid, status, created', 'safe', 'on'=>'search'),
+                        //проверка капчи
+                        array('verifyCode', 'captcha'),
 		);
 	}
 

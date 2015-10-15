@@ -28,7 +28,7 @@ class UsersController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('create', 'recovery'),
+				'actions'=>array('create', 'recovery', 'captcha'), 
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -42,7 +42,7 @@ class UsersController extends Controller
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
-		);
+                );
 	}
 
 	// Displays a particular model. @param integer $id the ID of the model to be displayed
@@ -323,4 +323,17 @@ class UsersController extends Controller
         ));
     }
         
+    //переопределили метод actions - добавляем новое действие с именем 'captcha'
+    public function actions()
+        {
+            return array(
+                'captcha'=>array(
+                    'class' => 'CCaptchaAction',
+                    'backColor' => 0xFFFFFF,
+                ),
+            );
+        }
+       
+
 }
+

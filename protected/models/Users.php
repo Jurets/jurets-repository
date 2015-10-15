@@ -27,6 +27,7 @@ class Users extends CActiveRecord
     public $retype_password;
     
     public $searchUserFio;
+    public $verifyCode; //параметр для добавления валидационных правил капчи
     
 	// Returns the static model of the specified AR class. 
     // @param string $className active record class name. @return Users the static model class
@@ -47,7 +48,7 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Email, firstname, lastname, country, city', 'required', 'on' => 'create'),
+			array('Email, firstname, lastname, country, city', 'required', 'on' => 'create, createJudge'),
             array('UserName, Password, RoleID, firstname, lastname, country, city', 'required', 'on' => 'update'),
 			array('CommandID, Active, status', 'numerical', 'integerOnly'=>true),
 			array('UserName', 'length', 'max'=>100),
@@ -76,7 +77,9 @@ class Users extends CActiveRecord
             //array('propid, commandname, firstname, lastname, federation, post, country, city, club, address, phone, email, www, participantcount, comment, login, status', 'safe', 'on'=>'search'),
             array('new_password', 'length', 'min'=>4, 'max'=>50),
             array('new_password', 'match', 'pattern'=>'/^[a-zA-Z0-9]+$/', 'on'=>array('create','update'), 'message'=>'Разрешены только латинские буквы и цифры'),
-		);
+                        //проверка капчи
+                        array('verifyCode', 'captcha', 'on' => 'create'),
+                );
 	}
 
     

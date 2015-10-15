@@ -26,18 +26,19 @@ class JudgeController extends Controller
 	public function accessRules()
 	{
 		return array(
+                        
+                        array('allow',  // allow all users to perform 'index' and 'view' actions
+				'actions'=>array('create', 'recovery', 'captcha'), 
+				'users'=>array('*'),
+			),
 			array('allow',  // allow all users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
 				'users'=>array('*'),
 			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create'),
-                'users'=>array('*'),
-			),
-            array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('update'/*,'mycabinet','password'*/),
-                'users'=>array('@'),
-            ),
+                        array('allow', // allow authenticated user to perform 'create' and 'update' actions
+                                'actions'=>array('update'/*,'mycabinet','password'*/),
+                                'users'=>array('@'),
+                        ),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('index','admin','delete','view'),
 				'users'=>array('admin'),
@@ -66,7 +67,7 @@ class JudgeController extends Controller
 	public function actionCreate()
 	{
 		$model = new Judge;          //создать модель судьи
-        $model->user = new Users('create');  //создать связанную модель юзера
+        $model->user = new Users('createJudge');  //создать связанную модель юзера
         $model->user->RoleID = 'judge';  //поставить роль = судья
 		// Uncomment the following line if AJAX validation is needed
 		$this->performAjaxValidation($model->user);
@@ -224,4 +225,14 @@ class JudgeController extends Controller
             Yii::app()->end();
 		}
 	}
+        //переопределили метод actions - добавляем новое действие с именем 'captcha'
+    public function actions()
+        {
+            return array(
+                'captcha'=>array(
+                    'class' => 'CCaptchaAction',
+                    'backColor' => 0xFFFFFF,
+                ),
+            );
+        }
 }

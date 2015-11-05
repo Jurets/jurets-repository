@@ -12,6 +12,6 @@
     //поле для ввода текста капчи
     echo '<br>'.CHtml::activeTextField($model, 'verifyCode');
     echo CHtml::error($model, 'verifyCode');
-    echo CHtml::errorSummary($model).'<br>'; 
+    //echo CHtml::errorSummary($model).'<br>'; 
     echo '<br>';
 ?>

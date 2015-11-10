@@ -32,6 +32,10 @@ $delConfirm = 'js:"' . Yii::t('controls', "Are you sure you want to delete sport
                                
 $arrColumns = array(
         array(
+            'header'=>'#',
+            'value'=>'$row + 1',
+        ),
+        array(
             //'name'=>'searchFullName',
             'name'=>'FullName',
             'header'=>Yii::t('fullnames', 'LastName').', '.Yii::t('fullnames', 'FirstName'),
@@ -50,6 +54,7 @@ if (!isset($commandid) || empty($commandid))
         );
 
 $arrColumns = CMap::mergeArray($arrColumns, array(
+        
         array(
             'header'=>Yii::t('fullnames', 'FstName'),
             'name'=>'FstName',

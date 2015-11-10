@@ -155,8 +155,11 @@ class ProposalController extends Controller
 	}
 
 	//ДЕЙСТВИЕ: удаление заявки
-	public function actionDelete($id) { //DebugBreak();
-        $transaction = Yii::app()->db->beginTransaction();                         
+	public function actionDelete($id = null) { //DebugBreak();
+        $transaction = Yii::app()->db->beginTransaction();  
+        if ($id === null) {
+            $id = $_POST['id'];
+        }
         try {   
             $model = $this->loadModel($id);
             $commandid = $model->commandid;
@@ -245,13 +248,19 @@ class ProposalController extends Controller
     }
     
     //ДЕЙСТВИЕ: управление заявками
-    public function actionConfirm($id) {
+    public function actionConfirm($id = null) {
+        if ($id === null) {
+            $id = $_POST['id'];
+        }
         if ($this->changeStatus($id, Proposal::STATUS_ACTIVE))
             $this->redirect(array('view','id'=>$id));
     }
 	
     //ДЕЙСТВИЕ: управление заявками
-    public function actionCancel($id) { 
+    public function actionCancel($id = null) { 
+        if ($id === null) {
+            $id = $_POST['id'];
+        }
         if ($this->changeStatus($id, Proposal::STATUS_NOACTIVE))
             $this->redirect(array('view','id'=>$id));
     }

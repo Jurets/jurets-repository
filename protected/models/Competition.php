@@ -103,8 +103,9 @@ class Competition extends CActiveRecord
                   'params'=>array(':flag'=>self::FLG_ARCH), 
             ),
             'visible' => array(
+                  //'condition'=>'competition.isfiling <> :flag AND competition.isfiling <> :flag2',
                   'condition'=>'competition.isfiling <> :flag',
-                  'params'=>array(':flag'=>self::FLG_ARCH), 
+                  'params'=>array(':flag'=>self::FLG_ARCH),
             ),
             'subdomain' => array(
                   'condition'=>'COALESCE(competition.subdomain, "") <> ""',
@@ -115,8 +116,9 @@ class Competition extends CActiveRecord
     public function defaultScope() {
         return array(
             'alias'=>'competition',
-            //'order'=>$this->getTableAlias() . '.begindate DESC'
-            'order'=>'competition.begindate DESC'
+            'condition'=>'competition.type <> :type',
+            'order'=>'competition.begindate DESC',
+            'params' => array('type'=>'itf'),  // временно! для отфильтр-ия ИТФ
         );
     }    
 	/**

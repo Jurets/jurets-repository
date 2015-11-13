@@ -110,15 +110,17 @@ class Competition extends CActiveRecord
             'subdomain' => array(
                   'condition'=>'COALESCE(competition.subdomain, "") <> ""',
             ),
+            'noitf' => array(
+                'condition'=>'competition.type <> :type',
+                'params' => array('type'=>'itf'),  // временно! для отфильтр-ия ИТФ
+            ),
         );
     }
     
     public function defaultScope() {
         return array(
             'alias'=>'competition',
-            'condition'=>'competition.type <> :type',
             'order'=>'competition.begindate DESC',
-            'params' => array('type'=>'itf'),  // временно! для отфильтр-ия ИТФ
         );
     }    
 	/**
@@ -163,7 +165,7 @@ class Competition extends CActiveRecord
         if (isset($scopes)) {
             $criteria->scopes = $scopes;
         } else {
-            $criteria->scopes = array('visible');
+            $criteria->scopes = array('visible', 'noitf');
         }
 		
         if ($this->scenario == 'search_full') {

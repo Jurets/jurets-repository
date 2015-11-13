@@ -138,7 +138,7 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'sportsmen-grid',
     'dataProvider'=>$dataProvider,
-    'filter'=>$modelSportsmen,
+    'filter'=>isset($modelSportsmen) ? $modelSportsmen : null,
     //'cssFile'=>null,
     'template'=>"{pager}<br>{items}<br>{pager}",
     'type'=>'striped bordered condensed',

@@ -70,7 +70,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             //поле для ввода текста капчи
             echo '<br>'.CHtml::activeTextField($model, 'verifyCode');
             echo CHtml::error($model, 'verifyCode');
-            echo CHtml::errorSummary($model).'<br>'; 
+            //echo CHtml::errorSummary($model).'<br>'; 
             echo '<br>';
             echo '<p>После успешного процесса регистрации на указанный адрес электронной почты будет выслано письмо с регистрационными данными</p>';
         }

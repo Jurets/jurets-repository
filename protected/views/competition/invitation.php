@@ -56,7 +56,7 @@
             )); ?>
         
         </div>
-    <?php } else if ($competition->type == Competition::TYPE_COMPETITION) {
+    <?php } else if (in_array($competition->type, array(Competition::TYPE_COMPETITION, 'itf'))) {
         //$cmd = Yii::app()->db->createCommand('select invitation from competition where id = :id');
         //$invit = $cmd->queryScalar(array('id'=>$model->id));
         //echo $invit;

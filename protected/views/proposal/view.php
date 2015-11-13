@@ -29,43 +29,6 @@ else
     );
 
 $this->menu=array(
-    array('label'=>Yii::t('controls', 'Confirm'), 'url'=>'#', 'icon'=>'ok',
-        'linkOptions'=>array(
-            'submit'=>array('confirm','id'=>$model->propid),
-            'confirm'=>Yii::t('controls', "Are you sure you want to confirm {item}\n{name}?", array(
-                '{item}'=>Yii::t('fullnames', ' proposal'), 
-                '{name}'=>$model->relUsers->UserFIO
-                )),
-            'title'=>'Подтвердить заявку'
-            ),
-        'visible'=>(!$isMyUserID && $isExtendRole && ($model->status <> Proposal::STATUS_ACTIVE)),
-        ),
-
-    array('label'=>Yii::t('controls', 'Cancel'), 'url'=>'#', 'icon'=>'ok',
-        'linkOptions'=>array(
-            'submit'=>array('cancel','id'=>$model->propid),
-            'confirm'=>Yii::t('controls', "Are you sure you want to {operation} {item}\n{name}?", array(
-                '{item}'=>Yii::t('fullnames', ' proposal'), 
-                '{name}'=>$model->relUsers->UserFIO,
-                '{operation}' => Yii::t('controls', 'to cancel'),
-                )),
-            'title'=>'Отменить заявку',
-            ),
-        'visible'=>(!$isMyUserID && $isExtendRole && ($model->status == Proposal::STATUS_ACTIVE)),
-        ),
-        
-    array('label'=>Yii::t('controls', 'Delete'), 'url'=>'#', 'icon'=>'trash',
-        'linkOptions'=>array(
-            'submit'=>array('delete','id'=>$model->propid),
-            'confirm'=>Yii::t('controls', "Are you sure you want to delete {item}\n{name}?", array(
-                '{item}'=>Yii::t('fullnames', ' proposal'), 
-                '{name}'=> 'команда: ' . $model->relCommand->CommandName . "\nпредставитель: " . $model->relUsers->UserFIO,
-            )),
-            'title'=>'Удалить заявку'
-        ),
-        'visible'=>($isMyUserID || $isExtendRole) && ($model->status == Proposal::STATUS_NEW),
-    ),
-    
     array('label'=>Yii::t('controls', Yii::t('fullnames', 'Редактировать команду')),
         'url'=>array('/command/view', 'id'=>$model->commandid),
         'icon'=>'list', 
@@ -151,4 +114,55 @@ $this->widget('bootstrap.widgets.TbDetailView', array(
 	),
 )); 
 
+//Кнопка 'Подтвердить'
+if(!$isMyUserID && $isExtendRole && ($model->status <> Proposal::STATUS_ACTIVE)){
+echo CHtml::link(
+        'Подтвердить',
+        $url = array('/proposal/confirm'),
+        
+        array(
+                'submit' => $url,
+                'params' => array('id' => $model->propid),
+                'class'=>'btn btn-primary',
+                'title'=>Yii::t('fullnames', 'Подтвердить заявку'),
+                'style'=>'width: 85px;
+                          margin-left: 50px;',
+                'visible'=>(!$isMyUserID && $isExtendRole && ($model->status <> Proposal::STATUS_ACTIVE)),
+            ), Yii::t('controls','Confirm')
+);
+}
+//Кнопка 'Отменить'
+if(!$isMyUserID && $isExtendRole && ($model->status == Proposal::STATUS_ACTIVE)){
+echo CHtml::link(
+        'Отменить',
+        $url = array('/proposal/cancel'),
+        
+        array(
+                'submit' => $url,
+                'params' => array('id' => $model->propid),
+                'class'=>'btn btn-primary',
+                'title'=>Yii::t('fullnames', 'Отменить заявку'),
+                'style'=>'width: 85px;
+                          margin: 20px',
+                
+            ), Yii::t('controls','Cancel')
+);
+}
+//Кнопка 'Удалить'
+if(($isMyUserID || $isExtendRole) && ($model->status == Proposal::STATUS_NEW)){
+echo CHtml::link(
+        'Удалить',
+        $url = array('/proposal/delete'),
+        
+        array(
+                'submit' => $url,
+                'params' => array('id' => $model->propid),
+                'class'=>'btn btn-primary',
+                'title'=>Yii::t('fullnames', 'Удалить заявку'),
+                'style'=>'width: 85px;
+                          margin: 20px',
+                
+            ), Yii::t('controls','Delete')
+);
+}
 ?>

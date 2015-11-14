@@ -173,7 +173,7 @@ echo"</div>";
 ?>
 
     <?php if(isset($this->breadcrumbs)) { 
-        if(isset($this->popTopHelp) && !empty($this->popTopHelp)) {//DebugBreak(); ?>
+        if(isset($this->popTopHelp) && !empty($this->popTopHelp)) { ?>
             <div style="float: right;">
                 <?php $this->widget('bootstrap.widgets.TbButton', array(
                         'label'=>'?',
@@ -208,16 +208,29 @@ echo"</div>";
         <div class="navbar-inner">
             <ul id="yw0" class="navigation nav">
                 <li>
+                    <a class="" href="/site/help" title="Рекомендації по роботі з сайтом" target="_blank" >
+                        <i class="icon-question-sign icon-white"></i>&nbsp;Допомога
+                    </a>
+                </li>
+                <!--<li>
                     <a class="" href="http://youtu.be/XIaWEN4dvAk" title="Відео-допомога: Реєстрація на сайті" target="_blank" >
                         <i class="icon-facetime-video icon-white"></i>&nbsp;Реєстрація
                     </a>
-                </li>            
+                </li>-->            
                 <!--<li class="divider-vertical"></li>-->
-                <li>
+                <!--<li>
                     <a class="" href="http://youtu.be/kvAYbqXYNys" title="Відео-допомога: Додати нового учасника змагань" target="_blank" >
                         <i class="icon-facetime-video icon-white"></i>&nbsp;Додати учасника
                     </a>
-                </li>            
+                </li>-->            
+            </ul>
+            
+            <ul id="yw0" class="navigation nav pull-right">
+                <li>
+                    <a class="" href="mailto:jurets75@gmail.com" title="email Админа" target="_blank" >
+                        <i class="icon-envelope icon-white"></i>&nbsp;jurets75@gmail.com
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -76,6 +76,19 @@ $this->breadcrumbs = array(
                 <li><a href="/weightcategory/archive">Архів</a> - результати попередніх змагань, проведених за допомогою цього сайту</li>
             </ul>
 
+            <p class="centext colblue1 text14">Корисні ресурси</p>
+            <ul id="yw0" class="navigation nav">
+                <li>
+                    <a class="" href="http://youtu.be/XIaWEN4dvAk" title="Відео-допомога: Реєстрація на сайті" target="_blank" >
+                        <i class="icon-facetime-video"></i>&nbsp;Відео-допомога: Реєстрація на сайті
+                    </a>
+                </li>            
+                <li>
+                    <a class="" href="http://youtu.be/kvAYbqXYNys" title="Відео-допомога: Додати нового учасника змагань" target="_blank" >
+                        <i class="icon-facetime-video"></i>&nbsp;Відео-допомога: Додати нового учасника змагань
+                    </a>
+                </li>            
+            
 <!-- <div style="float:left;">
 
 

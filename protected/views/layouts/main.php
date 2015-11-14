@@ -87,12 +87,12 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 array(
                     'label'=>Yii::t('fullnames', 'Toss'), 
                     'url'=>array($this->pathCompetition . '/weightcategory/tosser'), 
-                    'visible'=>$competition->isCompetition,
+                    'visible'=>($competition->isCompetition || $competition->type == 'itf'),
                 ),
                 array(
                     'label'=>Yii::t('fullnames', 'Results'), 
                     'url'=>array($this->pathCompetition . '/weightcategory/result'), 
-                    'visible'=>$competition->isCompetition
+                    'visible'=>($competition->isCompetition || $competition->type == 'itf'),
                 ),
                 //array('label'=>Yii::t('fullnames', 'Photo'), 'url'=>array('/posting/default/index')),
                 array(

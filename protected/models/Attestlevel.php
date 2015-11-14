@@ -99,7 +99,7 @@ class Attestlevel extends CActiveRecord
     * Получить список аттест. уровней
     * 
     */
-    public static function getList() {//DebugBreak();
+    public static function getList() {
         $_cacheID = 'cacheAttestLevel';
         $data = Yii::app()->cache->get($_cacheID);
         if ($data === false) {

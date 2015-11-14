@@ -53,8 +53,24 @@ if (!isset($commandid) || empty($commandid))
             'filter'=>false,
         );
 
+if ($competition->isCompetition) {
+    $yearField = array(
+        'name'=>'BirthYear',
+        'header'=>Yii::t('fullnames', 'BirthYear'),
+        'filter'=>false,
+        'value'=>'date("Y", strtotime($data->BirthDate))',
+        'headerHtmlOptions'=>array('style'=>'width: 38px;'),
+    );
+} else if ($competition->type == 'itf') {
+    $yearField = array(
+        'name'=>'fullyears',
+        'header'=>Yii::t('fullnames', 'Years'),
+        'filter'=>false,
+        'value'=>'$data->fullyears',
+        'headerHtmlOptions'=>array('style'=>'width: 38px;'),
+    );    
+}
 $arrColumns = CMap::mergeArray($arrColumns, array(
-        
         array(
             'header'=>Yii::t('fullnames', 'FstName'),
             'name'=>'FstName',
@@ -70,13 +86,7 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
             'name'=>'AttestLevelName',
             'filter'=>false,
         ), 
-        array(
-            'name'=>'BirthYear',
-            'header'=>Yii::t('fullnames', 'BirthYear'),
-            'filter'=>false,
-            'value'=>'date("Y", strtotime($data->BirthDate))',
-            'headerHtmlOptions'=>array('style'=>'width: 38px;'),
-        ), 
+        $yearField, 
         array(
             'name'=>'searchAgeName',
             'header'=>Yii::t('fullnames', 'Age'),

@@ -64,18 +64,19 @@ class Sportsmen extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-            array('LastName, FirstName, BirthDate, CommandID, Gender, AgeID, WeigthID', 'required'),
-            array('CategoryID, AttestLevelID', 'required'), //
-			//array('LastName, FirstName, BirthDate, CommandID, AgeID, WeigthID', 'required'),
+            array('LastName, FirstName, CommandID, Gender, AgeID, WeigthID', 'required'),
+            array('AttestLevelID', 'required'), //
+            array('CategoryID, BirthDate', 'required', 'on'=>'wtf'),
 			array('CommandID, FstID, CategoryID, AttestLevelID, WeigthID, Coach1ID, Coach2ID, MedicSolve, AgeID', 'numerical', 'integerOnly'=>true),
 			array('LastName', 'length', 'max'=>30),
 			array('FirstName, MiddleName, IdentCode', 'length', 'max'=>20),
 			array('Gender', 'length', 'max'=>1),
-			array('BirthDate', 'safe'),
+			//array('BirthDate', 'safe'),
             array('MedicSolve', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
             array('SpID, LastName, FirstName, MiddleName, BirthDate, Gender, CommandID, FstID, CategoryID, AttestLevelID, WeigthID, Coach1ID, Coach2ID, MedicSolve, AgeID', 'safe', 'on'=>'search'),
+            array('fullyears', 'safe', 'on'=>'itf'),
             array('FullName, searchAgeName, searchCoachName', 'safe', 'on'=>'search'),
 			//array('searchFullName', 'safe', 'on'=>'search'),
 		);
@@ -112,7 +113,8 @@ class Sportsmen extends CActiveRecord
 			'LastName' => Yii::t('fullnames', 'LastName'),
 			'FirstName' => Yii::t('fullnames', 'FirstName'),
 			'MiddleName' => Yii::t('fullnames', 'MiddleName'),
-			'BirthDate' => Yii::t('fullnames', 'BirthDate'),
+            'BirthDate' => Yii::t('fullnames', 'BirthDate'),
+			'fullyears' => Yii::t('fullnames', 'Full years'),
 			'Gender' => Yii::t('fullnames', 'Gender'),
 			'CommandID' => Yii::t('fullnames', 'CommandName'),
 			'FstID' => Yii::t('fullnames', 'FstName'),

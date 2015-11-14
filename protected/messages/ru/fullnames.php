@@ -94,6 +94,8 @@ return array(
     'MiddleName' => 'Отчество',
     'FullName' => 'Фамилия, имя',
     'BirthDate' => 'Год рождения',
+    'Full years' => 'Полных лет',
+    'Years' => 'Лет',
     'BirthYear' => 'Год рожд',
     'Age' => 'Возраст',
     'Weight' => 'Вес',

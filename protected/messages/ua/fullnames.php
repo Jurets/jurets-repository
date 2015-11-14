@@ -86,6 +86,8 @@ return array(
     'MiddleName'=>'По батькові',
     'FullName'=>'Прізвище, ім’я',
     'BirthDate'=>'Рік народження',
+    'Full years' => 'Повних років',
+    'Years' => 'Років',
     'BirthYear'=>'Рік нар.',
     'Age'=>'Вік',
     'Weight'=>'Вага',

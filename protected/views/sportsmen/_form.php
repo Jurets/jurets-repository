@@ -42,24 +42,43 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                                 'update'=>'.select_coach'), //selector to update
                                     )); 
         echo $form->hiddenField($model, 'Gender');
-        echo $form->dropDownListRow($model, 'BirthDate', $years, array(
-                                        'empty' => '<'.Yii::t('controls', 'Choose birth year').'>',
-                                        'id' => 'Sportsmen_BirthDate', 
-                                    )); 
+        
       //возрастные категории  
         $age_array = array();
-        if (isset($model->BirthDate)) {                  //получить возрастные
-            $date = strtotime($model->BirthDate);        //по году рождения
-            $year = date("Y", $date);
-            foreach($ages as $age) {
-                if ($age->YearMin <= $year && $year <= $age->YearMax)
-                    $age_array[] = $age;
+        if ($competition->isCompetition) {  //обычное соревнование WTF
+            // поле года рождения
+            echo $form->dropDownListRow($model, 'BirthDate', $years, array(
+                'empty' => '<'.Yii::t('controls', 'Choose birth year').'>',
+                'id' => 'Sportsmen_BirthDate', 
+            ));
+            if (isset($model->BirthDate)) {                  //получить возрастные
+                $date = strtotime($model->BirthDate);        //по году рождения
+                $year = date("Y", $date);
+                foreach($ages as $age) {
+                    if ($age->YearMin <= $year && $year <= $age->YearMax)
+                        $age_array[] = $age;
+                }
             }
+            $age_array = CHtml::listData($age_array, 'AgeID', 'AgeNameYear');
+            $readonly = !isset($model->BirthDate) || empty($model->BirthDate);
+        } else { // ------ для версии ITF
+            // поле "полный возраст"
+            echo $form->dropDownListRow($model, 'fullyears', $years, array(
+                'empty' => '<'.Yii::t('controls', 'Choose full years').'>',
+                'id' => 'Sportsmen_fullyears', 
+            ));
+            //echo $form->textFieldRow($model, 'fullyears', array('size'=>3,'maxlength'=>3));
+            
+            foreach($ages as $age) {
+                $age_array[] = $age;
+            }
+            $age_array = CHtml::listData($age_array, 'AgeID', 'AgeNameYearShort');
+            $readonly = !isset($model->fullyears) || empty($model->fullyears);
         }
-        $age_array = CHtml::listData($age_array, 'AgeID', 'AgeNameYear');
+        
         echo $form->dropDownListRow($model, 'AgeID', $age_array, array(
                                            'empty' => '<'.Yii::t('controls', 'Choose age category').'>',
-                                           'readonly'=>!isset($model->BirthDate) || empty($model->BirthDate) //true,
+                                           'readonly'=>$readonly //true,
                                            )); 
         
       //весовые категории                                     
@@ -302,16 +321,6 @@ $this->endWidget(); //form
                ';
     } else {
          $js = '
-               $("#Sportsmen_BirthDate").change(function() {
-                    year_elem = $("#ages_byyear_" + $(this).children(":selected").text());
-                    age_elem = $("#Sportsmen_AgeID");
-                    age_elem.html(year_elem.html());
-                    age_elem.attr("readonly", false);
-                    weigth_elem = $("#Sportsmen_WeightID");
-                    weigth_elem.attr("readonly", true);
-                    weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
-               });
-               
                $("#Sportsmen_AgeID").change(function() {
                     val = $(this).val();
                     id = "weigths_fromage_" + val;
@@ -321,6 +330,29 @@ $this->endWidget(); //form
                     weigth_elem.attr("readonly", false);
                })
                ';
+         if ($competition->isCompetition) {
+            $js .= '
+               $("#Sportsmen_BirthDate").change(function() {
+                    year_elem = $("#ages_byyear_" + $(this).children(":selected").text());
+                    age_elem = $("#Sportsmen_AgeID");
+                    age_elem.html(year_elem.html());
+                    age_elem.attr("readonly", false);
+                    weigth_elem = $("#Sportsmen_WeightID");
+                    weigth_elem.attr("readonly", true);
+                    weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
+               });
+            ';
+         } else { // for ITF
+            $js .= '
+               $("#Sportsmen_fullyears").change(function() {
+                    age_elem = $("#Sportsmen_AgeID");
+                    age_elem.attr("readonly", false);
+                    weigth_elem = $("#Sportsmen_WeightID");
+                    weigth_elem.attr("readonly", true);
+                    weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
+               });
+            ';
+         }
     }
     Yii::app()->clientScript->registerScript('category_dropdown', $js, CClientScript::POS_READY);
 ?>

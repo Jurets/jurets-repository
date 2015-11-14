@@ -152,6 +152,12 @@ class Agecategory extends CActiveRecord
         return $aname;
     }
 
+    //Jurets: получить название возрастной категории (по ID)
+    public function getAgeNameYearShort() {
+        $aname = $this->AgeName;
+        return $aname;
+    }
+
     //выбрать возрастные категории (с весовыми) для соревнования
     public static function getAges() {
         //$compId = Yii::app()->competitionId; //вычислить ИД соревнования
@@ -206,6 +212,38 @@ class Agecategory extends CActiveRecord
                 for ($year = $ymax; $year >= $ymin; $year--) {
                     if (!isset($years[$year . '-01-01'])) {
                         $years[$year . '-01-01'] = $year;
+                    }
+                }
+            }
+            // и сохраняем его в кэше для дальнейшего использования:
+            Yii::app()->cache->set($_cacheID, $years, 3600 * 1);  //1 час
+        }
+        return $years;
+    }    
+    
+    //выбрать диапазон годов рождения по соревнованию
+    //(от минимального до максимального)
+    public static function getFullYears() {
+        $compId = self::competitionIdWithAges(); //вычислить ИД соревнования
+        $_cacheID = 'cacheAgeFullYears' . $compId;
+        //Yii::app()->cache->delete($_cacheID);     //удаление из кэша
+        $years = Yii::app()->cache->get($_cacheID);   //проверить кэш
+        if ($years === false) {
+            // устанавливаем значение $value заново, т.к. оно не найдено в кэше,
+            $rowsages = Yii::app()->db->createCommand()
+                ->select('coalesce(AgeMin, 50) AS AgeMin, AgeMax')
+                ->from(self::TABLE_NAME)
+                ->where('CompetitionID = :compId')
+                ->order('AgeMin ASC, AgeMax DESC')
+                ->queryAll(true, array(':compId'=>$compId));
+            
+            $years = array();
+            foreach ($rowsages as $age) {
+                $ymin = (int)$age['AgeMin'];
+                $ymax = (int)$age['AgeMax'];
+                for ($year = $ymin; $year <= $ymax; $year++) {
+                    if (!isset($years[$year])) {
+                        $years[$year] = $year;
                     }
                 }
             }

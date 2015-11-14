@@ -51,6 +51,7 @@ return array(
     'Choose weigth category' => 'Выберите весовую категорию',
     'Choose coach' => 'Выберите тренера',
     'Choose birth year' => 'Выберите год рождения',
+    'Choose full years' => 'Выберите кол-во лет',
     'Choose command' => 'Выберите команду',
     'Choose FST' => 'Выберите ФСТ',
     'Choose category' => 'Выберите разряд',

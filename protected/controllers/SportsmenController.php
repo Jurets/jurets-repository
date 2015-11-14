@@ -162,6 +162,8 @@ class SportsmenController extends ParticipantController
             $urlReferrer = Yii::app()->request->urlReferrer;  //получить - полная ссылка предыд. страницы
             Yii::app()->user->setState('urlReferrerUpdate', $urlReferrer);  //и записать в сессию
         }
+        
+        $competition = Competition::getModel();
 
         $model = Sportsmen::model()->with('relCommand')->findByPk($id);
         $uid = Yii::app()->userid;
@@ -176,6 +178,12 @@ class SportsmenController extends ParticipantController
         // $this->performAjaxValidation($model);
         if(isset($_POST['Sportsmen']))
         {
+            if ($competition->isCompetition) {
+                $model->scenario = 'wtf';
+            } else if ($competition->type == 'itf') {
+                $model->scenario = 'itf';
+            }
+
             $flgDelPhoto = false;
             $model->attributes = $_POST['Sportsmen'];
             
@@ -231,10 +239,15 @@ class SportsmenController extends ParticipantController
             $breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$command->CommandID)));
         $breadcrumbs = array_merge($breadcrumbs, array($model->FullName()=>array('sportsmen/view', 'id'=>$model->SpID), Yii::t('controls', 'Update')));
         
+        if ($competition->isCompetition)
+            $years = Agecategory::getYears();
+        else 
+            $years = Agecategory::getFullYears();
+        
         $this->render('update',array(
             'model'=>$model,
             'extendRole'=>Yii::app()->isExtendRole,
-            'years'=>Agecategory::getYears(),
+            'years'=>$years,
             'ages'=>Agecategory::getAges(), //выборка категорий соревнования (возрастные с весовыми)
             'crumbs'=>$breadcrumbs
         ));
@@ -270,6 +283,9 @@ class SportsmenController extends ParticipantController
                     throw new CHttpException(400, 'Запрещено добавлять спортсменов в чужой команде! Для ввода данных выберите свою команду');
             }
         } 
+        
+        $competition = Competition::getModel();
+
       //все проверки пройдены - создаём модель  
         $model = new Sportsmen;
         $model->CommandID = $id;  //присвоить модели ИД команды
@@ -277,6 +293,11 @@ class SportsmenController extends ParticipantController
         //если пришли данные из формы
         if (isset($_POST['Sportsmen']))        
         {
+            if ($competition->isCompetition) {
+                $model->scenario = 'wtf';
+            } else if ($competition->type == 'itf') {
+                $model->scenario = 'itf';
+            }
             $model->attributes = $_POST['Sportsmen'];
             $model->UserID = Yii::app()->userid;
             // обработать фото - если было загружено в форму
@@ -305,9 +326,14 @@ class SportsmenController extends ParticipantController
             $breadcrumbs = array_merge($breadcrumbs, array($command->CommandName=>array('command/view', 'id'=>$command->CommandID)));
         $breadcrumbs = array_merge($breadcrumbs, array(Yii::t('controls', 'Create')));
         
+        if ($competition->isCompetition)
+            $years = Agecategory::getYears();
+        else 
+            $years = Agecategory::getFullYears();
+        
         $this->render('create',array(
             'model'=>$model,
-            'years'=>Agecategory::getYears(),
+            'years'=>$years,
             'ages'=>Agecategory::getAges(), //выборка категорий соревнования (возрастные с весовыми)
             'extendRole'=>Yii::app()->isExtendRole,
             'crumbs'=>$breadcrumbs,

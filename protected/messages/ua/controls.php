@@ -49,6 +49,7 @@ return array(
     'Choose weigth category' => 'Виберіть вагову категорію',
     'Choose coach' => 'Виберіть тренера',
     'Choose birth year' => 'Виберіть рік народження',
+    'Choose full years' => 'Выберите кол-во лет',
     'Choose command' => 'Виберіть команду',
     'Choose FST' => 'Оберіть  ФСТ',
     'Choose category' => 'Выберите розряд ',

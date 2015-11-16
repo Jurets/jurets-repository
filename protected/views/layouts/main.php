@@ -109,7 +109,11 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 array('label'=>'', 'url'=>'#', 'items'=>
                     array(
                         array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),                
-                        array('label'=>Yii::t('fullnames', 'Login'), 'url'=>array('/site/login'), 'visible'=>$isGuest),
+                        array(
+                            'label'=>Yii::t('fullnames', 'Login'), 
+                            'url'=>array('/site/login'), 
+                            'visible'=>$isGuest && !$competition->isMain,
+                        ),
                         array('label'=>Yii::t('fullnames', 'Users'), 'url'=>array('/users/index'), 'icon'=>'user', 'visible'=>$isExtendRole),
                         array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('proposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
                         array('label'=>Yii::t('fullnames', 'Judge Proposals'), 'url'=>array('judgeproposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
@@ -152,12 +156,23 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
             'class'=>'bootstrap.widgets.TbMenu',
             'htmlOptions'=>array('class'=>'pull-right'),
             'items'=>array(
-                array('label'=>Yii::t('fullnames', 'Login'), 'url'=>array('/site/login'), 'visible'=>$isGuest),
-                array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),
-                array('label'=>'', 'url'=>'#', 'items'=>array(
-                    //array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),
-                    array('label'=>Yii::t('fullnames', 'Regjudge'), 'url'=>array('/judge/create'), 'visible'=>$isGuest),
-                ), 'visible'=>$isGuest),
+                array(
+                    'label'=>Yii::t('fullnames', 'Login'), 
+                    'url'=>array('/site/login'), 
+                    'visible'=>$isGuest && !$competition->isMain
+                ),
+                array(
+                    'label'=>Yii::t('fullnames', 'Regin'), 
+                    'url'=>array('/users/create'), 
+                    'visible'=>$isGuest && !$competition->isMain
+                ),
+                array('label'=>'', 'url'=>'#', 'items'=>
+                    array(
+                        //array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),
+                        array('label'=>Yii::t('fullnames', 'Regjudge'), 'url'=>array('/judge/create'), 'visible'=>$isGuest),
+                    ), 
+                    'visible'=>$isGuest && !$competition->isMain
+                ),
                 //array('label'=>Yii::t('fullnames', 'My Cabinet'), 'url'=>array('/users/mycabinet'), 'visible'=>!$isGuest),
                 array(
                     'url'=>array('/site/logout'), 

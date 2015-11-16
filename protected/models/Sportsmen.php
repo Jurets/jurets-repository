@@ -75,8 +75,8 @@ class Sportsmen extends CActiveRecord
             array('MedicSolve', 'default', 'value'=>1),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-            array('SpID, LastName, FirstName, MiddleName, BirthDate, Gender, CommandID, FstID, CategoryID, AttestLevelID, WeigthID, Coach1ID, Coach2ID, MedicSolve, AgeID', 'safe', 'on'=>'search'),
-            array('fullyears', 'safe', 'on'=>'itf'),
+            array('SpID, LastName, FirstName, MiddleName, BirthDate, Gender, CommandID, FstID, CategoryID, AttestLevelID, WeigthID, Coach1ID, Coach2ID, MedicSolve, AgeID, persontul', 'safe', 'on'=>'search'),
+            array('fullyears, persontul', 'safe', 'on'=>'itf'),
             array('FullName, searchAgeName, searchCoachName', 'safe', 'on'=>'search'),
 			//array('searchFullName', 'safe', 'on'=>'search'),
 		);
@@ -135,6 +135,8 @@ class Sportsmen extends CActiveRecord
             'WeightNameFull' => Yii::t('fullnames', 'WeightNameFull'),
             'BirthYear' => Yii::t('fullnames', 'BirthYear'),
             'IdentCode' => Yii::t('fullnames', 'IdentCode'),
+            
+            'persontul' => 'Личный туль',
 		);
 	}
 

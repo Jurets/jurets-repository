@@ -77,22 +77,34 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         }
         
         echo $form->dropDownListRow($model, 'AgeID', $age_array, array(
-                                           'empty' => '<'.Yii::t('controls', 'Choose age category').'>',
-                                           'readonly'=>$readonly //true,
-                                           )); 
+            'empty' => '<'.Yii::t('controls', 'Choose age category').'>',
+            'readonly'=>$readonly //true,
+        )); 
         
       //весовые категории                                     
         $data = Sportsmen::getWeigthsList($model->AgeID);
+        $weights = CHtml::listData($data, 'WeightID', 'WeightNameFull');
         if ($competition->isCamp) { //если СБОРЫ - то скрытое поле весовой категории
             echo $form->hiddenField($model, 'WeigthID', array('id' => 'Sportsmen_WeightID'));
         } else { //иначе показать выпадающий список весовой категории
-            echo $form->dropDownListRow($model, 'WeigthID', CHtml::listData($data, 'WeightID', 'WeightNameFull'), array(
+            echo $form->dropDownListRow($model, 'WeigthID', $weights, array(
                'id' => 'Sportsmen_WeightID', 
                'empty' => '<'.Yii::t('controls', 'Choose weigth category').'>',
                'readonly'=>!isset($model->AgeID) || empty($model->AgeID), //true,
             )); 
         }
-
+        
+        // дополнительное поле ТУЛЬ
+        if ($competition->type == 'itf') {
+            //echo $form->checkBoxRow($model, 'tul', array());
+            echo CHtml::tag('div', array('class'=>'control-group'), 
+                CHtml::label('Личный туль', 'Sportsmen_persontul', array('class'=>'control-label')) .
+                CHtml::tag('div', array('class'=>'controls'), 
+                    CHtml::activeCheckBox($model, 'persontul', array('id'=>'Sportsmen_persontul'))
+                )
+            );
+        }
+                                                                       
         echo $form->dropDownListRow($model, 'FstID', CHtml::listData(Fst::getList(), 'FstID', 'FstName'), 
                                     array('empty' => '<'.Yii::t('controls', 'Choose FST').'>'
                                     )); 
@@ -117,50 +129,6 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
                                   'class' => 'select_coach'));
         //echo $form->textFieldRow($model,'MedicSolve');
 
-    
-// Working with selector
-/*$tags=array('Satu','Dua','Tiga');
-echo CHtml::textField('test','',array('id'=>'test', 'class'=>'span5'));
-$this->widget('ext.select2.ESelect2',array(
-  'selector'=>'#test',
-  'options'=>array(
-    'tags'=>$tags,
-  ),
-  'htmlOptions'=>array(
-    'multiple'=>false,
-  ),
-));
-
-$this->widget('ext.select2.ESelect2',array(
-  'model'=>$model,
-  'attribute'=>'MiddleName',
-  'data'=>array(
-    0=>'Nol',
-    1=>'Satu',
-    2=>'Dua',
-  ),
-));*/
-
-/*$this->widget('ext.combobox.EJuiComboBox', array(
-    'model' => $model,
-    'attribute' => 'MiddleName',
-    // data to populate the select. Must be an array.
-    'data' => array('yii','is','fun','!'),
-    // options passed to plugin
-    'options' => array(
-        // JS code to execute on 'select' event, the selected item is
-        // available through the 'item' variable.
-//        'onSelect' => 'alert("selected value : " + item.value);',
-        // JS code to be executed on 'change' event, the input is available
-        // through the '$(this)' variable.
-//        'onChange' => 'alert("changed value : " + $(this).val());',
-        // If false, field value must be present in the select.
-        // Defaults to true.
-        'allowText' => true,
-    ),
-    // Options passed to the text input
-    'htmlOptions' => array('size' => 10, 'placeholder'=>'<введите>'),
-));*/
         
 //Форма для загрузки фото ----------------------
 //создать форму для загрузки
@@ -285,6 +253,9 @@ $this->endWidget(); //form
         $weigths = $age->relWeigths;
         $weigths = CHtml::listData($weigths, 'WeightID', 'WeightNameFull');
         //$weigths = CMap::mergeArray(array('empty' => '<'.Yii::t('controls', 'Choose weigth category').'>'), $weigths);
+        if ($competition->type == 'itf') {
+            $weigths = CMap::mergeArray(array(-1=>'нет'), $weigths);
+        }
         $weigths = CMap::mergeArray(array('' => '<'.Yii::t('controls', 'Choose weigth category').'>'), $weigths);
         echo CHTML::dropDownList('weigths_fromage_' . $age->AgeID, null, $weigths, array('style'=>'display: none'));
     }
@@ -297,6 +268,7 @@ $this->endWidget(); //form
                 weigth_elem = $("#Sportsmen_WeightID");
                 weigth_elem.attr("readonly", true);
                 weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
+                weigth_elem.html("<option value=\"-1\">нет</option>");
            })';
            
     //разные обработчики, если соревнование является сборами (весовая категория ставится по умолчанию) КОСТЫЛЬ!!!
@@ -340,6 +312,7 @@ $this->endWidget(); //form
                     weigth_elem = $("#Sportsmen_WeightID");
                     weigth_elem.attr("readonly", true);
                     weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
+                    weigth_elem.html("<option value=\"-1\">нет</option>");
                });
             ';
          } else { // for ITF
@@ -350,6 +323,7 @@ $this->endWidget(); //form
                     weigth_elem = $("#Sportsmen_WeightID");
                     weigth_elem.attr("readonly", true);
                     weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
+                    weigth_elem.html("<option value=\"-1\">нет</option>");
                });
             ';
          }

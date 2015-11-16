@@ -83,11 +83,14 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         
       //весовые категории                                     
         $data = Sportsmen::getWeigthsList($model->AgeID);
-        $weights = CHtml::listData($data, 'WeightID', 'WeightNameFull');
+        $weigths = CHtml::listData($data, 'WeightID', 'WeightNameFull');
         if ($competition->isCamp) { //если СБОРЫ - то скрытое поле весовой категории
             echo $form->hiddenField($model, 'WeigthID', array('id' => 'Sportsmen_WeightID'));
         } else { //иначе показать выпадающий список весовой категории
-            echo $form->dropDownListRow($model, 'WeigthID', $weights, array(
+            if ($competition->type == 'itf') {
+                $weigths = CMap::mergeArray(array(-1=>'нет'), $weigths);
+            }
+            echo $form->dropDownListRow($model, 'WeigthID', $weigths, array(
                'id' => 'Sportsmen_WeightID', 
                'empty' => '<'.Yii::t('controls', 'Choose weigth category').'>',
                'readonly'=>!isset($model->AgeID) || empty($model->AgeID), //true,
@@ -268,7 +271,6 @@ $this->endWidget(); //form
                 weigth_elem = $("#Sportsmen_WeightID");
                 weigth_elem.attr("readonly", true);
                 weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
-                weigth_elem.html("<option value=\"-1\">нет</option>");
            })';
            
     //разные обработчики, если соревнование является сборами (весовая категория ставится по умолчанию) КОСТЫЛЬ!!!
@@ -312,7 +314,6 @@ $this->endWidget(); //form
                     weigth_elem = $("#Sportsmen_WeightID");
                     weigth_elem.attr("readonly", true);
                     weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
-                    weigth_elem.html("<option value=\"-1\">нет</option>");
                });
             ';
          } else { // for ITF
@@ -323,7 +324,6 @@ $this->endWidget(); //form
                     weigth_elem = $("#Sportsmen_WeightID");
                     weigth_elem.attr("readonly", true);
                     weigth_elem.html("<option value=\"\"><Выберите весовую категорию></option>");
-                    weigth_elem.html("<option value=\"-1\">нет</option>");
                });
             ';
          }

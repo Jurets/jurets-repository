@@ -79,7 +79,7 @@ class CommandController extends Controller //ParticipantController
         // сформировать критерию
         $criteria = new CDbCriteria;
         $criteria->alias = 'S';
-        $criteria->select = array('S.SpID', 'CONCAT(S.lastname, " ", S.firstname) AS FullName', 'S.BirthDate', 'S.AgeID', 'S.fullyears');
+        $criteria->select = array('S.SpID', 'CONCAT(S.lastname, " ", S.firstname) AS FullName', 'S.BirthDate', 'S.AgeID', 'S.fullyears', 'S.persontul');
         $criteria->with = array(//'relCommand',  //'relPhoto', 
             'relFst' => array('select'=>'FstName'),
             'relCategory' => array('select'=>'relCategory.CategoryName'),

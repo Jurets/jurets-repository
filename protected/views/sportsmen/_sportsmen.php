@@ -110,6 +110,16 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
             ////////////'value'=>'$data->getWeightSelectWidget()',
             'visible'=>!$competition->isCamp,  //видимый если тип соревнования "не сборы"
         ),
+
+        array(
+            //'header'=>Yii::t('fullnames', 'Person tul'),
+            'name'=>'persontul',
+            'type'=>'raw',
+            'filter'=>false,
+            'value'=>'$data->persontul ? "да" : ""',
+            'visible'=>($competition->type == 'itf'),  //видимый если 
+        ),
+
         array(
             'header'=>Yii::t('fullnames', 'Coach'),
             'name'=>'searchCoachName',

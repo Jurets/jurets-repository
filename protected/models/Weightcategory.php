@@ -235,6 +235,8 @@ class Weightcategory extends CActiveRecord
     
     //Jurets: получить название весовой категории (по ID)
     public function getWeightNameFull() {
+        if ($this->WeightID == -1)
+            return null;
         if (is_null($this->WeightTo)) 
             return 'свыше '.$this->WeightFrom.' кг';
         else 
@@ -243,6 +245,8 @@ class Weightcategory extends CActiveRecord
     
     //Jurets: получить название весовой категории (по ID)
     public function getWeightNameShort() {
+        if ($this->WeightID == -1)
+            return null;
         if (is_null($this->WeightTo)) 
             return '+'.$this->WeightFrom.'кг';
         else 

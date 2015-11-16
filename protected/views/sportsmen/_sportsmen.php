@@ -41,8 +41,8 @@ $arrColumns = array(
             'header'=>Yii::t('fullnames', 'LastName').', '.Yii::t('fullnames', 'FirstName'),
             'type'=>'html',
             //'value'=>'$data->FullName',
-            'filterInputOptions'=>array('style'=>'width: 180px;'),
-            'headerHtmlOptions'=>array('style'=>'width: 190px;'),
+            'filterInputOptions'=>array('style'=>'width: 150px;'),
+            'headerHtmlOptions'=>array('style'=>'width: 150px;'),
             'value'=>'CHtml::link(CHtml::encode($data["FullName"]), CHtml::normalizeUrl(array("sportsmen/view", "id"=>$data["SpID"])))',
         ));
  
@@ -98,8 +98,8 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
                       /*'<'.Yii::t('controls', 'Choose age category').'>',*/
                       //'readonly'=>!isset($model->BirthDate) || empty($model->BirthDate //true,
                 //)),
-            'filterInputOptions'=>array('style'=>'width: 150px; font-size: 12px;'),
-            'headerHtmlOptions'=>array('style'=>'width: 160px;'),
+            'filterInputOptions'=>array('style'=>'width: 120px; font-size: 12px;'),
+            'headerHtmlOptions'=>array('style'=>'width: 120px;'),
         ),
         array(
             'header'=>Yii::t('fullnames', 'Weight'),
@@ -125,8 +125,8 @@ $arrColumns = CMap::mergeArray($arrColumns, array(
             'name'=>'searchCoachName',
             'value'=>'$data->CoachName',
             'filter'=>CHtml::listData(Sportsmen::getCoachList($commandid), 'CoachID', 'CoachName'),
-            'filterInputOptions'=>array('style'=>'width: 150px; font-size: 12px;'),
-            'headerHtmlOptions'=>array('style'=>'width: 160px;'),
+            'filterInputOptions'=>array('style'=>'width: 130px; font-size: 12px;'),
+            'headerHtmlOptions'=>array('style'=>'width: 130px;'),
         ),
         array(
             'class'=>'bootstrap.widgets.TbButtonColumn',

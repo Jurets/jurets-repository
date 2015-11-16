@@ -24,6 +24,8 @@
 //получить объект Соревнования
 $competition = Competition::getModel();
 
+$isITF = $competition->type == 'itf';
+
 //определить права текущего юзера
 $isGuest = Yii::app()->isGuestUser; //определить - является ли юзер гостем
 if (!$isGuest) 
@@ -79,7 +81,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 ),
                 //array('label'=>'', 'url'=>'#', 'items'=>array(
                 array(
-                    'label'=>Yii::t('fullnames', 'Categories'), 
+                    'label'=> $isITF ? Yii::t('fullnames', 'Sparring') : Yii::t('fullnames', 'Categories'), 
                     'url'=>array($this->pathCompetition . '/weightcategory/category'),
                     'visible'=>!$competition->isMain,
                 ),
@@ -92,12 +94,12 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 array(
                     'label'=>Yii::t('fullnames', 'Toss'), 
                     'url'=>array($this->pathCompetition . '/weightcategory/tosser'), 
-                    'visible'=>($competition->isCompetition || $competition->type == 'itf'),
+                    'visible'=>($competition->isCompetition || $isITF),
                 ),
                 array(
                     'label'=>Yii::t('fullnames', 'Results'), 
                     'url'=>array($this->pathCompetition . '/weightcategory/result'), 
-                    'visible'=>($competition->isCompetition || $competition->type == 'itf'),
+                    'visible'=>($competition->isCompetition || $isITF),
                 ),
                 //array('label'=>Yii::t('fullnames', 'Photo'), 'url'=>array('/posting/default/index')),
                 array(

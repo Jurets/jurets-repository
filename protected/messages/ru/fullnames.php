@@ -36,6 +36,7 @@ return array(
     'Competition' => 'Соревнование',
     'Tournament' => 'Чемпионат',
     'Categories' => 'Категории',
+    'Sparring' => 'Спарринг',
     'Weigthing' => 'Взвешивание',
     'Toss' => 'Жеребьевка',
     'Results' => 'Результаты',

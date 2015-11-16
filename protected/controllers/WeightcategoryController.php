@@ -449,7 +449,14 @@ class WeightcategoryController extends Controller
     //список + кол-во по категориям
     public function actionCategory() {
         $this->layout = null;
-        $this->render('category', array('arrcategory'=>$this->getList('full', 'short')));
+        $competition = Competition::getModel();
+        if ($competition->type == 'itf') {
+            $list = $this->getList('short', 'short');
+        } else {
+            $list = $this->getList('full', 'short');
+        }
+        
+        $this->render('category', array('arrcategory'=>$list));
     }
 }
 

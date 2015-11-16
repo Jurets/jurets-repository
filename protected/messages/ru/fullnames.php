@@ -65,6 +65,7 @@ return array(
     ' of proposal' => ' заявки',
     'Enter Proposal' => 'Ввод заявок',
     'Entering list of sportsmen' => 'Ввод списка спортсменов',
+    'Input your team (coaches, competitors)' => 'Ввод данных своей команды (тренеры, спортсмены)',
     'View Proposal on Competition' => 'Посмотреть заявку на Соревнование',
 
     'Make Proposal' => 'Подать заявку',

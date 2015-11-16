@@ -39,7 +39,12 @@ if ($isProposalExists) {
     $isProposalActive = $proposal->status == Proposal::STATUS_ACTIVE;
 }
     
-$userName = $isGuest ? '' : '<span class="label label-info pull-right" style="margin-top: 10px; margin-left: 30px;">'.Yii::app()->user->name.'</span>';
+$userName = $isGuest ? '' : '
+    <a href="'.Yii::app()->createAbsoluteUrl('/users/mycabinet').'"> 
+        <span class="label label-info pull-right" style="margin-top: 10px; margin-left: 30px; border-bottom: dotted;" title="'.Yii::t('fullnames', 'My Cabinet').'">
+            '.Yii::app()->user->name.'
+        </span>
+    </a>';
 
 $brandUrl = Yii::app()->createAbsoluteUrl('/');
 
@@ -101,6 +106,44 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 ),
                 //array('label'=>'Контакты', 'url'=>array('/site/contact')),
                 //array('label'=>'Регистрация', 'url'=>array('/proposal/create'), 'visible'=>Yii::app()->user->isGuest),
+                array('label'=>'', 'url'=>'#', 'items'=>
+                    array(
+                        array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),                
+                        array('label'=>Yii::t('fullnames', 'Login'), 'url'=>array('/site/login'), 'visible'=>$isGuest),
+                        array('label'=>Yii::t('fullnames', 'Users'), 'url'=>array('/users/index'), 'icon'=>'user', 'visible'=>$isExtendRole),
+                        array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('proposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
+                        array('label'=>Yii::t('fullnames', 'Judge Proposals'), 'url'=>array('judgeproposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
+                        array('label'=>Yii::t('controls', 'Manage'), 
+                            'url'=>array('/competition/view'), 
+                            'icon'=>'wrench', 
+                            'visible'=>Yii::app()->user->isManagerRole()
+                        ),
+                        array('label'=>Yii::t('controls', 'Manage'), 
+                            'url'=>array('/competition/view'), 
+                            'icon'=>'book', 
+                            'visible'=>Yii::app()->user->isAdminRole()
+                        ),
+                        array('label'=>Yii::t('fullnames', 'My Command'), 
+                            'url'=>array('/command/view', 'id'=>Yii::app()->user->getCommandID()), 
+                            'icon'=>'list', 
+                            'linkOptions'=>array(
+                                'title'=>Yii::t('fullnames', 'Input your team (coaches, competitors)'),
+                            ),
+                            'visible'=>(!$isGuest && !$isExtendRole && $isProposalExists && $isProposalActive)
+                        ),
+                        array('label'=>Yii::t('fullnames', 'Make Proposal'), 
+                            'url'=>array('proposal/create'),
+                            'icon'=>'flag',   
+                            'linkOptions'=>array(
+                                'title'=>Yii::t('fullnames', 'Make Proposal').Yii::t('fullnames', 'on Competition'), 
+                            ),
+                            'visible'=>(!$isGuest && !$isExtendRole && !$isProposalExists)
+                            ),
+                        '---',
+                        //array('label'=>Yii::t('fullnames', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'icon'=>'arrow-right', 'visible'=>!$isGuest),
+                    ), 
+                    'visible'=>!$isGuest,
+                ),
             ),
         ),
      //'<form class="navbar-search pull-left" action=""><input type="text" class="search-query span2" placeholder="Поиск"></form>',
@@ -110,59 +153,20 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
             'htmlOptions'=>array('class'=>'pull-right'),
             'items'=>array(
                 array('label'=>Yii::t('fullnames', 'Login'), 'url'=>array('/site/login'), 'visible'=>$isGuest),
+                array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),
                 array('label'=>'', 'url'=>'#', 'items'=>array(
-                    array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),
+                    //array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),
                     array('label'=>Yii::t('fullnames', 'Regjudge'), 'url'=>array('/judge/create'), 'visible'=>$isGuest),
                 ), 'visible'=>$isGuest),
-                array('label'=>Yii::t('fullnames', 'My Cabinet'), 'url'=>array('/users/mycabinet'), 'visible'=>!$isGuest),
-                array('label'=>'', 'url'=>'#', 'items'=>array(
-                    array('label'=>Yii::t('fullnames', 'Regin'), 'url'=>array('/users/create'), 'visible'=>$isGuest),                
-                    array('label'=>Yii::t('fullnames', 'Login'), 'url'=>array('/site/login'), 'visible'=>$isGuest),
-                    array('label'=>Yii::t('fullnames', 'Users'), 'url'=>array('/users/index'), 'icon'=>'user', 'visible'=>$isExtendRole),
-                    array('label'=>Yii::t('fullnames', 'Proposals'), 'url'=>array('proposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
-                    array('label'=>Yii::t('fullnames', 'Judge Proposals'), 'url'=>array('judgeproposal/index'), 'icon'=>'book', 'visible'=>$isExtendRole),
-                    array('label'=>Yii::t('controls', 'Manage'), 
-                        'url'=>array('/competition/view'), 
-                        'icon'=>'wrench', 
-                        'visible'=>Yii::app()->user->isManagerRole()
+                //array('label'=>Yii::t('fullnames', 'My Cabinet'), 'url'=>array('/users/mycabinet'), 'visible'=>!$isGuest),
+                array(
+                    'url'=>array('/site/logout'), 
+                    'linkOptions'=>array(
+                        'title'=>Yii::t('fullnames', 'Exit').' ('.Yii::app()->user->name.')', 
                     ),
-                    array('label'=>Yii::t('controls', 'Manage'), 
-                        //'url'=>array('/competition/admin'), //ToDo: Функционал АДМИНа пока не работает
-                        'url'=>array('/competition/view'), 
-                        'icon'=>'book', 
-                        'visible'=>Yii::app()->user->isAdminRole()
-                    ),
-                    array('label'=>Yii::t('fullnames', 'My Command'), 
-                        'url'=>array('/command/view', 'id'=>Yii::app()->user->getCommandID()), 
-                        'icon'=>'list', 
-                        'linkOptions'=>array(
-                            //'title'=>Yii::t('fullnames', 'Entering list of sportsmen'), 
-                            'title'=>'Ввод данных своей команды (тренеры, спортсмены)', 
-                        ),
-                        'visible'=>(!$isGuest && !$isExtendRole && $isProposalExists && $isProposalActive)
-                    ),
-                    array('label'=>Yii::t('fullnames', 'Make Proposal'), 
-                        'url'=>array('proposal/create'),
-                        'icon'=>'flag',   
-                        'linkOptions'=>array(
-                            'title'=>Yii::t('fullnames', 'Make Proposal').Yii::t('fullnames', 'on Competition'), 
-                        ),
-                        'visible'=>/*($isExtendRole && !$isMyUserID && !$isProposalExists) || */(!$isGuest && !$isExtendRole/*$isMyUserID */&& !$isProposalExists)
-                        ),
-
-            
-        /*array('label'=>Yii::t('controls', Yii::t('fullnames', 'Enter Proposal')), 
-            'url'=>array('/command/view', 'id'=>Yii::app()->user->getCommandID()),
-            'icon'=>'list', 
-            'linkOptions'=>array(
-                'title'=>Yii::t('fullnames', Yii::t('fullnames', 'Entering list of sportsmen')), 
-            ),
-            'visible'=>(!$isExtendRole && $isProposalExists)
-            ),*/
-            
-                    '---',
-                    array('label'=>Yii::t('fullnames', 'Exit').' ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'icon'=>'arrow-right', 'visible'=>!$isGuest),
-                ), 'visible'=>!$isGuest),
+                    'icon'=>'icon-share icon-white', 
+                    'visible'=>!$isGuest
+                ),
             ),
         ),   
      $userName,

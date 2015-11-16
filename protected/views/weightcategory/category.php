@@ -3,6 +3,7 @@
     $competition = Competition::getModel();
     //является ли тип соревнования "сборы"
     $isCamp = $competition->isCamp;
+    $isITF = $competition->type == 'itf';
     
     //
     $this->breadcrumbs=array(
@@ -69,7 +70,32 @@
     $tabs = array();
     //if (!$isCamp) 
     {
-        $tabs[] = array('label'=>Yii::t('fullnames', 'В разрезе'), 'content'=>$categoryContent, 'active'=>true);
+        $label = $isITF ? 'Все' : Yii::t('fullnames', 'В разрезе');
+        if ($isITF) {
+            // цикл по дивизионам
+            for ($division = 1; $division <= 3; $division++) {
+                $content = '';
+                // цикл по возрастам
+                foreach ($arrcategory as $aid=>$age) {
+                    //$ageCount = 0;
+                    //посчитать кол-во участников по возрастной
+                    /*if (isset($age['children']) && is_array($age['children'])) {
+                        foreach ($age['children'] as $weight) {
+                            $ageCount += $weight['count'];
+                        }
+                    }*/
+                    //$age_array[] = array('id'=>++$id, 'name'=>$age['text'], 'count'=>$ageCount);
+                    //$totalCount += $ageCount;
+                    //отрендерить вьюшку по одной возрастной        
+                    $content .= $this->renderPartial('_statage2', array('age'=>$age, 'division'=>$division), true);
+                }
+                $tabs[] = array('label'=>$division.' дивизион', 'content'=>$content, 'active'=>($division == 1));
+            }
+            $tabs[] = array('label'=>$label, 'content'=>$categoryContent, 'active'=>false);
+        } else {
+            $tabs[] = array('label'=>$label, 'content'=>$categoryContent, 'active'=>true);
+        }
+        
     }
     $tabs[] = array('label'=>Yii::t('fullnames', 'Суммарно'), 'content'=>$summaryContent, 'active'=>false /*$isCamp*//*($tabnum == 2)*/);
   

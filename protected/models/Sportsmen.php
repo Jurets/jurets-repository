@@ -423,13 +423,15 @@ class Sportsmen extends CActiveRecord
                    'C2.Coachname as Coachname1',
                    'S.AgeID',
                    'S.WeigthID',
-                   'S.TossNum'))
+                   'S.TossNum',
+                   'A.AttestLevel'))
             ->from('sportsmen S')
             ->leftJoin('command D', 'D.commandid = S.commandid')
             ->leftJoin('fst F', 'S.fstid = F.fstid')
             ->leftJoin('sportcategory C', 'S.categoryid = C.categoryid')
             ->leftJoin('coach C2', 'C2.coachid = S.coach2id')
             ->leftJoin('coach C1', 'C1.coachid = S.coach1id')
+            ->leftJoin('attestlevel A', 'A.AttestLevelID = S.AttestLevelID')
             ->where('S.status = 1 AND D.competitionid = '. Yii::app()->competitionId)
             ->order('S.AgeID, S.WeigthID, FullName');
         return $sqlCommand;

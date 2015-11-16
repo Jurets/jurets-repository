@@ -229,15 +229,25 @@ class WeightcategoryController extends Controller
             );
             //$weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  ----- так много запросов
             $weigths = $age->relWeigths;  //список весов (из связанной модели по жадной загрузке) --- так лучше ))
+            
+            // вычисление дивизионов
+            $allSportsmens = $this->filterDivision($allSportsmens);
+            
             foreach ($weigths as $wid=>$weigth) {
                 //$sportsmens = $this->weightlist($weigth->WeightID);  
                 $sportsmens = $this->filterWeightlist($allSportsmens, $weigth->WeightID);
                 $count = $this->countWeightlist($allSportsmens, $weigth->WeightID);
+                $count1 = $this->countDivision($allSportsmens, $weigth->WeightID, 1);
+                $count2 = $this->countDivision($allSportsmens, $weigth->WeightID, 2);
+                $count3 = $this->countDivision($allSportsmens, $weigth->WeightID, 3);
                 $arrcategory[$aid]['children'][$wid] = array(
                     'id' => $weigth->WeightID,
                     'text' => $wmode == 'full' ? $weigth->WeightNameFull : $weigth->WeightNameShort,
                     'sportsmens' => $sportsmens,
                     'count' => $count,
+                    'count1' => $count1,
+                    'count2' => $count2,
+                    'count3' => $count3,
                 );
             }
         }
@@ -322,6 +332,16 @@ class WeightcategoryController extends Controller
         }
         return count($filteredList);
     }    
+
+    //выдать кол-во спортсменов весовой категории
+    public function countDivision($sportsmens, $wid, $division) {
+        $filteredList = array();
+        foreach($sportsmens as $index => $item) {
+            if ($item['WeigthID'] == $wid && $item['division'] == $division)
+                $filteredList[] = $item;
+        }
+        return count($filteredList);
+    }    
     
     //выдать список спортсменов весовой категории
     public function filterWeightlist($sportsmens, $wid) {
@@ -332,6 +352,20 @@ class WeightcategoryController extends Controller
         }
         return $filteredList;
     }          
+    
+    //выдать список спортсменов весовой категории
+    public function filterDivision($sportsmens) {
+        //$filteredList = array();
+        foreach($sportsmens as $index => &$item) {
+            if (in_array($item['AttestLevel'], array('10 куп', '9 куп', '8 куп', '7 куп')))
+                $item['division'] = 1;
+            else if (in_array($item['AttestLevel'], array('6 куп', '5 куп', '4 куп', '3 куп')))
+                $item['division'] = 2;
+            else 
+                $item['division'] = 3;
+        }
+        return $sportsmens;
+    }
     
     //ДЕЙСТВИЕ: смотреть жеребъёвку
     public function actionResult() {

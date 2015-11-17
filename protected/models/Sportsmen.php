@@ -424,7 +424,9 @@ class Sportsmen extends CActiveRecord
                    'S.AgeID',
                    'S.WeigthID',
                    'S.TossNum',
-                   'A.AttestLevel'))
+                   'A.AttestLevel',
+                   'S.persontul',
+                   'S.fullyears'))
             ->from('sportsmen S')
             ->leftJoin('command D', 'D.commandid = S.commandid')
             ->leftJoin('fst F', 'S.fstid = F.fstid')

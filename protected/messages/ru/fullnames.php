@@ -37,6 +37,7 @@ return array(
     'Tournament' => 'Чемпионат',
     'Categories' => 'Категории',
     'Sparring' => 'Спарринг',
+    'Personal tul' => 'Личный туль',
     'Weigthing' => 'Взвешивание',
     'Toss' => 'Жеребьевка',
     'Results' => 'Результаты',

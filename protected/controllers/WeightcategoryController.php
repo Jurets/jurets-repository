@@ -9,6 +9,9 @@ class WeightcategoryController extends Controller
 
     public $layout='//layouts/column2';
 
+    private $competition;
+
+    
 	/**
 	 * @return array action filters
 	 */
@@ -29,7 +32,7 @@ class WeightcategoryController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('tosser', 'tosserold', 'list', 'result', 'getweightlist','category'/*, 'index','view'*/),
+				'actions'=>array('tosser', 'tosserold', 'list', 'result', 'getweightlist','category', 'tul'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -46,6 +49,13 @@ class WeightcategoryController extends Controller
 		);
 	}
 
+    /**
+    * инициализация объекта модели
+    */
+    public function init() {
+        $this->competition = Competition::getModel();
+    }
+    
 	/**
 	 * Displays a particular model.
 	 * @param integer $id the ID of the model to be displayed
@@ -211,12 +221,15 @@ class WeightcategoryController extends Controller
     }
     
 
-  //ДЕЙСТВИЕ: смотреть жеребъёвку
+  //ДЕЙСТВИЕ: сформировать структуру данных для показа Категорий СПАРРИНГ
     private function getList($amode = 'short', $wmode = 'full') {
         $arrcategory = array();
         //$allSportsmens = $this->allweightlist();
         $sqlCommand = Sportsmen::sqlTosserList();
+        // выборка всех спортсменов
         $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
+        // вычисление дивизионов
+        $allSportsmens = $this->setDivision($allSportsmens);
         //список возрастов (кэш)
         $ages = Agecategory::getAges();
         //список весовых по возрастным
@@ -229,9 +242,6 @@ class WeightcategoryController extends Controller
             );
             //$weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  ----- так много запросов
             $weigths = $age->relWeigths;  //список весов (из связанной модели по жадной загрузке) --- так лучше ))
-            
-            // вычисление дивизионов
-            $allSportsmens = $this->filterDivision($allSportsmens);
             
             foreach ($weigths as $wid=>$weigth) {
                 //$sportsmens = $this->weightlist($weigth->WeightID);  
@@ -254,6 +264,45 @@ class WeightcategoryController extends Controller
         return $arrcategory;
     }
     
+  //ДЕЙСТВИЕ: сформировать структуру данных для показа Категорий ТУЛЬ
+    private function getTulList($amode = 'short', $wmode = 'full') {
+        $arrcategory = array();
+        //$allSportsmens = $this->allweightlist();
+        $sqlCommand = Sportsmen::sqlTosserList();
+        $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
+        //список возрастов (кэш)
+        $ages = Agecategory::getAges();
+        //список весовых по возрастным
+        foreach ($ages as $aid=>&$age) {
+            $arrcategory[$age->AgeID] = array(
+                 'id' => $age->AgeID,
+                 'text' => $amode == 'full' ? $age->AgeNameYear : $age->AgeName,
+                 'expanded' => false,
+                 'children' => array(),
+                 'count' => 0,
+                 'divisions' => Agecategory::getDivisions('personal_tul'),
+            );
+            foreach($arrcategory[$age->AgeID]['divisions'] as &$division) {
+                $division['sportsmens'] = [];
+                $division['count'] = 0;
+            }
+        }
+        //РАСПРЕДЕЛЕНИЕ по возрастам и дивизионам: цикл по всем спортсменам
+        foreach ($allSportsmens as $sid=>$sportsmen) {
+            if ($sportsmen['persontul']) {
+                $divisions = &$arrcategory[$sportsmen['AgeID']]['divisions'];
+                foreach ($divisions/*$arrcategory[$sportsmen['AgeID']]['divisions']*/ as &$division) {
+                    if (in_array($sportsmen['AttestLevel'], $division['levels'])) {
+                         $division['sportsmens'][] = $sportsmen;
+                         $division['count'] = $division['count'] + 1;
+                         $arrcategory[$sportsmen['AgeID']]['count'] = $arrcategory[$sportsmen['AgeID']]['count'] + 1;
+                    }
+                }
+            }
+        }
+        return $arrcategory;
+    }
+    
   //ДЕЙСТВИЕ: смотреть жеребьевку
     public function actionList() {
         $this->render('list', array('arrcategory'=>$this->getList()));
@@ -261,9 +310,9 @@ class WeightcategoryController extends Controller
 
   //ДЕЙСТВИЕ: смотреть жеребъёвку
     public function actionTosser() {
-        $competition = Competition::getModel();
+        //$competition = Competition::getModel();
         $this->render('tosser', array(
-            'competition' => $competition,
+            'competition' => $this->competition,
         ));
         //!TODO - Ниже закомментированное - НА БУДУЩЕЕ!!!!!!
         /*$arrcategory = array();
@@ -353,9 +402,8 @@ class WeightcategoryController extends Controller
         return $filteredList;
     }          
     
-    //выдать список спортсменов весовой категории
-    public function filterDivision($sportsmens) {
-        //$filteredList = array();
+    //установить дивизион для спортсменов список спортсменов весовой категории
+    public function setDivision($sportsmens) {
         foreach($sportsmens as $index => &$item) {
             if (in_array($item['AttestLevel'], array('10 куп', '9 куп', '8 куп', '7 куп')))
                 $item['division'] = 1;
@@ -366,12 +414,17 @@ class WeightcategoryController extends Controller
         }
         return $sportsmens;
     }
+
+    //выдать список спортсменов весовой категории
+    public function filterDivision($sportsmens) {
+        
+    }
     
     //ДЕЙСТВИЕ: смотреть жеребъёвку
     public function actionResult() {
-        $competition = Competition::getModel();
+        //$competition = Competition::getModel();
         $this->render('result', array(
-            'competition' => $competition,
+            'competition' => $this->competition,
         ));
         //$this->render('results');
     }
@@ -483,14 +536,19 @@ class WeightcategoryController extends Controller
     //список + кол-во по категориям
     public function actionCategory() {
         $this->layout = null;
-        $competition = Competition::getModel();
-        if ($competition->type == 'itf') {
+        if ($this->competition->type == 'itf') {
             $list = $this->getList('short', 'short');
         } else {
             $list = $this->getList('full', 'short');
         }
-        
         $this->render('category', array('arrcategory'=>$list));
     }
+    
+    //список + кол-во по категориям
+    public function actionTul() {
+        $list = $this->getTulList('short', 'short');
+        $this->render('tul_list', array('arrcategory'=>$list));
+    }
+    
 }
 

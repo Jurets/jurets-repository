@@ -265,4 +265,53 @@ class Agecategory extends CActiveRecord
             ->where('CompetitionID = :CompetitionID', array(':CompetitionID'=>$compid))
             ->queryScalar();
     }
+    
+    // ДИВИЗИОНЫ. используются для ITF. временное решение захардкодить их здесь в модели
+    // !TODO : в дальнейшем продумать варианты:
+    // - в таблице возрастов отдельным полем в JSON формате
+    public static function getDivisions($type = '') {
+        $_divisions = array(
+            'personal_sparring' => array(
+                1 => array(
+                    'name'=>'1 дивизион',
+                    'text'=>'10-7 куп',
+                    'levels'=>array('10 куп', '9 куп', '8 куп', '7 куп'),
+                ),
+                2 => array(
+                    'name'=>'2 дивизион',
+                    'text'=>'6-3 куп',
+                    'levels'=>array('6 куп', '5 куп', '4 куп', '3 куп'),
+                ),
+                3 => array(
+                    'name'=>'3 дивизион',
+                    'text'=>'2 куп і вище',
+                    'levels'=>array('2 куп', '1 пум', '1 дан', '2 дан', '3 дан', '4 дан'),
+                ),
+            ),
+            'personal_tul' => array(
+                1 => array(
+                    'name'=>'1 дивизион',
+                    'text'=>'9-7 куп',
+                    'levels'=>array('9 куп', '8 куп', '7 куп'),
+                ),
+                2 => array(
+                    'name'=>'2 дивизион',
+                    'text'=>'6-3 куп',
+                    'levels'=>array('6 куп', '5 куп', '4 куп', '3 куп'),
+                ),
+                3 => array(
+                    'name'=>'3 дивизион',
+                    'text'=>'2 куп і вище',
+                    'levels'=>array('2 куп', '1 пум', '1 дан', '2 дан', '3 дан', '4 дан'),
+                ),
+            ),
+        );
+        if (!empty($type) && key_exists($type, $_divisions)) {
+            return $_divisions[$type];
+        } else {
+            return $_divisions;
+        }
+    }
+    
+    
 }

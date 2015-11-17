@@ -73,16 +73,22 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                     'url' => ($isExtendRole ? array($this->pathCompetition . '/competition/view') : array($this->pathCompetition . '/competition/view')),
                     'visible'=>!$competition->isMain,
                 ),
-                //array('label'=>'Информация', 'url'=>array('/site/page', 'view'=>'about')),
+                //команды турнира
                 array(
                     'label'=>Yii::t('fullnames', 'Commands'), 
                     'url'=>($isExtendRole ? array($this->pathCompetition . '/command/manage') : array($this->pathCompetition . '/command/index')),
                     'visible'=>!$competition->isMain,
                 ),
-                //array('label'=>'', 'url'=>'#', 'items'=>array(
+                // категории спарринга
                 array(
                     'label'=> $isITF ? Yii::t('fullnames', 'Sparring') : Yii::t('fullnames', 'Categories'), 
                     'url'=>array($this->pathCompetition . '/weightcategory/category'),
+                    'visible'=>!$competition->isMain,
+                ),
+                // категории пумсэ (тули)
+                array(
+                    'label'=> $isITF ? Yii::t('fullnames', 'Personal tul') : Yii::t('fullnames', 'Categories'), 
+                    'url'=>array($this->pathCompetition . '/weightcategory/tul'),
                     'visible'=>!$competition->isMain,
                 ),
                 //)),

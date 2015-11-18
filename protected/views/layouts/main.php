@@ -236,7 +236,12 @@ echo"</div>";
             <ul id="yw0" class="navigation nav">
                 <li>
                     <a class="" href="/site/help" title="Рекомендації по роботі з сайтом" target="_blank" >
-                        <i class="icon-question-sign icon-white"></i>&nbsp;Допомога
+                        <i class="icon-question-sign icon-white"></i>&nbsp;Рекомендації
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="/document/tkdcard_manual.pdf" title="Коротка інструкція для тренера (рус)" target="_blank" >
+                        <i class="icon-question-sign icon-white"></i>&nbsp;Інструкція
                     </a>
                 </li>
                 <!--<li>

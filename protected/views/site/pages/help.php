@@ -79,6 +79,11 @@ $this->breadcrumbs = array(
             <p class="centext colblue1 text14">Корисні ресурси</p>
             <ul id="yw0" class="navigation nav">
                 <li>
+                    <a class="" href="/document/tkdcard_manual.pdf" title="Коротка інструкція для тренера" target="_blank" >
+                        <i class="icon-book"></i>&nbsp;Коротка інструкція для тренера (рус)
+                    </a>
+                </li>            
+                <li>
                     <a class="" href="http://youtu.be/XIaWEN4dvAk" title="Відео-допомога: Реєстрація на сайті" target="_blank" >
                         <i class="icon-facetime-video"></i>&nbsp;Відео-допомога: Реєстрація на сайті
                     </a>

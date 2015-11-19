@@ -89,7 +89,7 @@ $this->widget('bootstrap.widgets.TbNavbar',array(
                 array(
                     'label'=> $isITF ? Yii::t('fullnames', 'Personal tul') : Yii::t('fullnames', 'Categories'), 
                     'url'=>array($this->pathCompetition . '/weightcategory/tul'),
-                    'visible'=>!$competition->isMain,
+                    'visible'=>($competition->type == 'itf'),
                 ),
                 //)),
                 array(

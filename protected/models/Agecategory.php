@@ -285,7 +285,7 @@ class Agecategory extends CActiveRecord
                 3 => array(
                     'name'=>'3 дивизион',
                     'text'=>'2 куп і вище',
-                    'levels'=>array('2 куп', '1 пум', '1 дан', '2 дан', '3 дан', '4 дан'),
+                    'levels'=>array('2 куп', '1 куп', '1 пум', '1 дан', '2 дан', '3 дан', '4 дан'),
                 ),
             ),
             'personal_tul' => array(
@@ -302,7 +302,7 @@ class Agecategory extends CActiveRecord
                 3 => array(
                     'name'=>'3 дивизион',
                     'text'=>'2 куп і вище',
-                    'levels'=>array('2 куп', '1 пум', '1 дан', '2 дан', '3 дан', '4 дан'),
+                    'levels'=>array('2 куп', '1 куп', '1 пум', '1 дан', '2 дан', '3 дан', '4 дан'),
                 ),
             ),
         );

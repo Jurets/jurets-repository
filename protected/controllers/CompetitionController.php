@@ -90,15 +90,41 @@ class CompetitionController extends Controller
     {
         Yii::import('ext.csv.ECSVExport');
         $outputFile = 'participants.csv';
-        //$cmd = Yii::app()->db->createCommand("SELECT * FROM fulllist WHERE competitionid = " . Yii::app()->competitionId);
+        $competition = Competition::getModel();
+        // выборка
+        $select = array('F.AgeName', 'F.FullName', 'F.Commandname', 'F.FstName', 'F.BirthYear', 'F.CategoryName', 'F.attestlevel', 'F.Gender', 'F.WeightNameFull', 'F.Coaches', 'F.competitionid', 'F.city', 'F.spid');
+        if ($competition->type == 'itf') {
+            $select[] = "if((S.persontul = 1), 'да', null) AS persontul";
+            $select[] = "S.persontul AS division_sparring";
+            $select[] = "S.persontul AS division_tul";
+        }
         $cmd = Yii::app()->db->createCommand()
-            ->select(array('F.AgeName', 'F.FullName', 'F.Commandname', 'F.FstName', 'F.BirthYear', 'F.CategoryName', 'F.attestlevel', 'F.Gender', 'F.WeightNameFull', 'F.Coaches', 'F.competitionid', 'F.city', 'S.persontul', 'F.spid'))
+            ->select($select)
             ->from('fulllist F')
             ->leftJoin('sportsmen S', 'S.SpID = F.spid')
             ->where('competitionid = :competitionid');
         $cmd->params = array(':competitionid'=>Yii::app()->competitionId);
         $csv = new ECSVExport($cmd, true, true, ';');
         $csv->delimiter = ';';
+        if ($competition->type == 'itf') {
+            $csv->setCallback(function($row) {
+                // определение дивизиона для тулей и спарринга
+                $divisions = Agecategory::getDivisions();
+                foreach ($divisions['personal_tul'] as $division) {
+                    if (in_array($row['Attestlevel'], $division['levels'])) {
+                        $row['division_tul'] = $division['name'];
+                        break;
+                    }
+                }
+                foreach ($divisions['personal_sparring'] as $division) {
+                    if (in_array($row['Attestlevel'], $division['levels'])) {
+                        $row['division_sparring'] = $division['name'];
+                        break;
+                    }
+                }
+                return $row;
+            });
+        }
         $csv->setOutputFile($outputFile);
         $csv->toCSV(); // returns string by default
          

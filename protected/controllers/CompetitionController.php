@@ -95,6 +95,7 @@ class CompetitionController extends Controller
         $select = array('F.AgeName', 'F.FullName', 'F.Commandname', 'F.FstName', 'F.BirthYear', 'F.CategoryName', 'F.attestlevel', 'F.Gender', 'F.WeightNameFull', 'F.Coaches', 'F.competitionid', 'F.city', 'F.spid');
         if ($competition->type == 'itf') {
             $select[] = "if((S.persontul = 1), 'да', null) AS persontul";
+            $select[] = "S.fullyears";
             $select[] = "S.persontul AS division_sparring";
             $select[] = "S.persontul AS division_tul";
         }

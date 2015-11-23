@@ -88,8 +88,45 @@
                     //$totalCount += $ageCount;
                     //отрендерить вьюшку по одной возрастной        
                     $content .= $this->renderPartial('_statage2', array('age'=>$age, 'division'=>$division), true);
+
+                    $title_division = $weight['divisions'][$division]['name'] . ' (' . $weight['divisions'][$division]['text'] . ')';
+                    // вывести модальные окна
+                    foreach ($age['children'] as $wid=>$weight) {
+                        $sp_content = '';
+                        foreach ($weight['divisions'][$division]['sportsmens'] as $id=>$item) {
+                            $sp_content .= ($id + 1) . ') ' . $item['FullName'] . '(' . $item['Commandname'] . ")<br>";
+                        }
+                        /*$this->beginWidget('bootstrap.widgets.TbModal', array(
+                            'id'=>'weigth_' . $weight['id'],
+                            'fade'=>false,
+                            'options'=>array('backdrop'=>false),
+                        ));*/
+                        $id = 'weigth_' . $weight['id'];
+                        $title = $age['text'] . '<br>' . $weight['text'] . ', ' . $title_division;
+                        if ($weight['divisions'][$division]['count'] > 0) {
+                            $id .= '_' . $division;
+                        }
+                        ?>
+                        <div id="<?=$id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 id="myModalLabel"><?=$title?></h4>
+                          </div>
+                          <div class="modal-body">
+                            <p><?=$sp_content?></p>
+                          </div>
+                          <div class="modal-footer">
+                            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Закрыть</button>
+                          </div>
+                        </div> <?php
+                    }
+                    
                 }
-                $tabs[] = array('label'=>$division.' дивизион', 'content'=>$content, 'active'=>($division == 1));
+                $tabs[] = array(
+                    'label'=>$title_division, //$division.' дивизион', 
+                    'content'=>$content, 
+                    'active'=>($division == 1)
+                );
             }
             if (!$isITF) { // если не ИТФ, то показать таб "Все"
                 $tabs[] = array('label'=>$label, 'content'=>$categoryContent, 'active'=>false);

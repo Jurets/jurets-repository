@@ -10,7 +10,7 @@ $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
 ));
     $ageCount = 0;
     foreach ($age['children'] as $wid=>$weight) {
-        $count_division = $weight['count' . $division];
+        $count_division = $weight['divisions'][$division]['count'];
         if ($count_division == 0) 
             $type = 'default';//'important';
         else if ($count_division == 1) 
@@ -21,9 +21,9 @@ $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
             $type = 'success'; //'default';
 
         $ageCount += $count_division;
-
+        
         $sportsmens = '';
-        foreach ($weight['sportsmens'] as $id=>$item) {
+        foreach ($weight['divisions'][$division]['sportsmens'] as $id=>$item) {
             $sportsmens .= ($id + 1) . ') ' . $item['FullName'] . '(' . $item['Commandname'] . ")<br>";
         }
         if (empty($sportsmens)) $sportsmens = 'Пустая категория';

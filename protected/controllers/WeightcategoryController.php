@@ -222,9 +222,9 @@ class WeightcategoryController extends Controller
     
 
   //ДЕЙСТВИЕ: сформировать структуру данных для показа Категорий СПАРРИНГ
-    private function getList($amode = 'short', $wmode = 'full') {
+    private function getList($amode = 'short', $wmode = 'full') {//DebugBreak();
         $arrcategory = array();
-        //$allSportsmens = $this->allweightlist();
+        //
         $sqlCommand = Sportsmen::sqlTosserList();
         // выборка всех спортсменов
         $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
@@ -243,22 +243,32 @@ class WeightcategoryController extends Controller
             //$weigths = Sportsmen::getWeigthsList($age->AgeID);  //список весов (кэш)  ----- так много запросов
             $weigths = $age->relWeigths;  //список весов (из связанной модели по жадной загрузке) --- так лучше ))
             
-            foreach ($weigths as $wid=>$weigth) {
+            foreach ($weigths as $wid=>&$weigth) {
                 //$sportsmens = $this->weightlist($weigth->WeightID);  
                 $sportsmens = $this->filterWeightlist($allSportsmens, $weigth->WeightID);
                 $count = $this->countWeightlist($allSportsmens, $weigth->WeightID);
-                $count1 = $this->countDivision($allSportsmens, $weigth->WeightID, 1);
-                $count2 = $this->countDivision($allSportsmens, $weigth->WeightID, 2);
-                $count3 = $this->countDivision($allSportsmens, $weigth->WeightID, 3);
                 $arrcategory[$aid]['children'][$wid] = array(
                     'id' => $weigth->WeightID,
                     'text' => $wmode == 'full' ? $weigth->WeightNameFull : $weigth->WeightNameShort,
                     'sportsmens' => $sportsmens,
                     'count' => $count,
-                    'count1' => $count1,
-                    'count2' => $count2,
-                    'count3' => $count3,
+                    'divisions' => Agecategory::getDivisions('personal_sparring'),
                 );
+                foreach($arrcategory[$aid]['children'][$wid]['divisions'] as &$division) {
+                    $division['sportsmens'] = [];
+                    $division['count'] = 0;
+                }
+                //РАСПРЕДЕЛЕНИЕ по дивизионам
+                foreach ($sportsmens as $sid=>$sportsmen) {
+                    $divisions = &$arrcategory[$aid]['children'][$wid]['divisions'];
+                    foreach ($divisions as &$division) {
+                        if (in_array($sportsmen['AttestLevel'], $division['levels'])) {
+                             $division['sportsmens'][] = $sportsmen;
+                             $division['count'] = $division['count'] + 1;
+                        }
+                    }
+                }
+                
             }
         }
         return $arrcategory;
@@ -267,7 +277,7 @@ class WeightcategoryController extends Controller
   //ДЕЙСТВИЕ: сформировать структуру данных для показа Категорий ТУЛЬ
     private function getTulList($amode = 'short', $wmode = 'full') {
         $arrcategory = array();
-        //$allSportsmens = $this->allweightlist();
+        //
         $sqlCommand = Sportsmen::sqlTosserList();
         $allSportsmens = Yii::app()->db->createCommand($sqlCommand->text)->queryAll();
         //список возрастов (кэш)
@@ -291,7 +301,7 @@ class WeightcategoryController extends Controller
         foreach ($allSportsmens as $sid=>$sportsmen) {
             if ($sportsmen['persontul']) {
                 $divisions = &$arrcategory[$sportsmen['AgeID']]['divisions'];
-                foreach ($divisions/*$arrcategory[$sportsmen['AgeID']]['divisions']*/ as &$division) {
+                foreach ($divisions as &$division) {
                     if (in_array($sportsmen['AttestLevel'], $division['levels'])) {
                          $division['sportsmens'][] = $sportsmen;
                          $division['count'] = $division['count'] + 1;

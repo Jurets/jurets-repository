@@ -91,7 +91,9 @@
                 }
                 $tabs[] = array('label'=>$division.' дивизион', 'content'=>$content, 'active'=>($division == 1));
             }
-            $tabs[] = array('label'=>$label, 'content'=>$categoryContent, 'active'=>false);
+            if (!$isITF) { // если не ИТФ, то показать таб "Все"
+                $tabs[] = array('label'=>$label, 'content'=>$categoryContent, 'active'=>false);
+            }
         } else {
             $tabs[] = array('label'=>$label, 'content'=>$categoryContent, 'active'=>true);
         }

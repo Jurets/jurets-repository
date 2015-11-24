@@ -291,8 +291,8 @@ class Agecategory extends CActiveRecord
             'personal_tul' => array(
                 1 => array(
                     'name'=>'1 дивизион',
-                    'text'=>'9-7 куп',
-                    'levels'=>array('9 куп', '8 куп', '7 куп'),
+                    'text'=>'10-7 куп',
+                    'levels'=>array('10 куп', '9 куп', '8 куп', '7 куп'),
                 ),
                 2 => array(
                     'name'=>'2 дивизион',

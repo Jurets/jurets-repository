@@ -29,6 +29,26 @@ $this->renderPartial('/site/manager');
             'style'=>'margin-left: 20px;'
         ), Yii::t('controls','Экспорт'));
         
+        $competition = Competition::getModel();
+        if ($competition->type == 'itf') { ?>
+
+            <span class="dropdown">
+              <a class="btn dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" href="#">
+                Экспорт ITF
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <li>
+                        <a tabindex="-1" href="<?=Yii::app()->createUrl('/competition/exportcsvitf', array('program'=>'sparring'))?>">Masogi</a>
+                    </li>
+                    <li>
+                        <a tabindex="-1" href="<?=Yii::app()->createUrl('/competition/exportcsvitf', array('program'=>'tul'))?>">Tuli</a>
+                    </li>
+              </ul>
+            </span>
+        
+        <?php }
+        
         echo CHtml::tag('a', array(
             'href'=>Yii::app()->createUrl('/competition/create'),
             'class'=>'btn btn-primary',

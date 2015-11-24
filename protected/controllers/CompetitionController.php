@@ -32,7 +32,7 @@ class CompetitionController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('update', /*'manage', */'exportcsv', 'create', 'tosserupdate', 'resultupdate'),
+				'actions'=>array('update', /*'manage', */'exportcsv', 'create', 'tosserupdate', 'resultupdate', 'exportcsvitf'),
                 'roles'=>array('admin','manager'),
 				//'users'=>array('@'),
 			),
@@ -84,7 +84,6 @@ class CompetitionController extends Controller
 
     /**
     * экспорт списка участников сорвенования в CSV-файл
-    * 
     */
     public function actionExportcsv()
     {
@@ -105,6 +104,7 @@ class CompetitionController extends Controller
             ->leftJoin('sportsmen S', 'S.SpID = F.spid')
             ->where('competitionid = :competitionid');
         $cmd->params = array(':competitionid'=>Yii::app()->competitionId);
+        // создание CSV компонета 
         $csv = new ECSVExport($cmd, true, true, ';');
         $csv->delimiter = ';';
         if ($competition->type == 'itf') {
@@ -132,6 +132,88 @@ class CompetitionController extends Controller
         //echo file_get_contents($outputFile);
         $content = file_get_contents($outputFile);
         Yii::app()->getRequest()->sendFile($outputFile, $content, "text/csv", false);
+    }
+    
+    /**
+    * экспорт списка участников сорвенования в CSV-файл
+    */
+    public function actionExportcsvitf($program = 'sparring')
+    {
+        Yii::import('ext.csv.ECSVExport');
+        $outputFile = 'participants_' . $program . '.csv';
+        //$competition = Competition::getModel();
+        // выборка
+        $select = array(
+            'F.AgeName', 
+            'F.FullName', 'F.Commandname', 'F.FstName', 
+            'S.fullyears', 'F.CategoryName', 'F.attestlevel', 'F.Gender', 'F.WeightNameFull', 'F.Coaches', 
+            "if((S.persontul = 1), 'да', null) AS persontul",
+            "S.persontul AS division",
+            //"S.persontul AS division_sparring",
+            //"S.persontul AS division_tul",
+            "concat(U.lastname, ' ', substr(U.firstname, 1, 1), '.') AS UserName",
+            'F.city', 'F.spid',
+        );
+        $cmd = Yii::app()->db->createCommand()
+            ->select($select)
+            ->from('fulllist F')
+            ->leftJoin('sportsmen S', 'S.SpID = F.spid')
+            //->leftJoin('command C', 'C.CommandID = S.CommandID')
+            ->leftJoin('proposal P', 'P.commandid = S.CommandID')
+            ->leftJoin('user U', 'U.UserID = P.userid')
+            ->where('F.competitionid = :competitionid');
+        if ($program == 'sparring') {
+            $cmd->andWhere('F.WeightNameFull IS NOT NULL');
+        } else if ($program == 'tul') {
+            $cmd->andWhere('S.persontul = 1');
+        }
+        $cmd->params = array(':competitionid'=>Yii::app()->competitionId);
+        
+        // создание CSV компонета 
+        $csv = new ECSVExport($cmd, true, true, ';');
+        $csv->delimiter = ';';
+        if ($program == 'sparring') {
+            $csv->setCallback(function($row) {
+                // определение дивизиона для тулей и спарринга
+                $divisions = Agecategory::getDivisions('personal_sparring');
+                $row = $this->rowProcess($row, $divisions);
+                $row['AgeName'] .= ' (' . $row['division'] . ')';
+                return $row;
+            });
+        } else if ($program == 'tul') {
+            $csv->setCallback(function($row) {
+                // определение дивизиона для тулей и спарринга
+                $divisions = Agecategory::getDivisions('personal_tul');
+                $row = $this->rowProcess($row, $divisions);
+                return $row;
+            });
+        }
+        $csv->setOutputFile($outputFile);
+        $csv->toCSV(); // returns string by default
+         
+        //echo file_get_contents($outputFile);
+        $content = file_get_contents($outputFile);
+        Yii::app()->getRequest()->sendFile($outputFile, $content, "text/csv", false);
+    }
+    
+    private function rowProcess($row, $divisions) {
+        foreach ($divisions as $division) {
+            if (in_array($row['Attestlevel'], $division['levels'])) {
+                $row['division'] = $division['name'];
+                break;
+            }
+        }
+        if (!empty($row['Coaches'])) {
+            if (strpos($row['Coaches'], '.')) {
+                $coach = $row['Coaches'];
+            } else {
+                $coach = preg_replace('#(.*)\s+(.).*\s+(.).*#usi', '$1 $2.$3.', $row['Coaches']);
+            }
+            $row['FullName'] .= ' ('.$coach.')';
+        } else {
+            $row['FullName'] .= ' ('.$row['UserName'].')';
+        }
+        return $row;
     }
     
     //ДЕЙСТВИЕ: создание

@@ -28,6 +28,9 @@ class Competition extends CActiveRecord
     //флаг: было ли изменение в поле "главная страница"
     public $isInviteChanged = false;
     
+    // загруженные документы
+    public $files = array();
+    
     /**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
@@ -140,7 +143,8 @@ class Competition extends CActiveRecord
 			'filingend' => Yii::t('fullnames', 'Filing end'),
 			'isfiling' => Yii::t('fullnames', 'Isfiling'),
             'maxparticipants' => Yii::t('fullnames', 'Max participants'),
-			'path' => Yii::t('fullnames', 'Path'),
+            'path' => Yii::t('fullnames', 'Path'),
+			'files' => Yii::t('fullnames', 'Documents'),
 		);
 	}
 

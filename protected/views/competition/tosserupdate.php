@@ -9,7 +9,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'competition-form',
     'type'=>'horizontal',
     'enableAjaxValidation'=>false,
-    'htmlOptions'=>array('class'=>'well'),
+    'htmlOptions'=>array('class'=>'well', 'enctype'=>"multipart/form-data"),
 )); 
 
         echo $form->errorSummary($model); 
@@ -17,6 +17,8 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
 
         echo $form->textArea($model, $content_field, array('rows' => 20, 'cols' => 100, 'style'=>'width: 800px; height: 446px'));
         echo $form->textFieldRow($model, $status_field, array('size'=>3,'maxlength'=>5, 'class'=>'span1'));
+        
+        echo $form->fileFieldRow($model, 'files[]', array('multiple'=>true));
         
         //кнопка сабмита
         $this->widget('bootstrap.widgets.TbButton', array(

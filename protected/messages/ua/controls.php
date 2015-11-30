@@ -3,6 +3,7 @@ return array(
     'Operations' => 'Операції',
     
     'Save' => 'Зберегти',
+    'Add' => 'Додати',
     'Registry' => 'Реєструвати',
     
     'Enter' => 'Вхід',
@@ -15,9 +16,16 @@ return array(
     'Edit' => 'Редагувати',
     'Delete' => 'Видалити',
     
+    'Team' => 'Команда',
+    'Delete apply' => 'Видалити заявку',
+    'Cancel apply' => 'Відмінити заявку',
+    'Confirm apply' => 'Підтвердити заявку',
+    'Edit team' => 'Редагувати команду',
+    
     'Activate' => 'Активувати',
     'Deactivate' => 'Деактивувати',
     'Generate' => 'Генерувати',
+    'Send' => 'Відправити',
     
     'to confirm' => 'підтвердити',
     'to cancel' => 'відмінити', 

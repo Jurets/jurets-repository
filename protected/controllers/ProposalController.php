@@ -34,7 +34,7 @@ class ProposalController extends Controller
                 //'roles'=>array(''),
 			),*/
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions'=>array('admin','confirm','delete','manage','index','indexNew'),
+                'actions'=>array('admin','manage','index','indexNew','confirm','cancel','delete'),
                 'roles'=>array('admin', 'manager'),
             ),
             array('allow', // разрешение на вход в кабинет
@@ -155,14 +155,12 @@ class ProposalController extends Controller
 	}
 
 	//ДЕЙСТВИЕ: удаление заявки
-	public function actionDelete($id = null) { //DebugBreak();
+	public function actionDelete($id = null) {
         $transaction = Yii::app()->db->beginTransaction();  
-        if ($id === null) {
-            $id = $_POST['id'];
-        }
         try {   
             $model = $this->loadModel($id);
             $commandid = $model->commandid;
+            $userid = $model->userid;
             $model->delete();
             $cmd = Yii::app()->db->createCommand();
             //$cmd->delete('proposal', 'propid=:id', array(':id'=>$id));
@@ -178,8 +176,15 @@ class ProposalController extends Controller
 
         if ($success) {
             // if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-            if (!isset($_GET['ajax']))
-                $this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('users/mycabinet'));
+            if (!isset($_GET['ajax'])) {
+                if (isset($_POST['returnUrl'])) 
+                    $url = $_POST['returnUrl'];
+                else if (Yii::app()->user->userid == $userid)
+                    $url = array('users/mycabinet');
+                else
+                    $url = array('proposal/index');
+                $this->redirect($url);
+            }
         } else
             throw new Exception(sprintf('Ошибка при удалении заявки %d!', $model->commandname));
 	}
@@ -249,20 +254,14 @@ class ProposalController extends Controller
     
     //ДЕЙСТВИЕ: управление заявками
     public function actionConfirm($id = null) {
-        if ($id === null) {
-            $id = $_POST['id'];
-        }
         if ($this->changeStatus($id, Proposal::STATUS_ACTIVE))
-            $this->redirect(array('view','id'=>$id));
+            $this->redirect(array('index','id'=>$id));
     }
 	
     //ДЕЙСТВИЕ: управление заявками
-    public function actionCancel($id = null) { 
-        if ($id === null) {
-            $id = $_POST['id'];
-        }
+    public function actionCancel($id = null) {
         if ($this->changeStatus($id, Proposal::STATUS_NOACTIVE))
-            $this->redirect(array('view','id'=>$id));
+            $this->redirect(array('index','id'=>$id));
     }
     
     //ДЕЙСТВИЕ: просмотр списка заявок

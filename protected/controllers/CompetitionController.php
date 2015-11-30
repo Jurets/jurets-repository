@@ -325,7 +325,7 @@ class CompetitionController extends Controller
             //    $model->invitation = $_POST['Competition']['invitation'];
             //}
             if($model->save()) {
-                // загрузка файлоы
+                // загрузка файлов
                 $model->files = CUploadedFile::getInstances($model, 'files');
                 if (!empty($model->files)) {
                     $_ = DIRECTORY_SEPARATOR;

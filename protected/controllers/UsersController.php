@@ -8,7 +8,16 @@ class UsersController extends Controller
 	 */
 	public $layout='//layouts/column2';
 
-	// @return array action filters
+    // init
+    public function init(){
+        // register class paths for extension captcha extended
+        Yii::$classMap = array_merge( Yii::$classMap, array(
+            'CaptchaExtendedAction' => Yii::getPathOfAlias('ext.captchaExtended').DIRECTORY_SEPARATOR.'CaptchaExtendedAction.php',
+            'CaptchaExtendedValidator' => Yii::getPathOfAlias('ext.captchaExtended').DIRECTORY_SEPARATOR.'CaptchaExtendedValidator.php'
+        ));
+    }
+    
+    // @return array action filters
 	public function filters()
 	{
 		return array(
@@ -20,7 +29,6 @@ class UsersController extends Controller
             ),		
         );  
 	}
-
     
 	// Specifies the access control rules. This method is used by the 'accessControl' filter.
 	// @return array access control rules
@@ -68,28 +76,30 @@ class UsersController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
         
-		if(isset($_POST['Users']))
-		{
-			$model->attributes=$_POST['Users'];
-			if($model->save(true)) {
-				$success = EmailHelper::send(
-                    array($model->Email),                         //кому
-                    Yii::t('fullnames', 'Регистрация в системе'), //тема
-                    'invitation',                                 //шаблон - вьюшка
-                    array('user' => $model)                       //параметры
-                );
-                //если юзер = Гость - залогиниться с введённым паролем
-                if (Yii::app()->user->isGuest) {
-                    $loginForm = new LoginForm;
-                    $loginForm->username = $model->UserName;
-                    $loginForm->password = $model->new_password;
-                    $loginForm->login();
-                    $this->redirect(array('mycabinet','id'=>$model->UserID));
-                } else
-                    $this->redirect(Yii::app()->createAbsoluteUrl(''));
+		if(isset($_POST['Users'])) {
+			$model->attributes = $_POST['Users'];
+            if ($model->validate()) {
+			    if($model->save(false)) {
+				    $success = EmailHelper::send(
+                        array($model->Email),                         //кому
+                        Yii::t('fullnames', 'Регистрация в системе'), //тема
+                        'invitation',                                 //шаблон - вьюшка
+                        array('user' => $model)                       //параметры
+                    );
+                    //если юзер = Гость - залогиниться с введённым паролем
+                    if (Yii::app()->user->isGuest) {
+                        $loginForm = new LoginForm;
+                        $loginForm->username = $model->UserName;
+                        $loginForm->password = $model->new_password;
+                        $loginForm->login();
+                        $this->redirect(array('mycabinet','id'=>$model->UserID));
+                    } else {
+                        $this->redirect(Yii::app()->createAbsoluteUrl(''));
+                    }
+                }
             }
 		}
-
+        $model->verifyCode = null;
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -327,10 +337,15 @@ class UsersController extends Controller
     public function actions()
         {
             return array(
-                'captcha'=>array(
+                /*'captcha'=>array(
                     'class' => 'CCaptchaAction',
                     'backColor' => 0xFFFFFF,
-                ),
+                ),*/
+                'captcha'=>array(
+                    'class'=>'CaptchaExtendedAction',
+                    // if needed, modify settings
+                    'mode'=>CaptchaExtendedAction::MODE_MATH,
+                ),                
             );
         }
        

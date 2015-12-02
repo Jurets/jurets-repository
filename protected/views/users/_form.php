@@ -12,7 +12,8 @@ $isMyUserID = (Yii::app()->user->userid == $model->UserID);
 $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'users-form',
     'type'=>'horizontal',
-    'enableAjaxValidation'=>true,
+    'enableAjaxValidation'=>false,
+    'enableClientValidation'=>false,
     'htmlOptions'=>array('class'=>'well'),
 )); 
     // вьюшка "обязательноть полей"
@@ -39,7 +40,7 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         //вывести пояснение к полю пароля
         echo '<p>Введите свой <span class="required">пароль</span>: не менее четырёх символов, разрешены латинские буквы и цифры. Если оставить это поле пустым - пароль будет сгенерирован автоматически</p>';
         //поле пароля
-        echo $form->textFieldRow($model,'new_password', array('maxlength'=>50, 'class' => 'span2'));
+        echo $form->passwordFieldRow($model,'new_password', array('maxlength'=>50, 'class' => 'span2'));
     }
 
     echo '<p>Персональные данные:</p>';
@@ -62,18 +63,23 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     echo '<p>Ниже Вы можете ввести любую дополнительную информацию:</p>';
     echo $form->textAreaRow($model,'comment', array('rows'=>4, 'cols'=>50, 'class' => 'span6'));
     
-        if($model->scenario =='create'){
-            echo '<p>Для завершения регистрации Вам необходимо пройти проверку:</p>';
-            //добавление капчи
-            echo '<p>Введите код проверки в поле, расположенное ниже</p>';
-                $this->widget('CCaptcha');
-            //поле для ввода текста капчи
-            echo '<br>'.CHtml::activeTextField($model, 'verifyCode');
-            echo CHtml::error($model, 'verifyCode');
-            //echo CHtml::errorSummary($model).'<br>'; 
-            echo '<br>';
-            echo '<p>После успешного процесса регистрации на указанный адрес электронной почты будет выслано письмо с регистрационными данными</p>';
-        }
+    if($model->scenario =='create'){
+        //добавление капчи
+        echo CHtml::tag('p', [], 'Для завершения регистрации Вам необходимо пройти проверку. Введите код проверки в поле, расположенное ниже:');
+        echo CHtml::tag('div', ['class'=>'control-group'], 
+            CHtml::tag('label', ['class'=>'control-label'], 'Код проверки') .
+            CHtml::tag('div', ['class'=>'controls'], 
+                $this->widget('CCaptcha', [
+                    'buttonLabel'=>'<i class="icon-refresh" style="margin-left: 10px; margin-right: 10px;" title="'.Yii::t('yii','Get a new code').'"></i>'
+                ], true) . //поле для ввода текста капчи
+                CHtml::activeTextField($model, 'verifyCode') .
+                CHtml::error($model, 'verifyCode', ['class'=>"help-inline error"])
+            )
+        );
+        //echo CHtml::errorSummary($model).'<br>'; 
+        echo '<br>';
+        echo '<p>После успешного процесса регистрации на указанный адрес электронной почты будет выслано письмо с регистрационными данными</p>';
+    }
         
     $this->widget('bootstrap.widgets.TbButton', array(
         'label'=>($model->isNewRecord ? Yii::t('controls', 'Registry') : Yii::t('controls', 'Save')), 

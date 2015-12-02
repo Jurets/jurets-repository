@@ -77,9 +77,10 @@ class Users extends CActiveRecord
             //array('propid, commandname, firstname, lastname, federation, post, country, city, club, address, phone, email, www, participantcount, comment, login, status', 'safe', 'on'=>'search'),
             array('new_password', 'length', 'min'=>4, 'max'=>50),
             array('new_password', 'match', 'pattern'=>'/^[a-zA-Z0-9]+$/', 'on'=>array('create','update'), 'message'=>'Разрешены только латинские буквы и цифры'),
-                        //проверка капчи
-                        array('verifyCode', 'captcha', 'on' => 'create'),
-                );
+            //проверка капчи
+            array('verifyCode', 'CaptchaExtendedValidator', 'allowEmpty'=>!CCaptcha::checkRequirements()),
+            //array('verifyCode', 'captcha', 'on' => 'create'),
+        );
 	}
 
     
@@ -284,7 +285,7 @@ class Users extends CActiveRecord
                 return false;
             }            
         }
-        return parent::beforeSave() && $this->validate();
+        return parent::beforeSave()/* && $this->validate()*/;
     }
     
     //Активация пользователя (1 - активировать, 0 - деактивировать)

@@ -133,7 +133,7 @@ class Competition extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => Yii::t('fullnames', 'Name'),
+			'name' => Yii::t('fullnames', 'Shortname'),
 			'title' => Yii::t('fullnames', 'Title'),
 			'begindate' => Yii::t('fullnames', 'Begin date'),
 			'enddate' => Yii::t('fullnames', 'End date'),

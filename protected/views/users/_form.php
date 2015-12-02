@@ -21,12 +21,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     
     $help_str = '';
     if ($isMyUserID) $help_str .= 
-        Yii::t('fullnames', 'Field {email} will be used for enter on site. In future login and password may be changed', 
-            array('{email}'=>'<span class="required">'.Yii::t('fullnames', 'Email').'</span>')).'<br>'.
-        Yii::t('fullnames', 'The initial password will be generated automatically').'<br>'.
+        /*Yii::t('fullnames', 'Field {email} will be used for enter on site. In future login and password may be changed', 
+            array('{email}'=>'<span class="required">'.Yii::t('fullnames', 'Email').'</span>')).'<br>'.*/
+        //Yii::t('fullnames', 'The initial password will be generated automatically').'<br>'.
         Yii::t('fullnames', 'Field {email} will be used for password recovery', 
-            array('{email}'=>'<span class="required">E-mail</span>')).'<br>'.
-        Yii::t('fullnames', 'After the registration on this E-mail will send message with info about initiant password. Only after that you may enter information about proposals');
+            array('{email}'=>'<span class="required">E-mail</span>')). '. ' //'<br>'.
+        //.Yii::t('fullnames', 'After the registration on this E-mail will send message with info about initiant password. Only after that you may enter information about proposals')
+        ;
             
     echo $form->errorSummary($model); 
     
@@ -37,10 +38,13 @@ $form = $this->beginWidget('bootstrap.widgets.TbActiveForm', array(
         echo CHtml::tag('p', array('class'=>'note'), $help_str);
         //поле емейла
         echo $form->textFieldRow($model,'Email', array('size'=>60,'maxlength'=>100, 'class' => 'span5'));
+        //поле никнейма (логин юзера)
+        echo CHtml::tag('p', array('class'=>'note'), 'Введите <span class="required">никнейм</span> - имя для входа, разрешены латинские буквы и цифры. Если оставить это поле пустым, для входа будет использоваться Email');
+        echo $form->textFieldRow($model,'UserName', array('size'=>60,'maxlength'=>100, 'class' => 'span5'));
         //вывести пояснение к полю пароля
-        echo '<p>Введите свой <span class="required">пароль</span>: не менее четырёх символов, разрешены латинские буквы и цифры. Если оставить это поле пустым - пароль будет сгенерирован автоматически</p>';
+        echo '<p>Введите свой <span class="required">пароль</span>: не менее четырёх символов, разрешены латинские буквы и цифры. Если оставить это поле пустым, пароль будет сгенерирован автоматически</p>';
         //поле пароля
-        echo $form->passwordFieldRow($model,'new_password', array('maxlength'=>50, 'class' => 'span2'));
+        echo $form->passwordFieldRow($model,'new_password', array('maxlength'=>50, 'class' => 'span2', /*'hint'=>'Введите свой '*/));
     }
 
     echo '<p>Персональные данные:</p>';

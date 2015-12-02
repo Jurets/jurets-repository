@@ -69,7 +69,7 @@ return array(
     // 'n==1#sportsmen|n>1#many books'
     'Personal data'=>'Персональні дані',
     
-    'Name'=>'Назва коротка',
+    'Shortame'=>'Назва коротка',
     'Title'=>'Назва повне',
     'Begin date'=>'Дата початку',
     'End date'=>'Дата закінчення',
@@ -81,6 +81,7 @@ return array(
     'Max participants'=>'Максимальна кількість учасників',
     'Path' => 'Путь(урл)',
     
+    'Nickname' => 'Нікнейм',
     'LastName'=>'Прізвище',
     'FirstName'=>'Ім’я',
     'MiddleName'=>'По батькові',

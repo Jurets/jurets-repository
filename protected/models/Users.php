@@ -66,7 +66,8 @@ class Users extends CActiveRecord
             //array('Email', 'exist', 'on'=>'autopassword', 'message'=>Yii::t('controls', 'This Email not found')),
             array('UserName', 'exist', 'on'=>'autopassword', 'message'=>Yii::t('controls', 'This user not found')),
             //проверки на уникальность
-            array('UserName', 'unique', 'on' => 'create'), //array('UserName, Email', 'unique', 'on' => 'create'),
+            array('Email',  'unique', 'on' => 'create'),
+            array('UserName', 'unique', 'on' => 'create'),
             //проверять эти поля при смене пароля (сценарий "password")
             array('old_password, new_password, retype_password', 'safe', 'on'=>'password'), 
             //array('Email', 'checkEmailForExist'),
@@ -116,7 +117,7 @@ class Users extends CActiveRecord
 	{
 		return array(
 			'UserID' => 'ИД',
-			'UserName' => 'Пользователь',
+			'UserName' => Yii::t('fullnames', 'Nickname'),
 			'Password' => 'Пароль',
 			'Salt' => 'Salt',
 			'CommandID' => 'Команда',
@@ -249,12 +250,32 @@ class Users extends CActiveRecord
         return $password;
     }
     
+    //функция перед валидацией: инициализация значений
+    public function beforeValidate() {
+        if ($this->isNewRecord) {
+            if (empty($this->UserName)) {
+                $this->UserName = $this->Email; //начальный логин = емейл
+            }
+        }
+        return true;
+    }
+
+    //функция после валидации
+    public function afterValidate() {
+        if ($this->isNewRecord) {
+            if ($this->UserName == $this->Email) { //если одинаковые емейл и логин
+                $this->UserName = null; // стереть значение
+            }
+        }
+        return true;
+    }
+    
     //функция перед записью: инициализация значений
     public function beforeSave() {
         if ($this->isNewRecord) {
+            $this->beforeValidate();
             //$this->Active = self::STATUS_NOACTIVE; //юзер при создании НЕАКТИВЕН
             $this->status = self::STATUS_NEW; //юзер при создании НЕАКТИВЕН
-            $this->UserName = $this->Email; //начальный логин = емейл
             $this->Salt = rand(1,9999);     //сгенерить соль
             if (empty($this->new_password)) { //если пароль не был введён юзером - сгенерить автоматический
                 $password = $this->generatePassword(rand(6,10));  // пароль будет от 6 до 10 символов

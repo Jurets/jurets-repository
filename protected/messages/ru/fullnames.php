@@ -80,7 +80,7 @@ return array(
     //'n==1#sportsmen|n>1#many books'
     'Personal data' => 'Персональные данные',
     
-    'Name' => 'Название краткое',
+    'Shortame' => 'Название краткое',
     'Title' => 'Название полное',
     'Begin date' => 'Дата начала',
     'End date' => 'Дата окончания',
@@ -92,6 +92,7 @@ return array(
     'Max participants' => 'Максимальное количество участников',
     'Path' => 'Путь(урл)',
     
+    'Nickname' => 'Никнейм',
     'LastName' => 'Фамилия',
     'FirstName' => 'Имя',
     'MiddleName' => 'Отчество',

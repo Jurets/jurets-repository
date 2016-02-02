@@ -224,8 +224,13 @@ echo"</div>";
 		    )); ?>
         </div>
         <span style="overflow: hidden;"></span>
-	<?php } ?>
-
+    <?php } ?>
+	
+    <?php 
+    // Показать флэш-сообщения, если таковые имеются
+    $this->widget('application.widgets.message.FlashMessage'); 
+    ?>
+    
 	<?php echo $content; ?>
 
 	<div class="clear" style="overflow: hidden; clear: both;"></div>

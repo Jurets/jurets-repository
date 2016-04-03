@@ -415,7 +415,7 @@ class Sportsmen extends CActiveRecord
         $sqlCommand = Yii::app()->db->createCommand()
             ->select(array('S.SpID',
                    'CONCAT(S.lastname, " ", S.firstname) AS FullName',
-                   'D.Commandname',
+                   'COALESCE(D.secondname, D.Commandname) AS Commandname',
                    'F.FstName',
                    'C.CategoryName',
                    'YEAR(S.birthdate) AS BirthYear',

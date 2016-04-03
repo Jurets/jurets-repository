@@ -12,9 +12,12 @@
     $age_array = array();
     $totalCount = 0;
     $id = 0;
-?>
 
-<?php
+    $columns = [['header'=>'Фамилия, Имя', 'name'=>'FullName'],
+                ['header'=>'Команда', 'name'=>'Commandname'],
+                ['header'=>'Г.р.', 'name'=>'BirthYear'], 
+                ['header'=>'Тренер', 'name'=>'Coachname']];
+    
   //вывести кол-во по категориям  
     $categoryContent = '';
     foreach ($arrcategory as $aid=>$age) {
@@ -23,17 +26,16 @@
         if (isset($age['children']) && is_array($age['children'])) {
             foreach ($age['children'] as $wid=>$weight) {
                 $ageCount += $weight['count'];
-                
                 $content = '';
-                //foreach ($weight['divisions'][$division]['sportsmens'] as $id=>$item) {
-                foreach ($weight['sportsmens'] as $id=>$item) {
-                    $content .= ($id + 1) . ') ' . $item['FullName'] . '(' . $item['Commandname'] . ")<br>";
-                }
+                //создать источник данных (для виджета грида, который во вьюшке _weigthlist)
+                $dataProvider = new CArrayDataProvider($weight['sportsmens'], array(
+                    'totalItemCount'=>count($weight['sportsmens']),
+                    'keyField'=>false, 'pagination'=>array('pageSize'=>50,),
+                ));    
+                //прорендерить вьюшку _weigthlist одной весовой категории
+                $content = $this->renderPartial('/sportsmen/_weigthlist', array('dataProvider'=>$dataProvider, 'weigthid'=>$weight['id'], 'columns'=>$columns), true, false);
                 $id = 'weigth_' . $weight['id'];
                 $title = $age['text'] . '<br>' . $weight['text'];// . ', ' . $title_division;
-                /*if ($weight['divisions'][$division]['count'] > 0) {
-                    $id .= '_' . $division;
-                }*/
                 $this->renderPartial('application.views.site.blocks._modal', array('id'=>$id, 'title'=>$title, 'content'=>$content));
             }
         }

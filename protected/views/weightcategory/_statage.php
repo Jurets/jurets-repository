@@ -39,12 +39,14 @@ $this->beginWidget('bootstrap.widgets.TbHeroUnit', array(
                         'data-title'=>'Подсказка', 
                         //'title'=>'Нажмите чтобы показать состав', 
                         'data-content'=>$sportsmens, 
-                        'rel'=>'popover', 
-                        'data-placement'=>'bottom',
+                        //'rel'=>'popover', 
+                        //'data-placement'=>'bottom',
                         'data-original-title'=>'Состав ' . $weight['text'],
-                        'data-trigger'=>'hover',
+                        //'data-trigger'=>'hover',
                         'data-html'=>true,
-                        'style'=>'font-sise: 8px;'
+                        'style'=>'font-sise: 8px;',
+                        'data-toggle'=>"modal",
+                        'href'=>'#weigth_' . $weight['id'], // . '_' . $division,
                     ),
                 ));
             } else {

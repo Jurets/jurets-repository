@@ -24,31 +24,17 @@
             foreach ($age['children'] as $wid=>$weight) {
                 $ageCount += $weight['count'];
                 
-                $sp_content = '';
+                $content = '';
                 //foreach ($weight['divisions'][$division]['sportsmens'] as $id=>$item) {
                 foreach ($weight['sportsmens'] as $id=>$item) {
-                    $sp_content .= ($id + 1) . ') ' . $item['FullName'] . '(' . $item['Commandname'] . ")<br>";
+                    $content .= ($id + 1) . ') ' . $item['FullName'] . '(' . $item['Commandname'] . ")<br>";
                 }
                 $id = 'weigth_' . $weight['id'];
                 $title = $age['text'] . '<br>' . $weight['text'];// . ', ' . $title_division;
                 /*if ($weight['divisions'][$division]['count'] > 0) {
                     $id .= '_' . $division;
                 }*/
-                
-                ?>
-                <div id="<?=$id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 id="myModalLabel"><?=$title?></h4>
-                  </div>
-                  <div class="modal-body">
-                    <p><?=$sp_content?></p>
-                  </div>
-                  <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Закрыть</button>
-                  </div>
-                </div> <?php                
-                
+                $this->renderPartial('application.views.site.blocks._modal', array('id'=>$id, 'title'=>$title, 'content'=>$content));
             }
         }
         $age_array[] = array('id'=>++$id, 'name'=>$age['text'], 'count'=>$ageCount);
@@ -132,19 +118,7 @@
                         if ($weight['divisions'][$division]['count'] > 0) {
                             $id .= '_' . $division;
                         }
-                        ?>
-                        <div id="<?=$id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 id="myModalLabel"><?=$title?></h4>
-                          </div>
-                          <div class="modal-body">
-                            <p><?=$sp_content?></p>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Закрыть</button>
-                          </div>
-                        </div> <?php
+                        $this->renderPartial('application.views.site.blocks._modal', array('id'=>$id, 'title'=>$title, 'content'=>$sp_content));
                     }
                     
                 }

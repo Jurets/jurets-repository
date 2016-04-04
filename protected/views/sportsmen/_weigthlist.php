@@ -29,7 +29,7 @@ if (!isset($columns))
             'name'=>'Coachname',
         ), 
 );
-$columns[] = array(
+/*$columns[] = array(
     'class'=>'bootstrap.widgets.TbButtonColumn',
     'template'=>'{update}',
     'buttons'=>array (
@@ -38,7 +38,7 @@ $columns[] = array(
             'url'=>'Yii::app()->createUrl("sportsmen/update", array("id"=>$data["SpID"]))',
         ),
     ),
-);
+);*/
 
 $this->widget('bootstrap.widgets.TbGridView', array(
     'id'=>'weigthlist_'.$weigthid,

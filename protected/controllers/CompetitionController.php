@@ -241,7 +241,9 @@ class CompetitionController extends Controller
 
 	//ДЕЙСТВИЕ: редактирование
 	public function actionUpdate($id = null) {
-		if ($id === null) {
+		$page_name = 'official';  //небольшой хардкод
+        
+        if ($id === null) {
             $id = Yii::app()->competitionId;
         }
         $model=$this->loadModel($id);
@@ -255,6 +257,20 @@ class CompetitionController extends Controller
                 $model->invitation = $_POST['Competition']['invitation'];
             }
 			if($model->save()) {
+                // загрузка файлов
+                $model->files = CUploadedFile::getInstances($model, 'files');
+                if (!empty($model->files)) {
+                    $_ = DIRECTORY_SEPARATOR;
+                    $path = Yii::app()->basePath .$_ .'..'.$_.'document'.$_.$page_name.$_;
+                    if (!is_dir($path)) {
+                        mkdir($path, 0777, true);
+                        chmod($path, 0777);
+                    }
+                    foreach ($model->files as $file) {
+                        $file->saveAs($path . $file->name);
+                    }
+                }
+
                 $this->redirect(array('view'));
             }
 		}

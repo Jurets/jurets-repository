@@ -296,6 +296,41 @@ a#open-close{
   .navbar .nav.navigation > li {
     float: none;
 }
+  
+  /*fixes ilia*/
+  .navbar .nav > li > .dropdown-menu:before,
+  .navbar .nav > li > .dropdown-menu:after {
+    left: auto;
+    right: 10px;
+  }
+
+  .dropdown-menu {
+    left: -20px;
+  }
+
+  .dropdown-menu li > a {
+    padding: 3px 10px;
+    white-space: normal;
+  }
+  
+  .table-bordered {
+    font-size: 12px;
+  }
+
+  .table thead th {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  a.sort-link {
+      position: relative;
+  }
+
+  .caret {
+    position: absolute;
+    bottom: -5px;
+    right: 45%;
+  }
     
 }
 
@@ -376,7 +411,4 @@ a#open-close{
         max-width:95px;
     }
   
-  
-  
-
 }

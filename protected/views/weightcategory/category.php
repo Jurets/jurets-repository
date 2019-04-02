@@ -12,17 +12,31 @@
     $age_array = array();
     $totalCount = 0;
     $id = 0;
-?>
 
-<?php
+    $columns = [['header'=>'Фамилия, Имя', 'name'=>'FullName'],
+                ['header'=>'Команда', 'name'=>'Commandname'],
+                ['header'=>'Г.р.', 'name'=>'BirthYear'], 
+                ['header'=>'Тренер', 'name'=>'Coachname']];
+    
   //вывести кол-во по категориям  
     $categoryContent = '';
     foreach ($arrcategory as $aid=>$age) {
         $ageCount = 0;
         //посчитать кол-во участников по возрастной
         if (isset($age['children']) && is_array($age['children'])) {
-            foreach ($age['children'] as $weight) {
+            foreach ($age['children'] as $wid=>$weight) {
                 $ageCount += $weight['count'];
+                $content = '';
+                //создать источник данных (для виджета грида, который во вьюшке _weigthlist)
+                $dataProvider = new CArrayDataProvider($weight['sportsmens'], array(
+                    'totalItemCount'=>count($weight['sportsmens']),
+                    'keyField'=>false, 'pagination'=>array('pageSize'=>50,),
+                ));    
+                //прорендерить вьюшку _weigthlist одной весовой категории
+                $content = $this->renderPartial('/sportsmen/_weigthlist', array('dataProvider'=>$dataProvider, 'weigthid'=>$weight['id'], 'columns'=>$columns), true, false);
+                $id = 'weigth_' . $weight['id'];
+                $title = $age['text'] . '<br>' . $weight['text'];// . ', ' . $title_division;
+                $this->renderPartial('application.views.site.blocks._modal', array('id'=>$id, 'title'=>$title, 'content'=>$content));
             }
         }
         $age_array[] = array('id'=>++$id, 'name'=>$age['text'], 'count'=>$ageCount);
@@ -106,19 +120,7 @@
                         if ($weight['divisions'][$division]['count'] > 0) {
                             $id .= '_' . $division;
                         }
-                        ?>
-                        <div id="<?=$id?>" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                          <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <h4 id="myModalLabel"><?=$title?></h4>
-                          </div>
-                          <div class="modal-body">
-                            <p><?=$sp_content?></p>
-                          </div>
-                          <div class="modal-footer">
-                            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Закрыть</button>
-                          </div>
-                        </div> <?php
+                        $this->renderPartial('application.views.site.blocks._modal', array('id'=>$id, 'title'=>$title, 'content'=>$sp_content));
                     }
                     
                 }

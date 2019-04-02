@@ -23,7 +23,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
     'id'=>'competition-form',
     'type'=>'horizontal',
     'enableAjaxValidation'=>false,
-    'htmlOptions'=>array('class'=>'well'),
+    'htmlOptions'=>array('class'=>'well', 'enctype'=>"multipart/form-data"),
 )); 
 
         echo $form->errorSummary($model); 
@@ -59,6 +59,7 @@ $form=$this->beginWidget('bootstrap.widgets.TbActiveForm', array(
             )
         ), true) . '<br>';*/
         $content = $form->textArea($model,'invitation', array('rows' => 10, 'cols' => 100, 'style'=>'width: 800px; height: 446px'));
+        $content .= $form->fileFieldRow($model, 'files[]', array('multiple'=>true));
         $tabs[] = array('label'=>'Главная страница', 'content'=>$content, 'active'=>false); 
         
         //вывести Табы для редактирования соревнования

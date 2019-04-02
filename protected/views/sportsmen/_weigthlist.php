@@ -1,6 +1,6 @@
 <?php
-
-$arrColumns = array(
+if (!isset($columns))
+    $columns = array(
         array(
             'header'=>'Фамилия, Имя',
             //'value'=>$data->FullName,
@@ -15,7 +15,6 @@ $arrColumns = array(
         array(
             'header'=>'ФСТ',
             'name'=>'FstName',
-            //'value'=>$data->FstName  
         ),
         array(
             'header'=>'Год рожд',
@@ -29,84 +28,27 @@ $arrColumns = array(
             'header'=>'Тренер',
             'name'=>'Coachname',
         ), 
-        /*array(
-            'header'=>'Первый тренер',
-            'name'=>'Coachname1',
-        ),*/ 
-        /*array(
-            'header'=>'Перенос',
-            //'name'=>'Coachname',
-            //'type'=>'html',
-            'value'=>"$this->widget('bootstrap.widgets.TbButtonGroup', array(
-                        'type'=>'primary', 
-                        'buttons'=>array(
-                            array('label'=>'Action', 'items'=>array(
-                                array('label'=>'Action', 'url'=>'#'),
-                                array('label'=>'Another action', 'url'=>'#'),
-                                array('label'=>'Something else', 'url'=>'#'),
-                                '---',
-                                array('label'=>'Separate link', 'url'=>'#'),
-                            )),
-                        ),
-                    ))",
-        ),*/ 
-        
-        array(
-            //'class'=>'CButtonColumn',
-            'class'=>'bootstrap.widgets.TbButtonColumn',
-            //'template'=>'{view}{update}{delete}',
-            'template'=>'{update}',
-            //'deleteConfirmation'=>'Вы действительно хотите удалить данного спортсмена? '.$data['LastName'],
-            'buttons'=>array (
-                /*'view' => array (
-                    'label'=>'Просмотреть',
-                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/view.png',
-                    'url'=>'Yii::app()->createUrl("sportsmen/view", array("id"=>$data[SpID]))',
-                    ),*/
-                'update' => array (
-                    'label'=>Yii::t('controls', 'Update'),
-                    //'imageUrl'=>Yii::app()->request->baseUrl.'/images/update.png',
-                    'url'=>'Yii::app()->createUrl("sportsmen/update", array("id"=>$data["SpID"]))',
-                    ),
-                /*'delete' => array (
-                    'label'=>'Удалить',
-                    'imageUrl'=>Yii::app()->request->baseUrl.'/images/delete.png',
-                    'url'=>'Yii::app()->createUrl("sportsmen/delete", array("id"=>$data[SpID]))',
-                    ),*/
-            ),
-        ),
 );
+/*$columns[] = array(
+    'class'=>'bootstrap.widgets.TbButtonColumn',
+    'template'=>'{update}',
+    'buttons'=>array (
+        'update' => array (
+            'label'=>Yii::t('controls', 'Update'),
+            'url'=>'Yii::app()->createUrl("sportsmen/update", array("id"=>$data["SpID"]))',
+        ),
+    ),
+);*/
 
-/*    array('label'=>'Удалить', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->CommandID),
-        'confirm'=>'Вы действительно хотите удалить команду?'), 'visible'=>!Yii::app()->user->isGuest),
-*/
-
-//echo CHtml::tag('h4', array(), 'Весовая категория - ', true);
-
-if ($isCache) {
-    $_cacheID = 'cacheWeigthList_'.$weigthid;
-    $notCached = $this->beginCache($_cacheID, array('duration'=>60));
-} else
-   $notCached = true;
-   
-if ($notCached) { 
-//if($this->beginCache($wcache, array('duration'=>3600))) {
-    $this->widget('bootstrap.widgets.TbGridView', array(
-        'id'=>'sportsmen-grid',
-        'dataProvider'=>$dataProvider,
-        //'filter'=>$model,
-        //'cssFile'=>null,
-        'template'=>"{pager}<br>{items}<br>{pager}",
-        'type'=>'striped bordered condensed',
-        'htmlOptions' => array(
-            'class' => 'table-list',
-            'style' => 'font-size: 12px;'),
-        'rowCssClassExpression' => '($row % 2 ? "even" : "odd")." bColor pt-5 pb-5 pl-10 pr-10 mb-5"',
-        'columns'=>$arrColumns, 
-    ));
-
-    if ($isCache)
-        $this->endCache();
-}
-    
-?>
+$this->widget('bootstrap.widgets.TbGridView', array(
+    'id'=>'weigthlist_'.$weigthid,
+    'dataProvider'=>$dataProvider,
+    //'filter'=>$model,
+    'template'=>"{pager}<br>{items}<br>{pager}",
+    'type'=>'striped bordered condensed',
+    'htmlOptions' => array(
+        'class' => 'table-list',
+        'style' => 'font-size: 12px;'),
+    'rowCssClassExpression' => '($row % 2 ? "even" : "odd")." bColor pt-5 pb-5 pl-10 pr-10 mb-5"',
+    'columns'=>$columns, 
+));

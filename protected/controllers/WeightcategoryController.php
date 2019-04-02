@@ -35,7 +35,7 @@ class WeightcategoryController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('tosser', 'tosserold', 'list', 'result', 'getweightlist','category', 'tul'),
+				'actions'=>array('tosser', 'tosserold', 'list', 'result', 'category', 'tul'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -484,32 +484,6 @@ class WeightcategoryController extends Controller
         ));    
     }            
     
-    //выдать список спортсменов весовой категории
-    public function actionGetweightlist() {   
-        if (isset($_REQUEST['weigthid'])) {
-            $wid = $_REQUEST['weigthid'];
-            $count = Sportsmen::getSportsmenCount($wid); 
-            $sqlCommand = Sportsmen::sqlWeightmenList($wid);
-            $dataProvider = new CSqlDataProvider($sqlCommand->text, array(
-                'totalItemCount'=>$count,
-                /*'sort'=>array(
-                    'attributes'=>array(
-                        'Fullname',
-                    ),
-                ),*/
-                'pagination'=>array(
-                    'pageSize'=>20,
-                ),
-            ));    
-            
-            
-            $this->renderPartial('/sportsmen/_weigthlist',array(
-                'commandid'=>null,
-                'dataProvider'=>$dataProvider,
-                'wcache'=>'wcid_'.$wid,
-            ), false, true);
-        }
-    }    
 
     public function actionTossnumset($id) {
         $weigthid = $id;

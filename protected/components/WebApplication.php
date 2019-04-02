@@ -175,5 +175,18 @@ public function afterControllerAction($controller, $action) {
     //Yii::trace('Количество запросов SQL: '.$stats[0].' Длительность: '.$stats[1], 'system.web.CController');
 }
 
+// Check: if current user can view contestants list
+    public function getIsViewContestants()     {
+        $isView = isset(Yii::app()->params['viewContestants']) ? (bool)Yii::app()->params['viewContestants'] : true;
+        if (!$isView) {
+            if (Yii::app()->isExtendRole) {
+                $isView = true;
+            } else {
+                $proposal = Proposal::model()->proposalForCompetition(Yii::app()->competitionId, Yii::app()->userid);
+                $isView = isset($proposal) ? $proposal->status == Proposal::STATUS_ACTIVE : false;
+            }
+        }
+        return $isView;
+    }
     
 }

@@ -64,31 +64,37 @@ $this->menu=array(
             'title'=>Yii::t('fullnames', 'Go to list of teams'), 
         ),
     ),
-    array('label'=>Yii::t('fullnames', 'Sportsmens'), 
-        'url'=>array($this->pathCompetition . '/sportsmen/index'), 
-        'icon'=>'user',
-        'linkOptions'=>array(
-            'title'=>Yii::t('fullnames', 'Go to list of contestants'), 
-        ),
-    ),
-    array('label'=>Yii::t('fullnames', 'Coaches'), 
-        'url'=>array($this->pathCompetition . '/coach/index'), 
-        'icon'=>'user',
-        'linkOptions'=>array(
-            'title'=>Yii::t('fullnames', 'Go to list of coaches'), 
-        ),
-    ),
-    array('label'=>Yii::t('fullnames', 'Judges'), 
-        'url'=>array($this->pathCompetition . '/judge/index'), 
-        'icon'=>'user',
-        'linkOptions'=>array(
-            'title'=>Yii::t('fullnames', 'Go to list of judges'), 
-        ),
-    ),
+);
 
-    '---',
+if (Yii::app()->IsViewContestants) {
+    $this->menu = CMap::mergeArray($this->menu, array(
+        array('label'=>Yii::t('fullnames', 'Sportsmens'),
+            'url'=>array($this->pathCompetition . '/sportsmen/index'),
+            'icon'=>'user',
+            'linkOptions'=>array(
+                'title'=>Yii::t('fullnames', 'Go to list of contestants'),
+            ),
+        ),
+        array('label'=>Yii::t('fullnames', 'Coaches'),
+            'url'=>array($this->pathCompetition . '/coach/index'),
+            'icon'=>'user',
+            'linkOptions'=>array(
+                'title'=>Yii::t('fullnames', 'Go to list of coaches'),
+            ),
+        ),
+        array('label'=>Yii::t('fullnames', 'Judges'),
+            'url'=>array($this->pathCompetition . '/judge/index'),
+            'icon'=>'user',
+            'linkOptions'=>array(
+                'title'=>Yii::t('fullnames', 'Go to list of judges'),
+            ),
+        ),
+        '---',
+    ));
+}
 
-    array('label'=>Yii::t('fullnames', 'Make Proposal'), 
+$this->menu = CMap::mergeArray($this->menu, array(
+    array('label'=>Yii::t('fullnames', 'Make Proposal'),
             'url'=>array('proposal/create'),
             'icon'=>'flag',   
             'linkOptions'=>array(
@@ -106,5 +112,4 @@ $this->menu=array(
             //'visible'=>($isExtendRole && !$isMyUserID) || (!$isExtendRole && $isMyUserID)
             'visible'=>(Yii::app()->user->role == 'judge')
         ),    
-);
-?>
+));

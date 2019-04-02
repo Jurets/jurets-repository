@@ -19,7 +19,10 @@ class CoachController extends ParticipantController
 			'postOnly + delete', // we only allow deletion via POST request
             array(
                 'application.filters.UserFilter + create, update',
-            ),        
+            ),
+            array(
+                'application.filters.ViewcontestantsFilter + index, view',
+            ),
 		);
 	}
 

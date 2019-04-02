@@ -20,6 +20,9 @@ class WeightcategoryController extends Controller
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
+            array(
+                'application.filters.ViewcontestantsFilter + list,tosser,result',
+            ),
 		);
 	}
 
@@ -222,7 +225,7 @@ class WeightcategoryController extends Controller
     
 
   //ДЕЙСТВИЕ: сформировать структуру данных для показа Категорий СПАРРИНГ
-    private function getList($amode = 'short', $wmode = 'full') {//DebugBreak();
+    private function getList($amode = 'short', $wmode = 'full') {
         $arrcategory = array();
         //
         $sqlCommand = Sportsmen::sqlTosserList();

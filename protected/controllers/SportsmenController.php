@@ -40,7 +40,10 @@ class SportsmenController extends ParticipantController
             ),  
             array(
                 'application.filters.SportsmenFilter + create',
-            ),  
+            ),
+            array(
+                'application.filters.ViewcontestantsFilter + index, view',
+            ),
         );
     }
 

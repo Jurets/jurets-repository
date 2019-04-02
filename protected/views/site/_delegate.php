@@ -1,12 +1,20 @@
 <?php
-$this->menu=array(
+$this->menu = array(
     array('label'=>Yii::t('controls', 'Operations')),
     array('label'=>Yii::t('fullnames', 'Competition'), 'url'=>array('/competition/view'), 'icon'=>'cog'),
-    //array('label'=>'Заявки', 'url'=>array('/proposal/index')),
     array('label'=>Yii::t('fullnames', 'Commands'), 'url'=>array($this->pathCompetition . '/command/index'), 'icon'=>'flag'),
-    array('label'=>Yii::t('fullnames', 'Sportsmens'), 'url'=>array('/sportsmen/index'), 'icon'=>'user'),
-    array('label'=>Yii::t('fullnames', 'Coaches'), 'url'=>array('/coach/index'), 'icon'=>'user'),
-    
+);
+
+if (Yii::app()->IsViewContestants) {
+    $this->menu = CMap::mergeArray($this->menu, array(
+        //array('label'=>'Заявки', 'url'=>array('/proposal/index')),
+        array('label'=>Yii::t('fullnames', 'Sportsmens'), 'url'=>array('/sportsmen/index'), 'icon'=>'user'),
+        array('label'=>Yii::t('fullnames', 'Coaches'), 'url'=>array('/coach/index'), 'icon'=>'user'),
+    ));
+}
+
+
+$this->menu = CMap::mergeArray($this->menu, array(
     '---',
     array('label'=>Yii::t('fullnames', 'Make Proposal'), 
             'url'=>array('proposal/create'),
@@ -27,5 +35,4 @@ $this->menu=array(
             'visible'=>(Yii::app()->user->role == 'judge')
         ),    
           
-);
-?>
+));

@@ -19,6 +19,9 @@ class CommandController extends Controller //ParticipantController
 		return array(
 			'accessControl', // perform access control for CRUD operations
 			'postOnly + delete', // we only allow deletion via POST request
+            array(
+                'application.filters.ViewcontestantsFilter + view',
+            ),
 		);
 	}
 

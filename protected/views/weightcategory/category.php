@@ -27,16 +27,18 @@
             foreach ($age['children'] as $wid=>$weight) {
                 $ageCount += $weight['count'];
                 $content = '';
-                //создать источник данных (для виджета грида, который во вьюшке _weigthlist)
-                $dataProvider = new CArrayDataProvider($weight['sportsmens'], array(
-                    'totalItemCount'=>count($weight['sportsmens']),
-                    'keyField'=>false, 'pagination'=>array('pageSize'=>50,),
-                ));    
-                //прорендерить вьюшку _weigthlist одной весовой категории
-                $content = $this->renderPartial('/sportsmen/_weigthlist', array('dataProvider'=>$dataProvider, 'weigthid'=>$weight['id'], 'columns'=>$columns), true, false);
-                $id = 'weigth_' . $weight['id'];
-                $title = $age['text'] . '<br>' . $weight['text'];// . ', ' . $title_division;
-                $this->renderPartial('application.views.site.blocks._modal', array('id'=>$id, 'title'=>$title, 'content'=>$content));
+                if (Yii::app()->IsViewContestants) {
+                    //создать источник данных (для виджета грида, который во вьюшке _weigthlist)
+                    $dataProvider = new CArrayDataProvider($weight['sportsmens'], array(
+                        'totalItemCount' => count($weight['sportsmens']),
+                        'keyField' => false, 'pagination' => array('pageSize' => 50,),
+                    ));
+                    //прорендерить вьюшку _weigthlist одной весовой категории
+                    $content = $this->renderPartial('/sportsmen/_weigthlist', array('dataProvider' => $dataProvider, 'weigthid' => $weight['id'], 'columns' => $columns), true, false);
+                    $id = 'weigth_' . $weight['id'];
+                    $title = $age['text'] . '<br>' . $weight['text'];// . ', ' . $title_division;
+                    $this->renderPartial('application.views.site.blocks._modal', array('id' => $id, 'title' => $title, 'content' => $content));
+                }
             }
         }
         $age_array[] = array('id'=>++$id, 'name'=>$age['text'], 'count'=>$ageCount);

@@ -12,7 +12,9 @@ class WebApplication extends CWebApplication
 {
     private $_defaultCompId = 0;     //ИД соревнования по умолчанию
     private $_competitionId = null;  //ИД запрашиваемого соревнования
-    
+
+    private $_isViewContestants = null;  //flag - if view contestants allowed
+
     public function getCompetitionId() {
         if (empty($this->_competitionId)) {
             $path = Yii::app()->request->getParam('path');
@@ -177,16 +179,18 @@ public function afterControllerAction($controller, $action) {
 
 // Check: if current user can view contestants list
     public function getIsViewContestants()     {
-        $isView = isset(Yii::app()->params['viewContestants']) ? (bool)Yii::app()->params['viewContestants'] : true;
-        if (!$isView) {
-            if (Yii::app()->isExtendRole) {
-                $isView = true;
-            } else {
-                $proposal = Proposal::model()->proposalForCompetition(Yii::app()->competitionId, Yii::app()->userid);
-                $isView = isset($proposal) ? $proposal->status == Proposal::STATUS_ACTIVE : false;
+        if (!isset($this->_isViewContestants)) {
+            $this->_isViewContestants = isset(Yii::app()->params['viewContestants']) ? (bool)Yii::app()->params['viewContestants'] : true;
+            if (!$this->_isViewContestants) {
+                if (Yii::app()->isExtendRole) {
+                    $this->_isViewContestants = true;
+                } else {
+                    $proposal = Proposal::model()->proposalForCompetition(Yii::app()->competitionId, Yii::app()->userid);
+                    $this->_isViewContestants = isset($proposal) ? $proposal->status == Proposal::STATUS_ACTIVE : false;
+                }
             }
         }
-        return $isView;
+        return $this->_isViewContestants;
     }
     
 }
